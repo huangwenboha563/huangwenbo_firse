@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>vue 过滤器2 filterby等</title>
+	<script src="js/vue.js"></script>
+</head>
+<body>
+	<ul id="app">
+		<input type="text" v-model="filters">
+		<!-- <li v-for="item in arr | limitBy 2">{{item}}</li>  只有一个参数代表你取几个-->
+		<!-- <li v-for="item in arr | limitBy 2 2">{{item}}</li> 有两个参数第一个代表取几个 第二个代表从索引是第几的开始取-->
+		<!-- <li v-for="item in arr | limitBy 2 2">{{item}}</li> 有一些小技巧 去倒数第一个和倒数第二个或者倒数两个-->
+		<!-- <li v-for="item in arr | filterBy 'p'">{{item}}</li> 过滤包含字母p的 p是单引号总之单引号和双引号不能混在一起-->
+		<!-- <li v-for="item in arr | filterBy filters">{{item}}</li> 不错-->
+		<!-- <li v-for="item in arr | orderBy -1">{{item}}</li> -1代表倒叙 abcd倒叙首字母-->
+		<!-- <li v-for="item in arr | orderBy 1">{{item}}</li> 1代表正叙-->
+	</ul>
+</body>vue
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			arr:["apple","banana","orange","pipe"],
+			filters:""//请注意这里  filters和上面的v-model的filters对应 这里一定要定义一下不然会报错
+		}
+	})
+</script>
+</html>

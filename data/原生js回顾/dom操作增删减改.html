@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>dom增删减改</title>
+</head>
+<body>
+
+
+</body>
+<script type="text/javascript">
+	// 笔记   
+	// input元素 竟然是行内块元素  在chrome浏览器里面点击计算 看它的display:属性。 <input type="text" name=""> <input type="button" name=""> 可以直接写宽高  。fuck
+
+
+	// 原生的dom操作有
+	// 增加  document.createElement('div');
+	// 追加  appendChild();
+
+    var oDiv = document.createElement('div');
+    oDiv.style.width = '100px';
+    oDiv.style.height = '100px';
+    oDiv.style.border = '2px solid blue';
+    oDiv.innerHTML = '我是divOne';
+    document.body.appendChild(oDiv);
+
+
+    // 再次追加
+    var oDiv2 = document.createElement('div');
+    oDiv2.style.width = '100px';
+    oDiv2.style.height = '100px';
+    oDiv2.style.border = '2px solid red';
+    oDiv2.innerHTML = '我是divTwo';
+    document.body.appendChild(oDiv2);
+
+    // 克隆 传true 和 不传 true
+
+    var cloneDiv = oDiv.cloneNode(true);
+    // 经过测试 cloneNode(true) 他的子子孙孙都会克隆 包括 innerHTML ’我是divOne‘ 也能显示出来
+    // 默认情况下是不传true的 在这个例子体现的是 innerHTML ’我是divOne‘ 这句话显示不出来
+    document.body.appendChild(cloneDiv);
+    // 在 **某个元素**  前面插入  **某个元素**
+    // 把oDiv2 插入到oDiv 之前   insertBefore(A,B) 把A插入到B的前面 如果A本来在B面前那肯定没有显示啊。  A(在前面显示) 
+    document.body.insertBefore(oDiv2,oDiv);
+    // 也可以写成  parentNode 父亲节点
+    oDiv.parentNode.insertBefore(oDiv2,oDiv);
+
+    // 替换  replaceChild(A,B)  把B替换成A  B被替换成A         A是新的 
+
+    // document.body.replaceChild(oDiv2,oDiv);     oDiv    被替换成oDiv2
+    // document.body.replaceChild(oDiv,oDiv2);     oDiv2   被替换成oDiv
+
+
+
+
+   // 自定义属性 和object特别像
+
+   oDiv.name = 'huangwenbo'; // oDiv['name'] = 'huangwenbo'
+   // console.log(oDiv['name'])  在oDiv 这个元素本上也就是dom结构上体现不出来 只能通过控制台输出
+
+   // 设置属性相关和自定义属性的区别是在html结构中可以体现
+
+   oDiv.setAttribute('age',26);
+   // console.log(oDiv.age); 通过控制台console.log得不到 但是去看dom结构是可以看到的
+
+   // 那么通过什么能得到呢？？ 通过getAttribute()去得到
+   var age = oDiv.getAttribute('age');
+
+   console.log(age);// 这里还可以得到 但是在下面再console.log就得不到了 因为移除了
+
+   // 移除这个属性
+   oDiv.removeAttribute('age');
+   // 移除之后再去 ’拿‘ 就拿不到了 就返回null 
+   var age = oDiv.getAttribute('age');
+   console.log(age); // 输出null 
+
+
+  // 弊端 在ie6-8下setAttribute('class','class-name');不起作用   老老实实 通过className这个属性去修改
+
+  // 比如：oDiv.className = 'active'
+
+
+
+
+</script>
+</html>

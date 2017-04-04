@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <my-component></my-component>
+</div>
+
+<div id="app2">
+    <child-component></child-component>
+    <child-component2></child-component2>
+</div>
+</body>
+<script>
+    // 文件另存为的快捷键是 commond shift s
+    // 前几个例子讲解的组件注册比较麻烦  要先弄构造器 再全局注册和局部注册
+    // vue 简化了这部分流程 使用Vue.component 直接创建构造器并且注册
+    // 1. 第一个参数是标签名称 2.第二个参数是一个选项对象 利用选项对象的template属性定义组件模板 3.使用这种方式会在背后自动调用Vue.extend
+    Vue.component('my-component', {
+        template: '<p>我是一个全局的组件啊</p>'
+    });
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: 'hello vue.js'
+        }
+    });
+    /*上面是全局注册的语法糖  下面是局部注册的语法糖*/
+    var vm2 = new Vue({
+        el: "#app2",
+        data: {
+            msg: '我是message'
+        },
+        components: {
+            'child-component': {
+                template: '<p>我是局部注册</p>'
+            },
+            'child-component2': {
+                template: '<p>我是局部注册2</p>'
+            }
+        }
+    })
+
+
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--有分发的内容-->
+    <my-component>
+        <p>我在这里占了一个坑</p>
+    </my-component>
+    <!--没有分发的内容-->
+    <my-component></my-component>
+</div>
+<template id="myComponent">
+    <h1>你好吗</h1>
+    <slot>如果没有要分发的内容的话就显示我好吗</slot>
+    <h3>我也挺好的</h3>
+</template>
+</body>
+<script>
+    // slot  内容分发 什么卡槽  扯淡  通过实际例子来理解
+    // 这种注册方式是全局注册的语法糖 简化了注册流程的一种方式
+    Vue.component('my-component', {
+        template: '#myComponent'
+    });
+    var vm = new Vue({
+        el: "#app"
+    })
+</script>
+
+</html>

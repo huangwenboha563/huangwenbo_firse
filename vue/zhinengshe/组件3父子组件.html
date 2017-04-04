@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件-1</title>
+    <script src="js/vue.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <parent-component></parent-component>
+</div>
+</body>
+<script>
+    /*
+     vue 父子组件 父子组件的雏形  父子组价如何通信  父子组件如何在项目中运用呢，实际项目中如何体会到组件的威力  对比传统的jquery
+
+     */
+    // 1. 创建一个 --儿子--  的组件构造器
+    var child = Vue.extend({
+        template: '<h3>我是儿子</h3>'
+    });
+    // 2. 创建一个 -- 父亲-- 的组件构造器
+    var parent = Vue.extend({
+        // 在parent组件里面使用child-component 标签
+        template: '<h1>我是父亲</h1><child-component></child-component>',
+        components: {// 在parent组件内注册的child组件 所以 child组件只能在parent组件内使用
+            'child-component': child
+        }
+    });
+    Vue.component('parent-component', parent);
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: 'hello vue.js'
+        }
+    });
+
+
+    /*
+    注意两种常见的关于使用子组件的错误
+    1.<parent-component><child-component><child-component></component>
+      以子标签的形式在父组件中使用为什么这种方式无效呢？
+      因为当子组件注册到父组件时，Vue.js会编译好父组件的模板，模板的内容已经决定了父组件将要渲染的HTML。
+     <parent-component>…</parent-component>相当于运行时，
+     它的一些子标签只会被当作普通的HTML来执行，<child-component></child-component>不是标准的HTML标签，会被浏览器直接忽视掉。
+    2.
+        <parent-component</parent-component>
+        <child-component></child-component>
+    */
+
+</script>
+</html>

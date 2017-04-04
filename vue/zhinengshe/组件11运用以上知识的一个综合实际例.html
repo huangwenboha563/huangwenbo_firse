@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>这是一个综合实例</title>
+    <script src="js/vue.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <div id="searchBar">
+        Search <input type="text" v-model="searchQuery"/>
+    </div>
+    <simple-grid :data="gridData" :columns="gridColumns" :filter-key="searchQuery"></simple-grid>
+</div>
+
+<template id="grid-template">
+    <table>
+        <thead>
+        <tr>
+            <th v-for="col in columns">
+                {{ col | capitalize}} // 这个过滤器的作用是首字母大写
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="entry in data | filterBy filterKey">
+            <td v-for="col in columns">
+                {{entry[col]}}
+            </td>
+        </tr>
+        <!--
+        知识点：
+        1. v-for 循环里面套着循环
+        2. 外层循环 entry in data 这个data 是 从父组件中接受到的数据也就是父组件data里面的gridData 因为儿子要想得到父亲的数据只能通过属性v-bind:来传递  儿子组件的
+           props 属性来接受
+        3. 内层循环 col in colums 这个colums也是父亲的数据通过v-bind:colums传递给儿子   儿子通过props属性来接受过来的
+        4. filterBy 这个过滤器是怎么运行的呢？
+           4.1 filterBy是个过滤器 过滤器的第一个参数是一个字符串表示按照什么过滤
+           4.2 注意个  :filter-By = 'searchQuery' 和父组件的数据 searchQuery是双向绑定的
+           4.3 所以你在父组件的input框连输入个jack 就会进行过过滤
+        -->
+        </tbody>
+    </table>
+</template>
+
+</body>
+<script>
+    // 注册了一个全局的组件 模板是id为grid-template的template 标签名是simple-grid
+    Vue.component('simple-grid', {
+        template: '#grid-template',
+        props: {
+            data: Array,
+            columns: Array,
+            filterKey: String
+            // 注意这里的filterKey 和上面的  :filter-key 对应 驼峰的必须转换成带-的
+
+        }
+        // 以前的子组件的props选项是['mingZi','niangLing'] 这种形式
+        // 这段代码表示：父组件传递过来的 data 和 columns 必须是Array类型，filterKey必须是字符串类型。
+        // 你就不能取个其他的名字吗 别人叫 都叫data容易和选项data混淆
+    });
+
+    var demo = new Vue({
+        el: '#app',
+        data: {
+            searchQuery: '',
+            gridColumns: ['name', 'age', 'sex'],
+            gridData: [{
+                name: 'Jack',
+                age: 30,
+                sex: 'Male'
+            }, {
+                name: 'Bill',
+                age: 26,
+                sex: 'Male'
+            }, {
+                name: 'Tracy',
+                age: 22,
+                sex: 'Female'
+            }, {
+                name: 'Chris',
+                age: 36,
+                sex: 'Male'
+            }]
+        }
+    })
+</script>
+</body>
+</html>

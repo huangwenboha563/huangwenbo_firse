@@ -1,0 +1,16 @@
+1. 为什么css通过link放在head标签里面
+   
+   绘制页面的时候让他先加载css  先把css加载好 避免‘网速慢的时候’出现空白 （也就是先看到没有css时候的样式。）
+
+2. link和import区别
+   
+   首先link和import语法结构不同，前者<link>
+
+   是html标签，只能放入html源代码中使用，后者可看作为css样式，作用是引入css样式功能。import在html使用时候需要<style type="text/css">标签，同时可以直接“@import url(CSS文件路径地址);”放如css文件或css代码里引入其它css文件。
+	1）link属于XHTML标签，而@import是css提供的；
+	2）页面被加载时，link会同时被加载，而@import引用的css会等到页面被加载完再加载；
+	3）@import只在IE5以上才能识别，而link是XHTML标签，无兼容问题；
+	4）link方式的样式的权重高于@import的权重
+   本质上两者使用选择区别不大，但为了软件中编辑布局网页html代码，一般使用link较多，也推荐使用link。
+
+3. js 放在body的最后面html页面是从上到下加载的js通常是回去html标签给予动态效果的，所以需要先加载html标签才能再加载js

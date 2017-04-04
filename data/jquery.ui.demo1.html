@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery ui demo</title>
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#draggable {
+			width: 100px;
+			height: 100px;
+			border: 1px solid blue; 
+		}
+		#demo {
+			width: 1170px;
+			height: 800px;
+			border: 1px solid blue;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+		.fl {
+			float: left;
+		}
+		.fr {
+			float: right;
+		}
+		.state-item {
+			width: 200px;
+			text-align: center;
+			margin-left: 28px;
+			margin-top: 20px;
+		}
+		.state-item .state-text{
+			height: 50px;
+			line-height: 50px;
+			border: 1px solid green;
+		}
+		.state-item>ul {
+			padding: 10px;
+			border: 1px solid yellow;
+		}
+		.state-item ul li {
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			border: 1px solid red;
+		}
+		ul,ul>li {
+			list-style: none;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div id="draggable" class="ui-widget-content">
+		<p>请拖动我</p>
+	</div> -->
+
+	<div id="demo">
+		<div class="fl state-item">
+			<div class="state-text">状态1</div>
+			<ul class="sortable connectedSortable">
+				<li class="drag-item">元素1.1</li>
+				<li class="drag-item">元素1.2</li>
+				<li class="drag-item">元素1.3</li>
+				<li class="drag-item">元素1.4</li>
+				<li class="drag-item">元素1.5</li>
+				<li class="drag-item">元素1.6</li>
+			</ul>
+		</div>
+		<div class="fl state-item">
+			<div class="state-text">状态2</div>
+			<ul class="sortable connectedSortable">
+				<li class="drag-item">元素2.1</li>
+				<li class="drag-item">元素2.2</li>
+				<li class="drag-item">元素2.3</li>
+				<li class="drag-item">元素2.4</li>
+				<li class="drag-item">元素2.5</li>
+				<li class="drag-item">元素2.6</li>
+			</ul>
+		</div>
+		<div class="fl state-item">
+			<div class="state-text">状态3</div>
+			<ul class="sortable connectedSortable">
+				<li class="drag-item">元素3.1</li>
+				<li class="drag-item">元素3.2</li>
+				<li class="drag-item">元素3.3</li>
+				<li class="drag-item">元素3.4</li>
+				<li class="drag-item">元素3.5</li>
+				<li class="drag-item">元素3.6</li>
+			</ul>
+		</div>
+		<div class="fl state-item">
+			<div class="state-text">状态4</div>
+			<ul class="sortable connectedSortable">
+				<li class="drag-item">元素4.1</li>
+				<li class="drag-item">元素4.2</li>
+				<li class="drag-item">元素4.3</li>
+				<li class="drag-item">元素4.4</li>
+				<li class="drag-item">元素4.5</li>
+				<li class="drag-item">元素4.6</li>
+			</ul>
+		</div>
+		<div class="fl state-item">
+			<div class="state-text">状态5</div>
+			<ul class="sortable connectedSortable">
+				<li class="drag-item">元素5.1</li>
+				<li class="drag-item">元素5.2</li>
+				<li class="drag-item">元素5.3</li>
+				<li class="drag-item">元素5.4</li>
+				<li class="drag-item">元素5.5</li>
+				<li class="drag-item">元素5.6</li>
+			</ul>
+		</div> 
+	</div>
+</body>
+<script>
+	$( ".sortable" ).sortable({// 默认情况下sortable 各个条目共享draggable 属性
+	      revert: true,
+	      connectWith: '.connectedSortable',
+	      delay: 300,
+	      distance: 15
+    });
+    
+    $( "ul, li" ).disableSelection();
+
+
+    /*
+		排序  sortable  delay（设置排序之前必须拖拽的毫秒数）和distance（排序之前必须拖拽的像素数）选项用来防止意外的排序 
+		选择  selectable
+		放置  droppable
+		拖动  draggable
+		缩放  resizable
+    */
+</script>
+</html>

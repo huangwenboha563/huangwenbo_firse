@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>匿名函数</title>
+</head>
+<body>
+	<div></div>
+</body>
+<script type="text/javascript">
+	// 匿名函数  function () {}
+
+
+	// 作用1.自执行函数
+	;(function () {
+		console.log('我自己执行了')
+	})();
+	// 自执行函数的其他写法装逼的写法
+	!function () {
+		console.log('我也自己执行了')
+	}();
+
+
+	+function () {
+		console.log('我还是自己可以执行了')
+	}();
+
+	-function () {
+		console.log('我仍然自己可以执行了')
+	}();
+
+
+	~function () {
+		console.log('我仍然自己可以执行了')
+	}();
+
+	// 问题:为什么前面要加分号？？？？ 看下面的这段代码如果不加分号的话
+
+	/*
+	var test=function(a){
+    	alert(a)// 看如果不加分号的话会把a给弹出来。。。。 所以 自执行函数加分号这样写就可以了。记住即可
+	}(function(b){
+    
+	})(1)
+	*/
+
+
+	// 作用2  把匿名函数赋值个一个变量？？或者下面这种 
+
+	document.getElementsByTagName('div')[0].onclick= function () {
+			alert(1)
+	}
+	
+
+
+
+
+
+
+
+
+
+</script>
+</html>

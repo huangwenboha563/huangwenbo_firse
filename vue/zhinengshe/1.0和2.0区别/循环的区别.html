@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>vue1.0和2.0之间的区别之循环</title>
+    <!-- 1.0 -->
+    <!-- <script src="../js/vue.js"></script> -->
+    <!-- 2.0 -->
+    <script src="../js/vue2.0.js"></script>
+</head>
+<body>
+    <div id="appOne">
+
+        <h1>循环数组第一种</h1>
+        <ul> 
+            <li v-for="item in arr" track-by="$index">
+                {{item}} {{$index}}
+            </li>
+        </ul>
+        <hr>
+        <h1>循环数组第二种</h1>
+        <ul>
+            <!-- 第一个参数是索引，第二个参数是值 -->
+            <li v-for="(index,item) in arr">
+                {{index}} {{item}}
+            </li>
+        </ul>
+        <hr>
+        <h1>循环对象第一种</h1>
+        <ul>
+            <!-- item代表值 不是属性 -->
+            <li v-for="item in json">
+                {{item}}
+            </li>
+        </ul>
+        <hr>
+        <h1>循环对象第二种</h1>
+        <ul>
+            <!-- item代表值 不是属性   属性  属性值  索引-->
+            <li v-for="item in json">
+                {{$key}}：{{item}}:{{$index}}
+            </li>
+        </ul>
+        <hr>
+        <!-- 循环对象第三种 -->
+        <ul>
+            <!-- item代表值 不是属性 通过对象的方式来-->
+            <li v-for="(key,value) in json">
+                {{key}}：{{value}} :{{$index}} :{{$key}}
+            </li>
+        </ul>
+        <input type="button" @click="aa">
+        <p>有track-by属性的话是可以有重复数据的  如果没有track-by的话是不允许有重复数据的</p>
+    </div>
+    <div id="appTwo">
+        <!--循环数组-->
+        <!--循环对象-->
+    </div>
+</body>
+<script>
+    /*我是1.0版本的所有的关于循环的东西*/
+    var vm = new Vue({
+        el:"#appOne",
+        data:{
+            msg:'hello vue.js 1.0',
+            arr:['apple','banana','orange'],
+            json:{
+                name:'huangwenbo',
+                age:26,
+                company:'breadoffer@1.0'
+            }
+        },
+        methods:{
+            aa:function(){
+                this.arr.push('apple')
+            }
+        }
+    });
+    /*我是2.0版本的所有关于循环的东西*/
+    var vm2 = new Vue({
+        el:'#appTwo',
+        data:{
+            msg:'hello Vue.js 2.0',
+            arr:['apple','banana','orange'],
+            json:{
+                name:'huangwenbo2.0',
+                age:26,
+                company:'breadoffer@2.0'
+            }
+        }
+    });
+    // 1.0 循环笔记
+    // 数组  value in arr      (index,value) in arr    这两种都可以用{{$index}}来获取索引，第二种没必要而已
+    // 对象  value in obj      (key,value) in obj      {{$key}} {{$index}} 都可以得到
+
+    //track-by="$index" 有的话就可以渲染重复数据 || 没有的话不渲染重复数据会报错
+
+
+    // 2.0 循环笔记 去掉了隐士变量   $index  $key
+    // 数组  value in arr       (value, index) in arr
+    // 对象  value in obj       (value, key) in obj       (value, key, index) in obj
+
+    //:key="item.id"    类似于1.0里面的track-by 
+
+
+    // 2.0 里面默认是可以添加重复数据的 是可以的是可以的是可以的
+
+
+
+    
+    // 总结:
+    // 1. 循环是任何库或者框架都会经常用到的 1.0版本已经够用
+    // 2. 循环无非就是 值和索引 对数组 对对象循环 这两种 2.0可能简化了一些写法 让开发者看上去更舒服
+</script>
+</html>

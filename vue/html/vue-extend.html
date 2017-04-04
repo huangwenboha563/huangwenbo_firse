@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-extend</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app-7">
+    {{message}}
+    <!--如果用了texplate 这里面是什么都会显示模板的内容-->
+</div>
+<!--
+选项 el  data  template 这些都是选项
+构造器的扩展
+-->
+</body>
+<script>
+    //    拆分构造器 第一个例子 把template选项放在extend里面
+    //    var demo = Vue.extend({
+    //        template: "<p>{{message}}</p>"
+    //    });
+    // 拆分构造器第二个例子 把data 选项放在构造器里面
+    var demo = Vue.extend({
+        data: function () {
+            return ({message: "我是数据"});
+            // 返回一个对象的形式
+            // el  template 这些选项等都可以直接拿到扩展里面来用 但是data必须是一个函数而且哈有返回值
+        }
+    });
+    //主构造器  主构造器的demo和 上面的var demo要保持一致
+    var mainPlus = new demo({
+        el: "#app-7",
+        template: "<p>{{message}}</p>"
+    });
+
+    mainPlus.$mount("#app-7");
+    // 手动挂在 el属性  把元素的id插入到构造器中
+
+
+</script>
+</html>

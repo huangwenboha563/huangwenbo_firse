@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>全局注册</title>
+    <script src="js/vue.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app"><my-component></my-component></div>
+<div id="app2"><my-component></my-component></div>
+</body>
+<script>
+    // 1.先创建一个组件构造器
+    var myComponent = Vue.extend({
+       template:'<h3>我是组件</h3>'
+    });
+    // 2.注册组件 第一个参数是标签的名字 第二个参数是组件构造器的名字
+    Vue.component('my-component',myComponent);
+    // 3. #app是vue 实例挂载的元素
+    var vm = new Vue({
+        el:"#app",// 在挂载的元素范围内使用组件
+        data:{
+            msg:'hellow vue.js'
+        }
+    });
+    // 4.如何体现全局注册的组件哪里都可以用呢？这样体现 再实例化一个vue对象去挂载就能体现
+    var  vm2 = new Vue({
+        el:'#app2',
+        data:{
+            msg2:'hello vue-router'
+        }
+    });
+    /*
+    * 1. 该例子是 讲解的全局注册 所谓的全局注册 就是 第二步 Vue.component
+    * 2. 既然是全局注册的一个组件那我哪里都可以用
+    *
+    * */
+</script>
+</html>

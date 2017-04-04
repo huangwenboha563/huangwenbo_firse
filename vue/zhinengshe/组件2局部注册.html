@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>局部注册</title>
+    <script src="js/vue.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app"><my-component></my-component></div>
+<div id="app2"><my-component></my-component></div>
+</body>
+<script>
+    // 1. 还是先创建一个组件构造器 名字叫myComponent
+    var myComponent = Vue.extend({
+        template:'<h3>我是一个子组件</h3>'
+    });
+    // 2.在实例化vue对象的时候挂载到某个vue实例子下面
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:'hello vue.js'
+        },
+        components:{// 该例子是把myComponent 组件注册到某个实例下面 它属于#app
+            'my-component':myComponent
+        }
+    });
+    // 3.如何体现局部注册的组件只属于某个实例呢 及时有了#app2的实例子页面里面也只会出现一条我是子组件的数据
+
+    var vm2 = new Vue({
+        el:"#app2",
+        data:{
+            msg:'hello vue-router'
+        }
+    });
+</script>
+</html>

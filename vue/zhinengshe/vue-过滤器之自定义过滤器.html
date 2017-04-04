@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义过滤器</title>
+	<script src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- {{a}} a是9显示9没有问题但是如果是单个数字想像是09呢-->
+		{{a | myfilter 9 8}}
+	</div>
+</body>
+<script>
+	// 定义过滤器全局方法要写在实例化之前否则报错
+	Vue.filter('myfilter',function(value,arg1,arg2){
+		// alert(value)
+		// alert(arg1+arg2)
+		// return value<10?"0"+value:""+value;
+		// alert(value.toString().length)
+		// return value.toString().length<2?"0"+value:""+value;
+		if(value<10){
+			return "0"+value;
+		}else{
+			return ""+value;
+		}
+		// 第二个参数可以是一匿名的回调函数 也可以是一个对象
+		// {read:function(){},write:function(){}}
+		// read是mode=》view的   write是view=>model的
+	});
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			message:"hello vue.js",
+			a:9
+		}
+	});
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>for in 循环</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var obj = {
+		name:'huangwenbo',
+		age:26,
+		1:'haha'
+	}
+	// console.log(obj.1); //->这样写报错如果是属性名是number类型的话不能用点的方式
+	// console.log(obj.name); // 这样能读出来属性 不是number类型
+	console.log(obj[1]);
+	console.log(obj['1']);
+	for(key in obj) {
+		// console.log(key);
+		// 1  name  age   1            注意：  1      在前面！!!!!
+		// console.log(obj[key]);
+		// haha huangwenbo 26          注意：  haha   在前面！！！！
+	}
+
+
+
+</script>
+</html>

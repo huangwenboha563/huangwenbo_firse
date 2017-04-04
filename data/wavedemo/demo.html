@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>waves demo</title>
+	<link rel="stylesheet" href="css/waves.min.css">
+	<script src="js/waves.js"></script>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		
+
+    	.demo {
+    		width:100px;
+    		height: 40px;
+    		line-height: 40px;
+			background: blue;
+			text-align: center;
+			color:#fff;
+    	}
+	</style>
+</head>
+<body>
+
+	
+	<div class="demo">点击我</div>
+</body>
+ 
+<script>
+    Waves.attach('.demo', ['waves-ripple','waves-float','waves-light']);
+    Waves.displayEffect();
+</script> 
+</html>

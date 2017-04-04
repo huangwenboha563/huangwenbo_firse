@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for</title>
+	<script src="js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="item in arr">{{item}}</li>
+		</ul>
+		<hr>
+		<ul>
+			<li v-for="item in json">{{item}} {{$key}} {{$index}}</li>
+		</ul>
+		<hr>
+		<ul>
+			<li v-for="(key,value) in json">{{key}} {{value}} {{$index}}</li>
+		</ul>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			arr:["我","是","中","国"],
+			json:{a:"wo",b:"shi",c:"zhong",d:"guo"}
+		}
+	});
+	// 
+</script>
+</html>

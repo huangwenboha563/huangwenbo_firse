@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js_for循环(break,continue区别)</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var arr = [1,20,30,40,50,60,70,80,90,100]
+	// demo 1
+	for (var i = 0; i < arr.length; i++) {
+		// break;           跳出循环
+		// continue         跳出循环
+		// console.log(i);	    // 不管是continue 还是break两者都是跳出循环，跳出循环之后的循环体后面的语句都不执行
+	}
+	// console.log(i);
+	/*
+		1.break 和 continue 共同点 这两个语句的后面的循环体的语句都不会执行
+		2.break 和 continue 的不同点？
+
+		  2.1 在for循环外面再输出 i( console.log(i) ) break 得到的结果是 0  continue得到的结果是 5
+	*/
+
+
+	// demo2 
+	for (var i = 0; i < arr.length; i++) {
+		if (i<5) {
+			// console.log(i);
+		}else  {
+			// break;
+			// continue;
+		}
+	}
+	console.log(i);// 如果是break的话 i 是5  如果是continue的话 i 是 10
+
+	// demo3
+
+	// demo4
+
+	// demo5
+
+	// demo6
+
+	// demo7
+
+
+	// demo8
+</script>
+</html>

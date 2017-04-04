@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>递归</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 当前函数自己调用自己就叫递归
+</script>
+<script>
+	// 1 -100 之间不能被三整处的数相加
+
+	//方法1
+	/*
+
+	var sum = 0;
+	for (var i = 1; i <=100; i++) {
+		if (i%3 != 0) {
+			sum = sum +i;
+		}
+	}
+	console.log(sum)
+
+	*/ 
+	
+
+	// 方法2
+	/*
+
+
+	var sum = 0;
+	var i = 1;
+	while(i<=100){
+		i%3!=0?sum+=i:null;
+		i++;
+	}
+	console.log(sum)
+
+
+	*/
+
+
+
+
+	// 求0-100之间的和
+
+	//方法1
+	/*
+
+	var sum = 0;
+	for (var i = 0; i <=100; i++) {
+		sum = sum + i;
+	}
+	console.log(sum)
+
+	*/
+	
+	/*方法2*/
+	/*
+	
+	function sum (n) {
+		if (n == 0) {
+			return 0;
+		}
+		return n + sum(n-1);  100 + sum(99) 
+	}
+	var res = sum(100);
+	console.log(res)
+	如果问到的话一般都是回答的是第一种方法 装逼的写法是第二种
+
+
+	100 + sum(99) 
+	100 + 99 + sum(98) 
+	100 + 99 + 98 + sum(97)
+	100 + 99 + 98 + ... ... + sum(1)
+	100 + 99 + 98 + ... ... + 1 + sum(0) // 那么sum 0 就是递归的的终止条件    递归重要的是找到递归终止的条件
+
+
+	*/
+
+	// 递归实现一个 阶乘
+	/*
+	
+	function factorial (n) {
+		if (n == 1) {
+			return 1;// 递归的终止条件
+		}
+		return n * factorial(n-1);
+	}
+	console.log(factorial(5))
+	5* factorial(4)
+	5* 4 * factorial (3)
+	5* 4 * 3 * factorial (2)
+	5* 4 * 3 * 2 * factorial (1)
+	5* 4 * 3 * 2 * 1
+	*/ 
+	
+</script>
+</html>

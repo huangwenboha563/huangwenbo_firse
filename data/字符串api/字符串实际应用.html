@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串的实际应用</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 如果后台返回的一个时间字符串是 str 
+	// 面包后台返回的时间一般都是: '2017-03-30 11:25:25'
+	/*
+	var str = '2015-5-24 12:55:3';
+	function timeFormate (str) {
+		var arr = str.split(' ');// ['2015-5-24','12:55:3']
+		var strOne = arr[0];// '2015-5-24'
+		var strTwo = arr[1];// '12:55:3'
+		var arrOne = strOne.split('-');// ['2015','5','24']
+		var arrTwo = strTwo.split(':');// ['12','55','3']
+		return arrOne[0] + '年' + arrOne[1] + '月' + arrOne[2] + '日 ' + arrTwo[0] + '时' + arrTwo[1] + '分' + arrTwo[2] + '秒';
+
+	}
+	var result = timeFormate(str);
+	console.log(result);
+	*/  
+
+	//改进补0 下面这种写法 有很多重复性的工作字符串拼接很容易出错
+	/*
+	var str = '2015-5-24 12:55:3';
+	function timeFormate (str) {
+		var arr = str.split(' ');// ['2015-5-24','12:55:3']
+		var strOne = arr[0];// '2015-5-24'
+		var strTwo = arr[1];// '12:55:3'
+		var arrOne = strOne.split('-');// ['2015','5','24']
+		var arrTwo = strTwo.split(':');// ['12','55','3']
+		return arrOne[0] + '年' + (arrOne[1]<10?'0'+arrOne[1]:arrOne[1]) + '月' + (arrOne[2]<10?'0'+arrOne[2]:arrOne[2]) + '日 ' + (arrTwo[0]<10?'0'+arrTwo[0]:arrTwo[0]) + '时' + (arrTwo[1]<10?'0'+arrTwo[1]:arrTwo[1]) + '分' + (arrTwo[2]<10?'0'+arrTwo[2]:arrTwo[2]) + '秒';
+
+	}
+	var result = timeFormate(str);
+	console.log(result);
+	*/
+	// 补0 优雅一点的写法
+	var str = '2015-5-24 12:55:3';
+	// 封装一个补0 的方法
+	/*
+	function addZero (str){
+		if (str<10) {
+			str = '0' + str;
+		}else {
+			str = str;
+		}
+		return str;
+	}
+	*/
+	
+	// addZero还有一个写法 三元表达式装逼的写法
+	/*
+
+	function addZero (str) {
+		return str < 10? '0' + str:str;
+	}
+	function timeFormate (str) {
+		var arr = str.split(' ');// ['2015-5-24','12:55:3']
+		var strOne = arr[0];// '2015-5-24'
+		var strTwo = arr[1];// '12:55:3'
+		var arrOne = strOne.split('-');// ['2015','5','24']
+		var arrTwo = strTwo.split(':');// ['12','55','3']
+		return arrOne[0] + '年' + addZero(arrOne[1]) + '月' + addZero(arrOne[2]) + '日 ' + addZero(arrTwo[0]) + '时' + addZero(arrTwo[1]) + '分' + addZero(arrTwo[2]) + '秒'; 
+	}
+	var result = timeFormate(str);
+	console.log(result);
+
+	*/
+	
+	
+
+    // 比较高级的写法更加牛逼的写法利用正则调用方法的时候可以传递一个想要的结果字符串想要什么格式要什么格式 只要年月？ 只要时间分秒？ 只要十分？连接符也可以自定义传递什么给你格式化成什么。。 需要用到正则 正则的各项知识点务必理解透彻
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</script>
+</html>

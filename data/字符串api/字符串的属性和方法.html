@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串基本api属性和方法</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var str = 'i come from breadoffer.com';
+	/* 截取类 */
+	// substring(m, n) 从索引为 m 的开始截取到索引为 n 的位置但是不包括n位置的这个字符。
+	document.write(str.substring(2,3) + '<br>');
+	// substr(m, n)    从索引为 m 的位置开始截取 n 个字符
+	document.write(str.substr(2,3) + '<br>');
+	// slice(m, n)     从索引为 m 的开始截取到索引为 n 的位置但是不包括 n 位置的这个字符。和substring类似但是能传负数
+	document.write(str.substr(-2) + '<br>');
+	/*截取类型如果传一个参数不传后面的参数的话代表截取到末尾*/
+
+
+
+	/* split 类*/
+
+	var str2 = "wo shi zhong guo ren ";
+	// split 按照指定的字符分割成数组 不传递参数和传递一个不存在的分隔符比如这个字符串中没有 ; 这个字符这两个的结果是一样的把整个字符串当成一个数组。
+	document.write(str2.split() + '<br>');// ["wo shi zhong guo ren "]
+	document.write(str2.split(';') + '<br>');// ["wo shi zhong guo ren "]
+	document.write(str2.split('') + '<br>'); // ["w", "o", " ", "s", "h", "i", " ", "z", "h", "o", "n", "g", " ", "g", "u", "o", " ", "r", "e", "n", " "]
+	document.write(str2.split(' ') + '<br>');// ["wo", "shi", "zhong", "guo", "ren", ""]
+	document.write(str2.split('u') + '<br>');// ["wo shi zhong g", "o ren "]
+
+
+	/*indexOf lastIndexOf 找到对应字符的索引 */
+
+	// 通常用来判断有没有一个字符串中有没有某个字符 有的话 返回的结果 > -1  如果没有的话返回的结果是 -1
+	var str3 = 'wo ai zhong guo';
+	document.write(str3.indexOf('a') + '<br>');
+	document.write(str3.lastIndexOf('u') + '<br>');
+
+	/*charAt charCodeAt 返回指定位置的字符或指定位置字符所对应的ASCII码*/ 
+	var str4 = 'wo shi yi ge zhongGuo ren'
+	document.write(str4.charAt(3) + '<br>');  // 得到的结果是s
+	document.write(str4.charCodeAt(3) + '<br>');// 得到的结果是 115 ‘s’这个字符的ASCII码是 115
+
+	/* 替换类 replace(原来字符串里面老的字符,替换的新的字符)*/
+
+	var str5 = 'welcome to breadoffer good good work';
+	document.write(str5.replace('o','偶') + '<br>');
+	document.write(str5.replace('o','偶').replace('o','偶').replace('o','偶').replace('o','偶').replace('o','偶').replace('o','偶').replace('o','偶').replace('o','偶') + '<br>');
+	// 细节：replace一次只能替换一个要多次替换最笨的办法就是一直.replace('o','偶')下去所以可以用正则
+	// 用正则就可以做到全部替换
+	document.write(str5.replace(/o/g,'偶') + '<br>');
+	//              /0/g 这个正则一定要加全局的g的符号 不然也只替换一次。
+
+	/* match  和正则相关需要后期正则的知识 */
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
