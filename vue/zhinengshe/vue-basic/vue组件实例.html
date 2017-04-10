@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+    <meta charset="UTF-8">
+    <title>初次了解组件</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="app-7">
+    <ol>
+
+        <my-first-component v-for="item in lists" v-bind:yuansu="item"></my-first-component>
+
+    </ol>
+</div>
+<input type="checkbox" id="checkbox" v-model="checked">
+<label for="checkbox">{{ checked }}</label>
+</body>
+<script>
+    Vue.component("my-first-component",{
+        props:['yuansu'],
+        template:"<li>{{yuansu.text}}</li>"
+    });
+    var demo = new Vue({
+        el:"#app-7",vue-partial.html
+        data:{
+            lists:[
+                { text: '我很拐' },
+                { text: '我爱惹' },
+                { text: '我是慈溪太后' }
+            ]
+        }
+    })
+</script>
+</html>
