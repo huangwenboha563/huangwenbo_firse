@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zn">
+<head>
+	<meta charset="UTF-8">
+	<title>cookie</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+
+	
+	// console.log(document.cookie)// 什么都没有空字符串
+	// console.log(typeof(document.cookie))// string
+
+	// document.cookie="user=黄文博";// document.cookie="user=" + encodeURIcomponent('黄文博');
+	// console.log(document.cookie) // console.log(decodeURIcomponent(document.cookie))\
+	// 最好是编码，避免乱码问题，另外：Google浏览器在本地还不能测试，要在服务器环境下
+	// 因为本地不存在域名，所以域就不为空
+	// 如果不向磁盘写入cookie，我们还是能获取到cookie。因为刚才已经写入磁盘了
+	// 那么什么是过期时间呢？就是时间到了就清理cookie，如果没有写过期时间，默认就是关闭了就被清理了。
+	// 当火狐浏览器关闭后document.cooke就没有了。
+
+	完整cookie设置：document.cookie = 'user=值;expirs=失效时间;path=路径访问;domain=域名访问;secure=安全的https限制'
+	*/
+
+	/*
+	   参数:expirs,设置过期时间
+	*/
+
+	/*
+	    那么过期时间怎么弄呢？首先复习一下日期对象
+	    var date = new Date();
+		date.setDate(date.getDate() + 7)
+		// console.log(date)// 当前日期加七天以后的那一天
+		// 把这个时间设置为当前时间的前一天，减去1试一试（+7 改为-1）
+	*/
+	/*
+		document.cookie="user=" + encodeURIComponent('黄文博') + ';expirs=' + date;
+		// 当过了这个时间cookie就被自动清理了，设置为当前时间的之前时间就手动清楚cookie了(真正的删除了，手动改时间也改不回来了)。
+		console.log(decodeURIComponent(document.cookie));
+
+		// 除了把过期时间设置为当前时间的前一天可以清楚cooke意外还有另外一种方式,把new Date(0)输出就知道原因了
+		document.cookie="user=" + encodeURIComponent('黄文博') + ';expirs=' + new Date(0);
+
+	*/
+	
+
+	/*
+		参数:path，设置cookie访问的目录限制，一般为根目录，当然你也可以设置的不一样。
+	*/
+ 
+	/*
+	1. 设置域名必须在当前域名绑定的服务器上进行设置，如果在breadoffer.com上随意设置其他域名，则无法创建cookie
+	2. 如果定义了breadoffer.com，那么在这个域名下的所有网页都可以访问，如果定义了college.breadoffer.com，那么只能在这个二级域名域名访问这个cookie，而主域名和其他子域名不能访问。
+	3. 一般不限制默认主域名。（domain 一般不不要设置 默认限制为创建cookie的域名）
+	*/
+
+	/*
+		参数:secure
+	*/
+
+	/*
+	1. document.cookie="user=" + encodeURIComponent('黄文博') +';secure';
+	2. 如果为了安全性，比如银行加上 secure这个参数。发送类型就成了*加密类型*
+	*/
+
+</script>
+</html>
