@@ -15,8 +15,54 @@
 	document.cookie="email=hub@163.com";
 	document.cookie="url=breadoffer.com";
 	*/
-	function setCookie (name,value,expirs,path,domain,secure){
-		
+	/*设置过期时间的方法*/
+	function setCookieDay (day) {// 传递一个7，意思是7天后失效
+		var date = null;
+	    if (typeof day == 'number' && day>0) {
+	    	date = new Date();
+	    	date.setDate(date.getDate()+day);
+	    }else {
+	    	throw new Error('您传递的天数不合法！必须是数字且大于0')
+	    }
+	    return date;
 	}
+	// 设置cookie的方法
+	function setCookie (name,value,expires,path,domain,secure){
+		document.cookie = encodeURIComponent(name)+'='+ encodeURIComponent(value);
+		if (expires instanceof Date) {
+			document.cookie+=';expires='+expires;
+		}
+		if (path) {
+			document.cookie+=';path='+path;
+		}
+		if (domain) {
+			document.cookie+=';domain='+domain;
+		}
+		if (secure) {
+			document.cookie+=';secure';
+		}
+		console.log(document.cookie)
+	}
+	setCookie('user','huangwenbo',setCookieDay(7));
+	setCookie('email','breadoffer.com',setCookieDay(7));
+	setCookie('adderss','chinaBeijing',setCookieDay(7));
+
+	function getCookie (name) {
+		var cookieObj = {};
+		var curCookie = document.cookie;
+		var curArr = curCookie.split('; ');
+		for (var i = 0;i<curArr.length;i++) {
+			var everyCookie = curArr[i].split('=');
+			cookieObj[everyCookie[0].toString()] = everyCookie[1];
+		}
+		// console.log(cookieObj);
+		return cookieObj[name];
+	}
+//	console.log(document.cookie)
+	console.log(getCookie ('user'));
+	console.log(getCookie ('email'));
+	console.log(getCookie ('adderss'));
+
+	
 </script>
 </html>
