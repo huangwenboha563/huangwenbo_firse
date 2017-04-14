@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>本地存储</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.item  {
+			width: 600px;
+			height: 40px;
+			line-height: 40px;
+			border: 1px solid #eee;
+			border-radius: 3px;
+		}
+		.item>input {
+			display: inline-block;
+			height: 40px;
+			line-height: 40px;
+			border: 1px solid #d5d5d5;
+			width: 500px;
+			float: left;
+		}
+		.item>span {
+			display: inline-block;
+			width: 98px;
+			float: left;
+		}
+	</style>
+	<script src="../js/jquery.js"></script>
+</head>
+<body>
+	<div class="item">
+		<span>用户名:</span><input type="text" id="user">
+	</div>
+	<div class="item">
+		<span>邮箱:</span><input type="text" id="mail">
+	</div>
+	<div class="item">
+		<span>备注:</span><input type="text" id="remark">
+	</div>
+</body>
+<script>
+	$(".item>input").blur(function () {
+		var $this = $(this);
+		localStorage.setItem($this.attr('id'),$this.val());
+	})
+	$(".item>input").each(function (index, item) {
+		var $this = $(this);
+		var val = localStorage.getItem($this.attr('id'));
+		if (val) {
+			$this.val(val);
+		}
+	})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

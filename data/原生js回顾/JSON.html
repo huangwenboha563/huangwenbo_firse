@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JSON</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// js对象 下面这些都是js对象属性(key)可以加引号也可以不加引号，引号可以是双引号也可以是单引号，属性值(value)如果是字符串类型要加大单引号或者双引号。
+	var obj = {name:'焦裕禄',age:20};
+	var obj2 = {"name":'焦裕禄',age:20};
+	var obj3 = {"name":'焦裕禄','age':20};
+	// JSON -> 一种数据存储或者交换的格式 属性(key)和属性值(value，如果是是字符串类型) 要加引号而且必须是双引号
+	// 简单json {"name":"hebeijiaoyan","value":20}
+	
+	// 稍微复杂点的JSON无非就是数组和对象的组合
+	[
+		{"name":"hebeijiaoyan","value":20},
+		{"name":"hebeijiaoyan","value":20},
+		{"name":"hebeijiaoyan","value":20},
+		{"name":"hebeijiaoyan","value":20},
+		{"name":"hebeijiaoyan","value":20},
+		{"name":"hebeijiaoyan","value":20}
+	]
+
+
+	// 详细讲解请参考  http://www.ablesky.com/kecheng/detail_885431
+
+
+	// var obj={width:100,height:200},这样的并不叫JSON，并且JSON只是一种数据格式，并不是具体的实例。但很多人把这样的JS对象当成JSON
+
+	/*
+	JSON是什么？(JSON和JavaScript对象有什么区别？)如何把JS对象转化为JSON字符串？又如何把JSON字符串转化为JavaScript对象？
+	JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，JSON格式的数据，主要是为了跨平台交流数据用的。
+	但JSON和JavaScript确实存在渊源，可以说这种数据格式是从JavaScript对象中演变出来的，它是JavaScript的一个子集。JSON本身的意思就是JavaScript对象表示法（JavaScript Object Notation），它用严格的JavaScript对象表示法来表示结构化的数据。
+	它是一种严格的js对象的格式，JSON的属性名必须有双引号，如果值是字符串，也必须是双引号；
+	JSON只是一种数据格式（或者叫数据形式），数据格式其实就是一种规范，格式、形式、规范是不能用来存诸数据的。
+	*/
+
+	// eval() http://www.w3school.com.cn/jsref/jsref_eval.asp     w3c上面关于eval() 的简介
+	// eval() http://bbs.csdn.net/topics/390490964                eva() 解析JSON串为什么要加一对()?的解释
+
+
+
+	/*
+
+		1. 后台返回给我们的是JSON串 jsonStr一般长这样: '{"name":"焦裕禄","age":20}';
+		2. JSON.parse(jsonStr)  eval('(' +  jsonStr + ')');// 至于为什么要加一对 () 包裹起来看上面的链接
+
+	*/
+
+	/*
+		1. {"name":"hebeijiaoyan","value":20}  直接在js里写这是错误的会报经典的语法错误
+		2. ({"name":"hebeijiaoyan","value":20}) 这样就不会报错，或者 var obj = {"name":"hebeijiaoyan","value":20}不会报错  
+	*/
+
+
+
+
+</script>
+</html>
