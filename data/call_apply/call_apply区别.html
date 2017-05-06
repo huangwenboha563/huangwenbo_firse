@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>call&apply区别</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var obj = {fn:add}
+	function add (num1,num2) {
+		console.log(this)
+	}
+	add(100,200);   // this -> window
+	obj.fn(100,200) // this -> obj
+
+
+	add.call(obj,100,200) // this -> obj
+	add.call(100,200)     // this ->100
+
+	//非严格模式下
+	add.call();//this->window num1=undefined num2=undefined
+    add.call(null);//this->window
+    add.call(undefined);//this->window
+    //严格模式下  "use strict";
+    add.call();//this->undefined
+    add.call(null);//this->null
+    add.call(undefined);//this->undefined
+
+    //apply和call的作用是一样的，都是用来改变this关键字的
+    //区别:在于给函数传递参数值的时候
+    fn.call(obj, 100, 200);//给fn传递参数值,call是从第二个参数开始,一个个的传递进来
+    fn.apply(obj, [100, 200]);//给fn传递参数值,apply的语法要求从第二个参数开始,把所有需要传递给fn的形参中都放在一个数组中传递进来;但是和call一样的,都是相当于分别给每一个形参一个个的赋值的
+</script>
+</body>
+</html>
+
+</script>
+</html>

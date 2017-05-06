@@ -112,7 +112,25 @@
 	5* 4 * 3 * factorial (2)
 	5* 4 * 3 * 2 * factorial (1)
 	5* 4 * 3 * 2 * 1
+	function factorial (n) {
+		if (n == 1) {
+			return 1;// 递归的终止条件
+		} else {
+			return n * factorial(--n);
+		}
+	}
 	*/ 
+	/*
+		function aa (num) {
+			if ( num > 1 ) {
+				aa(--num)
+			}
+			debugger;
+			console.log(num)
+		}
+		aa(4)
+	*/
+	
 	
 </script>
 </html>

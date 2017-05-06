@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>类数组对象转换成数组对象</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+		什么是类数组？
+		a:看着像数组但是不是数组，有下标(0,1,2)也可以称之为属性典型的就是arguments
+		为什么要用call？不能用apply吗 这里用call和apply是一样的因为不需要传递参数
+		a:call和apply的区别？没什么区别，就是传递参数的形式不一样而已。
+		原理是什么？为什么用push sort这些不行呢？
+		call和aply遵循  fn.call()  fn.apply() 前面的是一个方法
+		// 1.改变this指向				
+	*/
+	function add () {
+		console.log(arguments instanceof Array)// 返回的是false 说明不是一个真正的数组
+		var ary = Array.prototype.slice.call(arguments)
+		// var ary = [].slice.call(arguments)
+		// var ary = Array.prototype.slice.apply(arguments)
+		// var ary = Array.prototype.splice.call(arguments)
+		// var ary = Array.prototype.splice.call(arguments,0)
+		// var ary = Array.prototype.sort.call(arguments)
+		// var ary = Array.prototype.push.call(arguments)
+		console.log(ary)
+		console.log(ary instanceof Array)
+	}
+	add(0,1,2)
+</script>
+</html>

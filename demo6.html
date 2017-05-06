@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo6</title>
+	<script src="js/jquery.js"></script>
+	<style>
+		.border {
+			display: block;
+			width: 100px;
+			height: 20px;
+			border: 1px solid green;
+		}
+	</style>
+
+</head>
+<body>
+	<input type="text" value="haha">
+</body>
+<script>
+	// $("input").focus(function () {
+	// 	$(this).addClass('border')
+	// })
+	$("input").on('focus',function () {
+		$(this).addClass('border')
+	})
+</script>
+</html>

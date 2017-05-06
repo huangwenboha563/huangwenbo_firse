@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Math数学对象</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// Math.abs();   // 取绝对值
+	// Math.ceil();  // 向上取整
+	// Math.floor(); // 向下取整
+	// Math.round(); // 四舍五入
+	// Math.max(val1,val2,val3);   // 最大值
+	// Math.min(val1,val2,val3);   // 最小值  
+	// Math.random()               // [0,1)      
+
+	/*
+
+	Math.round(12.5)  -> 13   ->注意这里正数5就进了
+	Math.round(12.4)  -> 12
+	Math.round(-12.4) -> -12
+	Math.round(-12.5) -> -12  ->注意这里负数的话5就舍了
+	Math.round(-12.6) -> -13
+	
+	*/
+
+	// 获取[n,m]之间的随机正数  
+	// [1,10]
+	// Math.round(Math.random()*(m-n)+n)   [0,9) +1    [1,10)
+	// [14,58]
+
+	function getRandom (n,m) {
+		n = Number(n);
+		m = Number(m);
+		if (isNaN(n)||isNaN(m)) {
+			return Math.random();
+		}
+		if (n>m) { // 相当于健力宝和脉动换一下 用一个空瓶子
+			var temp = n;
+			n = m;
+			m = temp;
+		}
+		
+		return Math.round(Math.random()*(m-n)+n)
+	}
+
+	var ary = [];
+	for (var i = 0;i<4;i++) {
+		ary.push(getRandom(0,30))
+	}
+	console.log(ary)
+
+
+
+
+    // var x =10,y = 20;
+    // var temp = x; // x的值给临时变量->此时temp 是10
+    // x = y;       //  y的值再给x->    此时x的值是20
+    // y = temp;   //   temp的值再给y   此时y的值是temp的值也就是10
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

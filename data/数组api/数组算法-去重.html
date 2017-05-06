@@ -7,4 +7,71 @@
 <body>
 	
 </body>
+<script>
+	// 数组去重有多种方法，算法
+	var arr = [1,2,3,4,1,2,3,4,1,2,3,4];
+	var obj = new Object();
+	for (var i = 0; i<arr.length; i++) {
+		var cur = arr[i];
+		if (obj[cur] === cur) {// 说明在这个对象里面已经有cur这个属性了
+			arr.splice(i,1);
+			i--;
+		}else {
+			console.log(1)
+			obj[cur] = cur;
+		}
+		
+	}
+	console.log(arr)
+	/*
+	没有某个属性的话是undefined，有某个属性的话就是 obj[cur] === cur
+	原则: 有的话就删除这一项，没有的话就存储
+	obj->{}
+	obj->{1:1}            //第0次
+	obj->{1:1,2:2}		  //第1次
+	obj->{1:1,2:2,3:3}    //第2次
+	obj->{1:1,2:2,3:3,4:4}//第3次
+	obj->{1:1,2:2,3:3,4:4}//第4次 返现obj里面已经有 1 了就把 1 从数组里面删除掉，同时i要减去1 否则会造成数组塌陷问题 ，因为splice会对原数组造成影响，把1删除后，后面的会往前面补一位(2会补上去)导师循环的时候绕过这次，所以没删除一次就要执行i--
+
+
+	*/
+	// 上面的方法用continue来改造一下看着比较高级哈哈
+	/*
+	var arr = [1,2,3,4,1,2,3,4,1,2,3,4];
+	var obj = new Object();
+	for (var i = 0; i<arr.length; i++) {
+		var cur = arr[i];
+		if (obj[cur] === cur) {// 说明在这个对象里面已经有cur这个属性了
+			arr.splice(i,1);   
+			// if里面的满足条件的话执行，遇到continue后面的代码不执行直接进行下一次循环和else效果一样看着比较装逼
+			i--;
+			continue;
+		}
+		console.log(1)
+		obj[cur] = cur;
+		
+		
+	}
+	console.log(arr)
+	*/
+	// 对上面的方法进行性能上的优化
+	// 试想如果这个数组有10000项呢，每次遇到数组塌陷问题都要删除解决往前补以为的问题，如果就几个元素还好说，如果数组元素很多的话就会很浪费性能。
+	// 解决办法 遇到已经存在的情况直接把数组的最末尾一项拿过来替换重复的这一项，同时i--这样性能会比上述性能好很多。
+	var arr = [1,2,3,4,1,2,3,4,1,2,3,4];
+	var obj = new Object();
+	for (var i = 0; i<arr.length; i++) {
+		var cur = arr[i];
+		if (obj[cur] === cur) {// 说明在这个对象里面已经有cur这个属性了
+			cur = arr[arr.length-1];
+			arr.length--;// 相当于arr.pop();
+			i--;
+			continue;
+		}
+		console.log(1)
+		obj[cur] = cur;
+		
+		
+	}
+	console.log(arr)
+</script>
 </html>

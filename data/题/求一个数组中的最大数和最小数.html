@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>求一个数组中的最大数和最小数三种方法</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var arr = [0,2,9,8,20,49,99,2,4];
+	// 方法一 先把数组排序从小到大排序，那么第一个就是最小的，第二个就是最大的
+	/*
+	
+	var newArr = arr.sort(function (a,b) {
+		return a-b;
+	})
+	// console.log(newArr) newArr[0] 最小的，newArr[newArr.length-1],最大的
+
+	*/
+	
+	// 方法二 假设法 我们可以假设数组中的第一个为最大值或者最小值然后依次和数组总的其他项进行比较
+	/*
+	var maxNum = arr[0];// 这是起最大值，最小值一样的道理，把第一个当成最小值判断条件<改成>即可
+	for (var i = 1; i < arr.length; i++) {// 第一个就不需要和第一个进行比较了，所以循环的时候从1开始
+		//1.: if (maxNum<arr[i]) {
+		// 	maxNum = arr[i]
+		// }
+		//2.: maxNum<arr[i]?maxNum = arr[i]:void 0; // 装逼的写法 三元表达式
+		//3.: if (maxNum>arr[i]) {
+		//	    continue;// 退出本次循环，但是还执行下一次循环
+		//    }else {
+		//	    maxNum = arr[i]
+		//    }
+	}
+	console.log(maxNum)
+	*/
+	// 方法三 运用apply
+	// Math.max(0,1,2,3) 这是我们常见的利用数学对象的max方法求最大值，参数一定要是  0，1，2，3这种形式传递
+	// console.log(Math.max.apply(null,arr))
+	// 第一步:Math.max这个方法执行  
+	// 第二步:这个方法执行就需要传递参数，怎么一个一个的把参数传递过去呢 联想到apply方法  fn.apply(obj,[参数1，参数2])  apply使用数组的形式传递参数 
+	// 第三步:Math.max.apply(null,arr) apply的第一个参数要传递null，因为不需要改变this
+	
+	// 这是起最大值，最小值一样的道理，把第一个当成最小值判断条件<改成>即可
+	var maxNum = arr[0];
+	for (var i = 1; i < arr.length; i++) {// 第一个就不需要和第一个进行比较了，所以循环的时候从1开始
+		if (maxNum>arr[i]) {
+			continue;
+		}else {
+			maxNum = arr[i]
+		}
+		// maxNum<arr[i]?maxNum = arr[i]:void 0; // 装逼的写法 三元表达式
+	}
+	console.log(maxNum)
+</script>
+</html>

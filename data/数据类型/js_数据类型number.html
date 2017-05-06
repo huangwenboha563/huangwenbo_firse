@@ -31,18 +31,19 @@
 		过程:如果检测的值不是number类型的，浏览器会默认的把它转换成number类型，然后再判断是否为有效数字。
 		过程:先把'12' 用(强制类型转换)Number()转换成number类型 也就是Number('12') ->12
 
-		Number(准备转换的)
+		Number(准备转换的),强制类型转换的规则
 		// Number('12')    ->12
 		// Number('12px')  ->NaN
 		// Number(true)    ->1
 		// Number(false)   ->0
+		// Number("")      ->0
 		
 	*/
 
 	// 非强制类型转换 parseInt()/parseFloat()
 	// 转换规则:从左到右，一个个字符查找，把是数字的转换为有效的数字，中途如果遇到了一个非有效数字就不再继续查找了。
 	/*
-		//parseInt('12px')            ->12
+		//parseInt('12px')            ->12   typeof(parseInt('12px')) ->number
 		//parseInt('12px13')          ->12   中途遇到非有效数字   px
 		//parseInt('breadoffer2017')  ->NaN  刚上来就遇到非有效数字breadoffer
 		//parseInt('12.5px')          ->12   已经遇到了非有效数字 .   此时应该用parseFloat()

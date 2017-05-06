@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组的基本api</title>
+</head>
+<body>
+	
+</body>
+
+
+<script>
+//	由多组键值对（key:value）组成
+//  属性名和属性值是用来描述这个对象特征的
+	var obj = {
+		name:"breadoffer",
+		age:6
+	}
+	var person = {
+		name:"mianbao",
+		age:2,
+		hobby:'basketball',
+		height:"180cm"
+	}
+	/*
+		1. 字面量创建方式 var person = {}
+		2. 实例创建 var person = new Object()
+
+		  2.1 给对象增加一组属性名和属性值 obj.name = "breadoffer" obj["name"] = "breadoffer" obj[1] = "haha"
+		  2.2 修改一组属性名和属性值      obj.name = "breadoffer" obj["name"] = "breadoffer" obj[1] = "haha"
+		  2.3 增加和修改语法一样，规定一个对象中的属性名不能重复，如果之前有就修改，没有就增加。
+		  2.4 获取属性名和属性值语法一样   obj.name = "breadoffer" obj["name"] = "breadoffer" obj[1] = "haha" 如果属性名默认不存在返回的结果是undefined
+		  2.5 删除属性名属性值     
+
+		    2.5.1 obj.name = null  假删除
+		    2.5.2 delete obj.name  真删除
+	*/
+	// 对象数据类型中 包含  几个小的数据类型,对象类（Object）  数组类(Array)，正则类(RegExp)，字符串类（String）,布尔（Boolean）Math 时间类（Date）等等等这些都是内置类。
+	var obj= {}；
+	var ary = [];
+	var reg = /^$/;
+	var obj = {};
+
+	/*
+		js 中，对象，类，实例的区别
+		对象是：泛指，js中万物皆对象
+		类:    对对象具体的细分
+		实例:  类中一个具体的事物
+		举例子: 自然界中万物皆‘对象’，所有的东西可以分为 人‘类’，植物‘类’，一级动物‘类’，物体‘类’ 每一个人都是人‘类’中的一个具体的‘实例’
+
+		Array instanceof Object
+		String instanceof Object
+
+	*/
+</script>
+	
+</html>

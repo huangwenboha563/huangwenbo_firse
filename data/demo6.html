@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo6</title>
+	<script src="js/jquery.js"></script>
+	<style>
+		/*
+*@date 2016-04-25
+*/
+/*---清除默认样式---*/
+
+@charset "utf-8";
+/*base*/
+*{-webkit-text-size-adjust:none;}/*ÓÃÓÚÇå³ýÒÆ¶¯Éè±¸ä¯ÀÀÆ÷×Ô¶¨Òå×ÖÌåÉèÖÃ*/
+* {box-sizing:border-box;}/*¸Ä±äºÐ×ÓÄ£ÐÍ*/
+html, body, h1, h2, h3, h4, h5,h6, input, button,select,label, form,textarea, p, span, a, div, ol, ul, li, dl, dt, dd, table, tbody, tfoot, thead, tr, th, td, canvas,i,img { margin:0; padding:0;border:none;font-style: normal;font-weight: normal;}
+body{font-family:"Microsoft Yahei",STXihei,hei;outline: none;color:#333;background:#fff;}
+input,select,button,textarea{font-family:"Hiragino Sans GB","Microsoft Yahei";outline: none;border:0 none;background: #fff;}
+input[type="submit"],input[type="reset"],input[type="button"],input[type="text"],button,textarea{
+	-webkit-appearance: none;
+	border-radius: 0;
+	appearance:none;
+	-moz-appearance:none;
+}
+input:focus,textarea:focus{
+	outline:none;
+}
+input[type="text"]{
+	vertical-align: middle;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {display: block;}
+body{
+	font-size:16px;
+}
+a {text-decoration:none; color:#555;}
+button{cursor: pointer;}
+/*È¥³ýµã»÷µÄÊ±ºòµÄ¸ßÁÁ*/
+*{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+ul { list-style:none; }
+img{border: 0 none;outline: none;}
+table { border-collapse:collapse; border-spacing:0; }
+em,i { font-style:normal;}
+input,button,textarea,select,optgroup,option {
+	font-family:inherit;
+	font-size:inherit;
+	font-style:inherit;
+	font-weight:inherit;
+}
+input,button,textarea,select {
+	*font-size:100%;
+}
+/*Çå³þ¸¡¶¯*/
+.clear:after{
+	display:block;
+	width:0px;height:0px;
+	line-height: 0;
+	content:".";
+	clear:both;
+	visibility: hidden;
+}
+.display-none{
+	display: none;
+}
+.clear{zoom:1;}
+/*默认字体设置*/
+body {
+	font-family: "Hiragino Sans GB",'Microsoft YaHei','宋体',sans-serif,Arial;
+	min-width: 1170px;
+}
+.fr{
+	float: right;
+}
+.fl{
+	float: left;
+}
+	</style>
+	<style>
+		input {
+			display: block;
+			width: 500px;
+			height: 220px;
+		}
+		.border {
+			border: 1px solid yellow;
+		}
+	</style>
+
+</head>
+<body>
+	<input type="text" value="haha" readonly="">
+</body>
+<script>
+	$("input").focus(function () {
+		$(this).addClass('border')
+	})
+	// $("input").on('focus',function () {
+	// 	$(this).addClass('border')
+	// })
+</script>
+</html>

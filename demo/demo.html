@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	htmlArr.push('<div class="input-text-item" data-required="', item.required == 1 ? "1" : "0", '">\
+                                      <div class="input-prompt">\
+                                          <div class="prompt-text fl">', item.showName, '</div>\
+                                          <div class="red-star fl ', item.required == 1 ? "" : "display-none", '">*</div>\
+                                          <div class="error-triangle fl display-none">\
+                                              <span class="iconfont icon-tanhao1"></span>\
+                                              <i>请填写</i>\
+                                              <span class="position-triangle"></span>\
+                                          </div>\
+                                      </div>\
+                                      <!--  默认情况下是display-none隐藏的如果有值就放开  -->\
+                                      <p class="interlude-des ', item.tip.length > 0 ? "" : "display-none", ' ">', item.tip, '</p>\
+                                      <div class="input-wrapper">\
+                                         <input type="text" value="', item.value ? item.value : item.defaultvalue, '" name="', item.name, '" maxlength="', item.maxlength, '"  data-minlength="', item.minlength, '">\
+                                      </div>\
+                                  </div>');
+</script>
+<script>
+	
+	/*纯文本框的规则校验*/
+            this.text.each(function (index, item) {
+                var $this = $(this);
+                var required = $this.data('required');// 是否是必须填写标识
+                var $errorCon = $this.find('.error-triangle');// 错误信息的容器
+                var $thisInput = $this.find('input[type="text"]'); // 对应的文本框
+                var thisOffsetTop = $this.offset().top - 240;// 要滚动的距离
+                var thisInputLength = $.trim($thisInput.val()).length;// 文本框值的长度
+                var phoneReg = /^1\d{10}$/;
+                var mailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+                // 如果是必填项
+                if (required == 1) {
+                    if (thisTextAreaLength == 0) {// 没有填值的情况
+                        // 第一步 错误提示先show出来
+                        $errorCon.show().find('i').text('请填写' + $this.find('.prompt-text').text());
+                        // 第二步 滚动到相应的位置
+                        $("body,html").animate({scrollTop: thisOffsetTop});
+                        isStop = true;
+                        return false;
+                    } else {// 填写了值得情况
+                        $errorCon.hide();
+                        // 1.判断输入的长度符合不符合
+                        if (thisTextAreaLength < $thisInput.data('minlength')) {
+                            $errorCon.show().find('i').text('请输入正确的' + $this.find('.prompt-text').text());
+                            // 同样滚到对应位置
+                            $("body,html").animate({scrollTop: thisOffsetTop});
+                            isStop = true;
+                            return false;
+                        }
+                    }
+                }
+            })
+            if (isStop) {
+                return false;
+            }
+</script>
+</html>
