@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue过滤器</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="text" v-model="msg" @keyup="get()">
+    <ul>
+        <li v-for="value in myData">{{value}}</li>
+    </ul>
+</div>
+<p v-show="myData.length==0">暂无数据...</p>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            msg:'',
+            myData:[]
+        },
+        methods: {
+            get:function(){
+                this.$http.jsonp('https://sug.so.360.cn/suggest',{
+                    word:'a'
+                }).then(function(res){
+//                    alert(res.data.s);
+                    this.myData = res.data.s
+                },function(res){
+                });
+            }
+        }
+    })
+</script>
+<script>
+    /*
+
+     */
+</script>
+</html>
