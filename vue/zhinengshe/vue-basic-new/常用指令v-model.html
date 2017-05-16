@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<input type="text" v-model="msg">
+	</div>
+</body>
+<script>  
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			msg:"欢迎"
+		}
+	})
+</script>
+<script>
+	/*
+	
+	v-model 一般用在表单元素(input上)
+	假如页面上有个input，要想让它有值得花我们可以用最传统的value="值"，但是我们既然用了新框架就按照人家的语法来写个属性v-model="msg" msg是vue实例的data上的一个值。	
+
+
+
+
+
+
+	*/
+</script>
+</html>

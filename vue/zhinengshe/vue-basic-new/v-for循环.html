@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<h1>循环数组</h1>
+		<ul>
+			<li v-for="value in arr">
+				数组的每一项:  {{value}}  数组的索引: {{$index }}
+			</li>
+		</ul>
+		<hr>
+		<h1>循环json第一种</h1>
+		<ul>
+			<li v-for="value in json">
+				属性值:{{value}} 属性名:{{$key}} 索引:{{$index}}  <br>
+			</li>
+		</ul>
+		<hr>
+		<h1>循环数组第二种</h1>
+		<ul>
+			<li v-for="(key,value) in json">
+				{{key}}    {{value}}    {{$index}}    {{$key}}<br>
+			</li>
+		</ul>
+	</div>
+</body>
+<script>  
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			arr: ['apple','banana','orange'],
+			json: {a:'apple',b:'banana',c:"orange"}
+		}
+	})
+</script>
+<script>
+	/*
+	
+	v-model 一般用在表单元素(input上)
+	假如页面上有个input，要想让它有值得花我们可以用最传统的value="值"，但是我们既然用了新框架就按照人家的语法来写个属性v-model="msg" msg是vue实例的data上的一个值。	
+	
+	号称双向数据绑定？什么是双向数据绑定？
+
+	如何理解数据绑定呢？按照我的操作？当你在其中一个input里面输入值得时候，在谷歌控制台输入vm.msg回车就会发现vm也会跟着变，这就是所谓的数据绑定，双向数据绑定。  
+
+
+
+
+	*/
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue事件</title>
+	<link rel="stylesheet" href="../js/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<input type="text" @keydown="show($event)">
+		<!-- <input type="text" @keydown.13="show($event)"> --><!-- 简介的方式只有按了13就调用某个方法 -->
+		<!-- <input type="text" @keydown.enter="show($event)"> -->
+		<!-- <input type="text" @keydown.up="show($event)"> -->
+		<!-- <input type="text" @keydown.down="show($event)"> -->
+	</div>
+</body>
+<script>  
+	var vm = new Vue({
+		el:"#box",
+		data:{
+
+		},
+		methods:{
+			show:function (ev) { // $event 和 ev对应
+				console.log(ev.keyCode)
+				// if (ev.keyCode == 13) {
+				// 	console.log('我敲回车了')
+				// }
+			}
+		}
+	})
+</script>
+<script>
+	/*
+		除了基本事件的操作以外，既然有事件当然有事件对象，阻止冒泡？阻止默认行为？
+		
+		.stop()
+		.preventDefault()
+
+		键盘上事件:
+		@keydown   $event ev.keycode
+		
+	*/
+</script>
+</html>

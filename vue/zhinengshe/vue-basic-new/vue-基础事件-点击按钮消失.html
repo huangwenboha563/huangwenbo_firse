@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击一个按钮让一个div消失v-show的用法</title>
+	<script src="../js/vue.js"></script>
+	<style>
+		.inner {
+			width: 100px;
+			height: 100px;
+			background: blue;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="inner" v-show="boolean"></div>
+		<input type="button" value="点击能让div消失" v-on:click="this.boolean=false">
+		<!-- <input type="button" value="点击能让div消失" v-on:click="delete()"> -->
+		<!--  
+			我们的目的是让div消失？
+			1. v-on:click = "this.boolean=false" 可以实现
+			2. 我们可以封装个方法delete 在delete里面改变boolean的值也能让消失
+			2. 那么我们想点击一下消失点击一下再隐藏呢？this.boolean = !this.boolean就可以。
+		
+		-->
+	</div>
+</body>
+<script>  
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			msg:"欢迎",
+			arr:['apple','banana','orange'],
+			boolean:true
+		},
+		methods:{
+			delete:function () {
+				this.boolean = !this.boolean;
+			}
+		}
+	})
+</script>
+<script>
+	/*
+	
+	同angula里面的控制一个元素显示隐藏的指令 v-show的用法一样
+
+
+
+	*/
+
+</script>
+</html>

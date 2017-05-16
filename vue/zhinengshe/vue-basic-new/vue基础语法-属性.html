@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue事件</title>
+	<link rel="stylesheet" href="../js/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<!-- <img src="{{url}}" alt=""> -->
+		<img v-bind:src="url" alt="" :width="w" :title="t">
+	</div>
+</body>
+<script>  
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			url:"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+			w:"200px",
+			t:"这是一张美丽的图片"
+		},
+		methods:{
+			
+		}
+	})
+</script>
+<script>
+	/*
+		
+		<img src="{{url}}" alt="">	   效果能出来但是会报一个404的错误
+		<img v-bind:src="url" alt="">  效果能出来，不会发404请求
+		
+		既然用了框架了就遵循人家的语法
+
+		v-bind:简写是  :src
+	*/
+</script>
+</html>
