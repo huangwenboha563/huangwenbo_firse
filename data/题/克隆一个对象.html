@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>克隆一个对象</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var obj = {name:"haha",age:26}
+	var obj2 = {};
+	for (var key in obj) {
+		obj2[key] = obj[key]
+	}
+	console.log(obj2)
+	console.log(obj2==obj)
+</script>
+</html>

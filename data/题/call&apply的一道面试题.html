@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面试题call&apply</title>
+</head>
+<body>
+
+</body>
+<script>
+    //	Function () {
+    //
+    //	}
+    function fn1() {
+        console.log(1)
+    }
+    function fn2() {
+        console.log(2)
+    }
+    fn1.call(fn2) // ->1
+    fn1.call.call(fn2) // -> 2
+    fn1.call.call.call.call(fn2) // -> 2
+
+    // Funciton.prototype 是个空函数
+    Function.prototype.call(fn1) // 什么都不输出
+    Function.prototype.call.call.call(fn1) // ->1
+</script>
+</html>

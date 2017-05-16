@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取节点注意点</title>
+</head>
+<body>
+	<div id="div1">
+		<p name="hahah"></p>
+		<p name="hahah"></p>
+		<p name="hahah"></p>
+		<p name="hahah"></p>
+		<p name="hahah"></p>
+		<p name="hahah"></p>
+	</div>
+</body>
+<script>
+	var oDiv = document.getElementById('div');
+	var pLists = oDiv.getElementByName('hahah');// 会报错因为通过ByName来找它的上下文只能是document，不能是oDiv
+
+	// getElementById & getElementByName 这两个方法的上下文只能是document不能是其他元素，因为可以从和这个dom节点原型上一级一级的往上找他确实没有这个方法
+</script>
+</html>

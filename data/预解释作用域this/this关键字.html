@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this关键字最简单也最难</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 我们在js中主要研究中的是函数当中的this
+	// console.log(this) window 这里不做研究没有什么意思
+	/*
+		this?
+		// 当前行为执行的主体
+		// this 是谁和函数在哪定义的，在哪里执行的都没有任何关系，只和执行主体有关系
+		// 那么如何区分this呢？记住五种情况(先讲三种)
+		1.函数执行首先看函数名前是否有点，有的话点前面是谁this就是谁，没有的话this就是window
+		2.自执行函数中的this永远是window
+		3.给元素的某一个事件绑定方法，当事件触发的时候，执行对应的方法，方法中的this是当前的元素
+		4.构造函数模式当中"类"中或者函数体重this.xxx=xxx; this->当前类的一个实例
+		5.
+	*/
+	/*
+	function 吃饭 （） {
+		this->黄文博
+	}	
+	黄文博.吃饭
+	*/
+	// 补充概念，context 上下文 ->当前行为执行的环境
+	// 黄文博 在沙县小吃 吃蛋炒饼    this 是黄文博 在哪吃的呢？沙县小吃，那么沙县小吃是他的上下文 
+	// this和上下文有关系吗？ 饭店可以换，但吃饭的主体还是黄文博
+
+	/*
+	~function(){
+		console.log(this);
+		function fn () {
+			console.log(this);
+		}
+		var obj = {name:"haha",fn:fn}
+		obj.fn();
+	}()
+	*/
+</script>
+</html>

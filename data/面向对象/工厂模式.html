@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工厂模式</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//单例模式虽然解决了分组的作用，但是不能实现批量的生产属于手工作业的模式，所以要引入工厂模式
+	var person1 = {
+		name:"张建红",
+		writeJs:function () {
+			console.log(this.name + "会写js")
+		}
+	}
+	// person1.writeJs();
+	var person2 = {
+		name:"黄文博",
+		writeJs:function () {
+			console.log(this.name + "会写js")
+		}
+	}
+	// person2.writeJs();
+	/**************工厂模式******************************/
+	// 把实现想通功能的代码放到一个函数中，以后如果想实现该功能，不需要重复性编写代码，直接执行方法即可
+	// 函数的好处->"低耦合，高内聚"(减少页面中的冗余代码),提高代码的重复利用率
+	function creadeJsPerson (name,age) {
+		var obj = {};
+		obj.name = name;
+		obj.age = age;
+		obj.writeJs = function () {
+			console.log(this.name + "会写js")
+		}
+		// return 返回到“社会”中
+		return obj;
+	}
+	var p1 = creadeJsPerson("郑成真",20);
+	p1.writeJs();
+	var p2 = creadeJsPerson("郑王维",20);
+	p2.writeJs();
+	// 所有的编程语言都是面向对象的(类的继承，封装，多态)
+
+	/*
+
+	继承: 子类继承父类中的属性和方法
+
+	封装: 上面的creadeJsPerson() 就是封装
+
+	多态: 当前方法(creadeJsPerson)的多种形态,在后台语言中多态包含（重载or重写）
+	
+	重载: 方法一样，参数不一样(个数不一样？类型不一样？)
+	
+	后台有重载？
+	前端有重载吗？
+	js中不存在重载，方法名一样的话，后面的会把前面的覆盖掉
+	js中没有重载，只是个操作类似重载
+
+	
+
+	重写？
+	子类重写父类的方法
+	*/
+	
+	/*
+	// 看着像重载，其实不是重载
+	function sum (num) {
+		if (typeof num === "undefined") {
+			return 0;
+		} else {
+			return num;
+		}
+	}
+	sum(100); // 形参为100
+	sum();    // 没有传递形参 为undefined
+	*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

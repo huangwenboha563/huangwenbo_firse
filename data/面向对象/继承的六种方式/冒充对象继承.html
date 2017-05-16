@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>冒充对象继承</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 把父类私有的加公有的克隆一份一模一样的给子类私有的
+	function Father() {
+		this.x = 100;
+	} 
+	Father.prototype = {
+		constructor:Father,
+		getX:function () {
+			console.log(this.x)
+		}
+	}
+	function Son () {
+		var temp = new Father();
+		for (var key in temp) {// 得到公有的和私有的
+			this[key] = temp[key]
+		}
+		temp = null;
+	}
+	var zjh = new Son();
+</script>
+</html>

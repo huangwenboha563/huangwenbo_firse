@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>构造函数基础</title>
+</head>
+<body>
+	
+</body>
+
+<script>
+	/***************构造函数模拟“品牌的概念”*******************/
+	// 除了一些内置类以外，还可以有自己创造的类
+	// 构造函数的目的就是为了创建一个“自定义类”，并且创建这个类的一个实例
+	/*构造函数模式和工厂模式区别？*/
+	// 1. 执行的时候~~~
+	// 普通函数执行:  函数名()
+	// 构造函数模式   new 函数名()
+	/*
+	// 工厂模式->普通函数执行
+	function creadeJsPerson (name,age) {
+		var obj = {};
+		obj.name = name;
+		obj.age = age;
+		obj.writeJs = function () {
+			console.log(this.name + "会写js")
+		}
+		// return 返回到“社会”中
+		return obj;
+	}
+	var p1 = creadeJsPerson("郑成真",20);
+	p1.writeJs();
+	*/
+
+	
+	/*
+	// 构造函数模式执行->自定义类通过实例执行
+	function creadeJsPerson (name,age) {
+		var obj = {};
+		obj.name = name;
+		obj.age = age;
+		obj.writeJs = function () {
+			console.log(this.name + "会写js")
+		}
+		// return 返回到“社会”中
+		return obj;
+	}
+	var p1 = new creadeJsPerson("郑成真",20); // p1就是creadeJsPerson这个类的实例
+	p1.writeJs();
+	*/
+
+	// 创建一个数组 (不管哪种方式ary都是Array的一个实例)
+	var ary = [];
+	var ary = new Array();
+
+	// js中所有的类都是函数数据类型的，通过new执行变成了一个“类”
+	// js中所有的实例都是对象数据类型的
+
+	// 2. 在函数执行的时候
+	// 相同:都是形成一个私有的作用域，然后形参赋值，然后->预解释->代码从上到下执行(类和普通函数一样，也有普通函数的一面，但也有自己不同的一面)
+	// 不同:在代码执行之前，不用再自己手动创建对象了，浏览器会默认的创建一个数据类型的值(这个对象就是我们当前类的一个实例)
+	// 接下来代码从上到下执行，以当前的实例为执行的主体(this代表当前的实例)，然后分别把属性名和属性值赋给这个实例
+	/*
+	function creadeJsPerson (name,age) {
+		this.name = name;
+		this.age = age;
+		this.writeJs = function () {
+			console.log(this.name + "会写js")
+		}
+	}
+	var p1 = new creadeJsPerson("郑成真",20); // p1就是creadeJsPerson这个类的实例 this->p1
+	var p2 = new creadeJsPerson("郑王维",30); // p2就是creadeJsPerson这个类的另外一个实例 this->p2
+	var ppp = new creadeJsPerson("王八蛋",30); // 这样写不是构造函数模式执行，是普通函数执行，因为没有return，所有 console.log(ppp) ->undefined，并且方法中的this是window
+	p1.writeJs();
+	p2.writeJs();
+	// p1和p2之间有关系吗？
+	// 在类中给实例增加的属性(this.xxx=xxx)属于当前类的实例，实例和实例之间的是单独的个体，所以私有的属性之间是不相等的。
+	// console.log(p1.writeJs == p2.writeJs) ->false
+	// 单例模式？后台认为的单例模式肯能是构造函数模式
+	*/
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

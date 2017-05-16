@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全局作用的细节问题带var不带var</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*对于这些细节问题，是值得注意的，虽然项目中遇到的机会不多？比如带不带var，你时刻带着就不会出现这个问题*/
+	/*
+	情况一:console.log() 都在前面写着
+	console.log(num); // 这种情况因为预解释的原因肯定是undefined毋庸置疑
+	var num = 10;
+	console.log(num2) 
+	// Uncaught ReferenceError: num2 is not defined，这种情况同样因为预解释的原因，预解释之针对var和funciton显然在这一步中还没有声明num呢，所以会报错not defined
+	num2 = 10;
+	*/
+	/*
+	
+	情况二:console.log() 在后面写着
+	var num = 10;
+	console.log(num); // 毋庸置疑肯定是10(预解释到这一步肯定是10) 此时 在控制台window.num ->10
+	num2 = 10;
+	console.log(num2) // 同样是10 此时在控制台 window.num2 -> 10 相当于在window作用域上写了一个num2的属性
+	*/
+	
+	/*
+	var total = 0;
+	function fn () {
+		console.log(total);// undefined
+		var total = 100; // 这个total和不受外面的total的影响！！！！！
+	}
+	fn();
+	console.log(total); // 0
+	*/
+	/*
+	var total = 0;
+	function fn () {
+		console.log(total);
+		// fn()执行的时候会形成私有的作用域，私有作用域里面没有var 和function 所以执行到这一步的时候就通过“作用域链”往上一级作用域找 所以 结果为：0
+		total = 100; 
+		// 执行到这一步骤的时候，total不带var是全局的就把全局的total给改了
+	}
+	fn();
+	console.log(total); // 所以是100
+		
+	*/
+	
+	/*
+	
+	// 这个题再变化一下:
+	// 私有作用域中出现的变量不是私有的，则往上级作用域中进行查找，上级没有则继续向上查找，一直找到window为止，如果window也没有呢？分为两种情况
+	// 第一种情况，获取值 ->程序会报错
+	function fn () {
+		console.log(total);
+		total = 100; 
+	}
+	fn();
+	// 第二种情况，设置值 ->相当于给window增加了一个属性名total，属性值是100
+	function fn () {
+		total = 100; 
+	}
+	fn();
+	console.log(total);
+	*/
+
+	// 补充:在js中不进行特殊处理的情况下上面的代码报错，下面的代码就不执行了，除非try catch 捕获异常
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

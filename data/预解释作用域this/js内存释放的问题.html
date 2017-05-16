@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js内存释放的问题</title>
+</head>
+<body>
+	<div id="div1" style="width: 100px; height:100px;background: blue;">有本事点我啊~~</div>
+</body>
+<script>
+	// 堆内存
+	// 对象数据类型和函数数据类型首先都会开辟一个堆内存，并且堆内存有一个引用地址，如果外面有变量知道了这个地址，我们就说这个内存被占用了，就不能销毁了！那么我如果想让她销毁呢？用 null (空对象指针)
+	// 预解释
+	/*
+	
+	var obj1;var obj2;
+	obj1 = xxxff000;
+	obj2 = obj1 = xxxff000;
+
+
+	*/
+	var obj1 = {name:"张三"};
+	var obj2 = obj1;
+	// 我们想要让堆内存释放，销毁只需要吧所有引用他的变量赋为null，如果当前的堆内存没有任何东西占用了，那么浏览器会在空闲的时候把他销毁...
+	// obj1 = null;
+	// obj2 = null
+	var oDiv = document.getElementById('div1');// 获取的是对象数据类型的值，对应一个堆内存
+	+ function (){
+		oDiv.onclick = function () {
+
+		}
+	}();//当前自执行函数形成的私有作用域也不销毁！！！
+</script>
+</html>

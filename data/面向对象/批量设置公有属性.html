@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>批量设置供有属性</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 第一种方式
+	/*
+	function Fn() {
+		this.x = 100;
+	}
+	var pro = Fn.prototype;// 把原型知向的地址赋值给我们的pro，现在它们操作的是一个内存空间
+	pro.getX = {
+		console.log(this.x);
+	}
+	pro.getY = {
+		console.log(this.x);
+	}
+	pro.getZ = {
+		console.log(this.x);
+	}
+	var f1 = new Fn();
+	console.log(f.constructor)  // ->Fn
+	*/
+	// 第二种方式 ->自己开辟的堆内存，存储公有的属性和方法
+	function Fn() {
+		this.x = 100;
+	}
+	Fn.prototype = {
+		constructor:Fn,
+		a:function () {
+
+		},
+		b:function () {
+
+		},
+		c:function () {
+
+		}
+	}
+	// 只有浏览器天生给Fn.prototype开辟的堆内存中才有constructor这个属性,而我们自己开辟的这个堆内存，没有这个属性。这样constructor指向就不再是Fn，而是Object
+	// 为了和原来的保持一致，我们需要手动的增加constructor指向
+	console.log(f.constructor)  // ->Object
+
+
+	/***********给内置类增加公有的属性*******************/
+	// Array.prototype.myUnique = funciton () {// 这样写是可以的
+
+	// }
+
+	/*
+	// 这样写是不可以的，浏览器会默认屏蔽这种方式，不让你这样写，写了也没用
+	Array.prototype = {
+		constructor:Array,
+		myUnique:funciton () {
+
+		}
+	}
+	console.dir(Array.prototype)
+	*/
+	// 我们可以通过下面的方式在数组原型上增加方法，如果方法名重复会把内置的修改掉(覆盖掉)
+	// 我们以后再内置类的原型上增加特殊的方法，都需要增加特殊的前缀
+	/*
+	Array.prototype.sort = fucntion () { // 因为方法名一样就会把原来的给覆盖，所以~~下面的排序不会实现
+		console.log("ok");
+	}
+
+	var ary = [1,2,3,4,5,4,3,2,1];
+	ary.sort();
+	console.log(ary);
+	*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

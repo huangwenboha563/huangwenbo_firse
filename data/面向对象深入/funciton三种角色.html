@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>funciton三种角色</title>
+
+</head>
+<body>
+	
+</body>
+<script>
+	// Function 这个类 是所有函数数据类型的基类，每个函数是Function的实例，每个函数最根本是个对象
+	// 该类的原型上有 Function.prototype ->call apply bind 等
+	// 所有的函数数据类型(Function Object)都有一个prototype以外还有一个__proto__
+	
+
+	// 函数本身也有一些自己的属性
+	// 1. length ->形参的个数
+	// 2. name ->函数的名字
+	// 3. prototype 类的原型，在原型上定义的方法都是当前这个Fn类实例的公有方法
+	// 4. __proto__ 把函数当做一个普通的对象，指向Function这个类的原型
+
+
+
+	// 函数在整个js中是最复杂也是最重要的知识
+	// 多面向 
+	// 2. 本身是一个普通函数，执行的时候形成私有作用域(闭包)，形参赋值，预解释，代码执行，执行完成后栈内存销毁或者不销毁
+	// 2. 本身又是个构造函数，它有自己的实例，也有一个叫做prototype的属性(原型)，它的实例都可以指向自己的原型
+	// 3. 又是一个普通对象 和var obj = {} 一样，它作为对象可以有一些私有的属性，也可以通过__proto__找到Function.prototype
+	// 这三者之间是没有任何关系的
+
+
+	// 来一段毁三观的程序
+
+	function Fn() {
+		var num = 500;
+		this.x = 100;
+	}
+	Fn.prototype.getX = fucntion () {
+		console.log(this.x);
+	}
+	Fn.aaa = 1000;
+	var f = new Fn;
+	console.log(f.sum); // ->undefined  
+	console.log(f.aaa); // ->undefined  
+	var res = Fn();     // res->undefined this->window
+	console.log(Fn.aaa) // ->1000
+
+	// jquery 就是充分利用了函数的三种角色来实现的一个类库
+	// 好好理解一些为什么万物皆对象
+	// typeof Function.prototype // 结果是 funciton ，但是它的操作和“对象一模一样”
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

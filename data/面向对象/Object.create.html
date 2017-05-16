@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Object.create</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// Object.create(proObj)  //->ie6-8不兼容，因为是es5新增加的
+	// 创建一个新的对象，但是还要把proObj，作为整个对象的原型
+	var obj = {
+		getX:function () {
+			console.log(2)
+		}
+	}
+	var obj2 = Object.create(obj);
+	//->obj2
+	//__proto__:
+	// getX:funciton....
+	// __proto__:Object
+	obj2.getX();
+
+	obj.getY = function () {
+		console.log(2)
+	}
+	obj2.getY();// ->2
+
+
+
+	/*
+	// 手动模拟Object.create()  
+	var obj3 = {
+		name:"haha"
+	}
+	function createObject (o) {
+		function Fn () {
+
+		}
+		Fn.prototype = o;
+		return new Fn();
+	}
+	var newObj = createObject(obj3);
+	*/
+</script>
+</html>

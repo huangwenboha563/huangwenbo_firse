@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	
+</body>
+<script>
+	// Array.prototype.slice = function () {}
+	var ary = [12,23,34];
+	// ary.slice     ->通过原型找到slice方法
+	// ary.slice()   ->让找到的slice方法执行
+
+	// Function.prototype.call = funciton () {
+
+	// }
+	// 自己模拟内置的call方法，来深入理解call方法的实现原理（这个没写完，写完很复杂主要讲解原理）
+	var obj = {name:"zjh",age:20}
+	Function.prototype.myCall = funciton (context) {
+		// ->myCall方法中this就是当前我要操作和改变其this关键字的那个函数名
+		// 让fn中的this关键字改为context
+		// 让this这个函数中中的“this”关键字变为context
+		eval(this.toString().replace("this","obj"));
+		// 让fn方法执行
+		this();
+	}
+	fn.myCall(obj); //->myCall方法中的this是fn
+
+	function sum () {
+		console.log(this);
+	}
+	sum.myCall(obj) //->myCall方法中的this是sum
+</script>
+</html>

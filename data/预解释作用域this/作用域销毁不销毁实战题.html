@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作用域销毁不销毁的实战题</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// 第一步 复习 i++ ++i
+	/*
+		首先都是累加1，但是在和其他的值运算的时候是有区别的
+		i++ 先拿i的值“去运算”，运算完成本身再加1
+		++i 先本身累加1，然后拿累加完成的结果“去运算”
+		var  i = 5;
+		// console.log(1+ (i++));
+		// console.log(1+ (++i));
+		// console.log(2+ (i++) + (++i) + (++i) + (i++))
+	*/
+	/*
+	// 第一题
+	function fn () {
+		var i = 10;
+		return function (n) {
+			console.log(n + (++i));
+		}
+	}
+	var f = fn();
+	f(10); // ->21      //->作用域不销毁
+	f(20); // ->32      //->作用域不销毁
+	fn()(10); // ->21   //->作用域暂时不销毁
+	fn()(20); // ->31   //->作用域暂时不销毁
+	*/
+	/*
+	// 第二题
+	function fn (i) {
+		return function (n) {
+			console.log(n + (i++));
+		}
+	}
+	var f = fn(13);
+	f(12); // ->25      //->作用域不销毁
+	f(14); // ->28		//->作用域不销毁
+	fn(15)(12); // ->27 //->作用域暂时不销毁
+	fn(16)(13); // ->29 //->作用域暂时不销毁
+	*/
+</script>
+</html>

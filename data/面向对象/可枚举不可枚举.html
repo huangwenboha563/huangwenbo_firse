@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>深入原型链模式继承的六种模式</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/*
+	// 开胃菜：
+	// 这两个没有区别一种是字面量方式，一种是new 构造方式 
+	var obj = {};
+	var obj = new Object();
+	// 但是这个两个有区别
+	var num = 1;             ->基本数据类型
+	var num = new Number(1); ->引用数据类型
+	*/
+	/*
+	// 第二个知识点,枚举
+	Object.prototype.aaa = function () {
+
+	}
+	var obj = {name:"haha",age:10}
+	for (var key in obj) {
+
+		// console.log(obj[key]);
+		//console.log(key); // ->name age aaa
+	}
+	// console.dir(obj) ->obj.__proto__->Object.prototype
+	// console.log(obj.__proto__==Object.prototype)
+	// 原型上的属性和方法都是不可枚举的，不管是原型想本来就有的还是，自己在原型上手动添加的
+
+
+	Object.prototype.aaa = function () {
+
+	}
+	var obj = {name:"haha",age:10}
+	for (var key in obj) {
+		// 因为for in 循环遍历的时候把自己私有的属性和在所属类原型上加的属性和方法都给遍历到，但是一般情况下我们只需要遍历自己的私有的，用下面两种方式都可以
+		if (obj.propertyIsEnumerable(key)) {// 如果是可枚举的话才~~~ 第一种方式
+			console.log(key);
+		}
+		if (obj.hasOwnProperty(key)) {// 如果是私有的  第二种方式
+			console.log(key);
+		}
+	}
+	*/
+	
+</script>
+</html>

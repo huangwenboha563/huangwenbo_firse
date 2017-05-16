@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>预解释是一种无节操的机制</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/* First 预解释是毫无节操的一种机制，自从学了预解释，从此节操是路人，为啥因为各种怪异的题目哈哈*/
+	// 补充知识点 in 判断 num是否为某个对象的属性 是 true  否 false
+	// 举例: 
+	// var obj = {name:"张建红"} console.log("name" in obj) ->true
+
+	// 预解释:不管条件是否成立？都要预习解 var num; "num" in window ->true
+	/*
+	// 第一题
+	if (!(num in window)) {
+		var num = 12;
+	}
+	console.log(num);// undefined
+	
+	*/
+	/*
+	// 第二题
+	fn(); // 这里调用也可以
+	function fn () {
+		console.log("nihao")
+	}
+	fn(); // 这里调用也可以
+	*/
+
+	/*
+	// 第三题：匿名函数之函数表达式:把函数定义的部分当做一个值赋值给我们的变量or元素的某一个事件
+	// 预解释的时候只解释“=”左边的，右边的是值不参预解释
+	fn();// 由于预解释的原因相当于undefined() -> 此时会报错 fn is not a function 
+	var fn = function () {
+		console.log("nihao")
+	}
+	*/
+
+	/* Second ***********自执行函数(定义和执行一起完成的)*************/
+
+	// 全局作用域下的自执行函数不进行预解释当代码执行到这个位置的时候定义和执行就一起完成了
+	/*
+	// 加这些 + - ~ ！都是为了让其语法不报错
+	(function (num) {})(100)
+	+ function (num) {}(100)
+	- function (num) {}(100)
+	~ function (num) {}(100)
+	! function (num) {}(100)
+	*/
+ 	
+ 	/* Third ***********预解释和return的问题********************/
+
+ 	// 函数体中return下面的代码虽然不再执行了，但是需要进行预解释；return 后面跟着的是“返回值”所以不进行预解释
+
+ 	/*
+ 	function fn () {
+ 		// 预解释 var number
+ 		console.log(number)// undefined
+ 		return function () {
+
+ 		}
+ 		var number = 100;
+ 	}
+ 	fn();
+ 	*/
+
+ 	/*Forth *************函数名和变量名一样的情况**************************/
+ 	// 如果变量的名字和函数的名字重复了，也算冲突
+ 	// 在预解释的时候如果名字已经已经声明过了，不需要重新声明(js比较懒)，但是需要重新赋值
+ 	/*
+ 	var fn = 100;// var fn; window.fn; fn = xxxff000 window.fn = xxxfff000
+ 	function fn () {
+ 		console.log('ok')
+ 	}
+ 	*/
+ 	// window 下的预解释开始 逐条分析 妈的 真恶心我草
+ 	// 声明+定义 fn  ->fn = xxxff111
+ 	// 声明 var fn (但是上面已经声明过了，所以这里不重新声明)
+ 	// 上面声明过了，不重复声明所以只定义 fn  ->fn = xxxff222
+ 	// ->fn = xxxff222
+ 	fn(); // -> 2
+ 	function fn () {console.log(1)}
+ 	fn(); // -> 2
+ 	var fn = 100;
+ 	fn(); // 相当于 10(); 所以报错
+ 	function fn () {console.log(2)}
+ 	fn();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
