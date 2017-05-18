@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue实例上的方法之手挂载</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    {{a}}
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        data: {
+            a: 11111111
+        },
+        methods: {},
+        computed: {
+            b: function () { // 默认情况下是"get"
+                return this.a + 3;
+            }
+        }
+    })
+    // 手动挂载->也可以直接跟在后面连缀的写法
+    vm.$mount("#box");
+</script>
+<script>
+
+</script>
+</html>

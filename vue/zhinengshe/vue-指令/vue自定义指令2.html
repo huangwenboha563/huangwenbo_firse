@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue自定义指令</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div id="box">
+    <span v-red="c">法第三方士大夫</span>
+    <span v-red="'blue'">法第三方士大夫</span>
+    <span v-red="'orange'">法第三方士大夫</span>
+    <span v-red="'pink'">法第三方士大夫</span>
+    <!--
+        注意知识点: v-red     对应的指令是red  同理: v-xxxxx 对应的指令是 xxxxx
+
+    -->
+</div>
+</body>
+<script>
+    Vue.directive('red', function (color) {
+        this.el.style.background = color;
+    })
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            arr: ['apple', 'orange', 'nihao', 'wohenhao', 'nishishui'],
+            a: Date.now(),
+            c: 'yellow'
+        },
+        methods: {
+            show: function () {
+                alert(1)
+            }
+        }
+    })
+</script>
+<script>
+    /*
+     自定义指令
+
+     */
+</script>
+</html>

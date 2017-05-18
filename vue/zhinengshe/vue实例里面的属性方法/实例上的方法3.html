@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue实例上的方法之不常用的属性</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    {{a}}
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el:"#box",
+        aa:2222,
+        showSelf:function () {
+          console.log('我自己的show');
+        },
+        data: {
+            a: 11111111,
+            b: 222222,
+            c: 33333
+        },
+        methods: {
+            show:function () {
+                console.log('hahah')
+            }
+        },
+        computed: {
+            b: function () { // 默认情况下是"get"
+                return this.a + 3;
+            }
+        }
+    })
+    vm.$log()
+    console.log(vm.$options.aa)
+    console.log(vm.$options.el)
+    vm.$options.showSelf()
+
+</script>
+<script>
+
+</script>
+</html>

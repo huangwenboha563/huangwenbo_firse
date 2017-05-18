@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue过滤器debounce</title>
+	<link rel="stylesheet" href="../js/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/vue.js"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+
+	<div id="box">
+		<input type="text" @keyup="show | debounce 3000">
+	</div>
+	<!--debounce一般配合事件来使用-->
+</body>
+<script>  
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			
+		},
+		methods:{
+			show:function () {
+				alert(1)
+			}
+		}
+	})
+</script>
+<script>
+	/*
+		vue-过滤器,过滤模板的一些数据
+		系统提供了一些过滤器 {{msg | filterA | filterB}}
+		uppercase
+		lowercase
+		capitalize
+		
+	*/
+</script>
+</html>

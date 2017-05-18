@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>捕获浏览器异常</title>
+</head>
+<body>
+	
+</body>
+<script>
+	/**********热身******************/
+	//	try catch 进行浏览器的异常信息捕获
+	// console.log(num); // ->num is not defined // ->在js中本行报错下面的代码都不再执行了
+	// console.log("ok");
+
+	/**********try catch ******************/
+	// -> 我们17行代码报错，如果用try catch捕获了异常信息，不影响下面的代码正常执行
+	// -> 如果try中的代码执行报错了，会默认的执行catch中的代码
+	//	try{
+	//		console.log(num);
+	//	}catch(e){// 形参一定要写，不写会报错
+	//		console.log("报错了，但是还要执行我");
+	//		console.log(e.message);// 可以收集当前代码报错的原因
+	//	}
+	//	console.log("ok");
+
+	/**********try catch finally******************/
+	// try {
+		// js code
+	// } catch (e){
+		// 如果try 里面的代码报错 执行catch中的代码
+	// } finally {
+		// 一般不用，不管try中的代码执行，都要执行finally中的代码
+	// }
+
+
+	//有时候既想捕获到错误信息，又不想让下面的代码执行
+
+	try{
+		console.log(num);
+	} catch (e) {// 形参一定要写，不写会报错
+		console.log("报错了，但是还要执行我");
+		console.log(e.message);// 可以收集当前代码报错的原因
+		// 手动异常让下面的代码不执行
+		throw new Error("当前网络繁忙，请稍后再试~~")
+	}
+	console.log("ok"); // 手动抛出异常后，这行代码就不执行了
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

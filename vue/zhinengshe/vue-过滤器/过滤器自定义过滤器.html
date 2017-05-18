@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue过滤器自定义过滤器</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="box">
+    {{a | toDouble 1 2 }}
+</div>
+</body>
+<script>
+    Vue.filter('toDouble', function (value, a, b) {
+        console.log(a,b)
+        return value < 10 ? "0" + value : "" + value;
+    })
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            arr: ['apple', 'orange', 'nihao', 'wohenhao', 'nishishui'],
+            a: 80
+        },
+        methods: {
+            show: function () {
+                alert(1)
+            }
+        }
+    })
+</script>
+<script>
+    /*
+     vue-过滤器,过滤模板的一些数据
+     系统提供了一些过滤器 {{msg | filterA | filterB}}
+     uppercase
+     lowercase
+     capitalize
+
+     */
+</script>
+</html>

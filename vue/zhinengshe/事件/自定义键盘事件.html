@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义键盘事件</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div id="box">
+    <input type="text" @keydown.myctrl="show">
+    <input type="text" @keydown.myenter="show">
+</div>
+</body>
+<script>
+    Vue.directive('on').keyCodes.myctrl=17;
+//    Vue.directive('on').keyCodes.myenter=13;
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            arr: ['apple', 'orange', 'nihao', 'wohenhao', 'nishishui'],
+            a: Date.now(),
+            c: 'yellow'
+        },
+        methods: {
+            show: function () {
+                alert(1)
+            }
+        }
+    })
+</script>
+<script>
+    /*
+     自定义指令
+
+     */
+</script>
+</html>

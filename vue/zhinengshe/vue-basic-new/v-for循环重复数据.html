@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for循环</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<h1>循环数组</h1>
+		<ul>
+			<li v-for="value in arr" track-by="$index">
+				数组的每一项:  {{value}}  数组的索引: {{$index }}
+			</li>
+		</ul>
+		<hr>
+		<input type="button" value="添加" @click="add()">
+	</div>
+</body>
+<script>  
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			arr: ['apple','banana','orange'],
+			json: {a:'apple',b:'banana',c:"orange"}
+		},
+		methods:{
+			add:function () {
+				this.arr.push('pear');
+			}
+		}
+	})
+</script>
+<script>
+	/*
+	
+	 track-by = "$index"
+
+
+
+	*/
+</script>
+</html>

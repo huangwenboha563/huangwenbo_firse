@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue实例上的方法之watch</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    {{a}}
+    {{b}}
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        aa: 2222,
+        showSelf: function () {
+            console.log('我自己的show');
+        },
+        data: {
+            a: 111,
+            b: 2
+        },
+        methods: {
+            show: function () {
+                console.log('hahah')
+            }
+        }
+    })
+    //
+    vm.$watch('a', function () {
+        console.log('a发生变化了');
+        this.b++;
+    })
+    document.onclick = function () {
+        vm.a = 1;
+    }
+
+</script>
+<script>
+
+</script>
+</html>

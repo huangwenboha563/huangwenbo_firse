@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件第一种方式-全局组件</title>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <input type="button" value="第一个组件" @click="changeTab='first'">
+    <input type="button" value="第二个组件" @click="changeTab='second'">
+    <component :is="changeTab"></component>
+</div>
+</body>
+<script>
+
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            changeTab:'first'
+        },
+        components:{
+            'first':{
+                template:'<h3>我不吃西红柿<h3>'
+            },
+            'second':{
+                template:'<h3>我爱吃土豆</h3>'
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sort方法深入</title>
+</head>
+<body>
+
+</body>
+<script>
+    var ary = [0, 1, 2, 3, 4, 5, 10, 11]
+    ary.sort();// 这样只能处理10 以内的排序
+
+    ary.sort(function (a, b) {// 处理10以上的:给sort排序 传递的形参是 一个匿名函数
+        return a - b;// 升序  如果a>b 返回的>0 互换位置
+        // return b-a; //降序 如果b>a 返回的>0 互换位置
+        // return 1; 不管a和b谁大返回一个大于0的数字，每一次替换位置，得到的结果就是让数组颠倒一下返回
+        // a->当前项
+        // b->当前项的后一项
+        console.log(a, b) // 输出了多少次，匿名函数就执行了多少次
+    })
+
+
+    //    function fn(callback) {
+    //        callback();
+    //    }
+    //
+    //    fn(function () {
+    //    })
+
+    // ->回调函数 把一个方法A，当做参数值传递给另外一个函数B，在B执行的过程当中，我们随时"根据需求"让A方法执行;在B里面我们可以让A执行无数次
+
+    //    function A () {
+    //
+    //    }
+    //
+    //    function B (callback) {
+    //        A();
+    //        A();
+    //        A();
+    //    }
+    //    B(A)
+
+
+    /************给二维数组排序***********************/
+
+
+
+    var people = [
+        {name: "黄文博", age: 10},
+        {name: "郑王维", age: 11},
+        {name: "张建红", age: 14},
+        {name: "郑成真", age: 19}
+    ]
+    // 按照年龄排序
+    people.sort(function (a, b) {
+        return a.age - b.age;
+        // return b.age-a.age;
+        // return paseFloat(b.age-a.age);
+        // return (a.age-b.age)*-1;
+    })
+    console.log(people)
+
+    var people2 = [
+        {name: "黄文博", age: 10},
+        {name: "郑王维", age: 11},
+        {name: "张建红", age: 14},
+        {name: "郑成真", age: 19}
+    ]
+    // 按照年龄排序
+    people2.sort(function (a, b) {
+        return a.name.localeCompare(b.name)
+    })
+    console.log(people2)
+    // 按照姓名排序
+
+</script>
+</html>

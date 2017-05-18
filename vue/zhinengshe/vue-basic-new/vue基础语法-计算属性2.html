@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue事件</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+
+</head>
+<body>
+<div id="box">
+    a -> {{a}} <br>
+    b -> {{b}}
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            a: 1
+        },
+        methods: {},
+        computed: {
+            b: {
+                get: function () {
+                    return this.a + 3;
+                },
+                set: function (val) {
+                    this.a = val;
+                }
+            }
+        }
+    })
+    document.onclick = function () {
+        vm.b = 200;
+    }
+</script>
+<script>
+    /*
+     初始值是  a ->1  b-> a+3 ->4
+     // document点击完成以后b的值变为200，在set里面a的值接受到了val所以a的值也发生变化    a-> 200 b->203
+     */
+</script>
+</html>

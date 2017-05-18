@@ -1,24 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>求平均分</title>
+    <meta charset="UTF-8">
+    <title>求平均分</title>
 </head>
 <body>
-	
+
 </body>
 <script>
-	// 求平均分衍生出来很多知识点
-	/*
-		1. 如何把一个类数组对象转换成数组对象
-		2. call？apply的用法和区别
-		3. 数组的api，push，pop，shift，unshift
-		4. eval()是用来干什么的？
-		5. 数组排序sort
-	*/
-	var obj = eval('({"name":"zhuangzhuang","age":22})');
-	// console.log(obj)
-	// var obj = eval('{x : 1, y = 1}')
-	console.log(obj)
+    // 求平均分衍生出来很多知识点
+    /*
+     1. 如何把一个类数组对象转换成数组对象
+     2. call？apply的用法和区别
+     3. 数组的api，push，pop，shift，unshift
+     4. eval()是用来干什么的？
+     5. 数组排序sort
+     */
+    // var obj = eval('({"name":"zhuangzhuang","age":22})');
+    // console.log(obj)
+    // var obj = eval('{x : 1, y = 1}')
+    // console.log(obj)
+
+    // 去掉一个最高分，去掉一个最低分，然后请求平均分
+    function avgFn() {
+        // arguments  -> 排序 -> 去掉最高分 和 最低分
+        // arguments.sort() -> 报错因为 arguments不是Array的实例 ->那么我们如何把数组转换成数组呢
+        // 1. ->将类数组转换成数组
+        var arr = [];
+        for (var i = 0; i < arguments.length; i++) {
+            // arr[i] = arguments[i]; //->下面这样写可以，把数组的最后一项放成arguments的每一项
+            arr[arr.length] = arguments[i];
+        }
+        // console.log(arr)
+        // 2. ->给数组排序
+        arr.sort(function (a, b) {
+            return a - b;
+        })
+        // 3. ->去掉第一个 最低分
+        arr.shift();
+        // 4. ->去掉最后一个 最高分 arr.join('+')-> "9.9+9.8+3.2+5.6+8.4" -> eval("9.9+9.8+3.2+5.6+8.4") ->js字符串解析成js表达式
+        arr.pop();
+        return (eval(arr.join('+')) / arr.length).toFixed(2);
+    }
+    console.log(avgFn(9.9, 9.8, 3.2, 5.6, 8.4));
+    /***************************************模拟一个slice方法去克隆数组**********************************/
+    var ary = [1, 2, 3];
+    Array.prototype.mySlice = function () {
+        // this->当前要操作的数组
+        var newary = [];
+        for (var i = 0; i < this.length; i++) {
+            newary[newary.length] = this[i];
+        }
+        return newary;
+    }
+    console.log(ary.mySlice())
+    /**************************************求平均分的代码优化**********************************/
+    function avgFn2() {
+        // arguments  -> 排序 -> 去掉最高分 和 最低分
+        // arguments.sort() -> 报错因为 arguments不是Array的实例 ->那么我们如何把数组转换成数组呢
+        // 1. ->将类数组转换成数组
+        // 借用数组原型上的方法，让方法执行的时候this变为arguments，实现将类数组转换成数组 [].prototype.slice.call(arguments);
+        var arr = Array.prototype.slice.call(arguments);
+
+        // console.log(arr)
+        // 2. ->给数组排序
+        arr.sort(function (a, b) {
+            return a - b;
+        })
+        // 3. ->去掉第一个 最低分  shift()的返回值是被去掉的那个数组项
+        arr.shift();
+        // 4. ->去掉最后一个 最高分 arr.join('+')-> "9.9+9.8+3.2+5.6+8.4" -> eval("9.9+9.8+3.2+5.6+8.4") ->js字符串解析成js表达式
+        // pop() 方法的返回值是被去掉的那个数组项
+        arr.pop();
+        return (eval(arr.join('+')) / arr.length).toFixed(2);
+    }
+    console.log(avgFn2(9.9, 9.8, 3.2, 5.6, 8.4));
+
+    /**************************************求平均分的代码继续扩展**********************************/
+    function avgFn3() {
+        // 1.借用数组原型上的soft方法
+        Array.prototype.sort.call(arguments,function (a,b) {
+            return a-b;
+        });
+        console.log(arguments)
+        // 2.借用数组原型上的shift方法
+        [].shift.call(arguments);
+        console.log(arguments)
+        // 3.借用数组原型上的pop方法
+        [].pop.call(arguments);
+        console.log(arguments)
+        // 4.借用数组原型上的join方法
+        return (eval([].join.call(arguments,'+'))/arguments.length).toFixed(2)
+        console.log(arguments)
+    }
+    console.log(avgFn3(9.9, 9.8, 3.2, 5.6, 8.4));
 </script>
 </html>
