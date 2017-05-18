@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件父亲给儿子传递数据prop传递数据</title>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+<template id="myFather">
+    <h3>我是父子组件->传递过来的数据是:{{fmsg}}</h3>
+    <son @child-msg="get"></son>
+</template>
+<template id="mySon">
+    <h4>我是子组件</h4>
+    <input type="button" value="发送" @click="send()">
+</template>
+<div id="box">
+    <father></father>
+</div>
+</body>
+<script>
+
+    var vm = new Vue({
+        el: "#box",
+        data: {},
+        components: {
+            'father': {
+                template: '#myFather',
+                data: function () {
+                    return {
+                        fmsg: '我是父亲的数据'
+                    }
+                },
+                // 父亲负责接受
+                methods:{
+                    get:function(msg){
+                        // alert(msg);
+                        this.fmsg=msg;
+                    }
+                },
+                components: {
+                    'son': {
+                        template: '#mySon',
+                        // 儿子负责 发送 用$emit
+                        methods:{
+                            send:function () {
+                                this.$emit('child-msg',this.sMsg)
+                            }
+                        },
+                        data:function () {
+                            return {
+                                sMsg:'我是儿子的数据'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+</script>
+<script>
+    // 父组件的数据通过自定义属性    :xxx="父组件的某个数据"
+    // 在组件里面接受通过props:[xxx]
+</script>
+</html>

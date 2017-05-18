@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件父亲给儿子传递数据prop传递数据</title>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+<template id="myFather">
+    <h3>你好:{{fmsg}}</h3>
+    <son :m="fmsg"></son>
+</template>
+
+<div id="box">
+    <father></father>
+</div>
+</body>
+<script>
+
+    var vm = new Vue({
+        el: "#box",
+        data: {},
+        components: {
+            'father': {
+                template: '#myFather',
+                data: function () {
+                    return {
+                        fmsg: '我是父亲的数据'
+                    }
+                },
+                components: {
+                    'son': {
+                        props:['m'],
+                        template: '<h4>我是子组件->这是我从父组件拿过来的数据->{{m}}</h4>'
+                    }
+                }
+            }
+        }
+    })
+</script>
+<script>
+    // 父组件的数据通过自定义属性    :xxx="父组件的某个数据"
+    // 在组件里面接受通过props:[xxx]
+</script>
+</html>

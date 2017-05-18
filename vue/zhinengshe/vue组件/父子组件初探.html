@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件初探</title>
+    <script src="../bower_components/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="box">
+    <father></father>
+</div>
+</body>
+<script>
+
+    var vm = new Vue({
+        el: "#box",
+        data: {},
+        components: {
+            'father': {
+                template: '<h3>我是父组件->{{fmsg}}<h3><br><son><son>',
+                data: function () {
+                    return {
+                        fmsg:'我是父亲的数据'
+                    }
+                },
+                components: {
+                    'son': {
+                        template: '<h4>我是子组件</h4>'
+                    }
+                }
+            }
+        }
+    })
+</script>
+</html>
