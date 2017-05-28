@@ -1,10 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>快速排序谅解</title>
+    <meta charset="UTF-8">
+    <title>快速排序谅解</title>
 </head>
 <body>
-	
+
 </body>
+<script>
+    // by zjh
+    /*
+     var arr=[1];
+     var arr1=[2];
+     console.log(arr<arr1)// 请问张建红这可以比较吗，是不是发生了隐士类型转换
+     */
+    ~function () {
+        var arr = [1, 33, 45, 667, 78, 89, 997, 5, 2];
+
+        function qSort(obj) {
+            if (obj.length == 1 || obj.length == 0) return obj;
+            var num = Math.floor(obj.length / 2);
+            var temp = obj.splice(num, 1);
+            var Larr = [];
+            var Rarr = [];
+            for (var i = 0; i < obj.length; i++) {
+                if (obj[i] > temp) {
+                    Rarr.push(obj[i]);
+                } else {
+                    Larr.push(obj[i]);
+                }
+            }
+            return qSort(Larr).concat(temp, qSort(Rarr));
+        }
+
+        console.log(qSort(arr));
+        ;
+    }()
+    ~function () {
+        var arr = [0, 1, 2, 3, 98, 34, 23, 11, 98, 10, 200];
+
+        function quickSort(arr) {
+            if (arr.length <= 1) {
+                return arr;
+            }
+            var middlePoint = Math.floor(arr.length / 2);
+            var middleValue = arr.splice(middlePoint, 1)[0];
+            var left = [];
+            var right = [];
+            for (var i = 0; i < arr.length; i++) {
+                middleValue > arr[i] ? left.push(arr[i]) : right.push(arr[i]);
+            }
+            return quickSort(left).concat([middleValue], quickSort(right));
+        }
+
+        console.log(quickSort(arr));
+    }()
+</script>
+<script>
+    // 数组快速排序
+    var ary = [2, 6, 5, 7, 8, 0, 3];
+
+    function quickSort(ary) {
+        if (ary.length <= 1) {// 递归的终止条件
+            return ary;
+        }
+        var middlePoint = Math.floor(ary.length / 2);
+        var middleValue = ary.splice(middlePoint, 1)[0];// splice可以实现数组的删除一项，增加一项，替换一项
+        // var middleValue = ary[middlePoint]; //这样为什么不行，因为splice既可以从数组中拿出来一项，又可以改变原数组
+        console.log(middlePoint,middleValue)
+        var left = [];
+        var right = [];
+        for (var i = 0; i < ary.length; i++) {
+            var cur = ary[i];
+            if (middleValue < cur) {
+                right.push(cur);
+            } else {
+                left.push(cur);
+            }
+        }
+        console.log('left->' + left, 'right->' + right)
+        return quickSort(left).concat([middleValue], quickSort(right));
+    }
+    console.log(quickSort(ary))
+</script>
 </html>

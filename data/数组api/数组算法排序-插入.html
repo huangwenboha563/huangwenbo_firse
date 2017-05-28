@@ -1,10 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>插入排序详解</title>
+    <meta charset="UTF-8">
+    <title>插入排序详解</title>
 </head>
 <body>
-	
+
 </body>
+<script>
+    ~function () {
+        function insertSort(ary) {
+
+            //->newAry存储的就是我左手中已经抓取的牌
+            var newAry = [];
+            newAry.push(ary[0]);//->先抓第一张牌
+
+            //->依次把桌面上第二张及以后的牌抓到
+            for (var i = 1; i < ary.length; i++) {
+                var cur = ary[i];
+
+                //->抓到当前牌之后,分别的从后往前和左手中的牌进行比较
+                for (var j = newAry.length - 1; j >= 0;) {
+                    if (cur < newAry[j]) {//->当前新抓的牌比左手中的newAry[j]这张牌小,继续和newAry[j]前面的牌比
+                        j--;
+                        if (j === -1) {//->说明当前拿的这张牌比左手所有的牌都小,我么把这张牌放在开头位置即可
+                            newAry.unshift(cur);
+                        }
+                    } else {//->当前新抓的牌比左手中的newAry[j]这张牌大,放在newAry[j]这张牌的后面,也相当于插入到newAry[j+1]这张牌的前面
+                        newAry.splice(j + 1, 0, cur);
+                        // 注意splice方法可以在后面增加
+                        j = -1;
+                    }
+                }
+            }
+            return newAry;
+        }
+
+        var ary = [6, 3, 5, 7, 2, 4];
+//        var res = insertSort(ary);
+//        console.log(res);
+    }()
+
+
+</script>
+<script>
+    ~function () {
+        var arr = [6, 3, 5, 7, 2, 4];
+        var newAry = [];
+        newAry[0] = arr[0];
+        for (var i = 1; i < arr.length; i++) {
+            var cur = arr[i];
+            for (var j = newAry.length - 1; j >= 0;) {
+                if (cur < newAry[j]) {
+                    j--
+                    if (j === -1) {
+                        newAry.unshift(cur);
+                    }
+                } else {
+                    newAry.splice(j + 1, 0, cur);
+                    // 注意splice方法可以在后面增加
+                    j = -1;
+                }
+            }
+        }
+    }()
+</script>
+<script>
+    /************张建红的这个有bug*************************************/
+    //    var arr = [1, 22, 444, 33, 45, 67, 88, 2];
+    //    var newAry = [arr[0]];
+    //    for (var i = 1; i < arr.length; i++) {
+    //        var cur = arr[i];
+    //        for (var j = (newAry.length - 1); j >= 0; j--) {
+    //            if( cur >= newAry[j]){
+    //                newAry.splice(j+1,0,cur);
+    //                break;
+    //            }
+    //        }
+    //    }
+    // 数组插入排序张建红 这个过程好比打扑克
+    ~function () {
+        var arr = [6, 5, 4, 3, 2, 1];
+        var newAry = [arr[0]];
+        for (var i = 1; i < arr.length; i++) {
+            var cur = arr[i];
+            for (var j = (newAry.length - 1); j >= 0;) {
+                if (cur >= newAry[j]) {
+                    newAry.splice(j + 1, 0, cur);
+                    break;
+                } else {
+                    j--;
+                    if (j == -1) {
+                        newAry.unshift(cur);
+                    }
+                }
+            }
+        }
+        console.log(newAry)
+    }()
+
+</script>
+<script>
+    // 练习数组插入排序的思想
+    var ary = [3, 4, 5, 1, 2, 3, 9, 88, 23, 11, 34, 7];
+    var newAry = [ary[0]];
+    for (var i = 1; i < ary.length; i++) { // 因为第一项已经抽出来了，所以从第二项开始比较 也就是i从1开始
+        var cur = ary[i];
+        for (var j = newAry.length - 1; j >= 0;) {
+            if (cur > newAry[j]) {
+                newAry.splice(j+1,0,cur);
+                break;
+            } else {
+                j--;
+                if (j==-1) {
+                    newAry.unshift(cur);
+                }
+            }
+        }
+    }
+    console.log(newAry)
+</script>
 </html>

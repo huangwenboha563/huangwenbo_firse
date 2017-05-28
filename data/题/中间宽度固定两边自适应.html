@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" charset="utf-8" content="width=device-width,user-scalable=no，initial-scale=1"/>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            min-width: 900px;
+        }
+
+        .t1, .t2, .t3 {
+            height: 100%;
+        }
+
+        .t1 {
+            background-color: gold;
+            position: absolute;
+            left: 0;
+            right: 50%;
+            margin-right: 400px;
+        }
+
+        .t2 {
+            background-color: palegreen;
+            position: absolute;
+            left: 50%;
+            margin-left: -400px;
+        }
+
+        .t3 {
+            background-color: firebrick;
+            position: absolute;
+            right: 0;
+            left: 50%;
+            margin-left: 400px;
+        }
+
+        .t2 {
+            width: 800px;
+        }
+    </style>
+<body>
+<div class="body">
+    <div class="t3">我是右边</div>
+    <div class="t1">我是左边</div>
+    <div class="t2">我是中间</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>exec捕获</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+     var reg = /\d+/;
+     var str = "nihao2016wohenaho2017";
+     var res = reg.exec(str);
+     console.log(res)// res是数组
+     */
+    /*
+     数组中的第一项是捕获的内容
+     index
+     input
+     */
+    /*
+     var reg = /\d+/g;
+     var str = "nihao2016wohenaho2017zenmele2018";
+     console.log(reg.exec(str))
+     console.log(reg.exec(str))
+     console.log(reg.exec(str))
+     console.log(reg.exec(str))// ->最后一次是null
+     */
+    var reg = /\d+/g;
+    var str = "nihao2016wohenaho2017zenmele2018";
+    var ary = [];
+    var res = reg.exec(str);
+    // 对于while循环怎么用呢？  循环次数不知道的情况下用while循环
+    while (res){
+        ary.push(res[0]);
+        res = reg.exec(str);
+    }
+    console.log(ary)
+</script>
+</html>

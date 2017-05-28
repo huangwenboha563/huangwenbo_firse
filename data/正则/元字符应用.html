@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元字符应用实战案例</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 代表有效数字的正则
+    var youxiaoshuzi = /^[+-]?(\d|([1-9]\d+))(\.\d+)?$/
+    // 什么叫做有效数字 正数 负数 0 小数
+    // 12.3 12 -12 +12 0.12                     09(不是有效数字)
+    /*
+     "."可以出现可以不出现，一旦出现后面必须跟着一位或者多位数字
+     最开始可以有"+"也可以有"-"也可以没有
+     正数部分不能以0开始
+     */
+
+    /*
+     []中出现的特殊字符都代表本身的含义，没有特殊的含义
+     var reg=/^[.]$/
+     console.log(reg.test('1')) // ->false
+     console.log(reg.test('.')) // ->true
+     */
+    /*
+     var reg = /^18|19$/
+     reg.test('18') ->true
+     reg.test('19') ->true
+     reg.test('28') ->true
+     reg.test('199') ->true
+     reg.test('119') ->true
+     我草，他妈的不是乱了吗，这规律没法找啊
+     var reg = /^(18|19)$/  // ->改造后的我就是想单纯的18或者19
+     */
+</script>
+</html>

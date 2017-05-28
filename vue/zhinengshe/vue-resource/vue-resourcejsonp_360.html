@@ -24,12 +24,12 @@
         el: "#box",
         data: {},
         methods: {
-            get:function(){
-                this.$http.jsonp('https://sug.so.360.cn/suggest',{
-                    word:'afadf'
-                }).then(function(res){
+            get: function () {
+                this.$http.jsonp('https://sug.so.360.cn/suggest', {
+                    word: 'a'
+                }).then(function (res) {
                     console.log(res.data);
-                },function(res){
+                }, function (res) {
                     alert(res.status);
                 });
             }

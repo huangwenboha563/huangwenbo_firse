@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三个排序联系</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 快速排序 要用到递归~不断的调用自己1. 递归的思想，不断的调用自己 2. 递归的终止条件 3. splice删除数组中的某一项，得到数组，并且原数组改变 4. 数组的concat方法
+    /*
+    var ary = [1, 2, 3, 5, 11, 2, 4, 54, 90, 8]
+    function quickSort(ary) {
+        if (ary.length <= 1) {
+            return ary;
+        }
+        var point = Math.floor(ary.length / 2);
+        var pointValue = ary.splice(point, 1)[0];// 1.splice删除数组中的某一项，得到的是数组; 2. splice之后对原来的数组造成影响
+        var left = [];
+        var right = [];
+        for (var i = 0; i < ary.length; i++) {
+            var cur = ary[i];
+            if (cur > pointValue) {
+                right.push(cur);
+            } else {
+                left.push(cur);
+            }
+        }
+        return quickSort(left).concat([pointValue], quickSort(right));
+    }
+    console.log(quickSort(ary))
+    */
+    // 插入排序
+    // 插入排序的思想就相当于打扑克
+    /*
+    var ary = [1, 2, 3, 5, 11, 2, 4, 54, 90, 8];
+    // 从扑克堆里面拿出一张扑克来
+    var newAry = [ary[0]];
+    for (var i = 1;i< ary.length; i++) {
+        var cur = ary[i];
+        for (var j = newAry.length-1; j>=0;) {
+            if (cur>newAry[j]) {
+                newAry.splice(j+1,0,cur);// 往数组中插入一项
+                break;
+            } else {
+                j--
+                if (j==-1) {
+                    //  newAry.unshift(cur);
+                    newAry[0] = cur;
+                }
+            }
+        }
+    }
+    console.log(newAry)
+    */
+    /*
+    var m = [0,1,2,3];
+    for (var i = 3; i>=0;i--) {
+        console.log(m[i])
+     }
+    */
+    //    冒泡排序 第一个和第二个比较，第二个和第三个比较，第三个和第四个比较
+   /*
+    var ary = [1, 2, 3, 5, 11, 2, 4, 54, 90, 8];
+    for (var i = 0; i< ary.length; i++) {
+        for(var j = i+1;j<ary.length;j++){
+            if (ary[i]>ary[j]) {
+                var temp = ary[j];
+                ary[j] = ary[i];
+                ary[i] = ary[j]
+            }
+        }
+    }
+    console.log(ary)*/
+    // 数组去重
+    /*
+    var arr = [1,2,3,4,5,6,3,2,6,59,0];
+    var newAry = [];
+    for (var i = 0; i<arr.length; i++) {
+        if (newAry.indexOf(arr[i])==-1) {
+            newAry.push(arr[i]);
+        }
+    }
+    console.log(newAry);
+    */
+    /*
+    var arr = [1,2,3,4,5,6,3,2,6,59,0];
+    var newAry = [];
+    var obj = {};
+    for (var i = 0; i< arr.length; i++) {
+        if (obj[arr[i]]!=arr[i]) {
+            obj[arr[i]] = arr[i];
+            newAry.push(arr[i]);
+        }
+    }
+    console.log(newAry)
+    */
+</script>
+</html>

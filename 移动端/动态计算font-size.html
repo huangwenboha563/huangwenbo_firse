@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        .box {
+            width: 1rem;
+            height: 1rem;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<seciton id="main">
+    <div class="box"></div>
+</seciton>
+</body>
+<script>
+    ~function(){
+        var desW = 640;
+        var winW = document.documentElement.clientWidth;
+        console.log(winW)
+        var scale = winW/desW;
+        document.documentElement.style.fontSize = scale*100 +'px';
+    }()
+
+</script>
+<script>
+    // 检测pc端还是移动端的页面
+</script>
+</html>

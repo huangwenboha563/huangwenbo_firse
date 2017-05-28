@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    var reg = /\d/; // '包含一个'0-9之间的数
+    console.log(reg.test('nihao2006'))
+    var reg1 = /^\d$/
+    console.log(reg1.test('2'));   //->true
+    console.log(reg1.test('2016')); //->false
+    var reg2 = /^\d\d\d\d$/
+    console.log(reg1.test('2'));   //->false
+    console.log(reg1.test('2016')); //->true
+    */
+    /*
+    var reg = /^\d+$/
+    console.log(reg.test('2015')) // ->true 一次或者多次
+    // 一个简单的手机正则
+    var phoneReg = /^1\d{10}$/
+    */
+
+    /*
+    var reg = /^0.2$/ // ->以0开始2结束中间是除了\n以外的任意字符
+    console.log(reg.test('0.2'));
+    console.log(reg.test('0-2'));
+    */
+
+    /*
+    var reg = /^0\.2$/  // ->把. 原来的意思给转义一下
+    console.log(reg.test('0.2'));// ->true
+    console.log(reg.test('0-2'));// ->false
+    */
+    // () 用来分组 ->把一个大正则分成几个小正则
+    var reg = /^(\d+)nihaoma(\d+)$/
+    console.log(reg.test('2016nihaoma2018'))
+</script>
+</html>

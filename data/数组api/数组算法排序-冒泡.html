@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>冒泡排序详解</title>
+    <meta charset="UTF-8">
+    <title>冒泡排序详解</title>
 </head>
 <body>
-	
+
 </body>
 <script>
-	// 数组的这些几个算法是面试必问的要知其然更要知其所以然
-	// 预热---现在有一瓶健力宝 一瓶娃哈哈 怎么把这两瓶饮料互换一下 健力宝到娃哈哈的瓶子里  娃哈哈到健力宝的瓶子里？
+    // 数组的这些几个算法是面试必问的要知其然更要知其所以然
+    // 预热---现在有一瓶健力宝 一瓶娃哈哈 怎么把这两瓶饮料互换一下 健力宝到娃哈哈的瓶子里  娃哈哈到健力宝的瓶子里？
+
+    var arr = [34, 22, 33, 44, 55, 14, 333, 4, 4];
+    //    var arr = [6, 5, 4, 3, 2, 1];
+    //[34, 22, 33, 44, 55, 14, 333, 4]       第一次
+    //[4, 34, 33, 44, 55, 22, 333, 14]      第二次
+    //[4, 14, 34, 44, 55, 33, 333, 22]      第三次
+    //[4, 14, 22, 44, 55, 34, 333, 33]       第四次
+    //[4, 14, 22, 33, 55, 44, 333, 34]      第五次
+    //[4, 14, 22, 33, 34, 55, 333, 44]      第六次
+    //[4, 14, 22, 33, 34, 44, 333, 55]      第七次
+    //[4, 14, 22, 33, 34, 44, 55, 333]      第八次
+    for (var i = 0; i < arr.length; i++) {
+        console.log(arr);
+        console.log(i);// 一共比较六次，数组里面有几个比较几次？，也就是最外层循环循环几次
+        for (var j = i + 1; j < arr.length; j++) { // j从i+1开始是因为不和自己比和自己的下一个比
+            if (arr[i] >= arr[j]) {
+                var temp = null;
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    console.log(arr);
+</script>
+<script>
+    //    var arr = [1, 22, 444, 33, 45, 67, 88, 2];  //建红的快速排序思想有bug
+    var arr = [6, 5, 4, 3, 2, 1];
+    var newAry = [arr[0]];
+    for (var i = 1; i < arr.length; i++) {
+        var cur = arr[i];
+        for (var j = (newAry.length - 1); j >= 0; j--) {
+            if (cur >= newAry[j]) {
+                newAry.splice(j + 1, 0, cur);
+                break;
+            }
+        }
+    }
+    console.log(newAry);
 </script>
 </html>
