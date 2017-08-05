@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页案例~妙味课堂的</title>
+    <style>
+        a {
+            margin: 5px;
+        }
+
+        .display-none {
+            display: none;
+        }
+
+        .active {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+<ul id="searchBreadActivity">
+    <li>我是内容</li>
+</ul>
+<div id="pageWrapper">
+    <span class="index display-none can-click" data-value="1">首页</span>
+    <span class="prev display-none can-click" data-value="">上一页</span>
+    <span class="jty">
+        <!--这放的是具体的a-->
+    </span>
+    <span class="next display-none can-click" data-value="">下一页</span>
+    <span class="last display-none can-click" data-value="">尾页</span>
+</div>
+
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    // 分页封装总的方法
+    function page(opt) {
+
+        // 如果没有页码总容器的话就停止，下面的代码不执行
+        if (!opt.id) {
+            return false
+        }
+
+        var obj = $('#' + opt.id);
+        obj.find('span.can-click').hide();
+        // 当前页默认是1，总页数默认是5
+        var nowNum = opt.nowNum || 1;
+        var allNum = opt.allNum || 5;
+        // 回调默认什么都不做，如果传了回调就按照传递的来操作
+        var callBack = opt.callBack || function () {
+            };
+
+        // 判断什么时候应该出现首页比如(2,3,4,5,6)
+        if (nowNum >= 4 && allNum >= 6) {
+            obj.find('.index').show();
+        }
+
+        // 判断什么时候应该出现上一页(如果当前页不是第一页，也就是>=2的时候才出现上一页)
+        if (nowNum >= 2) {
+            obj.find('.prev').show().data('value', nowNum - 1);
+        }
+        // 总页数小于5的情况
+        if (allNum <= 5) {
+            for (var i = 1; i <= allNum; i++) {
+                var oA = $('<a href="javascript:;" class="can-click"></a>');
+                oA.data('value', i);
+                if (nowNum == i) {
+                    oA.html(i).addClass('active');
+                } else {
+                    oA.html('i');
+                }
+                obj.find('.jty').append(oA);
+            }
+        } else {// 总页数大于5的情况
+            for (var i = 1; i <= 5; i++) {
+                var oA = $('<a href="javascript:;" class="can-click"></a>');
+                // 前两页特殊考虑
+                if (nowNum == 1 || nowNum == 2) {
+                    oA.data('value', i);
+                    if (nowNum == i) {
+                        oA.html(i).addClass('active');
+                    } else {
+                        oA.html(i);
+                    }
+                    // 最后两页特殊考虑
+                } else if ((allNum - nowNum) == 0 || (allNum - nowNum) == 1) {
+
+                    oA.data('value', allNum - 5 + i);
+                    if ((allNum - nowNum) == 0 && i == 5) {
+                        oA.html(allNum - 5 + i).addClass('active');
+                    } else if ((allNum - nowNum) == 1 && i == 4) {
+                        oA.html(allNum - 5 + i).addClass('active');
+                    } else {
+                        oA.html(allNum - 5 + i)
+                    }
+                    // 其他
+                } else {
+                    oA.data('value', nowNum - 3 + i)
+                    if (i == 3) {
+                        oA.innerHTML = (nowNum - 3 + i);
+                        oA.html(nowNum - 3 + i).addClass('active');
+                    } else {
+                        oA.html(nowNum - 3 + i);
+                    }
+                }
+                obj.find('.jty').append(oA);
+            }
+        }
+
+
+        // 什么时候显示下一页
+        if ((allNum - nowNum) >= 1) {
+            obj.find('.next').data('value', nowNum + 1).show();
+        }
+        // 什么时候显示尾页
+        if ((allNum - nowNum) >= 3 && allNum >= 6) {
+            obj.find('.last').data('value', allNum).show();
+        }
+        // 执行回调函数，传递两个参数，当前页数和总页数
+        callBack(--nowNum, allNum,value);
+    }
+    function callBack (pnumber,all) {
+        console.log('当前页:' + pnumber + ',总共页:' + all);
+        $.ajax({
+            type: "GET",
+            url: "http://college.breadoffer.com/api/breadactivity?t=" + new Date().getTime(),
+            data: {
+                page: pnumber,
+                platformCode: 'pc',
+                size: 10
+            },
+            dataType: "json",
+            success: function (results) {
+                var htmlArr = [];
+                $.each(results.data.content, function (index, item) {
+                    htmlArr.push('<li>', item.title.substring(0, 10), '</li>');
+                });
+                //循环完成以后
+                $('#searchBreadActivity').html(htmlArr.join(''));
+            }
+        })
+    }
+    // 第一次请求第一页的数据
+    page({
+        id: 'pageWrapper',
+        nowNum: 1,
+        allNum: 10,
+        value:"haha",
+        callBack: callBack
+    });
+    // 点击执行对应的操作
+    $("#pageWrapper").on('click','.can-click',function(){
+        var thisNumber = $(this).data('value');
+        $(this).parents().find('.jty').html('');
+        console.log(thisNumber)
+        page({
+            id: 'pageWrapper',
+            nowNum: thisNumber,
+            allNum: 10,
+            callBack: callBack
+
+        });
+    })
+</script>
+</html>
