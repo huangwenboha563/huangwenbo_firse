@@ -15,8 +15,15 @@
 	var temp = new Fn();
 	
 	var temp1 = new Fn1();
-	temp1.init();
 	temp.init();
-	
+    temp1.init();
+
+    /*
+    * 问题描述:
+    * 现象:一引入宇婷的js文件就会有bug
+    * 原因是:自定义事件 我的oo.js和宇婷的oo2.js文件都注册了个全局的list.loaded事件
+    *
+    */
+
 </script>
 </html>
