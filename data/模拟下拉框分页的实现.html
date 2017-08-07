@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟下拉框分页的实现</title>
+    <!--<link rel="stylesheet" href="../css/reset.css">-->
+    <style>
+        .main {
+            width: 1170px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        #searchInput {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        #searchResult li span {
+            color: red;
+        }
+
+        .hover-active {
+            background: #00B83F;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <input type="text" id="searchInput">
+    <ul id="searchResult">
+        <!--<li>模糊查询的结果是:<span></span></li>-->
+    </ul>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    /*
+     *@date 2017.06.06
+     *@hwb
+     *@parm参数
+     * 1.input单行文本的id -> 一个input对应一个id
+     * 2.查询的表名-> 一个input对应一个查询表
+     * 3.查询的字典名 -> 一个input对应一个字典名
+     * 4.回填的容器 -> 一个input对应一个查询结果回填容器
+     *@note:测试ie8的时候一定要注释掉页面的console！
+     */
+    function SelfselectPage(element) {
+        this.element = element;
+    }
+
+    /*默认配置*/
+    SelfselectPage.defaults = {
+        'inputTextWrapper': '#searchInput',            //单行文本选择器
+        'searchResultWrapper': '#searchResult',        //回填结果容器
+        '': null                                       //占位行
+    };
+
+    /*构造函数原型*/
+    SelfselectPage.prototype = {
+        init: function (options) {
+            this.initOptions(options);
+            this.initElements();
+            // 初始化页面的一些基本特效
+            this.initEvent();
+            // 初始化查询
+            // this.initQuery();
+        },
+
+        /*初始化选项*/
+        initOptions: function (options) {
+            this.options = $.extend({}, SelfselectPage.defaults, options);
+        },
+
+        /*初始化公共元素*/
+        initElements: function () {
+            this.inputTextWrapper = this.element.find(this.options.inputTextWrapper);
+            this.searchResultWrapper = this.element.find(this.options.searchResultWrapper);
+        },
+
+        /*初始化点击页面基本特效*/
+        initEvent: function () {
+            var _this = this;
+            // 单行文本框获得焦点的时候调用查询方法渲染数据
+            this.inputTextWrapper.keyup(function (event) {
+                var $this = $(this);
+                // 每次鼠标抬起的时候要判断当值发生变化的时候才去查询
+                if (event.keyCode == 38 || event.keyCode == 40) return;
+                _this.initQuery($this.val());
+                // 鼠标抬起的时候强制性让查询结果容器显示
+                _this.searchResultWrapper.show();
+            })
+            // 在查询的的结果上鼠标移动直接回填值
+            this.searchResultWrapper.on('mouseover', 'li.normal', function () {
+                var $this = $(this);
+                $this.addClass('hover-active');
+                _this.inputTextWrapper.val($this.find('span').text());
+            }).on('mouseout', 'li', function () {
+                $(this).removeClass('hover-active');
+            }).on('click', 'li.normal', function () {
+                var $this = $(this);
+                _this.inputTextWrapper.val($this.find('span').text());
+                // 点击数据回填的时候
+                _this.searchResultWrapper.hide();
+            })
+            // 利用键盘进行翻页
+            var activeNumber = -1;
+            this.inputTextWrapper.keydown(function (event) {
+                console.log(event)
+                var keyCode = event.keyCode;
+                if (keyCode === 38) { // 上箭头
+                    event.preventDefault();
+                    activeNumber--;
+                    if (activeNumber <-1) {
+                        activeNumber = _this.searchResultWrapper.find('li.normal').length-1;
+                    }
+                    console.log(activeNumber);
+                    _this.searchResultWrapper.find('li.normal').eq(activeNumber).addClass('hover-active').siblings('.normal').removeClass('hover-active');
+                    _this.inputTextWrapper.val(_this.searchResultWrapper.find('li.normal').eq(activeNumber).find('span').html());
+                } else if (keyCode === 40) { //下箭头
+                    event.preventDefault();
+                    activeNumber++;
+                    if (activeNumber == _this.searchResultWrapper.find('li.normal').length) {
+                        activeNumber = 0;
+                    }
+                    console.log(activeNumber)
+                    _this.searchResultWrapper.find('li.normal').eq(activeNumber).addClass('hover-active').siblings('.normal').removeClass('hover-active');
+                    _this.inputTextWrapper.val(_this.searchResultWrapper.find('li.normal').eq(activeNumber).find('span').html());
+                }
+            });
+        },
+
+        /*初始化查询发请求*/
+        initQuery: function (word) {
+            var _this = this;
+            $.ajax({
+                type: 'GET',
+                dataType: 'jsonp',
+                url: 'https://sug.so.360.cn/suggest',
+                data: {
+                    word: word
+                },
+                success: function (result) {
+                    var data = result.s;
+                    _this.renderQuery(data);
+                }
+            })
+        },
+
+        /*渲染查询的结果*/
+        renderQuery: function (data) {
+            var _this = this;
+            var htmlArr = [];
+            var dataLength = data.length;
+            $.each(data.slice(0, 5), function (index, item) {
+                htmlArr.push('<li class="normal">模糊查询的结果是:<span>', item, '</span></li>');
+            })
+            // 判断如果数据大于10条的话就追加一个提示语
+            if (dataLength > 5) {
+                htmlArr.push('<li>..........还有数据只是没显示...............</li>');
+            } else if (dataLength == 0) {
+                htmlArr.push('<li>..........没有符合要求的数据...............</li>');
+            }
+            // 循环完成以后替换dom
+            this.searchResultWrapper.html(htmlArr.join(''));
+        }
+
+
+    };
+
+    new SelfselectPage($(document.body)).init({});
+</script>
+</html>
