@@ -8,7 +8,7 @@
 	
 </body>
 <script>
-	// 第一种方式
+	// 第一种方式(起个别名的方式)
 	/*
 	function Fn() {
 		this.x = 100;
@@ -26,7 +26,7 @@
 	var f1 = new Fn();
 	console.log(f.constructor)  // ->Fn
 	*/
-	// 第二种方式 ->自己开辟的堆内存，存储公有的属性和方法
+	// 第二种方式 ->自己开辟一块堆内存，存储公有的属性和方法
 	function Fn() {
 		this.x = 100;
 	}
@@ -42,9 +42,11 @@
 
 		}
 	}
-	// 只有浏览器天生给Fn.prototype开辟的堆内存中才有constructor这个属性,而我们自己开辟的这个堆内存，没有这个属性。这样constructor指向就不再是Fn，而是Object
+	// 只有浏览器天生给Fn.prototype开辟的堆内存中才有constructor这个属性,
+	// 而我们自己开辟的这个堆内存，没有这个属性。这样constructor指向就不再是Fn，而是Object
 	// 为了和原来的保持一致，我们需要手动的增加constructor指向
 	console.log(f.constructor)  // ->Object
+	console.log(f.constructor)  // ->Fn  手动添加constructor强制指回来
 
 
 	/***********给内置类增加公有的属性*******************/
@@ -70,8 +72,9 @@
 	}
 
 	var ary = [1,2,3,4,5,4,3,2,1];
-	ary.sort();
+	ary.sort(); // sor()方法会改变原来的数组，新数组是排序好的数组，返回值也是排序好的数组
 	console.log(ary);
+	console.log(ary.sort() == ary)
 	*/
 
 
