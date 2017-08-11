@@ -20,7 +20,7 @@
 
 
 	/*
-		1. document.getElementById();// 获取的是一个及时页面id重复了也是获取第一个
+		1. document.getElementById();// 获取的是一个即使页面id重复了也是获取第一个
 
 		注意点1：但是在ie 6 7 中会把表单元素的name属性值当做id 来用
 
@@ -49,13 +49,13 @@
 		// document称之为上下文，在整个文档中得到li
 		// var oTab = document.getElementById('oTab');
 		// var olis = oTab.getElementsByTagName('li') // 把上下文改变 不要找整个文档当中的，找oTa中的
-		// 但是注意:document.getElementById('oTab');通过id找的话的上下恩只能是id，因为id是不能重复的。
+		// 但是注意:document.getElementById('oTab');通过id找的话的上下文只能是id，因为id是不能重复的。
 		// 获取到的是一个对象数据类型，是一个类数组。(索引从0 开始逐级递增，有一个length属性)
 		// 获取类数组中的第一个 olis.length(长度) olis[0](获取第一个) 那么olis.0也可以吗？答案是不行，如果属性值是数字的话不能用.的方式只能用方括号 olis.item(0) 也可以得到第一个
 	*/
 
 	/*
-		3. context.getElementByName("haha")
+		3. context.getElementsByName("haha")
 		var odivs = document.getElementByName('haha');
 		console.log(odivs)
 		// 在ie下只对表单元素起作用
@@ -78,7 +78,7 @@
 	}*/
 
 	/*
-		4. 通过类型来获取，这个方法在ie6-8中不兼容，需要写一个方法封装
+		4. 通过类名来获取，这个方法在ie6-8中不兼容，需要写一个方法封装
 		document.getElementsByClassName();
 		// 获取到的也是一个集合，哪怕只有一个。也是个集合
 		及时你想拿第一个都要通过 olis[0] 来获取
