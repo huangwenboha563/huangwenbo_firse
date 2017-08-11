@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+<script>
+	//----------------------------扩展运算符
+//	function push(array, ...items) {
+//		array.push(...items);
+//	}
+//	var numbers = [1,2,3,4,5];
+//	var array = [0,0,0];
+//	console.log(push(array,...numbers));
+
+
+
+	/*----------------------------------------------------------Array.from()*/
+	// ->  用Array.from()检测数据类型
+	function typesOf () {
+		// -> es6箭头函数写法
+		// return Array.from(arguments, value => typeof value)
+		// 将上面es6的箭头函数的写法改写成es5的写法
+		return Array.from(arguments, function(value){
+			return typeof value;
+		})
+		/*
+		* 第一步: Array.from(arguments, value => typeof value) 返回值为 ["object", "object", "number"]
+		* 第二步: return 语句，把第一步的返回值给return回去
+		*/
+	}
+	console.log(typesOf(null, [], NaN))
+</script>
+</html>

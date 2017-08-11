@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	/*------------------------------------------模板字符串*/
+	// -> 传统的拼接字符串的方式
+	// 当字符串拼接里面有变量，或者渲染dom的时候有变量都只能采用 + 来连接
+	let a = 'chinese';
+	console.log('i am ' + a );
+
+	//-> es6 里面的 模板字符串
+	// 解决问题1. 字符串换行问题
+	// 解决问题2. 双引号和单引号还有加号混乱的问题
+	const person = {
+		name: '黄文博',
+		age: 16,
+		form:'山西'
+	};
+	console.log(`
+		该同学叫${person.name}
+		今年${person.age}
+		来自${person.from}
+	`)
+
+
+</script>
+</html>
