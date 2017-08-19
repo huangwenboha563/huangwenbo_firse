@@ -34,7 +34,7 @@
 	var sum = 0;
 	var i = 1;
 	while(i<=100){
-		i%3!=0?sum+=i:null;
+		i%3!==0?sum+=i:null;
 		i++;
 	}
 	console.log(sum)
@@ -50,8 +50,8 @@
 	           return 0;
 	       }
 
-	       //->如果传递进来的n的值可以被三整除的话,我们当前的这个值就不需要再累加了
-	       if (n % 3 === 0) {
+	       //->如果传递进来的n的值可以被三整除的话,我们当前的这个值就不需要再累加了,接着往下走就可以了。
+	       if (n % 3 === 0) { // 如果求的是能被三整除的话就 把判断跳进换成 n%3 !== 0 即可。
 	           return sum(n - 1);
 	       }
 
@@ -60,7 +60,25 @@
 	   var total = sum(100);
 	   console.log(total)
 	*/
+	// 个人理解上面的逻辑有点绕可能是自己太笨了，让我理解我就这样写
+	function sum(n) {
+		//->传递进来的值如果是0,说明已经累加到头了,我们不需要再调用自己继续累加了,返回一个0
+		if (n === 0) {
+			return 0;
+		}
 
+		//->如果传递进来的n的值可以被三整除的话,我们当前的这个值就不需要再累加了,接着往下走就可以了。
+		//->个人觉得这样理解更好理解一些，虽然是一样的结果，这是上面那这样写有点装逼的成分
+		if (n % 3 !== 0) {
+			return n + sum(n - 1);
+		} else {
+			return sum(n - 1);
+		}
+
+
+	}
+	var total = sum(100);
+	console.log(total)
 	// 求0-100之间的和
 
 	//方法1----for循环
@@ -120,16 +138,15 @@
 		}
 	}
 	*/ 
-		// console.log()一共输出两次为什么结果不一样呢
-		function aa (num) {
-			// console.log(num)
-			if ( num > 1 ) {
-				aa(--num)
-			}
-			debugger;
-			// console.log(num)
+	// console.log()一共输出两次为什么结果不一样呢
+	function aa (num) {
+		if ( num > 1 ) {
+			aa(--num)
 		}
-		aa(4)
+		debugger;
+		console.log(num)
+	}
+	aa(4)
 
 	
 	

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>v-for循环</title>
-	<script src="../js/vue.js"></script>
+	<script src="../js/vue2.0.js"></script>
 </head>
 <body>
 	<div id="box">
@@ -21,7 +21,7 @@
 			</li>
 		</ul>
 		<hr>
-		<h1>循环数组第二种</h1>
+		<h1>循环json第二种</h1>
 		<ul>
 			<li v-for="(key,value) in json">
 				{{key}}    {{value}}    {{$index}}    {{$key}}<br>
@@ -47,10 +47,6 @@
 	号称双向数据绑定？什么是双向数据绑定？
 
 	如何理解数据绑定呢？按照我的操作？当你在其中一个input里面输入值得时候，在谷歌控制台输入vm.msg回车就会发现vm也会跟着变，这就是所谓的数据绑定，双向数据绑定。  
-
-
-
-
 	*/
 </script>
 </html>
