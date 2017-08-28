@@ -1,17 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>利用闭包作用域实现选项卡</title>
+    <meta charset="UTF-8">
+    <title>利用闭包作用域实现选项卡</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            float: left;
+            background: blue;
+            margin: 5px;
+        }
+
+        /*选项卡的样式*/
+        .contains .con {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-	<div class="box"></div>
-	<div class="box"></div>
-	<div class="box"></div>
-	<div class="box"></div>
-	<div class="box"></div>
+    <!--第一:用循环绑定的方式去理解什么作用域-->
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <!--第二:选项卡-->
+    <div class="btns">
+        <input type="button" value="一">
+        <input type="button" value="二">
+        <input type="button" value="三">
+    </div>
+    <div class="contains">
+        <div class="con" style="display:block;">我是第一个</div>
+        <div class="con">我是第二个</div>
+        <div class="con">我是第三个</div>
+    </div>
 </body>
 <script>
-	var box  = querySelector
+    /*
+     // -> 现象
+     var box  = document.getElementsByClassName('box');
+     for (var i = 0; i< box.length; i++) {
+     box[i].onclick = function () {
+     alert(i)
+     }
+     }
+     */
+    /*
+     // -> 解决方式1
+     var box  = document.getElementsByClassName('box');
+     for (let i = 0; i< box.length; i++) {
+     box[i].onclick = function () {
+     alert(i)
+     }
+     }
+     */
+    /*
+     // -> 解决方式2
+     var box  = document.getElementsByClassName('box');
+     for (var i = 0; i< box.length; i++) {
+     (function(ii){
+     box[i].onclick = function () {
+     alert(ii)
+     }
+     })(i)
+
+     }
+     */
+    // -> 分析第一种情况
+    /*
+     var box  = document.getElementsByClassName('box');
+     for (var i = 0; i< 5; i++) {
+     console.log(i)
+     box[i].onclick = function () {
+     alert(i)
+     }
+     }
+     // 注意作用域 在for循环外面输出i看看
+     console.log('for循环外面的i:' + i)
+     */
+    // 分析第二种情况
+    /*
+     var box  = document.getElementsByClassName('box');
+     for (let i = 0; i< 5; i++) {
+     console.log(i)
+     box[i].onclick = function () {
+     alert(i)
+     }
+     }
+     // 注意作用域 在for循环外面输出i看看 (此时报错)
+     console.log('for循环外面的i:' + i)
+     */
+
+    // 先获取dom
+    var btns = document.getElementsByClassName('btns')[0];
+    var con = document.getElementsByClassName('con');
+    var btn = btns.getElementsByTagName('input');
+    /*
+    for (var i = 0; i< btn.length; i++) {
+        (function(xxx){
+            btn[xxx].onclick = function () {
+                for(var i = 0; i< con.length; i++) {
+                    con[i].style.display = 'none';
+                }
+                con[xxx].style.display='block';
+            }
+        })(i)
+    }
+
+    */
+    /*
+    // 不要看这个，这个不对
+    for (var i = 0; i< btn.length; i++) {
+            btn.i = i;
+            btn[i].onclick = function () {
+                for(var j = 0; j< con.length; j++) {
+                    con[j].style.display = 'none';
+                }
+                con[btn.i].style.display='block';
+            }
+    }*/
+
+</script>
+<script>
 </script>
 </html>
