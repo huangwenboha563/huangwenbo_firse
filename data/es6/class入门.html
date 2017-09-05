@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class入门</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 传统的面向对象的写法
+    function Fn(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    Fn.prototype = {
+        constructor: Fn,
+        showName: function () {
+            console.log(this.name);
+        },
+        showAge: function () {
+            console.log(this.age);
+        }
+    }
+    var p1 = new Fn('xxx', 90);
+    var p4 = new Fn('yy',80);
+    console.log(p1.showName == p4.showName) // true
+    // p1.showName();
+
+
+    // es6的面向对象   类是类，构造函数是构造函数
+
+    class Person {
+        constructor(name = 'default', age = 80) {
+            this.name = name;
+            this.age = age;
+        }
+
+        showName() {
+            console.log(this.name)
+        }
+
+        showAge() {
+            console.log(this.age)
+        }
+    }
+    var p2 = new Person('xxx', 80);
+    var p3 = new Person('yyy', 70);
+    console.log(p2.showName == p3.showName) // true
+    p2.showName()
+    p2.showAge()
+</script>
+</html>

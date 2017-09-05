@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>寄生组合式继承</title>
+	<title>混合模式继承</title>
 </head>
 <body>
 	
 </body>
 <script>
-	//->目的 私有继承私有 公有继承公有
+	// 混合模式继承指的是原型模式继承+call继承
+	// 原型继承(私有+公有->公有) call继承(私有->私有) ->所以导致私有的就继承了两份
 	function Father() {
 		this.x = 100;
 	}
@@ -21,7 +22,7 @@
 	function Son () {
 		Father.call(this);
 	}
-	Son.prototype = Object.create(Father.prototype);// 把父类的原型给子类的原型
+	Son.prototype = new Father();
 	var zjh = new Son();
 	// console.log(zjh.x)
 	// zjh.getX()

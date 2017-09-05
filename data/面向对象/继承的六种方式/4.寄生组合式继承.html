@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>寄生组合式继承</title>
+</head>
+<body>
+
+</body>
+<script>
+    //->目的 私有继承私有 公有继承公有
+    function Father() {
+        this.x = 100;
+    }
+    Father.prototype = {
+        constructor: Father,
+        getX: function () {
+            console.log(this.x)
+        }
+    }
+    function Son() {
+        Father.call(this);// 这样做的目的是私有的成为私有的
+    }
+    Son.prototype = Object.create(Father.prototype);// 把父类的原型给子类的原型;这样做的目的是公有的成为公有的
+    Son.prototype.constructor = Son;
+    var zjh = new Son();
+    // console.log(zjh.x)
+    // zjh.getX()
+</script>
+</html>
