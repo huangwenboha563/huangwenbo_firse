@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平级组件之间的通信</title>
+    <script src="../js/vue2.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child></child>
+    </div>
+</body>
+<script>
+    var bus = new Vue();
+    var vm = new Vue({
+        el: '#app',
+        created(){
+            bus.$on('hhhhh',function(data){
+                alert(data)
+            })
+        },
+        components: {
+            child:{
+                data(){
+                    return { child: 'vue1.0js'}
+                },
+                template: '<div><button @click="up">ok</button></div>',
+                methods: {
+                    up(){
+                        bus.$emit('hhhhh',this.child)
+                    }
+                }
+            }
+        }
+    })
+</script>
+<script>
+    // -----------------疑问
+    // 平级组件？兄弟组件？
+    // 带着疑问去看文档，（#app为跟组件，child为子组件，为什么会有平级组件的概念呢？）
+    // 我理解的评级组件应该是一个  父组件A 这个父组件下面有两个子组件B1 和 B2  B1和B2通信，这才叫平级，兄弟组件的通信。
+    // 这个例子，就只有一个根组件vm里面包含一个child组件啊。
+</script>
+</html>

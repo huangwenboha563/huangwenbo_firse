@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平级组件之间的通信</title>
+    <script src="../js/vue2.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child-A></child-A>
+        <child-B></child-B>
+    </div>
+</body>
+<script>
+    var bus = new Vue();
+    var vm = new Vue({
+        el: '#app',
+        components: {
+            childA:{
+                data(){
+                    return { child: 'vue1.0js'}
+                },
+                template: '<div><button @click="up">ok</button></div>',
+                methods: {
+                    up(){
+                        bus.$emit('hhhhh',this.child)
+                    }
+                }
+            },
+            childB:{
+                template: '<div>bbbbbbbbbbbb组件</div>',
+                created(){
+                    bus.$on('hhhhh',function(data){
+                        alert(data)
+                    })
+                }
+            }
+
+        }
+    })
+</script>
+<script>
+    // -----------------笔记
+    // 平级组件？兄弟组件？珠峰的课件和智能社的课件有啥区别，理解透彻，理解清楚
+    // 带着疑问去看文档，（#app为跟组件，child为子组件，为什么会有平级组件的概念呢？）
+</script>
+</html>

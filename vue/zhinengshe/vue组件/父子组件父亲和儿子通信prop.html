@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>父子组件父亲给儿子传递数据prop传递数据</title>
-    <script src="../bower_components/vue/dist/vue.js"></script>
+    <script src="../js/vue2.0.js"></script>
     <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
     <style>
-
     </style>
 </head>
 <body>
 
 <template id="myFather">
-    <h3>你好:{{fmsg}}</h3>
-    <son :m="fmsg"></son>
+    <!--vue2.0写法-->
+    <div>
+        <h3>你好:{{fmsg}}</h3>
+        <son :m="fmsg"></son>
+    </div>
+    <!--vue1.0写法-->
+    <!--
+        <h3>你好:{{fmsg}}</h3>
+        <son :m="fmsg"></son>
+    -->
+    <!--
+        注意点:
+        在1.0的时候模板里面可以直接写标签去渲染
+        但是在2.0里面外层必须用个div包裹起来，否则报错
+    -->
 </template>
 
 <div id="box">
     <father></father>
 </div>
+
 </body>
 <script>
 
@@ -28,6 +41,7 @@
         components: {
             'father': {
                 template: '#myFather',
+                // 组件里面的数据通过函数的形式返回
                 data: function () {
                     return {
                         fmsg: '我是父亲的数据'
@@ -45,6 +59,11 @@
 </script>
 <script>
     // 父组件的数据通过自定义属性    :xxx="父组件的某个数据"
-    // 在组件里面接受通过props:[xxx]
+    // 这个自定义属性是增加在子组件的自定义标签上的比如<son :m="父组件的数据"></son>,只是<son></son>组件要被父组件包裹
+    // 在组件里面接受通过 props:[xxx]
+
+
+
+    // 组件其实就是一个自定义html标签 比如 <father></father> <son></son>
 </script>
 </html>
