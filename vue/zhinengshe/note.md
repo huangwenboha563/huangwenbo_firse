@@ -25,11 +25,19 @@
     
     > bower install vue@1.0.28 （下载指定的版本）
     
-    > bower install vue#1.0.28 （@不行换#）
+    > bower install vue#1.0.28 （@不行换#,应该是#来指定版本）
+
+    > 想在哪个目录下安装直接cd进入到某个文件目录下执行该命令
+
+    > 命令执行完以后就会在当前文件目录下出现一个bower_components的目录文件夹
+
+    > 以后安装包的时候只需要进入到bower_components的上层目录 执行该命令即可
     
 + 卸载 bower uninstall <包名>
 
     > bower uninstall vue （卸载安装好的vue）
+
+    > 用这个命令去卸载某个包比如jquery  vue 啥的必须进入到安装目录下和bower_components同级的目录
     
 + 查看 bower info <包名>
 
