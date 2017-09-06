@@ -3,35 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>slot高级</title>
-    <script src="../bower_components/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
-    <style>
-
-    </style>
+    <script src="../js/vue2.0.js"></script>
 </head>
 <template id="aaa">
-    <h4>我是数据</h4>
-    <slot name="ul-slot">我是默认的内容,我在这里占了个坑</slot>
-    <slot name="ol-slot">我是默认的内容,我在这里占了个坑</slot>
-    <!--<slot name="ol-slot">我是默认的内容,我在这里占了个坑</slot>-->
-    <p>welcome vue.js</p>
+    <div>
+        <h4>我是数据</h4>
+        <slot name="ol-slot">我是默认的内容,我在这里占了个坑</slot>
+        <slot name="ul-slot">我是默认的内容,我在这里占了个坑</slot>
+        <!--分割线-->
+        <slot name="ul-slot">我是默认的内容,我在这里占了个坑</slot>
+        <slot name="ol-slot">我是默认的内容,我在这里占了个坑</slot>
+        <p>welcome vue.js</p>
+    </div>
 </template>
 <body>
 <div id="box">
     <aaa>
         <ul slot="ul-slot">
-            <li>1111111</li>
-            <li>2222222</li>
-            <li>3333333</li>
-            <li>4444444</li>
-            <li>因为有人给我占坑，所以我就显示出来了</li>
+            <li>ulululululul</li>
         </ul>
         <ol slot="ol-slot">
-            <li>111111111</li>
-            <li>222222222</li>
-            <li>333333333</li>
-            <li>444444444</li>
-            <li>还有人给我占坑吗</li>
+            <li>olololololol</li>
         </ol>
     </aaa>
     <hr>
@@ -52,5 +44,6 @@
 </script>
 <script>
    // 因为aaa这个组件的数据是通过模板绑定的所以~~ <aaa></aaa>里面再包裹任何东西都不会有用，那么我们要是想让其有用怎么办~
+    // 上述例子是具名slot
 </script>
 </html>

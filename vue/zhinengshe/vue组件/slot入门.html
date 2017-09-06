@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>slot入门</title>
-    <script src="../bower_components/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
-    <style>
-
-    </style>
+    <!--1.0-->
+    <!--<script src="../bower_components/vue/dist/vue.js"></script>-->
+    <!--2.0-->
+    <script src="../js/vue2.0.js"></script>
 </head>
+
 <template id="aaa">
-    <h4>我是数据</h4>
-    <p>welcome vue.js</p>
+    <!--<div>-->
+        <h4>我是数据</h4>
+        <p>welcome vue.js</p>
+    <!--</div>-->
+    <!--1.0不需要跟元素  2.0需要-->
 </template>
+
 <body>
-<div id="box">
-    <aaa>
-        <ul>
-            <li>1111111</li>
-            <li>2222222</li>
-            <li>3333333</li>
-            <li>4444444</li>
-        </ul>
-    </aaa>
-</div>
+    <div id="box">
+        <aaa>
+            <ul>
+                <li>1111111</li>
+                <li>2222222</li>
+                <li>3333333</li>
+                <li>4444444</li>
+            </ul>
+        </aaa>
+    </div>
 </body>
 <script>
 

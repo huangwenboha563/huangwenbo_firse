@@ -3,33 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>slot高级</title>
-    <script src="../bower_components/vue/dist/vue.js"></script>
-    <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
-    <style>
-
-    </style>
+    <script src="../js/vue2.0.js"></script>
 </head>
 <template id="aaa">
-    <h4>我是数据</h4>
-    <slot>我是默认的内容,我在这里占了个坑</slot>
-    <slot>我是默认的内容,我在这里占了个坑</slot>
-    <p>welcome vue.js</p>
+    <div>
+        <h4>我是数据</h4>
+        <slot>第一个坑</slot>
+        <slot>第二个坑</slot>
+        <p>welcome vue.js</p>
+    </div>
 </template>
 <body>
 <div id="box">
     <aaa>
         <ul>
-            <li>1111111</li>
-            <li>2222222</li>
-            <li>3333333</li>
-            <li>4444444</li>
             <li>因为有人给我占坑，所以我就显示出来了</li>
         </ul>
         <ol>
-            <li>111111111</li>
-            <li>222222222</li>
-            <li>333333333</li>
-            <li>444444444</li>
             <li>还有人给我占坑吗</li>
         </ol>
     </aaa>
