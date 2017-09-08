@@ -154,14 +154,16 @@ new Vue({
     
  # 电脑知识扫盲
  
- > 查看自己电脑的ip
+ > 查看自己电脑的ip window上的
  
  1. ipconfig
  2. ipconfig -all
  
  > 看自己的网速
  
- ping www.baidu.com -t
+ ping www.baidu.com -t(windows)
+ 
+ ping www.baidu.com （mac）
  
  > 终止正在运行的dos命令
  
@@ -169,7 +171,7 @@ new Vue({
  
  > 关闭dos命令窗口
  
- exit
+ exit 就是esc键盘(mac上这个键是不能退出终端的)
  
  > 清屏
  
@@ -185,6 +187,14 @@ new Vue({
  > 进入某个盘符
  
  D:    -> 直接进入D盘
+ 
+ > 查看当前文件下有哪些文件
+ 
+ 在当前目录下执行 dir
+ 
+ > 直接进入某个文件夹
+ 
+ shift + 右键，点击在此处打开命令行窗口
  
  # url uri urn
  
