@@ -14,24 +14,24 @@
 	</style>
 </head>
 <body>
-
 	<div id="box">
 		<input type="button" value="点击" @click="get()">
+		<img :src="cover" alt="">
 	</div>
-		
 </body>
 <script>  
 	var vm = new Vue({
 		el:"#box",
 		data:{
-			
+			cover: ''
 		},
 		methods:{
 			get:function () {
-				this.$http.get('demo.json').then(function (res) {
-					console.log(res.data)
-					console.log(res.status)
-
+				this.$http.get('http://breadoffer.com/api/course/member/index?maxCount=8&t=1506161112510').then(function (res) {
+//					console.log(res.data.data[0].cover)
+//					console.log(res.status)
+					this.cover = 'http://resource.breadoffer.com' + res.data.data[0].cover
+					console.log(this.cover)
 				},function (res) {
 					console.log(res.status)
 				})

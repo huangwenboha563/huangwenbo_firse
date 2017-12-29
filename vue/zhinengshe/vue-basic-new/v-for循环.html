@@ -7,6 +7,7 @@
 </head>
 <body>
 	<div id="box">
+		<img :src="url" alt="">
 		<h1>循环数组</h1>
 		<ul>
 			<li v-for="value in arr">
@@ -34,7 +35,8 @@
 		el:"#box",
 		data:{
 			arr: ['apple','banana','orange'],
-			json: {a:'apple',b:'banana',c:"orange"}
+			json: {a:'apple',b:'banana',c:"orange"},
+			url: 'http://resource.breadoffer.com/cropped/course/config/15008685504140285.jpg'
 		}
 	})
 </script>
