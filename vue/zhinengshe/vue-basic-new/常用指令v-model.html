@@ -7,6 +7,7 @@
 </head>
 <body>
 	<div id="box">
+		<p>{{msg}}</p>
 		<input type="text" v-model="msg">
 	</div>
 </body>
@@ -14,7 +15,7 @@
 	var vm = new Vue({
 		el:"#box",
 		data:{
-			msg:"欢迎"
+			msg:"请输入你的信息"
 		}
 	})
 </script>
