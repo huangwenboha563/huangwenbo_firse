@@ -2,9 +2,9 @@
 
 ## 方法都有哪些
 
-### ES4的？？？？？
+### ES4的（分为能改变原数组和不能改变原数组的）
 
-#### push pop unshift shift splice reverse sort 
+> push pop unshift shift splice reverse sort (能改变原数组的)
 
 + push 
 
@@ -20,8 +20,20 @@
 
 + sort 
 
-### indexOf lastIndexof concat slice 
+> indexOf lastIndexof concat slice（不能改变原数组的）
+ 
++ indexOf
 
-### forEach filter map some every reduce 
++ lastIndexof
 
-### includes find 
++ concat
+
++ slice
+
+### ES5的
+
+> forEach filter map some every reduce
+
+### ES6的
+
+> includes find
