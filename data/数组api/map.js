@@ -11,5 +11,6 @@ let newAry = arr.map(function (item,index) {
     // return item*=2;
     // 每一项*2返回去
 })
+
 console.log(newAry)
 console.log(newAry.join(''));// 插入到dom中即可
