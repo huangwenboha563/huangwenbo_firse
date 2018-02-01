@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop传递数据</title>
+</head>
+<body>
+<div id="box">
+	<alert :msg="true"></alert>
+	<alert msg="干死你"></alert>
+	<user user="hwb"></user>
+</div>
+
+</body>
+<script src="../js/vue2.0.js"></script>
+
+<script>
+	Vue.component('alert',{
+		template:`<button @click="go">点击我
+					<span v-if="msg">{{msg}}</span>
+			    </button>`,
+		props:['msg'],
+		data: function () {
+			return {}
+		},
+		methods: {
+			go:function () {
+				alert(this.msg)
+			}
+		}
+	});
+	// 用户组件
+	Vue.component('user',{
+		template:'<a :href="\'/user/\'+user">{{user}}</a>',
+		props:['user'],
+		data:function () {
+			return {
+				a:'ffffff'
+			}
+		},
+		methods: {
+
+		}
+	});
+	let vm = new Vue({
+		el: '#box',
+		data: {
+			msg:'我了个去'
+		}
+	});
+
+</script>
+<script>
+</script>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>宇婷写的demo</title>
+	<style type="text/css">
+		div {
+			width: 500px;
+			margin: 30px auto;
+		}
+	</style>
+</head>
+<body>
+<div id='app'>
+	<div>
+		<label>
+			<input type="checkbox" name="" v-model="allChecked" @change="allCheck()">全选
+		</label>
+	</div>
+	<ul>
+		<li v-for="item in list">
+			<label>
+				<input type="checkbox" :value="item.name" v-model="item.isCheck" @change="singleCheck()">{{item.name}}
+			</label>
+		</li>
+	</ul>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		data: {
+			allChecked: false,
+			checked: false,
+			list: [
+				{
+					name: '苹果',
+					isCheck: false
+				},
+				{
+					name: '香蕉',
+					isCheck: false
+				},
+				{
+					name: '草莓',
+					isCheck: false
+				},
+				{
+					name: '榴莲',
+					isCheck: false
+				}
+			]
+		},
+		methods: {
+			allCheck: function () {
+				var _this = this;
+				this.list.forEach(function (item) {
+					item.isCheck = _this.allChecked
+				})
+			},
+			singleCheck: function () {
+				console.log(0)
+				var _this = this;
+				var selectItem = _this.list.filter(function (item) {
+					return item.isCheck == true;
+				})
+				selectItem.length == this.list.length ? this.allChecked = true : this.allChecked = false;
+			}
+		}
+	});
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

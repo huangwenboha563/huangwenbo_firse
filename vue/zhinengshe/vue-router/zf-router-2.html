@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰路由2动态路由</title>
+    <script src="../js/vue2.0.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            <router-link to="/user/100?a=100">用户100</router-link>
+            <router-link to="/user/200">用户200</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+</body>
+<script>
+    const user = {
+        template: `<div>{{param}}</div>`,
+        computed: {
+            param() {
+                return this.$route.params.id;
+                return this.$route.query;
+                //  return this.$route.params; 
+                // 是一个对象 {id:'100'}
+            }
+        },
+        watch: {
+            '$route'(to,from){
+                // to 和 from都是对象，表示要去哪里，和从哪里来。存放的有 path  params path query等信息
+                console.log(to);
+                console.log(from);
+            }
+        }
+    }
+
+    let routes = [
+        { path: '/user/:id', component: user }
+    ];
+
+    let router = new VueRouter({
+        routes
+    });
+
+    // 点击不同的用户跳转到不同的用户
+    let vm = new Vue({
+        el: '#app',
+        router
+    })
+</script>
+
+</html>

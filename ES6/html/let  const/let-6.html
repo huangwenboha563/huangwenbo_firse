@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<input type="button" name="TEMP">
+<input type="button" name="TEMP">
+<input type="button" name="TEMP">
+<input type="button" name="TEMP">
+<input type="button" name="TEMP">
+</body>
+<script>
+	// 快级作用域的应用
+	// 循环的绑定事件(因为事件是异步的，等你点击的时候i已经变了)
+	// 老的解决方式，用自定义属性的方式。每次循环给每一项增加一个自定义属性用来存放当前的索引
+	// 或者使用闭包
+	var tempLists = document.getElementsByName('TEMP');
+	/*
+	for (var i = 0;i<tempLists.length;i++) {
+		tempLists[i].onclick = function () {
+			console.log(i); // 始终是5
+		}
+	}
+	*/
+	/*
+	for (var i = 0;i<tempLists.length;i++) {
+		tempLists[i].index = i;
+		tempLists[i].onclick = function () {
+			console.log(this.index); // 始终是5
+		}
+	}
+	*/
+	/*
+	for (var i = 0;i<tempLists.length;i++) {
+		(function(i){
+			tempLists[i].onclick = function () {
+				console.log(i); // 始终是5
+			}
+		})(i);
+	}
+	*/
+	/**
+	 * 最后一种就是let了。。。。。
+	 */
+	/
+
+</script>
+</html>

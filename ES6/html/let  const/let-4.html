@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+
+	// es5用用var创建的变量没有块作用域的概念(但是有函数作用域)
+	// es6中用let创建的变量如果用{}包裹起来就有块作用域的概念
+	// es6中把大部分用{}包起来的都称之为块级作用域
+	// {}单独的一个花括号更加是es6里面的标准的块级作用域
+	// try catch的两个{}都是块级作用域
+	// switch case 的{}也是块级作用域
+	// for in 循环的{} 也是块级作用域
+	let num = 12;
+	let str = '';
+	let fn = function (str) {
+		str = "HELLO";
+		console.log(arguments[0]); // 注意这里在严格模式下和非严格模式下是有区别的，非严格模式(存在arguments映射)下是HELLO,严格模式(不存在arguments映射)下是哈哈。
+		console.log(str);
+		// console.log(num); // 会报错
+		let num =13;
+		console.log(num, str);
+	};
+	fn('哈哈');
+	console.log(num, str);
+	/*
+	* 非严格模式下 存在args映射
+	* 严格模式下  不存在args映射
+	* 用babel编译的js会自动加上严格模式，所以要尽量少这样操作。这样会导致在预期的结果不一样
+	*/
+	if (10>=10) {
+		var total = 90;
+		// let total = 90;
+	}
+	console.log(total); // var 90  let 的话会报错；
+
+	for (var i=0;i<5;i++) {
+		// var i = 0;和let i = 0;结果不一样 用let声明的循环里{}也是“块”级作用域
+		// 用let每一次循环都会形成一个块级作用域，四次循环形成四个“私有”的块级作用域
+		console.log(i);
+	}
+	console.log(i);
+	let sb = 100;
+	{
+		let sb =200;
+		{
+			let sb = 300;
+			{
+				console.log(sb);
+			}
+			// let sb = 300;
+			// 如果放在这里就会报错
+		}
+	}
+</script>
+</html>

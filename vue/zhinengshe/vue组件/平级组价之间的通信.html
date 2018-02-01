@@ -8,21 +8,28 @@
 <body>
     <div id="app">
         <child></child>
+        {{test}}
     </div>
 </body>
 <script>
     var bus = new Vue();
     var vm = new Vue({
         el: '#app',
+        data: {
+            test: ''
+        },
         created(){
+        	var _selef = this;
             bus.$on('hhhhh',function(data){
-                alert(data)
+                console.log(data)
+                _selef.test = data;
             })
         },
         components: {
             child:{
+            	// data 必须是一个函数
                 data(){
-                    return { child: 'vue1.0js'}
+                    return { child: '我是中国人我爱中国'}
                 },
                 template: '<div><button @click="up">ok</button></div>',
                 methods: {

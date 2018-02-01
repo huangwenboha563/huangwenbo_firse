@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>宇婷写的demo</title>
+	<style type="text/css">
+		div {
+			width: 500px;
+			margin: 30px auto;
+		}
+	</style>
+</head>
+<body>
+<div id='app'>
+	<input type="checkbox" v-model="check"> {{check}}
+</div>
+<div id="app2">
+	<input type="checkbox" value="苹果" v-model="check">
+	<input type="checkbox" value="香蕉" v-model="check">
+	<input type="checkbox" value="猕猴桃" v-model="check">
+	{{check}}
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script type="text/javascript">
+	new Vue({
+		el: '#app',
+		data: {
+			check:''
+		}
+	});
+	new Vue({
+		el: '#app2',
+		data: {
+			check:[]
+		}
+	});
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

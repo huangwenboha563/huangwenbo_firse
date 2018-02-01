@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>vue事件</title>
-	<link rel="stylesheet" href="../js/bootstrap.min.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/vue.js"></script>
-	<style>
-		
-	</style>
+    <meta charset="UTF-8">
+    <title>vue事件</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue.js"></script>
+    <style>
+
+    </style>
 </head>
+
 <body>
-	<div id="box">
-		<strong :style="json">hahahhahahahah</strong>
-		<strong :style='{"color":"yellow","fontSize":"100px"}'>hahahhahahahah</strong>
-		<strong :style="[m,n]">hahahhahahahah</strong>
+    <div id="box">
+        <strong :style="json">hahahhahahahah</strong>
+        <strong :style='{"color":"yellow","fontSize":"100px"}'>hahahhahahahah</strong>
+        <strong :style="[m,n]">hahahhahahahah</strong>
 </body>
-<script>  
-	var vm = new Vue({
-		el:"#box",
-		data:{
-			json:{
-				"color":"red",
-				"backgroundColor":"gray"
-			},
-			m:{
-				"fontSize":"30px"
-			},
-			n:{
-				"fontWeight":"bold"
-			}
-		},
-		methods:{
-			
-		}
-	})
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            json: {
+                "color": "red",
+                "backgroundColor": "gray"
+            },
+            m: {
+                "fontSize": "30px"
+            },
+            n: {
+                "fontWeight": "bold"
+            }
+        },
+        methods: {
+
+        }
+    })
 </script>
 <script>
-	/*
-		
-		
-	*/
+    /*
+        		
+        		
+        */
 </script>
+
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手动写一个点赞组件</title>
+	<style>
+		.liked{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<like></like>
+</div>
+</body>
+<script src="../js/vue2.0.js"></script>
+<script>
+	Vue.component('like',{
+		template:'<button :class="{liked:liked}"@click.prevent="toggle">真厉害 {{count}}</button>',
+		data:function () {
+			return {
+				count:'10',
+				liked: false
+			}
+		},
+		methods:{
+			toggle:function () {
+				if (!this.liked) {
+					this.count++;
+				} else {
+					this.count--;
+				}
+				this.liked = !this.liked;
+			}
+		}
+	});
+	let vm = new Vue({
+		el: "#app",
+		data: {},
+		methods: function () {
+
+		}
+	})
+
+
+</script>
+</html>

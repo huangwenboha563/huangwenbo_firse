@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复选框多选</title>
+</head>
+<body>
+<div id="app">
+	<div>
+		全选 <input type="checkbox" v-model="checkAll">
+	</div>
+	<ul>
+		<li v-for="item in products">{{item.name}}<input type="checkbox" v-model="item.isSelected"></li>
+	</ul>
+</div>
+</body>
+<script type="text/javascript" src='../js/vue2.0.js'></script>
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+			products: [
+				{ isSelected: false, name: '苹果'},
+				{ isSelected: false, name: '香蕉'},
+				{ isSelected: false, name: '西瓜'},
+				{ isSelected: false, name: '猕猴桃'}
+			]
+		},
+		computed: {
+			checkAll: {
+				get() {
+					console.log(1);
+					return this.products.every(item => item.isSelected);
+				},
+				set(val) {
+					console.log(2);
+					this.products.forEach(item => item.isSelected = val);
+				}
+			}
+		}
+	})
+</script>
+</html>

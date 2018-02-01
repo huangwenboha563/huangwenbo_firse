@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model单选框</title>
+</head>
+<body>
+	<div id="app">
+		男 <input type="radio" v-model="sex" value="1">
+		女 <input type="radio" v-model="sex" value="0">
+		{{sex}}
+	</div>
+	<hr>
+	<div id="app2">
+		你好 <input type="radio" v-model="sex" :value="a">
+	</div>
+</body>
+<script type="text/javascript" src='../js/vue2.0.js'></script>
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+			sex: ""
+		}
+	});
+	let vm = new Vue({ // 选中时vm.sex == vm.a
+		el: '#app2',
+		data: {
+			sex: "",
+			a:"男"
+		}
+	})
+</script>
+</html>
