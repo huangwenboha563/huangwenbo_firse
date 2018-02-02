@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mvvm实现原理-1</title>
+</head>
+<body>
+
+</body>
+<script>
+	// angula  脏检查
+	// vue（数据劫持+发布订阅模式）
+	// 不兼容低版本浏览器，Object.defineProperty
+	let obj = {};
+	Object.defineProperty(obj,'school',{
+		configurable: true,  // 可配置的，如果设置为true就能 delete obj.school,否则不可以
+		enumerable:true, // 必须为true才能便利obj否则不可枚举
+		get(){ // 获取obj.school会调用时调用
+			return 'zfpx';
+		},
+		set(val){ // 设置时候调用
+			console.log(val);
+		}
+	});
+	obj.school= 'zfpx2'
+</script>
+</html>

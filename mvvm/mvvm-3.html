@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mvvm实现原理-3数据劫持</title>
+</head>
+<body>
+
+</body>
+<script src="mvvm.js"></script>
+<script>
+	// vue里面的data里面的数据，都用Object.definePorperty来劫持
+	let zhufeng = new Zhufeng({
+		el:'#app',
+		data:{
+			a:1
+		}
+	})
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		html, body {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+
+</body>
+<script>
+	// => 入门加复习
+	/*
+	let obj = {
+		a: 1,
+		// 如果fn改为箭头函数的话，下面的四种情况都是window
+		fn: function () {
+			console.log(this);
+		},
+		/!*fn: () => {
+		 console.log(this);
+		 }*!/
+	};
+	obj.fn();// obj
+	document.body.onclick = obj.fn; // body
+	setTimeout(obj.fn, 1000); // window
+	obj.fn.call(12); // 12
+	*/
+
+
+	// 可以理解为:箭头函数中没有自己的this指向，用到的this都是所在宿主环境(它的上级作用域)中的this
+
+	// 可见，以后实战项目中，不是要把所有的函数都改为箭头函数，根据自身需要来修改即可。(或者不涉及this问题，我们想让代码写起来简便一些也可以使用箭头函数）
+
+
+	// => 加深理解
+	/*
+	 let zcz = {
+	 a: 1,
+	 eat(){
+	 console.log(this);// zcz
+	 // 代码1，我们就想让定时器里面的this是zcz怎么办
+	 setTimeout(function () {
+	 console.log(this);// window
+	 }, 1000);
+	 // 代码2：
+	 setTimeout(function () {
+	 console.log(this);// zcz
+	 }.bind(this), 1000);
+	 // 代码3：
+	 var _this = this;
+	 setTimeout(function () {
+	 console.log(_this);// zcz
+	 }.bind(this), 1000);
+	 // 代码4
+	 setTimeout(() => {
+	 console.log(this); // zcz
+	 }, 1000);
+	 }
+	 };
+	 zcz.eat();
+	*/
+
+</script>
+</html>
