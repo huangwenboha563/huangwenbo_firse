@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	// 使用let 和使用var创建变量的有啥区别呢？
+	// 使用let和const定义的变量不存在变量提升！！！！
+	// 在同一个作用域中不允许重复定义
+	let a = 10;
+	// let a = 20;// 上面已经有a了所以就报错
+	{
+		let a = 90; // 此时不报错{}形成自己的作用域了
+		console.log(a);
+	}
+	console.log(a);
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象的解构赋值</title>
+</head>
+<body>
+
+</body>
+<script>
+	//demo1=============================================================================
+	let obj = {
+		a: function () {
+			console.log('我是a')
+		},
+		b: '我是b'
+	};
+	let {a, b} = obj;
+	// a();
+	// console.log(b);
+
+	//demo2============================================================================
+	let {floor, abs} = Math;
+	// console.log(floor(2.1));
+	// console.log(abs(-2.1));
+
+	//demo3============================================================================
+	let data = {c: 1, d: 2};
+	// 传统的方式  var a = data.a;var b = data.b;
+	// 结构对象的方式可以得到对象的value值，这种场合一般用于后台返回的一大段json形式的对象，可以用解构的方式得到json的value值好处是一目了然
+	// 解构的方式
+	let {c, d} = data;
+	// console.warn(c, d); // a -> 1  ;   b -> 2
+	//demo4===========================================================================
+	//一般后台给我们返回的json对象如下
+	let res = {
+		status: 200,
+		id: 301,
+		lists: [
+			{name: 'a', age: 30},
+			{name: 'b', age: 40}
+		]
+	};
+	let {status, id, lists} = res;
+	/*
+	 let res = {
+	 status: 200,
+	 lists: [
+	 {name: 'a', age: 30},
+	 {name: 'b', age: 40}
+	 ]
+	 };
+	 let {status, id, lists} = res;
+	 // 会提示 id 为undefined
+	 */
+	/*
+	 let res = {
+	 status: 200,
+	 id: 301,
+	 lists: [
+	 {name: 'a', age: 30},
+	 {name: 'b', age: 40}
+	 ]
+	 };
+	 let {status,lists} = res;
+	 // 会报错 id is not defined
+	 */
+	//demo5=========================================================================
+	// 我们想获取字符串的长度的话可以  var str = "aaaaaa" aaa.length就可以获取到
+	// 像下面这种用解构的方式得到数组的长度(字符串也是对象，是对象就有属性和属性值，length是字符串的一个属性，所以可以解构)
+	let {length} = 'huangwenbo';
+	console.log(length);
+</script>
+</html>

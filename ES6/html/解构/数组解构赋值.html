@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+
+    // 解构赋值和let 和const没有关系
+
+
+    (function(){
+    	[xx,yy,zz] = [1,2,3];// 但是这个操作在js的严格模式下是不允许的，因为在严格模式下不允许出现非使用var和let声明的变量的。比如在雅阁模式下 a = 10;会报错
+    })();
+	console.log(xx, yy, zz);// 可以打出来上面不写var或者let是定义在window上的
+	/*****************数组的解构赋值*/
+    /*
+    // demo1 获取数组里面的每一个元素
+    let arr = [1,2,3];
+    // 传统的方式
+    // var h = arr[0]; var l = arr[1]; var m = arr[2];
+    // 解构的方式
+    let [h,l,m] = arr;
+    console.warn(h,l,m)
+    */
+    //========================应用
+    // old
+    let arr1 = [1,2];
+    function foo (a,b) {
+    	console.log(a);
+    	console.log(b);
+    }
+    foo(arr1[0],arr1[1]);
+    // new
+	let arr2 = [1,2];
+	function foo2 ([a,b]) {
+		console.log(a);
+		console.log(b)
+	}
+	foo2(arr2);
+
+	let [D] = [33,44,5,6];
+	//如果只想获取数组的前半部分内容，只需要写前面的即可。后面的不需要补全
+    //如果想拿后半部分的前面的要用 ，隔开
+	console.log(D);
+
+	// 赋默认值没有默认值就是undefined
+	let [,,,M=99]=[1,2,3];
+	console.log(M);
+
+	let [A,...B]=[1,2,3,4,5,6];// 这里叫拓展运算符
+	console.log(A);
+	console.log(B);
+
+	let [...C]=[1,2,3,4,5];// 数组克隆
+	console.log(C);
+
+	// 这样会报错...只能出现在末尾
+	// let [X,...W,Z]=[1,2,3,4,5,6,7];
+</script>
+</html>

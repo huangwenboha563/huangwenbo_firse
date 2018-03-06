@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编程风格</title>
+</head>
+<body>
+
+<script>
+
+/************************************************************对象的一些编程风格*/
+//  1. 关于对象成员，最后一个成员以不以逗号结尾的问题(单行定义的对象结尾不加逗号，多行定义的对象结尾加逗号)
+	const obja = { k1: v1, k2: v2 };
+	const objb = {
+		k1: v1,
+		k2: v2,
+	};
+
+//	2. 如果对象的属性名是动态的，可以在创造对象的时候，使用属性表达式定义。
+	function getKey(str) {
+		return str;
+	}
+	const obj = {
+		id: 5,
+		name: 'San Francisco',
+	};
+
+	//  ask:什么是--属性表达式？
+
+	obj[getKey('enabled')] = true; // 这样写也可以但是没有下面"优雅"
+	// console.log(obj);
+	const obj2 = {
+		id: 5,
+		name: 'San Francisco',
+		[getKey('enabled')]: true,
+	};
+	// console.log(obj2)
+	//	上面代码中，对象obj的最后一个属性名，需要计算得到。这时最好采用属性表达式，在新建obj的时候，将该属性与其他属性定义在一起。这样一来，所有属性就在一个地方定义了
+
+
+// 3. 对象的属性和方法采用简洁表达法
+	var ref = 'some value';
+	// 以前的写法
+	const atom = {
+		ref: ref,
+		value: 1,
+		addValue: function (value) {
+			return atom.value + value;
+		},
+	};
+	// 简洁语法
+	const atom2 = {
+		ref,
+		value: 1,
+		addValue(value) {
+			return atom2.value + value;
+		},
+	};
+</script>
+</body>
+</html>

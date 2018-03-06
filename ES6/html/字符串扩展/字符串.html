@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+	/*------------------------------------------模板字符串*/
+	// -> 传统的拼接字符串的方式
+	// 当字符串拼接里面有变量，或者渲染dom的时候有变量都只能采用 + 来连接
+	let a = 'chinese';
+	console.log('i am ' + a);
+	console.log(`i am ${a}`);
+
+	//-> es6 里面的 模板字符串
+	// 解决问题1. 字符串换行问题
+	// 解决问题2. 双引号和单引号还有加号混乱的问题
+	const person = {
+		name: '黄文博',
+		age: 16,
+		form: '山西'
+	};
+	console.log(`
+		该同学叫${person.name}
+		今年${person.age}
+		来自${person.from}
+	`);
+	// 传统的换行
+	let b = '你好吗？\n我很好，\n我真的很好';
+	console.log(b);
+	// es6里面的换行
+	let c = `
+	a
+	b
+	c
+	d
+	e`;
+	console.log(c);
+	// 字符串查找
+	// 第一 以前的indexOf()  肯定能用  但是es6里面又提供了新的  双击666 啊。
+	let newStr = "你好吗，我很好，怎么了呢";
+	console.log(newStr.includes('怎么')); // 结果是布尔 有true 没有false
+	// 判断开头是否存在
+	console.log(newStr.startsWith('你')); // 结果是布尔 true 或者 false
+	// 判断结尾是否存在
+	console.log(newStr.endsWith('呢')); // 结果是布尔 true  或者false
+	// 复制字符串,后面可以穿参数  1  2  3
+	console.log(newStr.repeat(2));
+</script>
+</html>

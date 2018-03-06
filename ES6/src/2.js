@@ -1,4 +1,3 @@
-console.log(2)
-let c = 90;
-let d = 90;
-let e = 90;
+import {area} from './1.js';
+console.log(area);
+console.log(111111111111);

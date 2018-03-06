@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6里数组新的知识点</title>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script>
+
+
+
+
+	/*----------------------------------------------------------Array.from()*/
+	// ->  用Array.from()检测数据类型
+	function typesOf () {
+		// -> es6箭头函数写法
+		// return Array.from(arguments, value => typeof value)
+		// 将上面es6的箭头函数的写法改写成es5的写法
+		return Array.from(arguments, function(value){
+			return typeof value;
+		})
+		/*
+		* 第一步: Array.from(arguments, value => typeof value) 返回值为 ["object", "object", "number"]
+		* 第二步: return 语句，把第一步的返回值给return回去
+		*/
+	}
+	console.log(typesOf(null, [], NaN));
+
+	// -> 数组连接 ...运算符
+	let arr1 = [1,2,3];
+	let arr2 = [4,5,6];
+	console.log([...arr1,...arr2]); // [1,2,3,4,5,6]
+	// -> 数组展开
+	function show(a,b,c) {
+		console.log(a);
+		console.log(b);
+		console.log(c);
+	}
+	show(...arr1); // ...arr1 其实就是 x,x,x
+	function show2([a = 111,b,c]) { // 数组解构并赋默认值
+		console.log(a);
+		console.log(b);
+		console.log(c);
+	}
+	show2([11,22,33])
+</script>
+</html>

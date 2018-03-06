@@ -1,0 +1,21 @@
+{
+  "name": "ES6",
+  "version": "1.0.0",
+  "description": "> babel-cli （命令行转码）",
+  "main": "index.js",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "babel src -d dist",
+    "test2": "babel src -o 5.js",
+    "test3": "babel-node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
