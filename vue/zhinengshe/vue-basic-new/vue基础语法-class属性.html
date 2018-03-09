@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>vue事件</title>
-	<link rel="stylesheet" href="../js/bootstrap.min.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/vue2.0.js"></script>
-	<style>
-		.active{
-			color: red;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>vue事件</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue2.0.js"></script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-	<div id="box">
+<div id="box">
 
-		<div>点谁谁高亮............</div>
-		<ul>
-			<li v-for="(item,index) in items" @click="tab(index)" :class="{active:index == num}">{{item}}点击吧</li>
-		</ul>
-	</div>
+    <div>点谁谁高亮............</div>
+    <ul>
+        <li v-for="(item,index) in items" @click="tab(index)" :class="{active:index == num}">{{item}}点击吧</li>
+    </ul>
+</div>
 </body>
-<script>  
-	var vm = new Vue({
-		el:"#box",
-		data:{
-			items:['aa','bb','cc'],
-			num:0,
-			flag:false
-		},
-		methods:{
-		    tab:function(index){
-				this.num = index;
-			}
-			
-		}
-	})
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            items: ['aa', 'bb', 'cc'],
+            num: 0,
+            flag: false
+        },
+        methods: {
+            tab: function (index) {
+                this.num = index;
+            }
+
+        }
+    })
 </script>
 <script>
-	/*
-		vue实现tab选项卡切换效果
-		http://blog.csdn.net/Coding_Jia/article/details/72717019
-		
-	*/
+    /*
+        vue实现tab选项卡切换效果
+        http://blog.csdn.net/Coding_Jia/article/details/72717019
+
+    */
 </script>
 </html>

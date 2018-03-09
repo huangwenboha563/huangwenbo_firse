@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰路由1</title>
+</head>
+
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<template id="navigation">
+    <div>
+        <p>
+            <router-link to="/bar">水果</router-link>
+            <router-link to="/foo">技术</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+</template>
+<template id="sg">
+    <div>
+        <ul>
+            <li>
+                <router-link to="/detail/10">前端</router-link>
+            </li>
+            <li>
+                <router-link to="/detail/10">前端</router-link>
+            </li>
+            <li>
+                <router-link to="/detail/10">前端</router-link>
+            </li>
+            <li>
+                <router-link to="/detail/10">前端</router-link>
+            </li>
+        </ul>
+    </div>
+</template>
+<template id="js">
+    <div>
+        <ul>
+            <ul>
+                <li>
+                    <router-link to="/detail/10">前端</router-link>
+                </li>
+                <li>
+                    <router-link to="/detail/10">前端</router-link>
+                </li>
+                <li>
+                    <router-link to="/detail/10">前端</router-link>
+                </li>
+                <li>
+                    <router-link to="/detail/10">前端</router-link>
+                </li>
+            </ul>
+        </ul>
+    </div>
+</template>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+<script>
+    const Foo = {
+        template: '#sg'
+    }
+    const Bar = {
+        template: '#js'
+    }
+    const navigation = {
+        template: '#navigation'
+    }
+    const Detail = {
+        template: '<div>我是详情页面我的id是:{{this.$route.params.id}}</div>'
+    }
+
+    // 2. 定义路由
+    // 每个路由应该映射一个组件。 其中"component" 可以是
+    // 通过 Vue.extend() 创建的组件构造器，
+    // 或者，只是一个组件配置对象。
+    // 我们晚点再讨论嵌套路由。
+    const routes = [{
+        path: '',
+        component: navigation,
+        children: [{
+            path: "/Foo",
+            component: Foo
+        },
+            {
+                path: '/',
+                component: Bar
+            }]
+        },
+        {
+            path: '/detail/:id',
+            component: Detail
+        },
+    ]
+
+    // 3. 创建 router 实例，然后传 `routes` 配置
+    // 你还可以传别的配置参数, 不过先这么简单着吧。
+    const router = new VueRouter({
+        routes // （缩写）相当于 routes: routes
+    });
+
+    // 4. 创建和挂载根实例。
+    // 记得要通过 router 配置参数注入路由，
+    // 从而让整个应用都有路由功能
+    const app = new Vue({
+        router
+    }).$mount('#app')
+
+    // 现在，应用已经启动了！
+</script>
+<script>
+    /***************************传说中的mvvm框架 spa  路由*********************************************/
+</script>
+
+</html>
