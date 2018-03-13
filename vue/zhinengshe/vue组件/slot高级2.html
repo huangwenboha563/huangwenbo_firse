@@ -13,6 +13,7 @@
         <!--分割线-->
         <slot name="ul-slot">我是默认的内容,我在这里占了个坑</slot>
         <slot name="ol-slot">我是默认的内容,我在这里占了个坑</slot>
+        <slot name="default"></slot>
         <p>welcome vue.js</p>
     </div>
 </template>
@@ -24,6 +25,9 @@
         </ul>
         <ol slot="ol-slot">
             <li>olololololol</li>
+        </ol>
+        <ol slot="default">
+            <li>dfsdfdsf</li>
         </ol>
     </aaa>
     <hr>

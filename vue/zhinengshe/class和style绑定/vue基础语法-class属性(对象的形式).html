@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue事件</title>
+	<link rel="stylesheet" href="../js/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/vue2.0.js"></script>
+	<style>
+		.red {
+			color: red;
+		}
+		.blue {
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<strong :class="{red:true,blue:true}">class第二种用法文字.....</strong>
+		<strong :class="{red:m,blue:n}">class第二种用法扩展和数据有关文字.....</strong>
+		<strong :class="colorJson">class第二种用法扩展和数据有关文字.....</strong>
+        <ul>
+            <li v-for="(w,index) in 10" :class="{red:index%2==0}">{{w}}</li>
+        </ul>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			m:true,
+			n:true,
+            w: 10,
+			colorJson:{
+				red:true,
+				blue:true
+			}
+		},
+		methods:{
+
+		}
+	})
+</script>
+<script>
+	/*
+
+
+	*/
+</script>
+</html>

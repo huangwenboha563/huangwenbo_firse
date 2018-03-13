@@ -9,13 +9,13 @@
 </head>
 
 <body>
-    <div id="app">
-        <router-link to="/user/100">用户100</router-link>
-        <router-link to="/user/100">用户200</router-link>
-        <p>
-            <router-view></router-view>
-        </p>
-    </div>
+<div id="app">
+    <router-link to="/user/100">用户100</router-link>
+    <router-link to="/user/200">用户200</router-link>
+    <p>
+        <router-view></router-view>
+    </p>
+</div>
 </body>
 <script>
     // 通过用户路由进入到不同的的用户
@@ -41,11 +41,12 @@
         {
             path: '/',
             component: {
-                template: '<div>#后面是/刚开始的地址栏默认路径....</div>'
+                template: '<div>默认默认默认默认默认默认默认默认默认默认默认默认默认</div>'
             }
         },
         {
             path: '/user/:id',
+            component: UserHome,
             children: [
                 {
                     path: 'profile',
@@ -57,7 +58,7 @@
                 }
 
             ],
-            component: UserHome
+
         }
     ];
     let router = new VueRouter({

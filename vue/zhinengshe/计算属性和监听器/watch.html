@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue事件</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/vue2.0.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            a: 1
+        },
+        methods: {},
+        computed: { // 只要依赖的值有变化，就会触发
+            b: function () {// 默认情况下是"get"
+                return this.a + 3;
+            }
+        },
+        watch: {
+            a:function(newvalue,oldvalue){
+                console.log(newvalue, oldvalue);
+            }
+        }
+    })
+    document.onclick = function () {
+        vm.a  = vm.a + 100
+    }
+</script>
+<script>
+    /*
+        初始值是  a ->1  b-> a+3 ->4
+        // document点击完成以后a的值发生变化的同时b的值也发生变化
+     */
+    // 计算属性不支持异步逻辑。
+    // 比如需要在一个ajax请求成功之后要进行计算并且返回一个结果。
+    // 此时就不能用computer了要用watch,只有值变化了以后才调用
+    // 其他情况我们更多的使用computed
+    // 如果涉及到异步逻辑得计算就用watch没有涉及到就用computed
+</script>
+</html>

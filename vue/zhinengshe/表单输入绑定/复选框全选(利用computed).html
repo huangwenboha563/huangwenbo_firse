@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>复选框多选</title>
+	<title>复选框多选(computed->get和set的威力)</title>
 </head>
 <body>
 <div id="app">
@@ -20,10 +20,10 @@
 		el: '#app',
 		data: {
 			products: [
-				{ isSelected: false, name: '苹果'},
-				{ isSelected: false, name: '香蕉'},
-				{ isSelected: false, name: '西瓜'},
-				{ isSelected: false, name: '猕猴桃'}
+				{ isSelected: true, name: '苹果'},
+				{ isSelected: true, name: '香蕉'},
+				{ isSelected: true, name: '西瓜'},
+				{ isSelected: true, name: '猕猴桃'}
 			]
 		},
 		computed: {

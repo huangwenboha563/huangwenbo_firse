@@ -19,22 +19,27 @@
 </body>
 <script>
     const user = {
-        template: `<div>{{param}}</div>`,
+        template: `<div>
+        {{this.$route.query}}<br/>
+        {{this.$route.params}}<br/>
+        {{this.$route.params.id}}<br/>
+        </div>
+        `,
         computed: {
-            param() {
+            /*param() {
                 return this.$route.params.id;
-                return this.$route.query;
+                // return this.$route.query;
                 //  return this.$route.params; 
                 // 是一个对象 {id:'100'}
-            }
-        },
+            }*/
+        }/*,
         watch: {
             '$route'(to,from){
                 // to 和 from都是对象，表示要去哪里，和从哪里来。存放的有 path  params path query等信息
                 console.log(to);
                 console.log(from);
             }
-        }
+        }*/
     }
 
     let routes = [

@@ -121,5 +121,9 @@
 		}
 	});
 	console.log(vm.$options.jjjj);
+	// 等待dom渲染完成后this.$nextTick(function(){})
+
+	// $refs
+	// 如果我们想在mounted之后想获取真实的dom  this.$refs.xx   // 如果dom元素不是通过v-for循环出来的，只能获取到一个(也就是直接写多个个p)。通过v-for循环出来的可以获取多个
 </script>
 </html>

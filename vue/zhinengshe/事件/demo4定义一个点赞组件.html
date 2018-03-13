@@ -17,7 +17,7 @@
 <script src="../js/vue2.0.js"></script>
 <script>
 	Vue.component('like',{
-		template:'<button :class="{liked:liked}"@click.prevent="toggle">真厉害 {{count}}</button>',
+		template:'<button :class="{liked:liked}" @click.prevent="toggle">真厉害 {{count}}</button>',
 		data:function () {
 			return {
 				count:'10',

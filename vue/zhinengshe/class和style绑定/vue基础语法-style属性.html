@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>vue事件</title>
+    <title>vue(style)</title>
     <link rel="stylesheet" href="../js/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="../js/jquery.js"></script>
@@ -15,15 +15,18 @@
 </head>
 
 <body>
-    <div id="box">
-        <strong :style="json">hahahhahahahah</strong>
-        <strong :style='{"color":"yellow","fontSize":"100px"}'>hahahhahahahah</strong>
-        <strong :style="[m,n]">hahahhahahahah</strong>
+<div id="box">
+    <strong :style="json">hahahhahahahah</strong>
+    <strong :style='{"color":ye,"fontSize":"100px"}'>hahahhahahahah</strong>
+    <strong :style='{"color":"yellow","fontSize":"100px"}'>hahahhahahahah</strong>
+    <strong :style="[m,n]">hahahhahahahah</strong>
+</div>
 </body>
 <script>
     var vm = new Vue({
         el: "#box",
         data: {
+            ye: 'green',
             json: {
                 "color": "red",
                 "backgroundColor": "gray"
@@ -35,9 +38,7 @@
                 "fontWeight": "bold"
             }
         },
-        methods: {
-
-        }
+        methods: {}
     })
 </script>
 <script>

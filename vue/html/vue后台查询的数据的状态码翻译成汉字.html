@@ -5,26 +5,26 @@
     <title>翻译后台传过来的状态吗</title>
 </head>
 <body>
-    <div id="app">
-        <ul>
-            <li v-for="item in ary">{{item.name}}是{{map[item.from]}}人{{this.a}}</li>
-        </ul>
-        <ul>
-            <li v-for="item in ary">{{item.name}}是{{item.from == 0?'中国':'日本'}}人</li>
-        </ul>
-        <hr>
-        <div>{{this.a}}---{{a}}</div>
-        <div>{{typeof this.map}}---{{map}}</div>
-    </div>
+<div id="app">
+    <ul>
+        <li v-for="item in ary">{{item.name}}是{{map[item.from]}}人{{this.a}}</li>
+    </ul>
+    <ul>
+        <li v-for="item in ary">{{item.name}}是{{item.from == 0?'中国':'日本'}}人</li>
+    </ul>
+    <hr>
+    <div>{{this.a}}---{{a}}</div>
+    <div>{{typeof this.map}}---{{map}}</div>
+</div>
 </body>
 <script src="../js/vue2.0.js"></script>
 <script>
     var vm = new Vue({
         el: '#app',
-        data:{
-            a:11111111,
-            ary: [{name:'小明',from:'0'},{name:'小王',from:'1'},{name:'小红',from:'2'}],
-            map:{
+        data: {
+            a: 11111111,
+            ary: [{name: '小明', from: '0'}, {name: '小王', from: '1'}, {name: '小红', from: '2'}],
+            map: {
                 0: '山西',
                 1: '美国',
                 2: '中国'

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="../js/vue.js"></script>
+    <script src="../js/vue2.0.js"></script>
     <style>
 
     </style>
@@ -15,7 +15,8 @@
 
 <body>
 <div id="box">
-    <span v-red>法第三方士大夫</span>
+    <span v-blue>法第三方士大夫</span>
+    <span v-red-aa="color">法第三方士大夫</span>
     <!--
         注意知识点: v-red     对应的指令是red  同理: v-xxxxx 对应的指令是 xxxxx
 
@@ -23,19 +24,18 @@
 </div>
 </body>
 <script>
-    Vue.directive('red', function () {
-        this.el.style.background = "blue";
+    Vue.directive('blue', function (el,bindings) {
+        // el其实就是我们当前的dom
+        el.style.background = "blue";
+    });
+    Vue.directive('redAa', function (el,bindings) {
+        // v-red="xxx" x的值是变量。和参数中的bindings.value一样，可以把bindings打印出来看看，或者打印整个arguments
+        el.style.background = bindings.value;
     })
     var vm = new Vue({
         el: "#box",
-        data: {
-            arr: ['apple', 'orange', 'nihao', 'wohenhao', 'nishishui'],
-            a: Date.now()
-        },
-        methods: {
-            show: function () {
-                alert(1)
-            }
+        data:{
+            color:'red'
         }
     })
 </script>
@@ -43,6 +43,17 @@
     /*
      自定义指令
 
+        v-focus="xxx"
+        xxx为true的时候，也就是bindings的value值为true的时候，去获得焦点
+        当双击该项的时候让xxx的值变为true
+
      */
+    /*
+    *  todos:{
+    *       handler(){
+    *    },deep:true
+    *  }
+    *
+    */
 </script>
 </html>

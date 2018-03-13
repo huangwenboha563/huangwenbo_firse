@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.js"></script>
-	<script src="../js/vue.js"></script>
+	<script src="../js/vue2.0.js"></script>
 	<style>
 		.red {
 			color: red;
@@ -19,25 +19,15 @@
 </head>
 <body>
 	<div id="box">
-		<strong :class="{red:true,blue:true}">class第二种用法文字.....</strong>
-		<strong :class="{red:m,blue:n}">class第二种用法扩展和数据有关文字.....</strong>
-		<strong :class="colorJson">class第二种用法扩展和数据有关文字.....</strong>
-
-
-
-		<div class=""></div>
+		<strong :class="[x,y]">class第二种用法文字.....</strong>
 	</div>
 </body>
 <script>  
 	var vm = new Vue({
 		el:"#box",
 		data:{
-			m:true,
-			n:false,
-			colorJson:{
-				red:true,
-				blue:true
-			}
+			x:'red',
+			y:'blue'
 		},
 		methods:{
 			
