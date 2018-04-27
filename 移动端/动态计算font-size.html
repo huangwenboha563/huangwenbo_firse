@@ -10,6 +10,9 @@
             height: 1rem;
             background: blue;
         }
+        html{
+            font-size:100px;
+        }
     </style>
 </head>
 <body>
@@ -19,12 +22,12 @@
 </body>
 <script>
     ~function(){
-        var desW = 640;
+        var desW = 320;
         var winW = document.documentElement.clientWidth;
-        console.log(winW)
+        console.log(winW);
         var scale = winW/desW;
         document.documentElement.style.fontSize = scale*100 +'px';
-    }()
+    }();
 
 </script>
 <script>

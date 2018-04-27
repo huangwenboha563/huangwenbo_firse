@@ -21,13 +21,13 @@
 	new Vue({
 		el: '#app',
 		data: {
-			sex: ""
+			sex: "1"
 		}
 	});
 	let vm = new Vue({ // 选中时vm.sex == vm.a
 		el: '#app2',
 		data: {
-			sex: "",
+			sex: "4444", // 选中以后就把sex变了，a是一个变量所以用:value
 			a:"男"
 		}
 	})

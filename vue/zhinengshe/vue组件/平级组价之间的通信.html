@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="app">
-        <child></child>
+        <child></child><br/>
         {{test}}
     </div>
 </body>
@@ -20,10 +20,15 @@
         },
         created(){
         	var _selef = this;
-            bus.$on('hhhhh',function(data){
+            /*bus.$on('hhhhh',function(data){
                 console.log(data)
                 _selef.test = data;
+            })*/
+            bus.$on('hhhhh',(data)=>{
+                console.log(data)
+                this.test = data;
             })
+
         },
         components: {
             child:{
@@ -47,5 +52,6 @@
     // 带着疑问去看文档，（#app为跟组件，child为子组件，为什么会有平级组件的概念呢？）
     // 我理解的评级组件应该是一个  父组件A 这个父组件下面有两个子组件B1 和 B2  B1和B2通信，这才叫平级，兄弟组件的通信。
     // 这个例子，就只有一个根组件vm里面包含一个child组件啊。
+    // 开来eventbus不只是兄弟组件之间的通信
 </script>
 </html>

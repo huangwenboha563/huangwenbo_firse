@@ -12,5 +12,11 @@ let newAry = arr.map(function (item,index) {
     // 每一项*2返回去
 })
 
-console.log(newAry)
+console.log(newAry);
 console.log(newAry.join(''));// 插入到dom中即可
+
+
+let ary = [1,2,3,4,5]
+ary.join()// '1,2,3,4,5'
+ary.join('')// '12345'
+ary.join(';') // '1;2;3;4;5'

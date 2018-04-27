@@ -1,53 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>prop传递数据</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>prop传递数据</title>
+    <style>
+        #hwb{
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
 </head>
 <body>
 <div id="box">
-	<alert :msg="true"></alert>
-	<alert msg="干死你"></alert>
-	<user user="hwb"></user>
+    <alert :msg="true"></alert>
+    <alert msg="干死你"></alert>
+    <user user="hwb"></user>
 </div>
+<div id="hwb">
 
+</div>
 </body>
+
 <script src="../js/vue2.0.js"></script>
 
 <script>
-	Vue.component('alert',{
-		template:`<button @click="go">点击我
+
+    Vue.component('alert', {
+        template: `<button @click="go">点击我
 					<span v-if="msg">{{msg}}</span>
 			    </button>`,
-		props:['msg'],
-		data: function () {
-			return {}
-		},
-		methods: {
-			go:function () {
-				alert(this.msg)
-			}
-		}
-	});
-	// 用户组件
-	Vue.component('user',{
-		template:'<a :href="\'/user/\'+user">{{user}}</a>',
-		props:['user'],
-		data:function () {
-			return {
-				a:'ffffff'
-			}
-		},
-		methods: {
+        props: ['msg'], // props里面已经接受了msg// data里面就不能return {msg }了。
+        data: function () {
+            return {}
+        },
+        methods: {
+            go: function () {
+                alert(this.msg)
+            }
+        }
+    });
+    // 用户组件
+    Vue.component('user', {
+        template: '<a :href="\'/user/\'+user">{{user}}</a>',
+        props: ['user'],
+        data: function () {
+            return {
+                a: 'ffffff'
+            }
+        },
+        methods: {}
+    });
+    let vm = new Vue({
+        el: '#box',
+        data: {
+            msg: '我了个去'
+        }
+    });
 
-		}
-	});
-	let vm = new Vue({
-		el: '#box',
-		data: {
-			msg:'我了个去'
-		}
-	});
+</script>
+<script>
+    var odiv = document.getElementById('hwb');
+    odiv.onclick = function(){
+        console.dir(arguments);
+    }
+    /*document.body.onclick = function(e){
+        console.log(e);
+    }*/
 
 </script>
 <script>

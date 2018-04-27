@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue事件</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue2.0.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+        .blue {
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <strong :class="x">class第二种用法文字.....</strong>
+    <strong :class="'blue'">class第二种用法文字.....</strong>
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el:"#box",
+        data:{
+            x:'red'  // x是变量  x是变量   x是变量   x是变量
+        },
+        methods:{
+
+        }
+    })
+</script>
+<script>
+    /*
+
+
+    */
+</script>
+</html>

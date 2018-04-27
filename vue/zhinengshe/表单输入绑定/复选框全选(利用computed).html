@@ -33,7 +33,7 @@
 					return this.products.every(item => item.isSelected);
 				},
 				set(val) {
-					console.log(2);
+					console.log(val);
 					this.products.forEach(item => item.isSelected = val);
 				}
 			}

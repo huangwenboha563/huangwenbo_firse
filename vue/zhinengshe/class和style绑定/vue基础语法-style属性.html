@@ -16,10 +16,11 @@
 
 <body>
 <div id="box">
-    <strong :style="json">hahahhahahahah</strong>
-    <strong :style='{"color":ye,"fontSize":"100px"}'>hahahhahahahah</strong>
-    <strong :style='{"color":"yellow","fontSize":"100px"}'>hahahhahahahah</strong>
-    <strong :style="[m,n]">hahahhahahahah</strong>
+    <strong :style="json">hahahhahahahah</strong><br>
+    <strong :style='{color:ye,"fontSize":"100px"}'>hahahhahahahah</strong><br>
+    <strong :style='{color:"yellow","fontSize":"100px"}'>hahahhahahahah</strong><br>
+    <strong :style='{color:"yellow","fontSize":size+"px"}'>hahahhahahahah</strong><br>  <!--带表达式的-->
+    <strong :style="[m,n]">hahahhahahahah</strong><br>
 </div>
 </body>
 <script>
@@ -27,6 +28,7 @@
         el: "#box",
         data: {
             ye: 'green',
+            size: 200,
             json: {
                 "color": "red",
                 "backgroundColor": "gray"
