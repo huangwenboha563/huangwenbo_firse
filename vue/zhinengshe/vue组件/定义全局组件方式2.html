@@ -16,7 +16,12 @@
     Vue.component('aaa', {
         template: '<h3 @click="change">标题3->{{msg}}</h3>',
         // data必须是以一个函数的形式
+        /*data: {
+            msg: 'zidingyibiaoti3'
+        },*/
         data: function () {
+            // vue warn 是红色的。我觉得文档描述有错误，说会发出警告。应该表达为说是会报错。以为一般人理解的警告是黄色的，代码还可以运行，
+            // 只是不建议
             return {
                 msg: '自定义标题3'
             }

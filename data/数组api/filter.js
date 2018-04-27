@@ -11,5 +11,5 @@ let newAry = arr.filter(function (item,index) {
     return item>2&&item<6;
     // 最常见的错误是 return 2<item<5;
     // 2<item 返回布尔true 或者false 再和5比较，布尔会转换为0或者1始终都小于5
-})
+});
 console.log(newAry);

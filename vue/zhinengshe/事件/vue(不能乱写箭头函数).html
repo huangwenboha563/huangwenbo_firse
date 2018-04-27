@@ -8,29 +8,13 @@
 <body>
 <div id="box">
     <input type="button" value="按钮" @click="add($event,2)">
-
-    <!--
-    @click = "add" 如果不传递参数的情况下不用带()
-    下面的
-    add: function(e){
-        console.log(e) // 自带事件对象
-    }
-    如果传递参数第一个参数必须是事件对象并且实参只能是$event不能乱改
-
-
-    -->
-    <hr>
-    <ul>
-        <li v-for="(value,index) in arr" :key="index">{{value}}</li>
-    </ul>
 </div>
 </body>
 <script>
     new Vue({
         el: "#box",
         data: {
-            msg: "欢迎",
-            arr: ['apple', 'banana', 'orange']
+            msg: "欢迎"
         },
         methods: {
             add: function (event,param) { // 一定要是$event

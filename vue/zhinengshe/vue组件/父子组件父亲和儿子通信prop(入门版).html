@@ -7,8 +7,11 @@
 <body>
 <div id="box">
 	<alert :msg="true"></alert>
+	<br>
 	<alert msg="干死你"></alert>
+	<br>
 	<user user="hwb"></user>
+	<br>
 </div>
 
 </body>
@@ -17,15 +20,18 @@
 <script>
 	Vue.component('alert',{
 		template:`<button @click="go">点击我
-					<span v-if="msg">{{msg}}</span>
+					<span v-if="msg">{{newmsg}}</span>
 			    </button>`,
 		props:['msg'],
 		data: function () {
-			return {}
+			return {
+				newmsg: this.msg
+			}
 		},
 		methods: {
 			go:function () {
-				alert(this.msg)
+				this.newmsg = 100;
+				// alert(this.msg)
 			}
 		}
 	});
