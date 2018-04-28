@@ -7,7 +7,7 @@
 </head>
 <body>
 <div id="box">
-    <input type="button" value="按钮" @click="add($event,2)">
+    <input type="button" value="按钮" @click="test()">
 </div>
 </body>
 <script>
@@ -17,9 +17,8 @@
             msg: "欢迎"
         },
         methods: {
-            add: function (event,param) { // 一定要是$event
-                console.log(event,param);
-                this.arr.push('tomato');
+            test: function (event,param) { // 一定要是$event
+
             }
         }
     })
