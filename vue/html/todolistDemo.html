@@ -7,123 +7,46 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name='viewprot' content='width=device-width,minmum-scale=1.0,maxmum-scale=1.0'>
-	<style type="text/css">
-		div {
-			width: 500px;
-			margin: 30px auto;
-		}
-
-		.edit {
-			display: block;
-			line-height: 35px;
-			box-sizing: border-box;
-			padding-left: 20px;
-			border-radius: 4px;
-			border: 1px solid #ccc;
-			box-shadow: 0 0 5px #ccc;
-		}
-
-		.task li {
-			position: relative;
-			padding: 10px 0;
-			border-bottom: 1px solid #efefef;
-			list-style: none;
-		}
-
-		.task li:last-child {
-			border-bottom: 0;
-		}
-
-		.finish {
-			text-decoration: line-through;
-			color: #ccc;
-		}
-
-		.del {
-			background: red;
-			text-decoration: none;
-			position: absolute;
-			right: 0;
-			font-size: 12px;
-			border: 0;
-			outline: 0;
-			padding: 2px 5px;
-			border-radius: 5px;
-			color: #fff;
-		}
-
-		.empty {
-			font-size: 13px;
-			color: #000;
-			text-align: center;
-			padding: 10px 0;
-		}
-	</style>
 </head>
 <body>
 <div id='app'>
-	<p>
-		用我们学过的指令 v-model @ v-if和 methods 创建一个 Vue 实例;
-		在输入框内输入数据，按下回车键，自动添加到页面中，点击删除，删除该指令;动手试试吧
-	</p>
-	<input type='text' placeholder='edit something' class='edit' autofocus v-model='items.content'
-		   @keydown.enter='addTask'>
-	<ul class='task'>
-		<li v-for='(item,index) in list' :key='index'>
-			<input @click='changeState(index)' :checked='item.finished' type='checkbox'>
-			<span :class="{'finish':item.finished}">{{item.content}}</span>
-			<button @click='removeList(index)' class='del'>删除</button>
-		</li>
-	</ul>
+	<input type="text" v-model="text" @keyup.enter="add">
 	<!--
-		只有列表的数据为空时才会出现否则不出现
-		数据《==》视图  再也不需要去操作dom了
+		v-model数据双向绑定不用操作dom了
+		@keyup其实就是v-on:keyup的缩写
+		.enter修饰符避免了操作dom细节
+		鼠标抬起并且按下ener的时候再去增加
 	-->
-	<p class='empty' v-if='list.length===0'>暂无内容</p>
+	<ul>
+		<li v-for="(item,index) in arr">{{item}} <input type="button" value="删除" @click="del(index)"></li>
+	</ul>
 </div>
 </body>
 <script type="text/javascript" src='../js/vue2.0.js'></script>
 <script type="text/javascript">
-	var vm = new Vue({
+	let vm = new Vue({
 		el: '#app',
-		jjjj: 'oooo',
-		data: {
-			//默认数据
-			items: {
-				content: '',//初始化内容为空，不能省略
-				finished: false,//未完成
-				deleted: false//未删除
-			},
-			list: []
+		data:{
+			arr:[],
+			text:''
 		},
-		//列表
-		methods: {
-			// es6 的写法
-			addTask(){
-				// 将任务存入数组
-				this.list.push(this.items);
-				// 重置 items
-				this.items = {
-					content: '', //初始化内容为空，不能省略
-					finished: false, //未完成
-					deleted: false //未删除
-				}
+		methods:{
+			add:function(){
+				this.arr.push(this.text);
+				this.text = '';
 			},
-			//选中改变状态
-			changeState(index){
-				let curState = this.list[index].finished;
-				this.list[index].finished = !curState;
-			},
-			//删除
-			removeList(index){
-				this.list.splice(index, 1);
+			del(i){
+				/*
+				this.arr = this.arr.filter(function(item,index){
+					return i!=index;
+				})
+				// 下面是es6的写法
+				*/
+                // this.arr = this.arr.filter((item,index) => i!=index); // filter不会改变原来的数组
+                // 也可以用splice去删除只不过会造成数组塌陷的问题 splice会改变原来的数组
+				this.arr.splice(i,1);
 			}
 		}
 	});
-	console.log(vm.$options.jjjj);
-	// 等待dom渲染完成后this.$nextTick(function(){})
-
-	// $refs
-	// 如果我们想在mounted之后想获取真实的dom  this.$refs.xx   // 如果dom元素不是通过v-for循环出来的，只能获取到一个(也就是直接写多个个p)。通过v-for循环出来的可以获取多个
 </script>
 </html>

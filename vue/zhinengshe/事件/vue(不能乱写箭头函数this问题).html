@@ -7,7 +7,9 @@
 </head>
 <body>
 <div id="box">
-    <input type="button" value="按钮" @click="test()">
+    <input type="button" value="按钮" @click="test">
+    <input type="button" value="按钮" @click="test1">
+    <input type="button" value="按钮" @click="test2">
 </div>
 </body>
 <script>
@@ -17,8 +19,14 @@
             msg: "欢迎"
         },
         methods: {
-            test: function (event,param) { // 一定要是$event
-
+            test: function (event) {
+                console.dir(this); // this是vue实例
+            },
+            test1(event) {
+                console.dir(this); // this也是只是这种写法是es6的写法 是vue实例
+            },
+            test2: (event) => {
+                console.dir(this); // 但是如果改成箭头函数的话，箭头函数没有自己的this，找的是上一级的this 这里的this是window
             }
         }
     })
