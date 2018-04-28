@@ -17,6 +17,7 @@
     <button type="button" @click='goVue'>去学vue</button>
     <button type="button" @click='goReact'>去学react</button>
     <component :is="mvvm"></component>
+    <!--is="xxx"xxx是组件的名字-->
 </div>
 <template id="vue">
     <div>
@@ -49,7 +50,7 @@
     var vm2 = new Vue({
         el: '#app',
         data: {
-            mvvm: 'vue'
+            mvvm: 'vue'// 默认的data是vue所以一进到该页面的时候默认显示的是vue组件的内容
         },
         methods: {
             goVue() {

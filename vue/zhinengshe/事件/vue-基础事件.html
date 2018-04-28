@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>v-model</title>
-	<script src="../js/vue.js"></script>
+    <meta charset="UTF-8">
+    <title>v-model</title>
+    <script src="../js/vue2.0.js"></script>
 </head>
 <body>
-	<div id="box">
-		<input type="button" value="按钮" v-on:click="add()">
-		<hr>
-		<ul>
-			<li v-for="value in arr">{{value}}</li>
-		</ul>	
-	</div>
+<div id="box">
+    <input type="button" value="按钮" @click="add($event,2)">
+
+    <!--
+    @click = "add" 如果不传递参数的情况下不用带()
+    下面的
+    add: function(e){
+        console.log(e) // 自带事件对象
+    }
+    如果传递参数第一个参数必须是事件对象并且实参只能是$event不能乱改
+
+
+    -->
+    <hr>
+    <ul>
+        <li v-for="(value,index) in arr" :key="index">{{value}}</li>
+    </ul>
+</div>
 </body>
-<script>  
-	var vm = new Vue({
-		el:"#box",
-		data:{
-			msg:"欢迎",
-			arr:['apple','banana','orange']
-		},
-		methods:{
-			add:function () {
-				this.arr.push('tomato');
-			}
-		}
-	})
+<script>
+    new Vue({
+        el: "#box",
+        data: {
+            msg: "欢迎",
+            arr: ['apple', 'banana', 'orange']
+        },
+        methods: {
+            add: function (event,param) { // 一定要是$event
+                console.log(event,param);
+                this.arr.push('tomato');
+            }
+        }
+    })
 </script>
 <script>
-	/*
-	
-	vue-事件  比如:v-on:click="add()"  也可以简写为：@click="add()"
-	既然用了框架就按照人家包装好的语法来你说呢？
-	同理除了v-on:click以外当然有别的事件v-on:mouseover  v-on:mouseout v-on:dbclick等一般的时间都可以用。
+    /*
+
+     vue-事件  比如:v-on:click="add()"  也可以简写为：@click="add()"
+     既然用了框架就按照人家包装好的语法来你说呢？
+     同理除了v-on:click以外当然有别的事件v-on:mouseover  v-on:mouseout v-on:dbclick等一般的事件都可以用。
 
 
 
-	*/
+     */
 
 </script>
 </html>
