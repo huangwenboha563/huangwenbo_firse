@@ -14,7 +14,7 @@
 <div id='app'>
 	<div>
 		<label>
-			<input type="checkbox" name="" v-model="allChecked" @change="allCheck()">全选
+			<input type="checkbox" name="" v-model="allChecked" @change="allCheck">全选
 		</label>
 	</div>
 	<ul>
@@ -55,16 +55,27 @@
 		methods: {
 			allCheck: function () {
 				var _this = this;
+				/*
+					console.log(this.allChecked)
+					这里为什么要打印出来allChecked是为了明白change和click的区别 checkbox是有change事件的
+				*/
 				this.list.forEach(function (item) {
-					item.isCheck = _this.allChecked
+                    // console.log(this);
+                    /*
+					 *  为什么要把this给打出来因为这里的this成了window
+					 *  如果用箭头函数可以解决这个问题
+					 *  必须知道vue中箭头函数不能乱用的问题该用箭头函数用箭头函数，不该用箭头函数不要用箭头函数
+					 *
+                     */
+                    item.isCheck = _this.allChecked
 				})
 			},
 			singleCheck: function () {
 				console.log(0)
 				var _this = this;
-				var selectItem = _this.list.filter(function (item) {
+				var selectItem = _this.list.filter(function (item) { // 过滤后得到的新数组
 					return item.isCheck == true;
-				})
+				});
 				selectItem.length == this.list.length ? this.allChecked = true : this.allChecked = false;
 			}
 		}

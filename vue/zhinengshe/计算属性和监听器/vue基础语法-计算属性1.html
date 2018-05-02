@@ -37,9 +37,15 @@
             }
         },
         watch: {
-            a:function(newvalue,oldvalue){
+            // a:function(newvalue,oldvalue){
+            //     console.log(newvalue, oldvalue);
+            //
+            // },
+            a: 'test'// 语法糖
+        },
+        methods:{
+            test(newvalue,oldvalue){
                 console.log(newvalue, oldvalue);
-
             }
         }
     })
@@ -57,5 +63,21 @@
     // 此时就不能用computer了要用watch,只有值变化了以后才调用
     // 其他情况我们更多的使用computed
     // 如果涉及到异步逻辑得计算就用watch没有涉及到就用computed
+
+    /*
+    *  用一个旧值计算出一个新值
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    */
 </script>
 </html>

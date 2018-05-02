@@ -23,14 +23,20 @@
 				{ isSelected: true, name: '苹果'},
 				{ isSelected: true, name: '香蕉'},
 				{ isSelected: true, name: '西瓜'},
-				{ isSelected: true, name: '猕猴桃'}
+				{ isSelected: false, name: '猕猴桃'}
 			]
 		},
 		computed: {
 			checkAll: {
 				get() {
-					console.log(1);
+					// console.log(1);
 					return this.products.every(item => item.isSelected);
+					/*
+					*  所有的选项都为true get的值才为true
+					*  有一个false就是false
+					*
+					*
+					*/
 				},
 				set(val) {
 					console.log(val);
