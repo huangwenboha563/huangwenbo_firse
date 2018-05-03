@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉框事件探索</title>
+</head>
+<body>
+<select id="selectID" multiple="multiple" size="20">
+    <option value="1">111</option>
+
+    <option value="2">222</option>
+
+    <option value="3">333</option>
+
+    <option value="4">444</option>
+
+    <option value="5">555</option>
+
+    <option value="6">666</option>
+</select>
+</body>
+<script src="../js/jquery.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+
+        //绑定下拉框change事件，当下来框改变时调用 SelectChange()方法
+
+        $("#selectID").change(function () {
+            SelectChange();
+        });
+
+    })
+
+    function SelectChange() {
+        var options=$("#selectID option:selected");
+        //console.log(options);
+        //-------获取下拉框选中项的text属性值
+
+        var selectText = $("#selectID").find("option:selected").text();
+
+        // console.log(selectText);
+
+        //-------获取下拉框选中项的value属性值
+
+        var selectValue = $("#selectID").val();
+
+        console.log(selectValue);
+        //------获取下拉框中项的value的属性值(经过测试如果有multiple="multiple" size="20"属性的话是无效的)
+        var selectValue2 = $("#selectID").find("option:selected").val();
+        //console.log(selectValue2);
+        //获取下拉框选中项的index属性值(如果是多选的话就不适用)
+
+        var selectIndex = $("#selectID").get(0).selectedIndex;
+
+        // console.log(selectIndex);
+
+        ////获取下拉框最大的index属性值(如果是多选的话就不适用)
+
+        var selectMaxIndex = $("#selectID option:last").attr("index");
+
+        //alert(selectMaxIndex);
+
+    }
+</script>
+</html>
