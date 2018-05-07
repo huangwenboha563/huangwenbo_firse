@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件模板之script标签</title>
+    <script src="../js/vue2.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <base-input
+            v-model="username"
+            class="username-input"
+            placeholder="Enter your username"
+    ></base-input>
+</div>
+</body>
+<script>
+    Vue.component('base-input', {
+        inheritAttrs: false,
+        props: ['label', 'value'], // 操，这个label简直是误导人。真有意思
+        template: `
+            <label>
+              {{ label }}
+              <input
+                v-bind="$attrs"
+                v-bind:value="value"
+                v-on:input="$emit('input', $event.target.value)"
+              >
+            </label>
+          `
+    });
+    // v-bind="$attrs"
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            username:''
+        }
+  })
+</script>
+<!--
+
+vue文档做了更新，有些东西感觉用不到暂时，但是既然文档里面说命了，那么还是一一尝试一下吧
+对于文档中反复提到的
+
+参考:https://juejin.im/post/596c7af1f265da6c251906c0
+
+-->
+</html>
