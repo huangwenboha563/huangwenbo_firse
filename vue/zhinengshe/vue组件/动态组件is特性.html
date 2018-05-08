@@ -14,9 +14,16 @@
 </div>
 <!--珠峰的例子-->
 <div id="app">
+    <!--
     <button type="button" @click='goVue'>去学vue</button>
     <button type="button" @click='goReact'>去学react</button>
-    <component :is="mvvm"></component>
+    -->
+    <input type="radio" v-model="mvvm" value="vue">
+    <input type="radio" v-model="mvvm" value="react">
+    <!--keep-alive缓存-->
+    <keep-alive>
+        <component :is="mvvm"></component>
+    </keep-alive>
     <!--is="xxx"xxx是组件的名字-->
 </div>
 <template id="vue">

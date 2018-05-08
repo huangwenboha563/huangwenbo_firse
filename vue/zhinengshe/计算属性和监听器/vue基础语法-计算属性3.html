@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue事件</title>
+    <link rel="stylesheet" href="../js/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="../js/jquery.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/vue2.0.js"></script>
+
+</head>
+<body>
+<div id="box">
+    <div id="demo">{{ fullName }}</div>
+</div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar',
+            fullName: 'Foo Bar'
+        },
+        watch: {
+            firstName: function (newval,oldvalue) {
+                console.log(newvalue,oldvalue);
+                this.fullName = newvalue + ' ' + this.lastName
+                /*
+                *  当firstName的值发生变化的时候去执行操作
+                *  操作是 fullName = 变化后的值+ lastName
+                *  mvvm的魅力
+                *
+                */
+            },
+            lastName: function (newvalue,oldvalue) {
+                this.fullName = newvalue.firstName + ' ' + val
+            }
+        }
+    })
+</script>
+<script>
+    /*
+     初始值是  a ->1  b-> a+3 ->4
+     // document点击完成以后b的值变为200，在set里面a的值接受到了val所以a的值也发生变化    a-> 200 b->203
+     */
+</script>
+</html>

@@ -7,7 +7,9 @@
 </head>
 <body>
 <div id="box">
-    <input type="button" value="按钮" @click="add">
+    <input type="button" value="按钮" @click="add($event,2)">
+    <!--<input type="button" value="按钮" @click="add(2,$event)">-->
+    <!--$event竟然没有顺序要求？形参竟然没有顺序要求-->
 
     <!--
     @click = "add" 如果不传递参数的情况下不用带()
@@ -33,8 +35,8 @@
             arr: ['apple', 'banana', 'orange']
         },
         methods: {
-            add: function (x) { // 一定要是$event
-                console.log(x);
+            add: function (event,param) { // 一定要是$event
+                console.log(event,param);
                 this.arr.push('tomato');
             }
         }
