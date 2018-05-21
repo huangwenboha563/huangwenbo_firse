@@ -13,14 +13,20 @@
 <body>
 <div id="box">
     a -> {{a}} <br>
-    b -> {{b}}
+    b -> {{b}} <br>
+    c -> {{c}}
+    {{d}}
 </div>
 </body>
 <script>
     var vm = new Vue({
         el: "#box",
         data: {
-            a: 1
+            d:[1,2,3], // 如果  设置 vm.d[0] = 111111111是不生效的
+            a: 1,
+            c:{
+                x:'我是x'
+            }
         },
         methods: {},
         computed: {
@@ -32,6 +38,16 @@
                     this.a = val;
                 }
             }
+        },
+        watch:{
+            c: {
+                handler: function (newval,oldval) {
+                    // 注意：当观察的数据为对象或数组时，curVal和oldVal是相等的，因为这两个形参指向的是同一个数据对象
+                    // 数组不用deep也可以观察到变化,如果数组里有对象就不行了。
+                    console.log(newval == oldval);
+                },
+                deep: true
+            },
         }
     })
     document.onclick = function () {

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>props实战(DOM模板解析注意事项)</title>
+    <!--1.0-->
+    <!--<script src="../js/vue.js"></script>-->
+    <!--2.0-->
+    <script src="../js/vue2.0.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <input type="text" v-model="inputValue"> <button @click="add">点我</button>
+        <ul>
+            <my-li v-for="(item,index) in lists" :content="item" @action="action"></my-li>
+        </ul>
+        <ul>
+            <aaaaaa></aaaaaa>
+        </ul>
+        <ol>
+            <aaaa></aaaa>
+        </ol>
+        <table>
+            <aaa></aaa>
+        </table>
+        <select name="" id="">
+            <option value=""></option>
+            <select-a></select-a>
+        </select>
+    </div>
+</body>
+<script>
+
+    new Vue({
+        el: "#app",
+        data: {
+            inputValue:'',
+            lists:['vue','angula','react']
+        },
+        methods:{
+            action(content){
+                this.lists = this.lists.filter(function (item) {
+                    return content!=item;
+                })
+            },
+            add(){
+                if (this.inputValue) {
+                    this.lists.push(this.inputValue);
+                    this.inputValue = '';
+                }
+            }
+        },
+        components: {
+            'my-li':{
+                props:['content'],
+                template:`<li @click="del(content)">{{content}}</li>`,
+                methods:{
+                    del(content){
+                        this.$emit('action',content);
+                    }
+                }
+
+            },
+            'blog-post-row':{
+                template:'<tr><tr>',
+            }
+        }
+    })
+</script>
+</html>

@@ -25,19 +25,30 @@
     <ul>
         <li v-for="(value,index) in arr" :key="index">{{value}}</li>
     </ul>
+    {{obj}}
 </div>
 </body>
 <script>
-    new Vue({
+    let vm = new Vue({
         el: "#box",
         data: {
             msg: "欢迎",
-            arr: ['apple', 'banana', 'orange']
+            arr: ['apple', 'banana', 'orange'],
+            obj:{
+                name:{
+                    x:"x"
+                }
+            }
         },
         methods: {
             add: function (event,param) { // 一定要是$event
                 console.log(event,param);
                 this.arr.push('tomato');
+            },
+            watch:{
+                obj(newval,oldval){
+                    console.log(newval, oldval);
+                }
             }
         }
     })

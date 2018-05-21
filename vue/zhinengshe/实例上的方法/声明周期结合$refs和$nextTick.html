@@ -7,14 +7,47 @@
 </head>
 <body>
 <div id="box">
-
+    <aaa ref="son"></aaa>
 </div>
 </body>
+<template id="aaa">
+    <div>
+        我是{{son}}
+    </div>
+</template>
 <script>
+    /*
+    *   先弹出儿子，再弹出父亲。 肯定是儿子挂载完之后才触发父亲的mounted
+    *
+    *
+    */
     new Vue({
         el: "#box",
         data: {
             msg: "欢迎"
+        },
+        mounted(){
+            alert('父亲');
+            console.log(this.$refs)
+            console.log(this.$refs.son)
+            console.log(this.$refs.son.$el.innerHTML);
+            this.$nextTick(function(){ // 放在$nextTick里面保证获取到的dom是最新的，因为数据->dom视图是需要时间的，一般不用，但是就怕有人把数据改了。放在这里面保险
+                console.log(this.$refs.son.$el.innerHTML);
+            })
+        },
+        components: {
+            aaa:{
+                data(){
+                  return {
+                      son:'儿子儿子'
+                  }
+                },
+                template: '#aaa',
+                mounted(){
+                    alert('儿子');
+                    this.son='儿子儿子儿子胖了胖了胖了'
+                }
+            }
         }
     })
 </script>

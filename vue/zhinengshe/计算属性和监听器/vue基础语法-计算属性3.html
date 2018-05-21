@@ -21,12 +21,13 @@
         data: {
             firstName: 'Foo',
             lastName: 'Bar',
-            fullName: 'Foo Bar'
+            fullName:''
+            // fullName: 'Foo Bar'
         },
         watch: {
             firstName: function (newval,oldvalue) {
-                console.log(newvalue,oldvalue);
-                this.fullName = newvalue + ' ' + this.lastName
+                console.log(newval, oldvalue);
+                this.fullName = newval + ' ' + this.lastName
                 /*
                 *  当firstName的值发生变化的时候去执行操作
                 *  操作是 fullName = 变化后的值+ lastName
@@ -35,7 +36,8 @@
                 */
             },
             lastName: function (newvalue,oldvalue) {
-                this.fullName = newvalue.firstName + ' ' + val
+                console.log(newvalue, oldvalue);
+                this.fullName = this.firstName + ' ' + newvalue
             }
         }
     })

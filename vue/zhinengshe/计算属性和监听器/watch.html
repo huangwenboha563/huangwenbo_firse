@@ -21,6 +21,9 @@
     {{a}}
     </br>
     {{c}}
+    </br>
+    {{d}}
+</div>
 </div>
 </body>
 <script>
@@ -50,20 +53,21 @@
                     // 数组不用deep也可以观察到变化,如果数组里有对象就不行了。
                     console.log(newval == oldval);
                 },
-                deep: true
+                // deep: true
             },
             d:{
                 handler:function(newval,oldval){
-                    console.log(newval, oldval);
+                    console.log(newval==oldval);
                 },
-                // deep: true
-                immediate: true // 页面刷新立即执行，不用等变化再执行
+                //deep: true
+                // immediate: true // 页面刷新立即执行，不用等变化再执行
             }
         }
     })
     document.onclick = function () {
         vm.a = vm.a + 100;
         vm.c.x = 1111111111111111;
+        vm.d[0].x=2222222222
     }
 </script>
 <script>

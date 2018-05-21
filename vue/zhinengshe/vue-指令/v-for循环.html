@@ -13,21 +13,21 @@
         <h1>循环数组</h1>
         <ul>
             <li v-for="value in arr">
-                数组的每一项: {{value}} 数组的索引: {{$index }}
+                数组的每一项: {{value}} 数组的索引:
             </li>
         </ul>
         <hr>
         <h1>循环json第一种</h1>
         <ul>
             <li v-for="value in json">
-                属性值:{{value}} 属性名:{{$key}} 索引:{{$index}} <br>
+                属性值:{{value}} <br>
             </li>
         </ul>
         <hr>
         <h1>循环json第二种</h1>
         <ul>
             <li v-for="(key,value) in json">
-                {{key}} {{value}} {{$index}} {{$key}}<br>
+                {{key}} {{value}} <br>
             </li>
         </ul>
     </div>
@@ -35,25 +35,18 @@
 <script>
     var vm = new Vue({
         el: "#box",
-        data: {
-            arr: ['apple', 'banana', 'orange'],
-            json: {
-                a: 'apple',
-                b: 'banana',
-                c: "orange"
-            },
-            url: 'http://resource.breadoffer.com/cropped/course/config/15008685504140285.jpg'
+        data() {
+            return {
+                arr: ['apple', 'banana', 'orange'],
+                json: {
+                    a: 'apple',
+                    b: 'banana',
+                    c: "orange"
+                },
+                url: 'http://resource.breadoffer.com/cropped/course/config/15008685504140285.jpg'
+            }
         }
     });
-    let vm = new Vue({
-        el: '#app',
-        data: {
-
-        },
-        methods: {
-
-        }
-    })
 </script>
 <script>
     /*
