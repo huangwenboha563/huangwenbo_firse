@@ -2,7 +2,7 @@
   <div class="wrapper">
     <swiper :options="swiperOption">
       <!-- slides -->
-      <swiper-slide v-for="item in swiperList" :key="item.id">
+      <swiper-slide v-for="item in list" :key="item.id">
         <img class="swiper-img"
              :src="item.imgUrl"
              alt="">
@@ -17,22 +17,15 @@
 <script>
   export default {
     name: 'HomeSwiper', // 单文件组件的名字
+    props:{
+      list:Array
+    },
     data () {
       return {
         swiperOption: {
           pagination: '.swiper-pagination',
           loot: true
-        },
-        swiperList: [
-          {
-            id: '001',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1804/c4/1cdd28811593b802.jpg_750x200_5fbb7c91.jpg'
-          },
-          {
-            id: '002',
-            imgUrl: 'http://img1.qunarzz.com/piao/fusion/1805/e5/59fad13a64807d02.jpg_750x200_713ae984.jpg'
-          }
-        ]
+        }
       }
     }
   }

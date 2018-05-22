@@ -4,14 +4,17 @@
       <div class="iconfont icon-fanhui"></div>
     </div>
     <div class="header-input"><span class="iconfont icon-sousuo"></span><i>输入城市景点/游玩/主题</i></div>
-    <div class="header-right"><span>城市</span><span class="iconfont icon-jiantouarrow486"></span></div>
+    <div class="header-right"><span>{{this.city}}</span><span class="iconfont icon-jiantouarrow486"></span></div>
   </div>
 </template>
 
 <script>
   export default {
     name: 'HomeHeader', // 单文件组件的名字
-    data () {
+    props:{
+      city: String
+    },
+    data() {
       return {
         msg: 'hello'
       }
