@@ -4,7 +4,9 @@
       <div class="iconfont icon-fanhui"></div>
     </div>
     <div class="header-input"><span class="iconfont icon-sousuo"></span><i>输入城市景点/游玩/主题</i></div>
-    <div class="header-right"><span>{{this.city}}</span><span class="iconfont icon-jiantouarrow486"></span></div>
+    <router-link to="/city">
+      <div class="header-right"><span>{{this.city}}</span><span class="iconfont icon-jiantouarrow486"></span></div>
+    </router-link>
   </div>
 </template>
 
@@ -58,6 +60,7 @@
       width: 1.24rem;
       float: right;
       text-align: center;
+      color: #fff;
       .icon-jiantouarrow486 {
         font-size: .35rem;
       }
