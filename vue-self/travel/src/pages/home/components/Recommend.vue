@@ -19,13 +19,11 @@
 <script>
   export default {
     name: 'HomeRecommend', // 单文件组件的名字
-    props:{
+    props: {
       list: Array
     },
     data () {
-      return {
-
-      }
+      return {}
     }
   }
 </script>
