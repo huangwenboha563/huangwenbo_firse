@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原生js实现选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            color: #000;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        #tab {
+            width: 300px;
+            height: 40px;
+        }
+
+        #tab div {
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .active {
+            background: blue;
+            color: #fff;
+        }
+
+        .display-none {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <div class="button active fl">vue</div>
+    <div class="button fl">react</div>
+    <div class="button fl">angula</div>
+</div>
+<div class="mvvm-con">
+    <div class="item-con">
+        我是vue
+    </div>
+    <div class="item-con display-none">
+        我是react
+    </div>
+    <div class="item-con display-none">
+        我是angula
+    </div>
+</div>
+<script>
+    var tab = document.getElementById('tab');
+    var buttons = tab.getElementsByTagName('div');
+    var items = document.getElementsByClassName('item-con');
+    /*
+     for (let i = 0; i < buttons.length; i++) {
+     buttons[i].onclick = function () {
+     for (var j = 0; j < buttons.length; j++) {
+     buttons[j].className = 'button fl';
+     items[j].className = 'item-con display-none';
+     }
+     this.className = 'button active fl';
+     items[i].className = 'item-con';
+     }
+     }
+     */
+
+    function change(i) {
+        for (var j = 0; j < buttons.length; j++) {
+            buttons[j].className = 'button fl';
+            items[j].className = 'item-con display-none';
+        }
+        buttons[i].className = 'button active fl';
+        items[i].className = 'item-con';
+    }
+    // 第一种优化用let
+    /*for (let i = 0; i < buttons.length; i++) {
+     buttons[i].onclick = function () {
+     change(i);
+     }
+     }*/
+    // 第二种利用自定义属性
+    /*for (var i = 0; i < buttons.length; i++) {
+     buttons[i].index = i; // 利用自定义属性把索引存住
+     buttons[i].onclick = function () {
+     change(this.index);
+     }
+     }*/
+    // 第三种利用闭包
+    /*for (var i = 0; i < buttons.length; i++) {
+     ~function () {
+     buttons[i].onclick = function () {
+     change(i);
+     }
+     }(i);
+
+     }*/
+    // 闭包的变形
+    for (var i = 0; i < buttons.length; i++) {
+
+        buttons[i].onclick = function (i) {
+            return function () { // return 回去的是个匿名函数所以不销毁
+                change(i);
+            }
+        }(i); //利用匿名函数自执行的结果是个闭包解决
+
+
+    }
+
+</script>
+</body>
+</html>
