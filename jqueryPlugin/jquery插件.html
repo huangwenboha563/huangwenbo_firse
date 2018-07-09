@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="a">a</div>
+<div class="a">a</div>
+<div class="a">a</div>
+<div class="a">a</div>
+<div class="a">a</div>
+</body>
+<script src="../data/js/jquery.js"></script>
+<script>
+    $.fn.greenify = function () {
+        var shade = 'yellow'
+        this.css("color", shade);
+        // 这里的this已经是jquery对象了
+        return this;
+    };
+    //    $.fn.myNewPlugin = function () {
+    //
+    //        return this.each(function () {
+    //            $(this).css('color', 'blue');
+    //        });
+    //        // 上面的return 相当于在下面了了一句return this；
+    //    };
+    // $(".a").myNewPlugin().html('aa');
+    $(".a").greenify();
+</script>
+</html>

@@ -36,7 +36,7 @@
             ary[aryIndex] = [];
           }
           ary[aryIndex].push(item);
-        })
+        });
         return ary;
       }
     }

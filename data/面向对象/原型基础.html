@@ -23,6 +23,7 @@
 	//1. 每一个函数数据类型(普通函数，构造函数)都天生自带一个属性prototype，并且这个属性是对象数据类型的值
 	//2. 并且在prototype原型上，浏览器天生给他加了一个属性constructor(构造函数)，该属性值是构造函数本身
 	//3. 每个对象数据类型(普通对象，实例，prototype)天生自带一个属性 __proto__，属性值是当前实例所属类的原型
+	// 上面这三句话记住就ok 真的非常重要
 	function Fn() {
 		this.x = 100;
 	}
@@ -31,7 +32,7 @@
 	}
 	var f1 = new Fn();
 	var f2 = new Fn();
-	console.log(Fn.prototype.constructor === Fn)
+	console.log(Fn.prototype.constructor === Fn); // 对应上面第1点
 	// f1 instanceof Object ->true 因为f1通过__proto__可以向上查找，不管有多少级最后总能找到Object
 	// Object 是所有对象数据类型的“基类”(Object.prototype没有__proto__) console.log(Object.prototype)去控制台看  console.log(Array.prototype)去看看就有
 
@@ -40,7 +41,7 @@
 	// 但是我们发现f1的私有属性上没有这个属性(方法)，那么如何处理的呢？
 	// 1) 通过对象名属性名的方式获取属性值的时候，首先在对象的私有属性上进行查找，如果私有属性中存在这个属性，那么获取的就是这个私有属性
 	// 如果私有属性中没有这个属性通过__proto__找到所属类的原型(类的原型上定义的属性和方法都是公有的)，原型上存在的话，获取的是公有的属性的值
-	// 如果原型上也没有，则继续通过原型上的__proto__继续向上查找一直知道Object.prototype为止....
+	// 如果原型上也没有，则继续通过原型上的__proto__继续向上查找一直找到Object.prototype为止....
 	// 这种查找的机制就是我们的原型链模式....
 
 	function Fn() {
