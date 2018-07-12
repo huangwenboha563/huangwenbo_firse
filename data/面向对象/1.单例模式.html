@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象基础单例模式</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 单例模式
+    // 在单例模式中， person1 和 person2 高大上的名词叫做命名空间(装逼的名字) 不好听的名字就是破对象
+    // 把描述事物特性的属性和方法放在一个命名空间下
+    var person1 = {
+        name: 'xxx',
+        age: 19,
+        a: function () {
+
+        },
+        b: function () {
+
+        }
+    };
+    // person1.a();
+    var person2 = {
+        name: 'xxx',
+        age: 19,
+        a: function () {
+
+        },
+        b: function () {
+
+        }
+    }
+    // person2.a();
+    // -> 上面的是传统的单例模式
+    // -> es6的单例模式
+    let a = 10;
+    let b = 20;
+    let obj = {
+        a,
+        b,
+        c() {
+            console.log(this.a)
+        }
+    }
+    // obj.c();
+</script>
+</html>

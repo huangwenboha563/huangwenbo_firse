@@ -8,7 +8,7 @@
 	
 </body>
 <script>
-	// 把父类私有的加公有的克隆一份一模一样的给子类私 有的
+	// 把父类私有的加公有的克隆一份一模一样的给子类私有的
 	// 永远记住什么是私有属性和方法，什么是共有属性和方法
 	function Father() {
 		this.x = 100;
@@ -18,7 +18,7 @@
 		getX:function () {
 			console.log(this.x)
 		}
-	}
+	};
 	function Son () {
 		var temp = new Father();
 		for (var key in temp) {// 得到公有的和私有的

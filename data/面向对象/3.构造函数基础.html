@@ -10,7 +10,7 @@
 
 <script>
 	/***************构造函数模拟“品牌的概念”*******************/
-	// 除了一些内置类以外，还可以有自己创造的类
+	// 除了一些内置类(Array  Object 等)以外，还可以有自己创造的类
 	// 构造函数的目的就是为了创建一个“自定义类”，并且创建这个类的一个实例
 	/*构造函数模式和工厂模式区别？*/
 	// 1. 执行的时候~~~
@@ -78,6 +78,23 @@
 	// console.log(p1.writeJs == p2.writeJs) ->false
 	// 单例模式？后台认为的单例模式肯能是构造函数模式
 	*/
+	/*
+	* Fn.prototype.__proto__== Object.prototype   true
+	* Fn.prototype.__proto__.__proto__== Object.prototype.__proto__  true
+	*
+	* null == null true
+	* null === null true
+	*/
+	const obj = {
+	    x:1
+	}
+	function F() {
+
+	}
+	F.prototype = obj;
+	const f = new F;
+	f.x = 2;
+    console.log(obj.x);
 </script>
 
 

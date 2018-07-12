@@ -7,3 +7,7 @@ console.log(arr.some(function (item) {
 
 
 // 扩展复习:https://blog.csdn.net/xiaaiwu/article/details/50507120
+
+/*
+* 只要有一个是true就是true
+*/

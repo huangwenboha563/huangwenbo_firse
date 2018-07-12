@@ -57,18 +57,19 @@
     var tab = document.getElementById('tab');
     var buttons = tab.getElementsByTagName('div');
     var items = document.getElementsByClassName('item-con');
+
     /*
-     for (let i = 0; i < buttons.length; i++) {
-     buttons[i].onclick = function () {
-     for (var j = 0; j < buttons.length; j++) {
-     buttons[j].className = 'button fl';
-     items[j].className = 'item-con display-none';
-     }
-     this.className = 'button active fl';
-     items[i].className = 'item-con';
-     }
-     }
-     */
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function () {
+            for (var j = 0; j < buttons.length; j++) {
+                buttons[j].className = 'button fl';
+                items[j].className = 'item-con display-none';
+            }
+            this.className = 'button active fl';
+            items[i].className = 'item-con';
+        }
+    }
+    */
 
     function change(i) {
         for (var j = 0; j < buttons.length; j++) {
@@ -78,6 +79,7 @@
         buttons[i].className = 'button active fl';
         items[i].className = 'item-con';
     }
+
     // 第一种优化用let
     /*for (let i = 0; i < buttons.length; i++) {
      buttons[i].onclick = function () {
