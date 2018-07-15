@@ -12,8 +12,14 @@
 	// -> 传统的拼接字符串的方式
 	// 当字符串拼接里面有变量，或者渲染dom的时候有变量都只能采用 + 来连接
 	let a = 'chinese';
+	let bb = 10;
+	let cc = 10;
+	function box () {
+	    return 30;
+	}
 	console.log('i am ' + a);
-	console.log(`i am ${a}`);
+	console.log(`i am ${a} 我${bb+cc}岁了`);
+	console.log(`i am ${a} 我${box()}岁了`);
 
 	//-> es6 里面的 模板字符串
 	// 解决问题1. 字符串换行问题

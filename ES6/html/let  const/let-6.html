@@ -28,7 +28,7 @@
 	for (var i = 0;i<tempLists.length;i++) {
 		tempLists[i].index = i;
 		tempLists[i].onclick = function () {
-			console.log(this.index); // 始终是5
+			console.log(this.index);
 		}
 	}
 	*/
@@ -36,7 +36,7 @@
 	for (var i = 0;i<tempLists.length;i++) {
 		(function(i){
 			tempLists[i].onclick = function () {
-				console.log(i); // 始终是5
+				console.log(i);
 			}
 		})(i);
 	}

@@ -1,74 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>对象的解构赋值</title>
+    <meta charset="UTF-8">
+    <title>对象的解构赋值</title>
 </head>
 <body>
 
 </body>
 <script>
-	//demo1=============================================================================
-	let obj = {
-		a: function () {
-			console.log('我是a')
-		},
-		b: '我是b'
-	};
-	let {a, b} = obj;
-	// a();
-	// console.log(b);
+    //demo1=============================================================================
+    let obj = {
+        a: function () {
+            console.log('我是a')
+        },
+        b: '我是b',
+    };
+    let {a, b, g = '我是c的默认值'} = obj;
+    let {a: mya, b: myb} = obj; // 想要解构的key值和obj的名字不一样就要取别名eg:mya  myb
+    // a();
+    // console.log(b);
 
-	//demo2============================================================================
-	let {floor, abs} = Math;
-	// console.log(floor(2.1));
-	// console.log(abs(-2.1));
+    //demo2============================================================================
+    let {floor, abs} = Math;
+    // console.log(floor(2.1));
+    // console.log(abs(-2.1));
 
-	//demo3============================================================================
-	let data = {c: 1, d: 2};
-	// 传统的方式  var a = data.a;var b = data.b;
-	// 结构对象的方式可以得到对象的value值，这种场合一般用于后台返回的一大段json形式的对象，可以用解构的方式得到json的value值好处是一目了然
-	// 解构的方式
-	let {c, d} = data;
-	// console.warn(c, d); // a -> 1  ;   b -> 2
-	//demo4===========================================================================
-	//一般后台给我们返回的json对象如下
-	let res = {
-		status: 200,
-		id: 301,
-		lists: [
-			{name: 'a', age: 30},
-			{name: 'b', age: 40}
-		]
-	};
-	let {status, id, lists} = res;
-	/*
-	 let res = {
-	 status: 200,
-	 lists: [
-	 {name: 'a', age: 30},
-	 {name: 'b', age: 40}
-	 ]
-	 };
-	 let {status, id, lists} = res;
-	 // 会提示 id 为undefined
-	 */
-	/*
-	 let res = {
-	 status: 200,
-	 id: 301,
-	 lists: [
-	 {name: 'a', age: 30},
-	 {name: 'b', age: 40}
-	 ]
-	 };
-	 let {status,lists} = res;
-	 // 会报错 id is not defined
-	 */
-	//demo5=========================================================================
-	// 我们想获取字符串的长度的话可以  var str = "aaaaaa" aaa.length就可以获取到
-	// 像下面这种用解构的方式得到数组的长度(字符串也是对象，是对象就有属性和属性值，length是字符串的一个属性，所以可以解构)
-	let {length} = 'huangwenbo';
-	console.log(length);
+    //demo3============================================================================
+    let data = {c: 1, d: 2};
+    // 传统的方式  var a = data.a;var b = data.b;
+    // 结构对象的方式可以得到对象的value值，这种场合一般用于后台返回的一大段json形式的对象，可以用解构的方式得到json的value值好处是一目了然
+    // 解构的方式
+    let {c, d} = data;
+    // console.warn(c, d); // a -> 1  ;   b -> 2
+    //demo4===========================================================================
+    //一般后台给我们返回的json对象如下
+    let res = {
+        status: 200,
+        id: 301,
+        lists: [
+            {name: 'a', age: 30},
+            {name: 'b', age: 40}
+        ]
+    };
+    let {status, id, lists} = res;
+    /*
+     let res = {
+     status: 200,
+     lists: [
+     {name: 'a', age: 30},
+     {name: 'b', age: 40}
+     ]
+     };
+     let {status, id, lists} = res;
+     // 会提示 id 为undefined
+     */
+    /*
+     let res = {
+     status: 200,
+     id: 301,
+     lists: [
+     {name: 'a', age: 30},
+     {name: 'b', age: 40}
+     ]
+     };
+     let {status,lists} = res;
+     // 会报错 id is not defined
+     */
+    //demo5=========================================================================
+    // 我们想获取字符串的长度的话可以  var str = "aaaaaa" aaa.length就可以获取到
+    // 像下面这种用解构的方式得到数组的长度(字符串也是对象，是对象就有属性和属性值，length是字符串的一个属性，所以可以解构)
+    /*
+     let {length} = 'huangwenbo';
+     console.log(length);
+     */
+    // 补充
+    // 如果解构的右边不是对象类型是其他数据类型，会默认将其他类型的值转换为对象 用Object()
+    /*
+     let {mya, myb, __proto__} = 1;
+     console.log(mya, myb, __proto__);
+     console.log(Object(1));
+     console.log(Object([1, 2, 3]));
+     let {length} = [1, 2, 3]
+     */
+    // 需要注意一个细节知识点
+    // let a;
+    // {a} = {a:"我是a"} // 这样会报错js引擎会将{a}当做一个代码块
+    // 如果非得这样做怎么做呢。用()给包裹起来 ({a} = {a:"我是a"}) 这样就不报错了
+    // 就像eval一样
+    console.log(eval("({a: 'ni', b: 'hao'})"));
+    console.log(eval('({"a": "ni", "b": "hao"})'));
+    // eval是如何解析json字符串成为json的
+    // https://www.cnblogs.com/myjavawork/articles/1979279.html
+    var data1 = '{"a":1}';
+    var dataObj=eval("("+data1+")");
+    var dataObj2=eval('({"a":1})');
+    console.log(dataObj);
+    console.log(dataObj2);
+
+    // let {w,l} = null       报错
+    // let {w,l} = undefined  报错
+
+
 </script>
 </html>

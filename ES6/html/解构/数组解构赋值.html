@@ -50,6 +50,7 @@
 
 	// 赋默认值没有默认值就是undefined
 	let [,,,M=99]=[1,2,3];
+	let [f = 1] = [null] ;// 此时不起作用 如果 [undefined]才起作用
 	console.log(M);
 
 	let [A,...B]=[1,2,3,4,5,6];// 这里叫拓展运算符
@@ -61,5 +62,12 @@
 
 	// 这样会报错...只能出现在末尾
 	// let [X,...W,Z]=[1,2,3,4,5,6,7];
+
+
+
+    function box () {
+        console.log("haha");
+    }
+    let [hwb = box()] = [1]; // 只要变量所占在s数组中的位置的值不是undefined，box() 不会被触发
 </script>
 </html>

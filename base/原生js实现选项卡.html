@@ -54,6 +54,7 @@
     </div>
 </div>
 <script>
+    // 和页面里面一共有五个按钮  点击每个按钮弹出每个index
     var tab = document.getElementById('tab');
     var buttons = tab.getElementsByTagName('div');
     var items = document.getElementsByClassName('item-con');
@@ -94,24 +95,26 @@
      }
      }*/
     // 第三种利用闭包
-    /*for (var i = 0; i < buttons.length; i++) {
+    // 不是说非得有return 才能形成不销毁的作用域
+    // 只要外面的"占用里面的"就会形成不销毁的作用域
+    /*
+    for (var i = 0; i < buttons.length; i++) {
      ~function () {
      buttons[i].onclick = function () {
      change(i);
      }
      }(i);
-
+        // 这样理解：自执行函数形成的私有的作用域，里面的一个匿名函数 funciton 被全局的 buttons[i] 给占用了。这才是作用域不销毁的原因
      }*/
-    // 闭包的变形
+    // 闭包的变形 // 闭包的作用形成一个不销毁的私有作用域
+    // 坏处就是如果有100个div  就会形成100个不销毁的私有作用域 占用内存，对性能不好
     for (var i = 0; i < buttons.length; i++) {
 
         buttons[i].onclick = function (i) {
-            return function () { // return 回去的是个匿名函数所以不销毁
+            return function () { // return 回去的是个匿名函数所以不销毁 // 自治性函数执行形成的私有作用域不销毁是因为 return了一个funciton被外面占用着
                 change(i);
             }
         }(i); //利用匿名函数自执行的结果是个闭包解决
-
-
     }
 
 </script>
