@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log(Array(1, 2, 3)); // [1,2,3]
+    console.log(Array(4)); // [empty * 4]
+    console.log(Array.of(1, 2, 3, 4)); // [1,2,3,4]
+    console.log(Array.of(4)); // [4]
+    // Array.from() // 参数是数组或者类数组 // 返回值是一个新数组
+    // 传递的本身是数组就叫克隆 // 如果是类数组就转成真正的数组
+    function toArray() {
+        return Array.from(arguments);
+    }
+    console.log(toArray(1, 2, 3, 4));
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // copyWithin(target,start,end);
+    // target 必填从该位置开始替换数据
+    // start 选填默认值是0
+    // end 选填默认值是数组的长度 不包括end
+    var ary = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // console.log(ary.copyWithin(0, 1, 5));
+    // console.log(ary); // 从索引0开始替换   所以1到5是  2 3 4 5 6 （不包括6，6的索引是5） 所以是 [2,3,4,5,5,6,7,8,9]
+    // 不要告诉我这些怎么样，我需要知道实战意义
+    console.log(ary.find(function (item, index, input) {
+        // 一旦函数返回值是true返回当前项
+        // 一直到最后一项还没有返回true 最终结果就是undefined
+        return item == 6;
+    }));
+
+
+
+    // fill(value,start,end) // 也是不包括end
+    let arr = [4,5,6];
+    console.log(arr.fill('h'));
+
+
+    // 面试题 得到七个1的数组
+    console.log(Array(7).fill(1));
+
+    let arr1 = [1,2,3,'a','b','c'];
+    for (let item of arr1) {
+        console.log(item); // 利用for of遍历 数组 利用for in遍历对象
+    }
+    for (let index of arr1.keys()) { // 用for of得到的是数组的每一项，如果非得得到 索引呢 用.keys()
+        console.log(index);
+    }
+    // 如果既想遍历 index 又想遍历 item呢
+    for (let hwb of arr.entries()) {
+        console.log(hwb[index],hwb[item]); // 利用数组的解构
+    }
+</script>
+</html>
