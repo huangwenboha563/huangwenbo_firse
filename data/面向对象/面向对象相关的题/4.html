@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    Object.prototype.y = 100;
+    const obj = {
+        x: 1
+    };
+    obj.prototype = {
+        y: 10
+    };
+
+    function F() {
+    }
+
+    /*F.prototype.y = 2;*/
+    F.prototype ={
+        y: 2
+    };
+    /* F.prototype = obj;*/ // 重新开辟个内存空间 上面的 y:2失效
+    F.prototype = {
+        x: 1
+    }
+    const f = new F();
+    console.log(f.x + f.y);
+</script>
+</html>

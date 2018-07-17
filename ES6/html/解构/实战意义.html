@@ -45,5 +45,17 @@
 	};
 	fn4();
 	/***************************************demo6:提取json数据(拿到后台json数据就可以给它解构)*/
+	/*解析一层*/
+    /*
+    let  {code,message,data}= {
+        code: 200,
+        message: "操作成功!",
+        data: {username:'hwb',age:18}
+    }*/
+    let  {code,message,data, data: {username,age}}= {
+        code: 200,
+            message: "操作成功!",
+        data: {username:'hwb',age:18}
+    }
 </script>
 </html>

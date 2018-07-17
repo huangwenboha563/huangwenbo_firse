@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log(Object.is(NaN, NaN)); // true   // NaN == NaN false // NaN === NaN false
+
+
+    // 数组去重的实践
+
+    let ary = [1, 2, 3, NaN, NaN, 3, 4, 2, 1, 5];
+    let arr = [];
+    ary.forEach(function (item, index) {
+        let flag = true;
+        for (var i = 0;i<arr.length;i++) {
+            if (Object.is(item, arr[i])) { // 如果用 ==  === 试试
+                flag = false;
+            }
+        }
+        if (flag) {
+            arr.push(item);
+        }
+    });
+    console.log(arr);
+
+</script>
+</html>

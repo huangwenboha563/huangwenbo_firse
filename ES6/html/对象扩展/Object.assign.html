@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.assign</title>
+</head>
+<body>
+
+</body>
+<script>
+    /******demo1 Object.assign*/
+    let obj1 = {
+        a: 1,
+        b: 2
+    };
+    let obj2 = {
+        a: 3,
+        b: 4,
+        c: 5
+    };
+    console.log(Object.assign(obj1, obj2)); // obj2的 a:3 b:4 会把obj1的 a:1  b:2覆盖掉
+    console.log(Object.assign(obj1, obj2) == obj1);
+    // 将obj2的内容合并到obj1上然后返回obj1
+
+
+    /******demo2 Object.getOwnPropertyDescriptor(obj,属性); // 对某个对象的属性的描述*/
+    let str = 'aaaaa';
+    console.log(Object.getOwnPropertyDescriptor(str, 'length')); // 对一个"私有"属性的描述
+    // 对length这个属性的描述
+    // {value: 5, writable: false, enumerable: false, configurable: false}
+
+
+    console.log(Object.getOwnPropertyDescriptor([1, 2, 3], 'length'));
+    // {value: 3, writable: true, enumerable: false, configurable: false}
+
+    /******demo3 Object.keys(); // 把对象自身的(私有的)可以枚举的属性值放在一个集合里面*/
+    console.log(Object.keys(['apple', 'banbana', 'pear'])); // => ["0","1","2"]
+
+
+    /******demo4 Object.getOwnPropertyNames() 返回值数组; 包括对象自身的(私有的)可以枚举的、不可以枚举的属性*/
+    // Object.getOwnPropertyNames(['a','b','c']) = >  ["0", "1", "2", "length"] // length不可枚举
+
+
+
+
+
+    // Object.assign() // 实现浅拷贝
+
+
+    const objA = { name: 'cc', age: 18 };
+    const objB = { address: 'beijing' };
+    const objC = {}; // 这个为目标对象 // 在实际项目中，我们为了不改变原源对象，一般会把目标对象转换为 {} // 和$.extend的功能一样
+    const objD = Object.assign(objC, objA, objB)
+    console.log(objD);
+
+    // 请用es6重构下面的代码
+
+    // 第一题
+    var jsonParse = require('body-parser').jsonParse
+    // 第二题
+    var body = request.body;
+    var username = body.username;
+    var password = body.password;
+
+    // 1.
+    import { jsonParse } from 'body-parser'
+    // 2.
+    const { body, body: { username, password } } = request
+    const { body, body: { username, password } } = {body:{username:'whl',password:'aaa'}};
+    // const { body:body, body: { username, password } } = {body:{username:'whl',password:'aaa'}};
+
+</script>
+</html>

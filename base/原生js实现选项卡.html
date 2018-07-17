@@ -116,7 +116,20 @@
             }
         }(i); //利用匿名函数自执行的结果是个闭包解决
     }
-
+    // 另外一道面试题还是闭包
+    var funcs = [];
+    for (var i = 0; i < 10; i++) {
+        funcs.push(
+            (function (value) {
+                return function () {
+                    console.log(value);
+                }
+            })(i)
+        );
+    }
+    funcs.forEach(function (func) {
+        func()
+    });
 </script>
 </body>
 </html>

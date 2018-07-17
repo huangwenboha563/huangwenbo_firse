@@ -11,9 +11,50 @@
     // -> 方式一
     var str = 'aaaaaaaaaaaaaaaaaaaaaa\n' +
             'bbbbbbbbbbbbbb';
+    var str2 = 'aaaaaaaaaaaaaaaaaaaaaa\nbbbbbbbbbbbbbbbbbbbb';
     console.log(str);
+    console.log(str2);
     // -> 方式二，数组转字符串join  哈哈(投机取巧)
     var str2 = ['aaa','bbb'];
-    console.log(str2.join('\n'))
+    console.log(str2.join('\n'));
+
+
+    // 穿插一个函数默认值
+
+    function fn(num) {
+        num = num || 200;
+    }
+
+    console.log(fn(10)); // 希望得到10 所以就是10
+    console.log(fn(0)); // 希望得到0 确得到 200
+
+    function fn2 (num = 200) { // 用es6的方式就会避免这个问题
+
+    }
+    fn2(0);
+
+    // 请用es6重构以下代码
+    var calculate = function(x, y, z) {
+        if (typeof x != 'number') { x = 0 }
+        if (typeof y != 'number') { y = 6 }
+
+        var dwt = x % y
+        var result
+
+        if (dwt == z) { result = true }
+        if (dwt != z) { result = false }
+
+        return result
+    }
+    /*
+    *
+        const calculate = (x, y, z) => {
+          x = typeof x !== 'number' ? 0 : x
+          y = typeof y !== 'number' ? 6 : y
+          return x % y === z
+        }
+    *
+    */
+
 </script>
 </html>

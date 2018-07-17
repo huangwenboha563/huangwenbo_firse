@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    const obj = {
+        x: 1
+    };
+
+    function F() {
+
+    }
+
+    F.prototype = obj;
+    const f = new F;
+    f.x = 2;
+    console.log(obj.x);
+</script>
+</html>

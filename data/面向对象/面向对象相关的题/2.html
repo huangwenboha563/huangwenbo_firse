@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * 于其说是考察原型 不如说是考察this
+    */
+    var x = 1;
+
+    function MyClass() {
+        this.x = 2;
+    }
+
+    MyClass.x = 3;
+    /*
+    MyClass.prototype.x = 4;
+    MyClass.prototype.method = function () {
+        console.log(this.x);
+    };
+    */
+    MyClass.prototype = {
+        x: 4,
+        method: function () {
+            console.log(this);
+        }
+    };
+    const prototype = MyClass.prototype;
+    const method = prototype.method;
+   new MyClass().method(); // 先找私有再找公有 => 2   这里的this是 "实例"
+   prototype.method(); // 4 这里的this 是  MyClass.prototype这个对象
+   method(); // 1 这里的this是window
+</script>
+</html>
