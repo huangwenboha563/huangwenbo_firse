@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log(Person);// 报错 说明用class创建的的类也没有"变量提升的概念"
+    class Person { // Person.prototype.constructor === Person
+        constructor(name = 'zf', age = 9) {
+            this.name = name; // 私有的属性
+            this.age = age; // 私有的属性
+        }
+        // 直接在 {} 中编写的方法都直接设置在类的原型上了
+        // es6 默认把constructor的问题解决了，此时原型上的constructor指向的就是Person
+        // 再也不像es5中那样写 constructor: Person
+        say() {
+            console.log('我的名字是' + this.name + this.age + '岁了');
+        }
+
+        study () {
+            console.log('good good study day day up');
+        }
+
+        static stydy2 () {
+            // 把Person当做普通对象设置属性和方法，只需要设置的方法前面加STATIC即可，也就是传说中的静态方法
+            // 此时原型上面就没有study2了
+            console.log('好好学习，天天向上');
+        }
+    }
+    // say() // say is not defined  说明 {} 包裹起来的方法都是私有的方法外面访问不到
+    let p1 = new Person();
+    //    Person(); // 在es6中使用class创建的类天生自带new.target的验证，不允许当做普通函数来执行。
+</script>
+</html>
