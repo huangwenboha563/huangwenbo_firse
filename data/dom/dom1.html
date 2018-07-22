@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box" title="hhh" class="www" style="color:blue;" bbb="我是bbb">aaaaa</div>
+<ul>
+    <li name="h"></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+<script>
+    /*
+    节点分为三类
+    元素节点 <div></div>
+    文本节点 aaaaaaa
+    属性节点 id="box"
+    // 一个页面只允许出现一个id表示唯一性
+    ie5.0-不支持通过id获取dom知道即可，早他妈的没有ie了
+    dom操作必须等待html文档加载结束才能获取到
+    alert(document.getElementById('box'))
+    1.script脚本放在页面的最下面
+    2.window.onload = function () { 当网页所有的内容都加在完毕执行的（xxxjs脚本）}
+
+
+    .innerHTML  获取标签里面的文本 是文本内容不是文本几点
+    */
+    window.onload = function () {
+        var box = document.getElementById('box');
+        console.log(box.id);
+        console.log(box.title);
+        console.log(box.style);
+        console.log(box.style.color);
+        console.log(box.class); // 不能这样用（貌似是保留字所以不能这样用）
+        console.log(box.className);
+        console.log(box.bbb);
+        // 自定义属性直接获取(chrome，firefox都不支持，但是ie支持，哈哈。如果有浏览器不支持就必须做兼容操作，要么尽可能不去使用)
+
+
+        box.innerHTML="我改变了"; // 不仅获取还可以设置
+        box.id='kkk'; // 也可以设置
+
+        var lis = document.getElementsByTagName('li'); // 返回的是个类数组集合 // 第一个是  lis[0] lis.item(0) 也可以
+        console.log(lis[0]);
+        console.log(lis[0].tagName);
+        console.log(lis[0].innerHTML);
+        console.log(lis.item(0));
+
+
+
+        var body = document.getElementsByTagName('body')[0]; // 获取body
+        var alls = document.getElementsByTagName('*'); //
+
+
+        console.log(document.getElementsByName('h')[0]);
+        // name一般都是加在表单上的，如果硬要加在div li等上面在ie上是不能获取的
+
+
+        // 任何浏览器都可以获取到"自定义"属性
+        xxx.getAttribute('bbb');
+        xxx.getAttribute('class'); // ie，chrome，firefox表现还不一致，所以要写兼容
+        xxx.getAttribute('className'); // ie，chrome，firefox表现还不一致，所以要兼容
+
+
+        xxx.setAttribute('xxx','yyy') // 设置
+
+        xxx.removeAttribute('xxx') // 移除 ie6不支持
+    }
+</script>
+</html>

@@ -26,12 +26,19 @@
 	var f1 = new Fn();
 	console.log(f.constructor)  // ->Fn
 	*/
-	// 第二种方式 ->自己开辟一块堆内存，存储公有的属性和方法
-	function Fn() {
+	// 第二种方式 ->自己开辟一块堆内存，存储公有的属性和方法 （字面量创建的方式）
+	// 这种方式就是常用的组合构造函数+原型模式
+	// 面试题，为什么要把属性写在构造函数里，方法写在他的原型里面呢。
+	// 因为原型上的属性和方法都会"共享"，这是优点也是缺点。试想，如果把某个属性放在原型上面，如果这属性是个引用类型就会得到我们不期望的模式
+	// 同样也解决了传参数的问题
+	function Fn(name,age) {
 		this.x = 100;
+		this.name = name;
+		this.age = age;
 	}
 	Fn.prototype = {
-		constructor:Fn,
+	    name: [1,2,3,4], // 一般不建议把属性写在原型上，因为此属性一旦是引用类型 比如  var box1 = new Fn(); box.name.push(5) 那么 var box2 = new Fn() box2.name也...
+		constructor:Fn, // 字面量创建的方式，重新开辟了一块堆内存，constructor指了Object所以必须指回来
 		a:function () {
 
 		},
@@ -41,9 +48,10 @@
 		c:function () {
 
 		}
-	}
+	};
 	// 只有浏览器天生给Fn.prototype开辟的堆内存中才有constructor这个属性,
 	// 而我们自己开辟的这个堆内存，没有这个属性。这样constructor指向就不再是Fn，而是Object
+	// 比如：var obj = {} obj.constructor就是Object
 	// 为了和原来的保持一致，我们需要手动的增加constructor指向
 	console.log(f.constructor)  // ->Object
 	console.log(f.constructor)  // ->Fn  手动添加constructor强制指回来

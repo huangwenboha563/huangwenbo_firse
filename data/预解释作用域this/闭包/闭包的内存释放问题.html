@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    *  由于ie的JSscript对象和DOM对象使用不同的垃圾收集方式，因此闭包在ie中会存在一些问题
+    *  就是内存泄漏的问题，也就是无法销毁驻留在内存中的元素
+    */
+    function box () {
+        var oDiv = document.getElementById('oDiv'); // oDiv用完之后一直驻留内存
+        oDiv.onclick = function () {
+            alert(oDiv.innerHTML); // 这里用oDiv导致内存泄漏
+        }
+    }
+    box();
+
+    function box () {
+        var oDiv = document.getElementById('oDiv');
+        var text = oDiv.innerHTML;
+        oDiv.onclick = function () {
+            alert(text);
+        };
+        oDiv = null; // 接触引用
+        alert(oDiv) ; // 已经是null了还可以点击，只有ie才会存在这个问题
+        // 如果并没有接触引用，需要等到浏览器关闭才释放啊
+    }
+    box();
+</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" id="myform">
+
+    <input type="button" id="aaa">
+</form>
+</body>
+<script>
+    // 表单一开始出现是为了减轻服务器压力的
+    // 为了减轻服务器处理表单的压力
+
+    // submit事件是在给form绑定的，不是给 form里面的input type=submit按钮绑定的
+    // input type="submit"  上有点击事件但是没有submit事件
+
+    document.getElementById('aaa').onclick = function () { // 用非submit按钮实现提交
+        document.getElementById('myform').submit(); //
+    }
+    // 在表单中尽量避免使用 name="submit" 或者id="submit"这会和submit()方法产生冲突导致无法提交
+</script>
+</html>

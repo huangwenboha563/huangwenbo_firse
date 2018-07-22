@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // -----demo1
+    var box = {
+        getThis: function () {
+            return function () {
+                return this;
+            }
+        }
+    };
+    console.log(box.getThis()());
+
+    // demo2
+    var user = 'window的user'
+    var box2 = {
+        user:'box2的user',
+        getThis: function () {
+            var _this = this;
+            return function () {
+                return this.user;
+                // return _this.user;
+                // return this.user 和 return _this.user
+            }
+        }
+    };
+    console.log(box2.getThis()());
+    console.log(box2.getThis().call(box2));
+</script>
+</html>

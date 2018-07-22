@@ -1,142 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>构造函数模式扩展</title>
+    <meta charset="UTF-8">
+    <title>构造函数模式扩展</title>
 </head>
 <body>
-	
+
 </body>
 <script>
-	/*
-	// 第一个知识点
-	function Fn() {
-		this.x = 100;
-		this.getX = funciton () {
-			console.log(this.x);
-		}
-	}
-	var f1 = new Fn();
-	f1.getX(); // ->this 是f1 -> 100
-	var ss = f1.getX;
-	ss(); // -> 前面没有 "." this就是window  window下没有全局的x->所以undefined
-	// var f1 = new Fn;
+    /*
+     // 第一个知识点
+     function Fn() {
+     this.x = 100;
+     this.getX = funciton () {
+     console.log(this.x);
+     }
+     }
+     var f1 = new Fn();
+     f1.getX(); // ->this 是f1 -> 100
+     var ss = f1.getX;
+     ss(); // -> 前面没有 "." this就是window  window下没有全局的x->所以undefined
+     // var f1 = new Fn;
 
-	// 1. 构造函数模式如果不传参的情况下new Fn()执行，可以不带() 后面的小括号可以省略
-	// 2. this的问题: 在类中出现的this.xxx=xxx ->this->当前类的一个实例，而某一个属性(方法)，方法中的this需要看方法执行的时候前面有没有“.” ，才能知道this是谁
-	*/
-
-
-
-	/*
-	// 第二个知识点
-	function Fn() {
-		var num = 10;
-		this.x = 100;
-		this.getX = funciton () {
-			console.log(this.x);
-		}
-	}
-	var f1 = new Fn();
-	console.log(f1.num);// undefined （类有普通函数的一面，当函数执行的时候，var num；其实只是当前私有作用域的私有变量而已，它和f这个实例没有任何的关系）*/
-
-
-	// 第三个知识点
-	/*
-	function Fn() {
-		var num = 10;
-		this.x = 100;
-		this.getX = funciton () {
-			console.log(this.x);
-		}
-		// return 100;
-		// return {name:"傻逼"}
-	}
-	var f1 = new Fn();
-	console.log(f1);
-
-	// 构造函数中浏览器会默认返回我们的实例，如果手动返回？
-	// 1. 返回基本类型的 ->return 100  (f1没影响照样是Fn的一个实例)
-	// 2. 返回对象的 ->return {name:"傻逼"}  (f1受影响就成了返回的这个obj了，不是Fn的一个实例了)
-	// 延伸出一个问题 普通函数和构造函数的区别？
-
-	*/ 
-
-	// 第四个知识点：f1是Fn的一个实例？ 那么我怎么知道呢？  用instanceof
-
-	/*
-	console.log(f1 instanceof Fn)    // 是 true   否 false ->true
-	console.log(f1 instanceof Array) // 是 true   否 false ->fasle
-	console.log(f1 instanceof Object) // 是 true  否 false ->true
-	先不说原理，因为所有的实例都是对象数据类型的而每一个对象数据类型都是Object这个内置类的一个实例，所以f1也是Object的一个实例
-
-	对于检测数据类型来说 typeof有局限性 不能细分Object下的 数组，对象，正则？
-
-	var a = [];
-	console.log(a instanceof Array)
-	*/
-
-	// 第五个知识点: 
-	// 检测某个属性是否是某个对象的“属性”  in   attr in object （不管是公有的还是私有的都可以检测出来）
-	// 检测某个属性是否是某个对象的“私有属性”  hasOwnProperty （只能检测私有的）
-
-	/*
-		console.log("getX" in f1)  ->true
-		console.log(f1.hasOwnProperty("getX"))  ->true （说明getx是f1的私有属性）
-
-	*/
-
-	// 扩展题目 -> 写一个方法检测某一个属性是否为该对象的共有属性
-
-	function hasPubProperty (obj,attr) {
-		// 是一个属性，但是不是私有的->那就是公有的
-		// attr in obj               是布尔值  true 或者false
-		// !obj.hasOwnProperty(attr) 是布尔值  true 或者false
-		return (attr in obj) && !obj.hasOwnProperty(attr);
-		// 最后return回来的是布尔值 true或者false
-	}
-	// console.log(hasPubProperty(f1,"getX")) -> // false 说明不是公有的
-
-
-	// isPropertyOf 这个回去自己查资料去找
-
-
-	/*
-	* 逻辑或vs逻辑与    上面这个类似于 在if判断中这个道理。
-	* //1、在if判断中
-	 //if(1==1 || 2==3){}//->两个条件中只要有一个条件为真,整体就为真 "或者"
-	 //if(1==1 && 2==3){}//->两个条件中只有条件都为真,整体就为真 "并且"
-
-	 //2、是两个值求其中一个的时候
-	 //1||2 ->1 "逻辑或" 首先看左边的值是真还是假,如果是真,返回的是左边的值,如果是假返回的是右边的值
-
-	 //1&&2 ->2 "逻辑与" 首先看左边的值是真还是假,如果是真,返回的是右边的值,如果是假返回的是左边的值
-	*
-	*/
+     // 1. 构造函数模式如果不传参的情况下new Fn()执行，可以不带() 后面的小括号可以省略
+     // 2. this的问题: 在类中出现的this.xxx=xxx ->this->当前类的一个实例，而某一个属性(方法)，方法中的this需要看方法执行的时候前面有没有“.” ，才能知道this是谁
+     */
 
 
 
+    /*
+     // 第二个知识点
+     function Fn() {
+     var num = 10;
+     this.x = 100;
+     this.getX = funciton () {
+     console.log(this.x);
+     }
+     }
+     var f1 = new Fn();
+     console.log(f1.num);// undefined （类有普通函数的一面，当函数执行的时候，var num；其实只是当前私有作用域的私有变量而已，它和f这个实例没有任何的关系）*/
 
 
+    // 第三个知识点
+    /*
+     function Fn() {
+     var num = 10;
+     this.x = 100;
+     this.getX = funciton () {
+     console.log(this.x);
+     }
+     // return 100;
+     // return {name:"傻逼"}
+     }
+     var f1 = new Fn();
+     console.log(f1);
+
+     // 构造函数中浏览器会默认返回我们的实例，如果手动返回？
+     // 1. 返回基本类型的 ->return 100  (f1没影响照样是Fn的一个实例)
+     // 2. 返回对象的 ->return {name:"傻逼"}  (f1受影响就成了返回的这个obj了，不是Fn的一个实例了)
+     // 延伸出一个问题 普通函数和构造函数的区别？
+
+     */
+
+    // 第四个知识点：f1是Fn的一个实例？ 那么我怎么知道呢？  用instanceof
+
+    /*
+     console.log(f1 instanceof Fn)    // 是 true   否 false ->true
+     console.log(f1 instanceof Array) // 是 true   否 false ->fasle
+     console.log(f1 instanceof Object) // 是 true  否 false ->true
+     先不说原理，因为所有的实例都是对象数据类型的而每一个对象数据类型都是Object这个内置类的一个实例，所以f1也是Object的一个实例
+
+     对于检测数据类型来说 typeof有局限性 不能细分Object下的 数组，对象，正则？
+
+     var a = [];
+     console.log(a instanceof Array)
+     */
+
+    // 第五个知识点:
+    // 检测某个属性是否是某个对象的“属性”  in   attr in object （不管是公有的还是私有的都可以检测出来）
+    // 检测某个属性是否是某个对象的“私有属性”  hasOwnProperty （只能检测私有的）
+
+    /*
+     console.log("getX" in f1)  ->true
+     console.log(f1.hasOwnProperty("getX"))  ->true （说明getx是f1的私有属性）
+
+     */
+
+    // 扩展题目 -> 写一个方法检测某一个属性是否为该对象的共有属性
+
+    function hasPubProperty(obj, attr) {
+        // 是一个属性，但是不是私有的->那就是公有的
+        // attr in obj               是布尔值  true 或者false(不管是实例属性(方法)还是原型(属性方法)都可以检查出来)
+        // !obj.hasOwnProperty(attr) 是布尔值  true 或者false
+        return (attr in obj) && !obj.hasOwnProperty(attr);
+        // 最后return回来的是布尔值 true或者false
+    }
+    // console.log(hasPubProperty(f1,"getX")) -> // false 说明不是公有的
 
 
+    // isPropertyOf 这个回去自己查资料去找
+    // 方法允许你检查一个对象是否存在于另一个对象的原型链上。
+    // A.property.isPropertyOf(B)
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf
+    function Box() {
 
+    }
+    var box1 = new Box();
+    console.log(Box.prototype.isPrototypeOf(box1));
+    /*
+     function Foo() {}
+     function Bar() {}
+     function Baz() {}
 
+     Bar.prototype = Object.create(Foo.prototype);
+     Baz.prototype = Object.create(Bar.prototype);
 
+     var baz = new Baz();
 
+     console.log(Baz.prototype.isPrototypeOf(baz)); // true
+     console.log(Bar.prototype.isPrototypeOf(baz)); // true
+     console.log(Foo.prototype.isPrototypeOf(baz)); // true
+     console.log(Object.prototype.isPrototypeOf(baz)); // true
+    */
 
+    /*
+     * 逻辑或vs逻辑与    上面这个类似于 在if判断中这个道理。
+     * //1、在if判断中
+     //if(1==1 || 2==3){}//->两个条件中只要有一个条件为真,整体就为真 "或者"
+     //if(1==1 && 2==3){}//->两个条件中只有条件都为真,整体就为真 "并且"
 
+     //2、是两个值求其中一个的时候
+     //1||2 ->1 "逻辑或" 首先看左边的值是真还是假,如果是真,返回的是左边的值,如果是假返回的是右边的值
 
-
-
-
-
-
-
-
-
-
-
+     //1&&2 ->2 "逻辑与" 首先看左边的值是真还是假,如果是真,返回的是右边的值,如果是假返回的是左边的值
+     *
+     */
 
 
 </script>

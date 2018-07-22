@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 闭包  利用全局变量实现累增 但是我们又不希望使用过多的全局变量，会造成污染
+    var age = 0;
+    function box () {
+        age++;
+    }
+    box();
+    console.log(age);
+    box();
+    console.log(age);
+
+    // 利用闭包实现累加，作用1.把局部变量暂存下来
+    function fn() {
+        var num = 0;
+        return function () {
+            num++;
+            return num;
+        }
+    }
+    var res = fn();
+    console.log(res());;
+    console.log(res());
+</script>
+</html>

@@ -62,9 +62,9 @@
 	// 接下来代码从上到下执行，以当前的实例为执行的主体(this代表当前的实例)，然后分别把属性名和属性值赋给这个实例
 	/*
 	function creadeJsPerson (name,age) {
-		this.name = name;
-		this.age = age;
-		this.writeJs = function () {
+		this.name = name;      // 实例属性
+		this.age = age;        // 实例属性
+		this.writeJs = function () { // 实例方法
 			console.log(this.name + "会写js")
 		}
 	}

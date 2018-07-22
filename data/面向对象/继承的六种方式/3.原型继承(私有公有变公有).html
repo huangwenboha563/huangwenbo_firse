@@ -12,6 +12,7 @@
     // 原型继承的特点它把父类中私有的+公有的都继承到了子类的原型上面(也就是都变成子类公有的了)
     // 原型继承并不是把父类中的属性和方法克隆一份一模一样的给子类，而是让父类和子类增加了原型链的链接，
     // 以后儿子的实例要想用父类中的方法需要一级一级向上查找来实现
+    // 子类继承父类(基类，超类)的方法和属性也是就近原则，先找"私有"(实例)再找共有(原型)
     function Father() {
         this.x = 100;
     }
@@ -21,7 +22,7 @@
         getX: function () {
             console.log(this.x)
         }
-    }
+    };
 
     function Son() {
         this.x = 200; //->子类私有的200，有这个和没这个是不一样的->永远先找私有的
@@ -29,7 +30,12 @@
 
     Son.prototype = new Father();
     var zjh = new Son();
-    console.log(zjh.x)
-    zjh.getX()
+    console.log(zjh.x);
+    zjh.getX();
+    console.log(zjh instanceof Father);
+    console.log(zjh instanceof Son);
+    console.log(zjh instanceof Object);
+    // 结论 子类型从属于自己或他的超类
+
 </script>
 </html>

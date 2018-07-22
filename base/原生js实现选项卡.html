@@ -126,6 +126,17 @@
                 }
             })(i)
         );
+        // 等价于
+        /*funcs[i] = (function (value) {
+            return function () {
+                console.log(value);
+            }
+        })(i)*/
+        /*funcs[i] = function (value) { // 去掉()也可以如果是 赋值给某个变量并执行的时候
+         return function () {
+         console.log(value);
+         }
+         }(i)*/
     }
     funcs.forEach(function (func) {
         func()
