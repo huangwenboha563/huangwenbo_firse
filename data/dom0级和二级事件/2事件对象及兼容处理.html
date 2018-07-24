@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script></script>
+    <style>
+        div {
+            margin: 1000px auto;
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="mydiv">
+
+</div>
+<input type="text">
+</body>
+<script>
+    // 这种方式叫做匿名函数之函数表达式
+    // 不仅仅把绑定的方法执行了，浏览器还默认的给这个方法传递了一个参数(事件对象)
+    // Mouseovent 鼠标事件对象(是对象数据类型) 记录的是页面中唯一一个鼠标每一次触发时候的相关信息，和到底是在哪个元素身上触发的没有关系
+    // Mouseevent -> UIEvent -> Event -> Object 原型链是这样的
+    // 里面包含了很多的属性名和属性值，这些都是用来记录当前鼠标的相关信息的
+    // 什么是函数表达式？ // 把一个函数赋值个一个变量这就叫函数表达式
+    /*var fn = function () {
+
+     }*/
+    var odiv = document.getElementById("mydiv");
+    odiv.onclick = function (event) {
+        // console.log(arguments);
+        console.log(event);// ie9+才支持 // 要想在ie 6 7 8 获得事件对象就要用window.event;
+        // 在chrome下输出window.event竟然也支持
+        // 在firefox下输出 window.event 竟然不支持
+        // 总结在w3c的浏览器中 window.event不一定支持，event肯定是支持，在ie 6 7 8 下又只能用window.event
+        e = event || window.event;
+        console.log(e);// 这样就兼容了
+        console.log(e.target); // 当前鼠标触发的是哪个元素，那么事件源就是哪个元素 ie 6 7 8 获取不到（是undefined） 用 e.srcElement
+        e.target = e.target || e.srcElement; // 这样就兼容的获取了
+
+        console.log(e.clientX); // 距离当前浏览器左上角的x轴和y轴
+        console.log(e.clientY); // 没有兼容性
+        console.log(e.type); // "click"
+        console.log(e.pageX); // 当前鼠标触发点距离body左上角(页面第一屏最上端)的x/y轴的坐标
+        console.log(e.pageY); // pageX和pageY他妈的又是不兼容的，想让有这个属性咋办？clientY就是+上滚动条滚上去的距离就是所以要做兼容
+        e.pageX = e.pageX || (e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft));
+        e.pageY = e.pageY || (e.clientY + (document.documentElement.scrollTop || document.body.scrollTop));
+        console.log(e.pageX); // 此时在任何浏览器下就兼容了
+        console.log(e.pageY); // 此时在任何浏览器下就兼容了
+
+        e.preventDefault();// 这叫做阻止浏览器的默认行为但是存在兼容性
+
+        e.stopPropagation(); // 这叫做阻止冒泡但是存在兼容性
+        // e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true; // 这样就兼容的处理了
+
+    };
+    document.body.onclick = function (event) {
+        console.log(arguments[0].clientX); // event.clientX
+    }
+    // 点击div的时候会把body上的事件也触发，这就是冒泡
+
+
+    var input = document.getElementsByTagName('input');
+    input.onkeyup = function (e) {
+        e = e || window.event; // 不能写成 window.envent || e吗？在windows上各个浏览器做尝试
+        console.log(e); // KeybordEvent
+        console.log(e.keyCode);
+        // 空格键 32 // 四个方向键  37 38 39 40 左 上 右 下
+        // 回退键 8
+        // 回车键 13
+        // delete 46
+    }
+</script>
+</html>

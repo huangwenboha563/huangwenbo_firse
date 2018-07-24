@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li {
+            line-height: 30px;
+        }
+
+        a {
+            display: block;
+        }
+
+        /*在ie7+以上都支持，但是在ie6下不支持,所以要在li里面包裹一个a*/
+        /*但是此时点击a的时候会有默认行为，要阻止默认行为就可以用e.prenventDefault()*/
+        li:hover {
+            background: blue;
+        }
+
+        li a:hover {
+            background: blue;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<a href="http://www.baidu.com">点击我</a>
+<ul>
+    <li><a href="">fadf</a></li>
+    <li><a href="">fdsf</a></li>
+    <li><a href="">fdsfdsf</a></li>
+</ul>
+</body>
+<script>
+    var a = document.getElementsByTagName('a');
+    for (var i = 0; i < a.length; i++) {
+        a[i].onclick = function () {
+            // a标签的默认行为是跳转，但是我们有时候使用a标签就是想使用他的特殊性，并不想点击的时候跳转
+            e = e || window.event;
+            // e.preventDefault() // 在ie6-8中没有这个方法 需要使用e.returnValue = false;
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+            // 更简单粗暴的方法 return false 和上面代码是一样的效果都是在阻止默认行为；
+            // 还有一种方法是 在a标签里面 herf="javscript:;" 这样在直接在html结构上阻止了默认行为
+            // javascript:;  javascript:void(0) javascript:;(1) 有兴趣可以回去查查这三者的区别
+        }
+
+    }
+
+</script>
+</html>

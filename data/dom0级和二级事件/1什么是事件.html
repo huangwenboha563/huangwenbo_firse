@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script></script>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="mydiv">
+
+</div>
+</body>
+<script>
+    /*
+     *  什么是事件？
+     *  1.行为本身
+     *  浏览器天生就赋予其的行为，onclick、  onmouseover(onmouseenter)、 onmouseout (onmouseleave)、 onmousemove、
+     *  onmousedown、onmouseup（这两个可以做拖拽）onmousewheel(鼠标滚轮滚动行为) onscroll(滚动条滚动行为) onresize(window.onresize-浏览器窗口大小改变)
+     *  onload（当什么加载完成的事件）对应onunload onfocus（获得焦点） onblur(失去焦点) onkeydown onkeyup
+     *  哪怕我没有给上述的行为绑定方法，事件也是存在的，当我们点击这个盒子的时候，同样会触发他的onclick行为，只是什么操作都没有做而已
+     *  2.事件绑定，给元素的某个行为绑定方法
+     *
+     */
+    var odiv = document.getElementById('mydiv');
+    //-----dom 0级事件绑定
+    odiv.onclick = function () {
+        // 当我们触发这个div的click行为时，会把绑定的这个事件执行
+        // onclick这个行为是当前元素的私有属性(方法)
+    };
+    // ---dom 2级别事件绑定
+    odiv.addEventListener("click",function () {
+        console.log("ok");
+        // addEventListerer这个方法是定义在当前这个odiv的EventTarget这个类的原型上的
+        // 把odiv dir到控制台一层一层的网上找
+    },false);
+    console.dir(odiv)
+</script>
+</html>
