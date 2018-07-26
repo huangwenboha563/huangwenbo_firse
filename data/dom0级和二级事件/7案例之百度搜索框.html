@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            display: block;
+            outline: none;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+        }
+
+        a:hover, a:target, a:active {
+            text-decoration: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        .box {
+            width: 500px;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            margin-left: -250px;
+        }
+
+        .box input {
+            width: 300px;
+            height: 30px;
+            padding: 0 10px;
+            border: 1px solid #00b3ee;
+        }
+
+        .box #searchList {
+            display: none;
+            border: 1px solid #00b3ee;
+            position: relative;
+            top: -1px;
+        }
+
+        .box #searchList li, .box #searchList li a {
+            height: 30px;
+            line-height: 30px;
+
+        }
+
+        .box #searchList li a {
+            padding: 0 10px;
+        }
+
+        .box #searchList li a:hover {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <input type="text" id="searchInp">
+    <ul id="searchList">
+        <li><a href="javascript:;">aaaaaaa</a></li>
+        <li><a href="javascript:;">bbbbbbb</a></li>
+        <li><a href="javascript:;">ccccccc</a></li>
+        <li><a href="javascript:;">ddddddd</a></li>
+    </ul>
+</div>
+</body>
+<script>
+    // 显示？
+    // 文本框获取焦点，并且文本框中有内容的时候
+    // 当在文本框中操作内容的时候(新输入，或者删除)如果内容没有情况我们就显示(否则就隐藏)
+    // 隐藏？
+    // 点击页面中其余的位置(除了文本框，和searchList里面的每一行)都隐藏
+    // 点击searchlist中的列表隐藏，但是还是要把列表中的内容放到文本框内
+    var searchInp = document.getElementById('searchInp');
+    var searchList = document.getElementById('searchList');
+    searchInp.onfocus = searchInp.onkeyup = function (e) {
+        var val = this.value.replace(/^ +| +$/g, '');// 获取文本框中的内容，并且去除首尾空格
+        if (val.length > 0) {
+            searchList.style.display = 'block';
+        } else {
+            searchList.style.display = 'none';
+        }
+    }
+    document.body.onclick = function (e) {
+        e = e || window.event;
+        e.target = e.target || e.srcElement;
+        // 如果点击的是searchlist中的a，让searchlist隐藏并且把a中的值放到文本框中
+        if (e.target.tagName.toLowerCase() == 'a' && e.target.parentNode.parentNode.id == 'searchList') {
+            searchList.style.display = 'none';
+            searchInp.value = e.target.innerHTML;
+            return;
+        }
+        /*if (e.target.id==='searchInp') {
+            return;
+        }*/
+        searchList.style.display = 'none';
+    }
+    searchInp.onclick = function (e) {
+        e = e || window.event;
+        e.stopPropagation?e.stopPropagation():e.cancelBubble = true;
+    }
+    // 我们可以阻止一个容器中某些特殊性的元素，让其不在委托的范围内，我们只需要把这些不需要委托的阻止冒泡传播即可
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #outer {
+            margin: 20px auto;
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            background: green;
+        }
+        #inner {
+            margin: 20px auto;
+            width: 100px;
+            height: 100px;
+            padding: 20px;
+            background: red;
+        }
+        #center {
+            margin: 20px auto;
+            width: 50px;
+            height: 50px;
+            padding: 20px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="inner">
+            <div id="center"></div>
+        </div>
+    </div>
+</body>
+<script>
+    // 事件的默认传播机制：
+    // 捕获阶段：从外向内依次查找元素 顺序1
+    // 目标阶段：当前事件源本身的操作 顺序2 (官方文档都没有，可加可不加)
+    // 冒泡阶段：从内到外触发相应的行为(我们最常用的就是默认阶段) 顺序3
+    // 先捕获，再目标，再冒泡
+    /*
+    outer.onclick = function (e) {
+        console.log(e); // 一共输出了四次 e(事件对象) MouseEvent(鼠标事件) e.target都是一样的
+        // 比如你点击center  四次的target都是 center
+        console.log("outer");
+    };
+    inner.onclick = function (e) {
+        console.log(e);
+        console.log("inner");
+    };
+    center.onclick = function (e) {
+        console.log(e);
+        console.log("center");
+    };
+    document.body.onclick = function (e) {
+        console.log(e);
+        console.log("body");
+    }
+    */
+    // 用dom0级别事件给元素绑定的事件都是在行为触发后的冒泡阶段触发的
+    // 冒泡（谷歌浏览器可以传播到document上但是在ie中只能到html）这个不重要
+
+    // document html body outer inner center
+    document.addEventListener("click",function () { // 记住click不加on
+        console.log("body");
+    },false); // 默认是false是冒泡  如果是true就是捕获
+    outer.addEventListener("click",function () { // 记住click不加on
+        console.log("outer");
+    },true);
+    inner.addEventListener("click",function () { // 记住click不加on
+        console.log("inner");
+    },false);
+
+
+    // outer inner body  执行顺序是显示捕获阶段就是 outer 完了再是目标阶段 完了再是冒泡
+    // 周啸天说这个目标阶段理解上可有可无。
+</script>
+</html>
