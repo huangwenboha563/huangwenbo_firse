@@ -5,6 +5,7 @@ import App from './App' // 不写.vue后缀可以
 import router from './router' // 会引入当前路径下的 router文件夹下的index.js
 // 轮播库
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import store from './store'
 // fastclick
 import fastClick from 'fastclick'
 
@@ -25,7 +26,8 @@ Vue.use(VueAwesomeSwiper);
 /* eslint-disable no-new */
 new Vue({
   el: '#myApp', // 根实例
-  router:router, // es6简写为:router
-  components: { App:App }, // 1.局部组件通过bable或者webpack使用es6模块； 2.es6简写为：App
+  router: router, // es6简写为:router
+  store: store,
+  components: {App: App}, // 1.局部组件通过bable或者webpack使用es6模块； 2.es6简写为：App
   template: '<App></App>' // 把 App这个局部组件渲染在页面上
 });

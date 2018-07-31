@@ -37,16 +37,92 @@
 		  1.3 注意谷歌控制台默认的把引号去掉了，其实是有引号的。直接在控制台敲，不要在页面写就有引号。 
 		  1.4 缺陷:typeof 无法检测一个object类型到底是数组类型还是正则类型，还是日期类型？因为这些tyoepf的结果都是'object'
 		  举例子: typeof typeof typeof typeof []   -> 'string'
+
+
+		  function add (num) {
+		  	if ( typeof num === 'undefined') { // 证明num没有传值
+		  		num = 10;
+		  	}
+
+
+		  	// num = num || 10; // 给num设置默认值 但是此时如果num传递的是 false ？还是10 这就是逻辑或
+		  }
+
+
+		  function fn (callback) {
+		  	typeof callback == 'function'?callback():null;
+		  	// callback && callback(); // 这样虽然没有上边严谨但是还是可以用的
+
+		  }
+
 	*/
 
 	/*  
-		instanceof
-		
+		instanceof 检测某个实例是否属于某个类
+		 var obj  = [];
+		 console.log(obj instanceof Array);// true 说明是数组
+		 console.log(obj instanceof RegExp);// true 说明是正则
+		 // 局限性
+		 console.log(1 instanceof Number); // 结果却变成过了false
+		 console.log('abcdefg' instanceof String); // 结果竟然也是false
+
+		 console.log(new Number(1) instanceof Number);// 此时才是false
+		 // 1.不能用来检测来处理字面量方式创建出来的基本类型的数据类型的值
+		 // 所以基本数据类型来说 。字面量方式创建的结果和实例方式创建出来的结果是有一定区别的
+		 // 从严格意义上来讲，只有实例创建出来的结果才是标准的对象数据类型值，也是标准的Number这个类的一个实例
+		 // 对于字面量方式创建出来的结果是基本的数据类型的值，不是严谨的实例，但是由于js的松散型 ,导致了可以使用Number.prototype上提供的方法;
+		 // eg: typeof 1       typeof  new Number(1)
+		 // 2.
+		 var ary = [1];
+		 console.log(ary instanceof Array);// 肯定为true
+		 console.log(ary instanceof Object);// 结果也是true
+		 function fn () {
+
+		 }
+		 console.log(fn instanceof Function);// ture
+		 console.log(fn instanceof Object);// 也是ture
+		 // 那么为什么会出现这种情况呢?
+		 // 因为instanceof的特点，只要在当前实例的原型链上，我们用其检测出来的结果都是true
+		 // 2.1 Object.prototype是个对象数据类型它有constructor:Object和hasOwnProperty、toString等方法
+		 // 2.2 Function.prototype确实一个function数据类型的值，它也有constructor:Function 、call apply bind(ie 6 7 8不支持) toStirng还有一个__proto__指向所属类的原型就是Object的原型
+		 // 2.3 Array.prototype 对象数据类型也有constructor、toString push pop等
+		 // 2.4 都是通过原型链查找机制查找的(Array.protytype上的__proto__指向的是Object的protype fn也一样的道理(Fn的__proto__也是指向的是Object的prototype))
+		 // 就像页面中的一个 <div id="odiv"></div>  dir(odiv)看它的原型链最终指向的是Object
+		 // 再比如:
+		 // 在类的原型继承中，我们最后检测出来的不一定准确
+		 //function Fn () {
+
+		 //}
+		 //Fn.prototype = new Array(); // 这就是经典的原型继承(让子类的原型等于父类的一个实例)
+		 // var f = new Fn;
+		 // f -> Fn.prototype -> Array.prototype -> Object.prototype // 这就是它的原型链
+		 // 自己写一个类，作用是创建一个类数组(索引和length)，但是可以使用数组的方法(在它的原型链上就应该有Array.prototype了)
+		 // 得到类数组的一个方式就是用call
 		
 	*/
 
 	/*
 		constructor
+
+		作用和instanceof类似
+		 var obj = [];
+		 console.log(obj.constructor === Array);// 是数组
+		 console.log(obj.constructor === RegExp);// true是正则，不是true就不是
+		 console.log((1).constructor); // 对于基本数据类型的值也能检测 // instanceof不行但是constructor可以
+		 // 使用constructor检测Object和instanceof不一样，一般情况下是检测不了的要比instanceof强一点
+		 var reg = /^$/;
+		 console.log(reg.constructor == RegExp); // true
+		 console.log(reg.constructor == Object); // false
+		 // 局限性
+		 // 如果把原型重写了，但是重写原型的时候很有可能把人家的constructor给覆盖了，这样检测出来的结果就不准确了
+		 //function Fn () {
+
+		 //}
+		 //Fn.prototype = new Array(); // 这就是经典的原型继承(让子类的原型等于父类的一个实例)
+		 // var f = new Fn;
+		 console.log(f.constructor);// 没被继承之前是Fn 继承之后成了Array了 但是f归根到底还不是数组
+		 // 对于特殊的数据类型 null 和 undefined 他们的所属类是Null和Undefined，但是浏览器把这两个类保护起来了，不允许我们在外面访问（不要问为什么）
+
 	*/
 
 
@@ -54,6 +130,66 @@
 	/*
 
 		Object.prototype.toString().call()
-	*/
+		// 以上三种或多或少都有区别
+		// Object.prototype.toString().call()
+		// 首先获取Object原型上的toString方法并让方法执行，执行的时候改变this
+		// toString的理解
+		// -> 炸一看应该是转换为字符串，但是某些toString方法不仅仅是转换为字符串
+		// -> 规律
+		// 对于Nummber String Boolean Array RegExp Date Function原型上的toString方法都是把当前的数据类型都是把当前的数据类型转换为字符串类型
+		// 上述的作用是仅仅用来转换为字符串的
+		// 但是Object.prototype的toString并不是用来转换为字符串的
+		// 它的作用是返回当前方法执行的主体(方法中this所属的类的详细信息)
+		var obj = {name:"zjh"}
+		console.log(obj.toString()) toString中的this是谁？是obj，返回的是obj所属类的实例的详细信息如下
+	 	"[object Object]"
+	 	第一个object代表的是当前实例是对象数据类型(这个是固定死的)，第二个Object，代表的是的是obj所属类是Object
+	 	比如
+	 	Math.toString() // this是Math那么返回的是所属类的信息 "[object Math]"
+
+
+		var num = 1;
+		// num.toString() // 用的是Number的prototype的toString方法 结果是 "1" 这就转换为字符串
+		console.log(num.__proto__.toString()); // 和上面是一样的
+		console.log(num.__proto__.__proto__toString()); // 和上面不一样找的是Object.prototyp的toString方法
+		// 另外一种用法把数字转换为 2进制 8进制 16进制
+		console.log((56789).toString(2)); // 2进制
+		console.log((56789).toString(8)); // 8进制
+		console.log((56789).toString(10));// 10进制
+		// -> 再看字符串上原型上的toString方法
+		console.log("woshizonguo".toString()); // 就是转换为字符串。
+		// -> 再看布尔原型上的toString方法
+		console.log(true.toString());
+		// null 和 undefined 没有toString方法
+		// -> 数组的toString
+		console.log([1, 2, 3].toString()); // -> "1,2,3"
+
+		// 普通对象
+		var obj = {name:1};
+		// obj没有toString方法得去Object的原型上找   // -> "[object Object]"
+
+
+		var ary = [];
+		console.log(Object.prototype.toString.call(ary)); // "[object Array]" // 返回ary所属类的信息
+		var reg = /^$/;
+		console.log(Object.prototype.toString.call(reg)); // "[object RegExp]" // 返回reg所属类的信息
+		console.log(Object.prototype.toString.call(1));  // "[object Number]
+		console.log(Object.prototype.toString.call("1"));// "[object String]
+		console.log(Object.prototype.toString.call(true));// "[object Boolean]
+		console.log(Object.prototype.toString.call(null));// "[object Null]
+		console.log(Object.prototype.toString.call(undefined));// "[object Undefined]
+		console.log(Object.prototype.toString.call(function () {}));// "[object Function]
+
+		// 综上 没有它检测不了的
+		// 不管是基本数据类型还是引用数类型都可以检测
+		Object.prototype.toString.call(function () {})
+		// {}.toString.call() 一样的 {}本身没有toString也是去Object.protype上找
+		//function Fn () {
+
+		//}
+		//Fn.prototype = new Array(); // 这就是经典的原型继承(让子类的原型等于父类的一个实例)
+		// var f = new Fn;
+		console.log(Object.prototype.toString.call(f) == "[object Array]"); // false 不是数组解决了上述的问题
+	 */
 </script>
 </html>

@@ -5,7 +5,10 @@
     </div>
     <div class="header-input"><span class="iconfont icon-sousuo"></span><i>输入城市景点/游玩/主题</i></div>
     <router-link to="/city">
-      <div class="header-right"><span>{{this.city}}</span><span class="iconfont icon-jiantouarrow486"></span></div>
+      <div class="header-right">
+        <span>{{this.$store.state.city}}</span>
+        <span class="iconfont icon-jiantouarrow486"></span>
+      </div>
     </router-link>
   </div>
 </template>
@@ -13,9 +16,6 @@
 <script>
   export default {
     name: 'HomeHeader', // 单文件组件的名字
-    props:{
-      city: String
-    },
     data() {
       return {
         msg: 'hello'

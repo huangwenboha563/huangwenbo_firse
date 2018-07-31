@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // ------> forEach用来遍历数组的每一项（不支持ie6 7 8）
+    // 1.数组中有几项，那么我们传递进去的匿名回调函数就会执行几次
+
+    var ary = [1, 2, 3, 4, 5];
+    var res = ary.forEach(function (item, index, input) {
+        // 输出来this是window，回调函数中this一般是window
+        // 如果想让这个this变成obj
+        console.log(this);
+        //console.log("ok");
+        //console.log(arguments);// 2.每次执行匿名函数都会传递 数组当前项 索引 和当前数组
+        //console.log(item, index, input);
+        // 理论上我们的方法是没有返回值的，仅仅是遍历数组中的每一项，不对原来的数组进行修改，但是我们可以自己通过数组的索引来修改原来的值
+        input[index] = item * 10;
+    });
+    console.log(res); // undefined 这个方法没有返回值
+    console.log(ary); // 结果 [10,20,30,40,50]
+    // 上面是会把ary改变的，那么我们想让原数组不变怎么办呢
+    // ------> map (都不支持ie 6 7 8)
+    var ary1 = [1, 2, 3, 4, 5];
+    var res1 = ary1.map(function (item, index, input) {
+        return item * 10; // 不会影响原来的数组，把原数组克隆一份，把克隆出来的这一份的中的对应的值改变了
+    });
+    // 和上面的forEach有相似得地方，
+    // 回掉函数中支持return返回值 得到新数组，不改变原来数组
+    console.log(ary1);
+    console.log(res1);
+    //var obj = {name: "hwb"};
+    /*ary1.forEach(function (item, index, input) {
+     console.log(this); // 此时this就是obj了
+     }).bind(obj);*/
+    // 还有一种方式改变this
+    ary1.forEach(function (item, index, input) {
+        console.log(this); // 此时this就是obj了
+    }, obj);
+    // 直接再传递一个参数 obj this就改变了
+    // forEach和map都支持第二个参数，第二个参数的意思是把匿名函数中的this进行修改
+    // sort方法，不支持第二个参数改变this ！！！ 那就用bind
+    // 字符串的replace方法也不支持第二个参数改变this  那就用bind
+    // bind又不支持ie 6 7 8
+
+
+    // ----> 在内置类的原型上添加一个方法（自己编写forEach）
+    var ary3 = [1, 2, 3, 4, 5];
+    Array.prototype.myForEach = function myForEach(callBack, context) {
+        context = context || window;
+        if ("forEach" in Array.prototype) { // 原型上有forEach方法 标砖浏览器下走这个条件
+            this.forEach(callBack, context);
+            return;
+        }
+        // 原型上没有forEach方法 自己编写ie 6 7 8下的回调逻辑
+        for (var i = 0; i < this.length; i++) {
+            callBack && callBack.call(context, this[i], i, this); // 如果callBack存在就执行右边的
+        }
+    };
+    ary3.myForEach(function (index, item, input) {
+
+    }, obj);
+    // ——————在内置类的原型上添加一个myMap方法
+    Array.prototype.myMap = function myMap(callBack, context) {
+        context = context || window;
+        if ("map" in Array.prototype) { // 原型上有forEach方法 标砖浏览器下走这个条件
+            return this.map(callBack, context);
+        }
+        // 原型上没有forEach方法 自己编写ie 6 7 8下的回调逻辑
+        var newAry = [];
+        for (var i = 0; i < this.length; i++) {
+            if (typeof callBack == "function") {
+                var val = callBack.call(context, this[i], i, this); // 如果callBack存在就执行右边的
+                newAry[newAry.length] = val;
+            }
+        }
+        return newAry
+    };
+    var res3 = ary3.myMap(function (item, index, input) {
+        return item * 10;
+    }, obj);
+    console.log(res3);
+</script>
+</html>

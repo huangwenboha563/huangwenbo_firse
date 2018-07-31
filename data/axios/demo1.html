@@ -10,30 +10,31 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     /*
-    * 请求别的网站的数据是肯定存在跨域的
-    * 访问面包没有报跨域的错误是因为后台nginx做了设置
-    */
+     * 请求别的网站的数据是肯定存在跨域的
+     * 访问面包没有报跨域的错误是因为后台nginx做了设置
+     */
     let url = "http://bj.meituan.com/ptapi/getHotCinema";
     // let url="http://www.aidaxue.com/information/getInfoList?type=3"
     // let url ="http://college.breadoffer.com/api/college/index?platformCode=pc&innerRecruit=5&outerRecruit=5"
     /*axios.get(url)
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });*/
+     .then(function (response) {
+     console.log(response);
+     })
+     .catch(function (error) {
+     console.log(error);
+     });*/
 
     axios.post('http://member.breadoffer.com/login?t=1521962875948', {
-        username:"15535936291",
-        password:"123456",
-        rememberMe:false,
-        uuid:"f0944980-2a78-4e27-9759-3f9dafd46f61"
+        username: "15535936291",
+        password: "123456",
+        rememberMe: false,
+        uuid: "f0944980-2a78-4e27-9759-3f9dafd46f61"
     })
         .then(function (response) {
             console.log(response);
         })
         .catch(function (error) {
             console.log(error);
-        });</script>
+        });
+</script>
 </html>
