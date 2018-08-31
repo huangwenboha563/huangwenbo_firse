@@ -21,31 +21,37 @@
         data: {
             firstName: 'Foo',
             lastName: 'Bar',
-            fullName:''
             // fullName: 'Foo Bar'
         },
-        watch: {
+        computed: {
+            fullName () {
+                return this.firstName + this.lastName;
+            }
+        },
+        /*watch: {
             firstName: function (newval,oldvalue) {
                 console.log(newval, oldvalue);
                 this.fullName = newval + ' ' + this.lastName
-                /*
+                /!*
                 *  当firstName的值发生变化的时候去执行操作
                 *  操作是 fullName = 变化后的值+ lastName
                 *  mvvm的魅力
                 *
-                */
+                *!/
             },
             lastName: function (newvalue,oldvalue) {
                 console.log(newvalue, oldvalue);
                 this.fullName = this.firstName + ' ' + newvalue
             }
-        }
+        }*/
     })
 </script>
 <script>
     /*
-     初始值是  a ->1  b-> a+3 ->4
-     // document点击完成以后b的值变为200，在set里面a的值接受到了val所以a的值也发生变化    a-> 200 b->203
-     */
+    * 用computer就一两行代码就可以了
+    * 用watch 就要既要观察firstName 又要观察LastName
+    *
+    *
+    * */
 </script>
 </html>

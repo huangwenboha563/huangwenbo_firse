@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+
 <div id="mydiv">
 
 </div>
@@ -52,7 +53,7 @@
         console.log(e.pageY); // 此时在任何浏览器下就兼容了
 
         e.preventDefault();// 这叫做阻止浏览器的默认行为但是存在兼容性
-
+        // e.preventDefault?e.preventDefault():e.returnValue = false;
         e.stopPropagation(); // 这叫做阻止冒泡但是存在兼容性
         // e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true; // 这样就兼容的处理了
 

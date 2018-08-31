@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*最简单的发布订阅模式*/
+    // 1.定义售楼处
+    var salesOffices = {
+        trueName:'hwb'
+    }
+    // 2.缓存列表，存放订阅者的回调函数,每一次订阅都往这个数组里添加一个回调函数等待 trigger的时候就会依次触发
+    salesOffices.clientList = [];
+    // 3.增加订阅者
+    salesOffices.listen = function (fn) {
+        // 订阅的消息添加进缓存列表
+        this.clientList.push(fn);
+    }
+    // 4.发布消息
+    salesOffices.trigger = function () {
+        for (var i = 0,fn; fn = this.clientList[i++];) {
+            fn.apply(this,arguments);
+            // fn(arguments[0],arguments[1]);
+            /* 
+                为什么不 fn(arguments[0],arguments[1]);?
+                因为形参的个数未知.
+                fn.apply(this,arguments)  让this还是salesOffices，同时借助arguments这个类数组的特性。
+            
+             */
+        }
+    }
+    // 简单测试
+    // 小明订阅消息
+    salesOffices.listen(function(price,squareMeter){
+        console.log('价格=' +price + this.trueName);
+        console.log('squareMeter=' +squareMeter);
+    })
+    // 小红订阅消息
+    salesOffices.listen(function(price,squareMeter){
+        console.log('价格=' +price);
+        console.log('squareMeter=' +squareMeter);
+    });
+    salesOffices.trigger(2000,88);
+    salesOffices.trigger(3000,110);
+    /* 
+    至此，我们已经实现了一个最简单发布订阅模式，但这里还存在一些问题，我们看到订阅者接收到了发布者发布的每个消息，虽然小明只想买88平米的房子，但是发布者
+    把110平的信息也推送给了小明，这对小明来说是不必要的干扰。所以我们又必要增加一个标识key，让订阅者只订阅自己感兴趣的消息。
+    
+     */
+</script>
+
+</html>

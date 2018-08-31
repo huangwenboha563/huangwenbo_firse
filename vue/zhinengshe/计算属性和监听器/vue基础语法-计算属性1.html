@@ -28,7 +28,7 @@
     var vm = new Vue({
         el: "#box",
         data: {
-            a: 1
+            a: 1,
         },
         methods: {},
         computed: { // 只要依赖的值有变化，就会触发
@@ -41,7 +41,10 @@
             //     console.log(newvalue, oldvalue);
             //
             // },
-            a: 'test'// 语法糖
+            // a: 'test'// 语法糖
+            a(newvalue,oldvalue) {
+                console.log(newvalue, oldvalue);
+            }
         },
         methods:{
             test(newvalue,oldvalue){

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 1.定义售楼处
+    var salesOffices = {
+        trueName: 'hwb'
+    }
+    // 2.缓存列表，存放订阅者的回调函数
+    salesOffices.clientList = {};
+    // 3.增加订阅者
+    salesOffices.listen = function (key, fn) {
+        if (!this.clientList[key]) { // 如果还没有订阅过此类消息，给该类消息创建一个缓存列表
+            this.clientList[key] = [];
+        }
+        this.clientList[key].push(fn); // 订阅的消息添加进消息缓存列表
+    }
+    // 4.发布消息
+    salesOffices.trigger = function () {
+        var key = Array.prototype.shift.call(arguments); // 取出消息类型
+        var fns = this.clientList[key]; // 取出该消息对应的回调函数集合
+        if (!fns || fns.length == 0) {
+            return false;
+        }
+        for (var i = 0, fn; fn = fns[i++];) {
+            fn.apply(this, arguments);
+            // fn(arguments[0],arguments[1]);
+            /* 
+                为什么不 fn(arguments[0],arguments[1]);?
+                因为形参的个数未知.
+                fn.apply(this,arguments)  让this还是salesOffices，同时借助arguments这个类数组的特性。
+            
+             */
+        }
+    }
+    // 简单测试
+    // 小明订阅消息
+    salesOffices.listen('M88',function (price, squareMeter) {
+        console.log('价格=' + price);
+    })
+    salesOffices.listen('M88',function (price, squareMeter) {
+        console.log('价格=' + price);
+    })
+    // 小红订阅消息
+    salesOffices.listen('M99',function (price, squareMeter) {
+        console.log('价格=' + price);
+    });
+    salesOffices.trigger('M88', 2000000000000000000);
+    salesOffices.trigger('M99', 3000000000000000000);</script>
+
+</html>
