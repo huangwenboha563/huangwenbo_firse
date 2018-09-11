@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var Singleton = function (name) {
+        this.name = name;
+        this.instance = null;
+    };
+    Singleton.prototype.getName = function () {
+        alert(this.name);
+    };
+    // Singleton.instance="demo1"
+    Singleton.getInstance = function (name) {
+        console.log(this); // this就是Singleton这个类
+        if (!this.instance) {
+            alert(0)
+            this.instance = new Singleton(name);
+        }
+        return this.instance;
+    };
+    var a = Singleton.getInstance('sven1');
+    var b = Singleton.getInstance('sven2');
+    console.log(a,b); // 此时 a和b都是Singleton的一个实例(name都是sven1)
+    // 第一次Singleton的时候Singleton没有instance这个静态属性当第一次执行完成以后，就有这个静态属性了
+    // 第二次Singleton的时候就直接return的是Singleton的静态属性，所以a和b是一样的
+    alert(a === b); // true
+</script>
+
+</html>

@@ -13,8 +13,10 @@
     // 原型继承并不是把父类中的属性和方法克隆一份一模一样的给子类，而是让父类和子类增加了原型链的链接，
     // 以后儿子的实例要想用父类中的方法需要一级一级向上查找来实现
     // 子类继承父类(基类，超类)的方法和属性也是就近原则，先找"私有"(实例)再找共有(原型)
-    function Father() {
+    function Father(m) {
         this.x = 100;
+        this.m = m;
+        this.car = ['锋范','思域']
     }
 
     Father.prototype = {
@@ -28,14 +30,26 @@
         this.x = 200; //->子类私有的200，有这个和没这个是不一样的->永远先找私有的
     }
 
-    Son.prototype = new Father();
+    Son.prototype = new Father(100);
     var zjh = new Son();
+    var zjh2 = new Son();
     console.log(zjh.x);
+    console.log(zjh.m);
+    zjh.car.push('冠道');
+    console.log(zjh.car,zjh2.car);
     zjh.getX();
     console.log(zjh instanceof Father);
     console.log(zjh instanceof Son);
     console.log(zjh instanceof Object);
     // 结论 子类型从属于自己或他的超类
+    /* 
+    类式继承...，周啸天的视频中叫做原型继承，js设计模式这本书中叫做 "类式继承"
+    一句话概括就是让子类的原型等于父类的一个实例
+    缺点:
+    1.如果父类中的一个私有属性是"引用"  数据类型的值，这个值就会在所有的子类实例中公用，如果其中一个实例对该值进行了修改就会对别的实例造成影响
+    如上面的例子一样，张建红和张建红2  ，张建红买了一辆冠道，对张建红2也造成了影响
+    2.设计模式这本书中所说:无法在创建父类的时候，向父类传递参数，因而在实例化父类的时候也无法对父类构造函数内的属性进行初始化.不大对啊，我明明可以传递100进去啊...
+     */
 
 </script>
 </html>

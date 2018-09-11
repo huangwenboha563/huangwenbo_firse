@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 增加了类的不透明性
+    var Singleton = function (name) {
+        this.name = name;
+    };
+    Singleton.prototype.getName = function () {
+        alert(this.name);
+    };
+    Singleton.getInstance = (function () {
+        var instance = null;
+        return function (name) {
+            console.log(instance); //第一次是null，第二次是Singleton的实例
+            if (!instance) {
+                console.log("确实没有")
+                instance = new Singleton(name);
+            }
+            return instance;
+        }
+    })();
+    var a = Singleton.getInstance('sven1');
+    var b = Singleton.getInstance('sven2');
+    alert(a === b); // true
+</script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 前面提到的几种单例模式的实现，更多的是接近传统面向对象语言的实现，单例对象从"类"中创建而来，在以类为中心的语言中，这是很自然的做法
+    // 比如在java中，如果需要某个对象，就必须先定义一个类，对象总是从类中创建而来。
+    // 但是js其实是一门无类的语言，生搬单例模式的概念并无意义，在js中创建对象的方法非常简单，既然我们只需要一个唯一对象，为什么要先创建一个类呢？
+    // 这无异于穿棉衣洗澡，传统的单例模式的实现在js中并不适用。
+    // 单例模式的核心是确保只有一个实例，并提供全局访问。
+    // 全局变量不是单例模式，但在js中我们会经常把全局变量当成单例来适用。 eg: var a = {};
+    /* 
+        当用这种方式创建对象a时，对象a确实是独一无二的。如果a变量被声明在全局作用域下，则我们可以在代码中的任意位置适用这个变量。
+        但是这样会造成命名空间污染，和可能被别人覆盖。
+     */
+    // 1.适用命名空间避免污染
+    // 适当地使用命名空间，并不会杜绝全局变量，但可以减少全局变量的数量。
+    var namespace1 = {
+        a: function () {
+            alert(1);
+        },
+        b: function () {
+            alert(2);
+        }
+    };
+    // 2.适用闭包避免污染
+    // 我们用下划线来约定私有变量 __name 和 __age ，它们被封装在闭包产生的作用域中，外部是访问不到这两个变量的，这就避免了对全局的命令污染。
+    var user = (function () {
+        var __name = 'sven',
+            __age = 29;
+        return {
+            getUserInfo: function () {
+                return __name + '-' + __age;
+            }
+        }
+    })();
+</script>
+
+</html>
