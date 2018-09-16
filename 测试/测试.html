@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+// 查询条件备份
+/********************************************查询条件配置**********************************************************/
+/*var $parentBody = $(window.parent.document.body);
+var configQuery = {
+	init: function (queryName) {
+		this.permissionResId = utils.getQueryString("pageId");
+		this.queryName = queryName;
+		this.initBindEvent();
+		// 初始化请求查询条件和查询结果(表头)
+		this.initQueryHasChecked();
+		// 初始化查询所有未选的
+		this.initQueryUnChecked();
+	},
+	initBindEvent: function () {
+		var _this = this;
+		// 2018.4.18增加功能--点击动态配置查询条件
+		$("#configBtns").on('click','.config-query',function(){
+			var $this = $(this);
+			var obj = $(".query-config-wrapper").html();
+			parent.layer.open({
+				type: 1,
+				title: ['检索项配置', 'background:#2e8ded;color:#fff;'],
+				area: ['620px', '520px'],
+				btn: ['确定'],
+				resize: false,
+				content: obj,
+				success: function () {
+
+				},
+				yes: function (index, layero) {
+					// 点击确定的入库动作
+					_this.sendConfig(index);
+					// parent.layer.close(index);
+					// $(".query-config-wrapper").empty();
+				},
+				cancel: function (index, layero) {
+					parent.layer.close(index);
+					// $(".query-config-wrapper").empty();
+				}
+			});
+		});
+		// 2018.5.3 添加功能
+		$parentBody.on('click', '.to-add', function () {
+			var options = $parentBody.find('.unselected-con select option:selected');
+			options.each(function (index, item) {
+				$(item).remove();
+				$(item).appendTo($parentBody.find('.hasselected-con select'));
+			})
+		}).on('click', '.to-delete', function () { // 2018.5.3 移除功能
+			var options = $parentBody.find('.hasselected-con select option:selected');
+			options.each(function (index, item) {
+				$(item).remove();
+				$(item).appendTo($parentBody.find('.unselected-con select'));
+			})
+		}).on('click', '.to-up', function () { // 2018.5.3增加上移功能
+			var options = $parentBody.find('.hasselected-con select option:selected');
+			options.first().insertBefore(options.first().prev());
+		}).on('click', '.to-down', function () { // 2018.5.3增加下移功能
+			var options = $parentBody.find('.hasselected-con select option:selected');
+			options.first().insertAfter(options.first().next());
+		});
+
+		// 2018.5.3增加模糊查询功能
+		$parentBody.on('keyup', '.search-input> input', function () {
+			var $this = $(this);
+			var thisVal = $this.val();
+			$parentBody.find('.unselected-con select option').each(function (item, index) {
+				var $this = $(this);
+				if ($this.html().indexOf(thisVal) > -1) {
+					$this.show();
+				} else {
+					$this.hide();
+				}
+			});
+		});
+	},
+	sendConfig: function (index) {
+		var _this = this;
+		var columnMessageLists = [];
+		var options = $parentBody.find('.hasselected-con select option');
+		$.each(options, function (index, item) {
+			columnMessageLists.push({
+				'COLUMNID': $(item).attr('columnid'),
+				'COLUMNNAME': $(item).attr('columnname'),
+				'COLDISPNAME': $(item).attr('coldispname'),
+				'COLUMNTYPE': $(item).attr('columntype'),
+				'defaultval': $(item).attr('default'),
+				'CODENAME': $(item).attr('codename')
+			})
+		});
+		var sendObj = {
+			'permissionResId': _this.permissionResId, // 人员信息查询对应permID为3
+			'dataType': '01', // 查询条件为01，查询结果为02
+			'tableName': '', // 缺省值为空
+			'description': '', // 缺省值为空
+			'columnMessage': JSON.stringify(columnMessageLists)
+		};
+		$.ajaxSetup({cache: false});
+		$.ajax({
+			url: '/htmisWeb/column/updateColumnRes.do',
+			type: 'post',
+			dataType: 'json',
+			data: sendObj,
+			cache: false,
+			success: function (res) {
+				// console.warn('入库动作->', res);
+				// 1. 入库成功以后要更新 条件配置弹窗的视图
+				_this.initQueryHasChecked();
+				// 初始化查询所有未选的
+				_this.initQueryUnChecked();
+				// 2. 入库成功以后要更新 父页面查询条件的视图
+				// 必须保证成功以后才能关闭
+				parent.layer.close(index);
+			}
+		})
+	},
+	// 初始化查询条件的方法
+	initQueryHasChecked: function () {
+		var _this = this;
+		$.ajaxSetup({cache: false});
+		$.ajax({
+			// 请求已经选好的接口
+			url: '/htmisWeb/column/getColumnResByPermID.do',
+			dataType: 'json',
+			type: 'get',
+			cache: false,
+			data: {
+				permissionResId: _this.permissionResId,
+				// dataType传01代表查询条件
+				dataType: '01'
+			},
+			success: function (res) {
+				var checked = JSON.parse(res["01"]);
+				if (checked.length !== 0) { // 有默认值
+					// 每次渲染完之前清空数据避免dom干扰
+					$(".has-field").children().remove();
+					// 渲染调价配置弹窗右侧已经选择的
+					var htmlArr = [];
+					$.each(checked, function (index, item) {
+						htmlArr.push('<option columnid="', item.COLUMNID, '" columnname="', item.COLUMNNAME, '" coldispname="', item.COLDISPNAME, '" columntype="', item.COLUMNTYPE, '" codename="', item.CODENAME, '" default="0">', item.COLDISPNAME, '</option>');
+					});
+					$(".has-field").html(htmlArr.join(''));
+					// 渲染页面默认查询条件(渲染页面默认查询条件和渲染重新选好的条件是用的同一个方法)
+					_this.renderQuery(checked);
+				} else { // 没有默认值或者没有选好的条件
+					$(".has-field").children().remove();
+					$("#queryWrapper").children().remove();
+				}
+			}
+		});
+	},
+	// 初始化渲染默认和再次选择条件的共同的方法
+	renderQuery: function (checked) {
+		/!*
+		 * COLUMNTYPE: 01 普通输入
+		 * COLUMNTYPE: 02 字典选择
+		 * COLUMNTYPE: 03 时间输入
+		 *!/
+		var htmlArr = new Array();
+		$.each(checked, function (index, item) {
+			var columnType = item.COLUMNTYPE; // 查询条件类型 有1 有2 有3
+			var codeName = item.CODENAME; // 如果是字典类型才有 eg：GXSDM
+			var columnName = item.COLUMNNAME; // 字典类型eg: NYUNITCODE 普通类型：eg：PERSONNAME
+			var coldispName = item.COLDISPNAME; // 对应汉字比如: 人员姓名 采集单位
+			if (columnName !== 'PASSWORD') { // 2018.8.15刘洋建议增加过滤不需要让用户看见主键id和密码 columnName !== 'ID' && columnName !== 'PASSWORD'
+				if (columnType == 1) { // 普通输入框
+					htmlArr.push('\
+						<div class="query-item clear">\
+							<span>', coldispName, '</span>\
+							<input type="text" name="', columnName, '">\
+						</div>')
+				} else if (columnType == 2) { // 字典选择（单位类型：eg：采集单位）
+					htmlArr.push('\
+						<div class="filter clear self-select-main">\
+							<span class="explain">',coldispName,'</span>\
+							<div class="drop-down">\
+								<input type="text" value="" id="NYUNIT_NAME" class="self-search-input" data-columnname="',codeName,'"\
+							data-tablename="T_SYS_DICT" name="',columnName,'" data-num="">\
+								<a href="javascript:;" class="h_more"></a>\
+							</div>\
+						</div>');
+				} else if (columnType == 3) { // 时间选择
+					htmlArr.push('\
+							<div class="query-item clear">\
+								<span>', coldispName, '</span>\
+								<!--Wdate类名日历控件自带-->\
+								<input type="text" name="CREATETIME_DATE1" class="Wdate" onclick="WdatePicker()">\
+							</div>\
+							<div class="query-item clear">\
+								<span>至</span>\
+								<!--Wdate类名日历控件自带-->\
+								<input type="text" name="CREATETIME_DATE2" class="Wdate" onclick="WdatePicker()">\
+							</div>');
+				}
+			}
+		});
+		$("#queryWrapper").html(htmlArr.join(''));
+	},
+	initQueryUnChecked: function () {
+		var _this = this;
+		// 请求所有的(要排除掉右边已经选择过的)
+		$.ajaxSetup({cache: false});
+		$.ajax({
+			type: 'get',
+			url: "/htmisWeb/column/getColumnDetail.do",
+			data: {
+				queryName: _this.queryName,
+				permissionResId: _this.permissionResId,
+				dataType: '01'
+			},
+			cache: false,
+			dataType: 'json',
+			success: function (res) {
+				// 渲染之前先强制让dom清空避免干扰
+				$(".all-field").children().remove();
+				var htmlArr = [];
+				$.each(res, function (index, item) {
+					htmlArr.push('<option columnid="', item.COLUMNID, '" columnname="', item.COLUMNNAME, '" coldispname="', item.COLDISPNAME, '" columntype="', item.COLUMNTYPE, '" codename="', item.CODENAME, '" default="0">', item.COLDISPNAME, '</option>');
+				});
+				$(".all-field").html(htmlArr.join(''));
+			}
+		});
+	}
+};*/
+// configQuery.init();
+// 查询条件配置相关--------over
+</script>
+<script>
+/*************************************************展示列配置**************************************************************************/
+var configResult = {
+	init: function (queryName) {
+		this.queryName = queryName;
+		this.permissionResId = utils.getQueryString("pageId");
+		this.initBindEvent();
+		this.initQueryChecked();
+	},
+	initBindEvent: function () {
+		var _this = this;
+		$parentBody.on('click', '.column-boolean', function () {
+			var $this = $(this);
+			$this.parents('tr').addClass('active').siblings('tr').removeClass('active');
+		});
+		$parentBody.on('click', '.stick-top', function () { //置顶
+			var $list = $parentBody.find(".column-boolean").parents('tr.active');
+			$list.prependTo($parentBody.find(".column-boolean-wrapper"));
+		}).on('click', '.stick-down', function () { // 置底
+			var $list = $parentBody.find(".column-boolean").parents('tr.active');
+			$list.appendTo($parentBody.find(".column-boolean-wrapper"));
+		}).on('click', '.shift-up', function () { // 上移
+			var active = $parentBody.find(".column-boolean").parents('tr.active');
+			active.insertBefore($parentBody.find(".column-boolean").parents('tr.active').prev())
+		}).on('click', '.shift-down', function () { // 下移
+			var active = $parentBody.find(".column-boolean").parents('tr.active');
+			active.insertAfter($parentBody.find(".column-boolean").parents('tr.active').next())
+		}).on('click', '.select-all', function () { // 全选
+			$parentBody.find(".column-boolean").prop('checked', true);
+		}).on('click', '.select-invert', function () { // 反选
+			$parentBody.find(".column-boolean:not(:disabled)").prop('checked', false);
+		});
+		// 点击展示配置按钮弹出展示弹框
+		$("#pageBtnRows").on('click','.config-result',function(){
+			var $this = $(this);
+			var obj = $(".result-config-wrapper").html();
+			parent.layer.open({
+				type: 1,
+				title: ['展示项配置', 'background:#2e8ded;color:#fff;'],
+				area: ['620px', '500px'],
+				btn: ['确定'],
+				resize: false,
+				content: obj,
+				yes: function (index, layero) {
+					// 点击去确定按钮的入库动作
+					_this.sendResult(index);
+				},
+				cancel: function (index, layero) {
+					parent.layer.close(index);
+				}
+			});
+		});
+	},
+	// 组装数据发送请求入库
+	sendResult: function (index) {
+		var _this = this;
+		var columnMessageLists = [];
+		var options = $parentBody.find('.column-boolean-wrapper input:checked');
+		$.each(options, function (index, item) {
+			columnMessageLists.push({
+				'COLUMNID': $(item).attr('columnid'),
+				'COLUMNNAME': $(item).attr('columnname'),
+				'COLDISPNAME': $(item).attr('coldispname'),
+				'COLUMNTYPE': $(item).attr('columntype'),
+				'defaultval': $(item).attr('default'),
+				'CODENAME': $(item).attr('codename')
+			})
+		});
+		var sendObj = {
+			'permissionResId': _this.permissionResId, // 人员信息查询对应permID为3
+			'dataType': '02', // 查询条件为01，查询结果为02
+			'tableName': '', // 缺省值为空
+			'description': '', // 缺省值为空
+			'columnMessage': JSON.stringify(columnMessageLists)
+		};
+		$.ajaxSetup({cache: false});
+		$.ajax({
+			url: '/htmisWeb/column/updateColumnRes.do',
+			type: 'post',
+			dataType: 'json',
+			data: sendObj,
+			cache: false,
+			success: function (res) {
+				// 必须保证成功以后才能关闭
+				// 1. 入库完成以后要发请求更新展示配置的视图才能保证再次点击配置的时候该勾选的勾选上
+				_this.initQueryChecked();
+				// 2. 入库完成以后要触发页面表格的视图刷新
+				$(".to-query").trigger('click');
+				parent.layer.close(index);
+			}
+		})
+	},
+	/*查询已经选好的展示列*/
+	initQueryChecked: function () {
+		var _this = this;
+		$.ajaxSetup({cache: false});
+		$.ajax({
+			// 请求已经选好的接口(已经选择好的，已经选择好的，已经选择好的列)
+			url: '/htmisWeb/column/getColumnResByPermID.do',
+			dataType: 'json',
+			type: 'get',
+			cache: false,
+			data: {
+				permissionResId: _this.permissionResId,
+				// dataType传01代表查询条件
+				dataType: '02'
+			},
+			success: function (res) {
+				if ($.isEmptyObject(res)) { // 是空对象
+					// console.log(res);
+					// _this.QueryAll(resArr);
+				} else { // 不是空对象
+					var resArr = JSON.parse(res["02"]);
+					_this.QueryAll(resArr);
+				}
+			}
+		});
+	},
+	/*查询未选的的展示列(最后组装成所有的展示列)*/
+	QueryAll: function (hasChecked) {
+		var _this = this;
+		// 请求所有的(要排除掉右边已经选择过的)
+		$.ajaxSetup({cache: false});
+		$.ajax({
+			type: 'get',
+			url: "/htmisWeb/column/getColumnDetail.do",
+			data: {
+				queryName: _this.queryName,
+				permissionResId: _this.permissionResId,
+				dataType: '02'
+			},
+			dataType: 'json',
+			cache: false,
+			success: function (res) {
+				var htmlArr = [];
+				// 已经选的放在上面
+				if (hasChecked) {
+					if (hasChecked.length > 0) {
+						$.each(hasChecked, function (index, item) {
+							// 2018.8.15修改
+							if (item.defaultval === '1') { // 默认必须展示不可修改的列
+								htmlArr.push('<tr class="', index == 0 ? "active" : "", '"><td><input type="checkbox" class="column-boolean" columnid="', item.COLUMNID, '" columnname="', item.COLUMNNAME, '" coldispname="', item.COLDISPNAME, '" columntype="', item.COLUMNTYPE, '" codename="', item.CODENAME, '" default="',item.defaultval,'" checked disabled><span>', item.COLDISPNAME, '</span></td></tr>');
+							} else {
+								htmlArr.push('<tr class="', index == 0 ? "active" : "", '"><td><input type="checkbox" class="column-boolean" columnid="', item.COLUMNID, '" columnname="', item.COLUMNNAME, '" coldispname="', item.COLDISPNAME, '" columntype="', item.COLUMNTYPE, '" codename="', item.CODENAME, '" default="',item.defaultval,'" checked><span>', item.COLDISPNAME, '</span></td></tr>');
+							}
+						});
+					}
+				}
+				// 未选的放在下面
+				$.each(res, function (index, item) {
+					htmlArr.push('<tr><td><input type="checkbox" class="column-boolean" columnid="', item.COLUMNID, '" columnname="', item.COLUMNNAME, '" coldispname="', item.COLDISPNAME, '" columntype="', item.COLUMNTYPE, '" codename="', item.CODENAME, '" default="0"><span>', item.COLDISPNAME, '</span></td></tr>');
+				});
+				$(".column-boolean-wrapper").html(htmlArr.join(''));
+			}
+		});
+	}
+};
+// configResult.init();
+</script>
+<script>
+// 比对管理人像对比任务界面无效需要后端和前端一起定位原因
+</script>
+</html>
