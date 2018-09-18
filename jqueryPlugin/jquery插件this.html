@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        span {
+            display: none;
+        }
+        .demo {
+            width: 100px;
+            height: 100px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo">点击我</div>
+</body>
+<script src="../data/js/jquery.js"></script>
+<script>
+    /* $(document.body).on('click','.demo',function(){
+        alert(1);
+    }); */
+    $(".demo").on('click',function(){
+        alert(1)
+    });
+    /* $.fn.add = function (){
+        this.on('click',function(){
+            alert(1)
+        });
+    };
+    $(".demo").add(); */
+    /* 通过以上示例，更好的理解事件委派，原来一直忽律了一点 */
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="a">
+    <input type="text" class="b" code="1">
+</body>
+<script src="../data/js/jquery.js"></script>
+<script>
+var code = $(".a").attr('code');
+// var code1 = $(".b").attr('code');
+var code2 = $(".b").attr('code');
+alert(code2)
+</script>
+<script>
+$.post("/htmisWeb/sys/deleteDict.do",
+			{ID: ID},
+			function (data) {
+				if (data == 1) {
+					layer.msg('删除成功', {
+						icon: 1,
+						time: 2000 //2秒关闭（如果不配置，默认是3秒）
+					}, function () {
+					});
+					var page = $("#pagination span[class='current']").text();
+					// 删除成功以后局部刷新当期页面的数据
+					$(".to-query").trigger('click');
+				}
+			},
+			"json");
+</script>
+</html>
