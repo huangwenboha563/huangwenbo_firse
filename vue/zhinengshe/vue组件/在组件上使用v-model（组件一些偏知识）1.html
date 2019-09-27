@@ -9,22 +9,20 @@
 <div id="app">
     <!--<input type="text" v-model="searchText">-->
     <!--等价于-->
-    <!--<input
-            v-bind:value="searchText"
-            v-on:input="searchText = $event.target.value"// 这里必须是$event
-    >-->
     <input
             v-bind:value="searchText"
-            v-on:input="fuck($event)"
+            v-on:input="searchText = $event.target.value"
     >
     {{searchText}}
+    <!--<input v-bind:value="searchText" v-on:input="fuck($event)">
+    {{searchText}}-->
 </div>
 </body>
 <script>
     let vm = new Vue({
         el: '#app',
         data: {
-            searchText:''
+            searchText:'xxxxxx'
         },
         methods:{
             fuck(event){

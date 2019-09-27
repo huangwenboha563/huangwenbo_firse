@@ -1,59 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>vue事件</title>
-    <link rel="stylesheet" href="../js/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <script src="../js/vue2.0.js"></script>
+	<meta charset="UTF-8">
+	<title>vue事件</title>
+	<link rel="stylesheet" href="../js/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<script src="../js/vue2.0.js"></script>
 
 </head>
 <body>
 <div id="box">
-    <p ref="mp">{{a}}</p>
-    <p ref="mp">{{a}}</p>
-    <p v-for="b in c" ref="listp">{{b}}</p>
+	<p ref="mp">{{a}}</p>
+	<p ref="mp">{{a}}</p>
+	<p v-for="b in c" ref="listp">{{b}}</p>
 </div>
 </body>
 <script>
-    var vm = new Vue({
-        el: "#box",
-        data: {
-            a: 100,
-            b: '哈哈',
-            c: 10
-        },
-        mounted(){
-            // console.log(document.getElementsByTagName('p')[0].innerHTML);
-            // 可以打印出来
-            // 但是这样获取dom有点太low vue有提供的方法
-            // console.log(this.$refs.mp); // 通过$refs可以获取到p的dom如果有两个p标签直接写在页面上只能获取一个。但是用v-for循环出来的就可以
-            // console.log(this.$refs.listp); // 这样就可以拿出来10个p(只有循环出来的才可以拿到10个p记住了)
-            this.$refs.mp.style.backgroundColor="blue"
-            // console.log(vm); 直接获取vm实例是获取不到的。因为dom挂载上是异步的要想在挂载完获取到vm只能
-            /*this.$nextTick(()=>{
-                console.log(vm); // 这样就能获取到了
-            })*/
+	var vm = new Vue({
+		el: "#box",
+		data: {
+			a: 100,
+			b: '哈哈',
+			c: 10
+		},
+		mounted(){
+			// console.log(document.getElementsByTagName('p')[0].innerHTML);
+			// 可以打印出来
+			// 但是这样获取dom有点太low vue有提供的方法
+			// console.log(this.$refs.mp); // 通过$refs可以获取到p的dom如果有两个p标签直接写在页面上只能获取一个。但是用v-for循环出来的就可以
+			// console.log(this.$refs.listp); // 这样就可以拿出来10个p(只有循环出来的才可以拿到10个p记住了)
+			this.$refs.mp.style.backgroundColor = "blue"
+			// console.log(vm); 直接获取vm实例是获取不到的。因为dom挂载上是异步的要想在挂载完获取到vm只能
+			/*this.$nextTick(()=>{
+			 console.log(vm); // 这样就能获取到了
+			 })*/
 
-            // ->>>>>>>>>>>再次理解$nextTick方法的用处
-            //console.log(this.$refs.listp) // 此时是10个p，没问题
-            // 那么我让 c 这个数据变成11
-            //this.c = 11;
-            //console.log(this.$refs.listp);// 发现它还是10 // 但是此时你看页面上循环出来的是11个数
-            //console.log(this.$refs.listp.length);// 发现它还是10 // 页面上循环出来的是11个数字
-            // 这是为什么呢，这是因为dom数据改变到视图更新时需要时间的，是异步的过程。
-            //this.$nextTick(function(){
-              //  console.log(this.$refs.listp.length); // 此时就变成11了
-            //})
-            /*
-            *  ref ===== $refs 用来获取dom或者组件实例的 如果ref加载组件上 $refs获取到的就是组件实例
-            *  $nextTick的作用是避免获取到的dom和页面上展示的效果不一样，为什么会不一样呢？
-            *  因为数据更新视图这一步是异步的，虽然视图更新了，但是获取到的dom还是之前的...在mounted之后获取dom的话除了原生js，如果用ref($refs的)的话就都放在
-            *  $nextTick里面，因为你无法保证中途有改变数据的操作，导致你获取到的dom和视图上的不一样
-            *
-            *
-            */
-        }
-    })
+			// ->>>>>>>>>>>再次理解$nextTick方法的用处
+			//console.log(this.$refs.listp) // 此时是10个p，没问题
+			// 那么我让 c 这个数据变成11
+			//this.c = 11;
+			//console.log(this.$refs.listp);// 发现它还是10 // 但是此时你看页面上循环出来的是11个数
+			//console.log(this.$refs.listp.length);// 发现它还是10 // 页面上循环出来的是11个数字
+			// 这是为什么呢，这是因为dom数据改变到视图更新时需要时间的，是异步的过程。
+			//this.$nextTick(function(){
+			//  console.log(this.$refs.listp.length); // 此时就变成11了
+			//})
+			/*
+			 *  ref ===== $refs 用来获取dom或者组件实例的 如果ref加载组件上 $refs获取到的就是组件实例
+			 *  $nextTick的作用是避免获取到的dom和页面上展示的效果不一样，为什么会不一样呢？
+			 *  因为数据更新视图这一步是异步的，虽然视图更新了，但是获取到的dom还是之前的...在mounted之后获取dom的话除了原生js，如果用ref($refs的)的话就都放在
+			 *  $nextTick里面，因为你无法保证中途有改变数据的操作，导致你获取到的dom和视图上的不一样
+			 *
+			 *
+			 */
+		}
+	})
+</script>
+<script>
+	var list = [{id: 1}, {id: 2}, {id: 3}, {id: 4}];
+	var temp = {id:3,cao:4};
+	for (const v of list) {
+		if (v.id === temp.id) { // 如果找到找到正在更新的这个id
+			const index = list.indexOf(v)
+			console.log(index);
+			list.splice(index, 1, temp); // 利用splice进行替换
+			break
+		}
+	}
+
 </script>
 </html>

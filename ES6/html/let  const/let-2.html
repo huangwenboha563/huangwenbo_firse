@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport"
-		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 </head>
+
 <body>
 
 </body>
@@ -52,5 +53,53 @@
 	// 不管之前用什么方式声明过var 还是 let 之后再声明都会报错
 
 	// 最后结论：只要在同一个作用域内，var let  function的就不可能是同一个名字否则会报错
+	/* function base64(base64Img) {
+		var baseXhr = $.ajax({
+			url: '/htmisWeb/imageUtil/putBase64Img.do',
+			type: 'post',
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				data: base64Img
+			})
+			
+		});
+		return baseXhr;
+	}
+	base64(xx).done(function(){
+
+	})
+	$.getPages(16).done(function(){
+
+	}) */
+	function getPageRes(pageId) {
+		var optData = null;
+		if (pageId) {
+			$.ajax({
+				// 查询方式
+				type: "get",
+				// 请求url
+				url: "/htmisWeb/util/getPermission.do",//路径
+				// 同步请求(因为表格每一条数据是两个接口的数据拼接在一起的的，所以这里写了同步，如果不写同步的话就在回调里面去调用另外一个接口)
+				// async: 写成同步是有原因的，不然在页面里面要用权限的时候总是要在回调里面套回调
+				async: false,
+				// 查询参数
+				data: {
+					"param": "parentId",
+					"value": pageId
+				},
+				// 返回的数据格式
+				dataType: "json",//数据，这里使用的是Json格式进行传输
+				// 成功之后的回调
+				success: function (result) {
+					if (result)
+						//optData = eval('(' + result + ')');//通过eval转换成json对象
+						optData = result;
+				}
+			});
+		}
+		return optData;
+	}
 </script>
+
 </html>

@@ -5,20 +5,7 @@
     <title>slot入门</title>
     <script src="../js/vue2.0.js"></script>
 </head>
-
-
-
 <body>
-    <div id="app">
-        <aaa>
-            <p>你好吗我很好</p>
-            <!--等价于下面的(默认是default)-->
-            <!--<p slot="default">你好吗我很好</p>-->
-            <p slot="vue">我会高大上的vue</p>
-            <p slot="react">我会高大上的react</p>
-        </aaa>
-    </div>
-</body>
 <template id="aaa">
     <div>
         <slot>默认值1</slot>
@@ -28,11 +15,40 @@
         <slot name="react">默认值3</slot>
     </div>
 </template>
+<div id="app">
+    <!--<aaa>
+        <p>你好吗我很好</p>
+        &lt;!&ndash;等价于下面的(默认是default)&ndash;&gt;
+        &lt;!&ndash;<p slot="default">你好吗我很好</p>&ndash;&gt;
+        <p slot="vue">我会高大上的vue</p>
+        <p slot="react">
+            我会高大上的react
+        </p>
+    </aaa>-->
+    <aaa>
+        <template>
+            <p v-slot:default>你好吗我很好</p>
+        </template>
+        <template>
+            <p v-slot:vue>我会高大上的vue</p>
+        </template>
+        <template>
+            <p v-slot:react>
+                我会高大上的react
+            </p>
+        </template>
+
+    </aaa>
+</div>
+</body>
+
 <script>
 
     var vm = new Vue({
         el: "#app",
-        data: {},
+        data: {
+        	a:111111111
+        },
         components: {
             'aaa':{
                 template:'#aaa'

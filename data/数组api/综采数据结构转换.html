@@ -2,9 +2,511 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+
 </body>
+<script>
+    var options = {
+        "dictCodes": [
+            {
+                "dictKey": "10",
+                "dictPy": "toujing",
+                "dictValue": "头、颈",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "22",
+                "dictPy": "youlian",
+                "dictValue": "右脸",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "17",
+                "dictPy": "zuoyan",
+                "dictValue": "左眼",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "12",
+                "dictPy": "meijian",
+                "dictValue": "眉间",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "43",
+                "dictPy": "zuozhou",
+                "dictValue": "左肘",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "57",
+                "dictPy": "zuozhongzhi",
+                "dictValue": "左中指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "27",
+                "dictPy": "jing",
+                "dictValue": "颈",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "73",
+                "dictPy": "zuoxi",
+                "dictValue": "左膝",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "71",
+                "dictPy": "zuodatui",
+                "dictValue": "左大腿",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "48",
+                "dictPy": "youshouwan",
+                "dictValue": "右手腕",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "52",
+                "dictPy": "youshoubei",
+                "dictValue": "右手背",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "14",
+                "dictPy": "youmei",
+                "dictValue": "右眉",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "03",
+                "dictPy": "zuoshouzhi",
+                "dictValue": "左手指",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "76",
+                "dictPy": "youxiaotui",
+                "dictValue": "右小腿",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "20",
+                "dictPy": "chun",
+                "dictValue": "唇",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "61",
+                "dictPy": "zuoxiaozhi",
+                "dictValue": "左小指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "05",
+                "dictPy": "zuobi",
+                "dictValue": "左臂",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "37",
+                "dictPy": "tun",
+                "dictValue": "臀",
+                "parentKey": "30",
+                "select": false
+            },
+            {
+                "dictKey": "79",
+                "dictPy": "zuozu",
+                "dictValue": "左足",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "30",
+                "dictPy": "qugan",
+                "dictValue": "躯干",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "75",
+                "dictPy": "zuoxiaotui",
+                "dictValue": "左小腿",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "45",
+                "dictPy": "zuoqianbi",
+                "dictValue": "左前臂",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "13",
+                "dictPy": "zuomei",
+                "dictValue": "左眉",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "11",
+                "dictPy": "qiane",
+                "dictValue": "前额",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "26",
+                "dictPy": "youer",
+                "dictValue": "右耳",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "25",
+                "dictPy": "zuoer",
+                "dictValue": "左耳",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "53",
+                "dictPy": "zuomuzhi",
+                "dictValue": "左拇指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "33",
+                "dictPy": "xiong",
+                "dictValue": "胸",
+                "parentKey": "30",
+                "select": false
+            },
+            {
+                "dictKey": "42",
+                "dictPy": "youshangbi",
+                "dictValue": "右上臂",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "62",
+                "dictPy": "youxiaozhi",
+                "dictValue": "右小指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "35",
+                "dictPy": "bei",
+                "dictValue": "背",
+                "parentKey": "30",
+                "select": false
+            },
+            {
+                "dictKey": "70",
+                "dictPy": "xiazhi",
+                "dictValue": "下肢",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "41",
+                "dictPy": "zuoshangbi",
+                "dictValue": "左上臂",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "78",
+                "dictPy": "youhuai",
+                "dictValue": "右踝",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "08",
+                "dictPy": "youtui",
+                "dictValue": "右腿",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "80",
+                "dictPy": "youzu",
+                "dictValue": "右足",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "47",
+                "dictPy": "zuoshouwan",
+                "dictValue": "左手腕",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "23",
+                "dictPy": "xiaba",
+                "dictValue": "下巴",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "15",
+                "dictPy": "zuotaiyangxue",
+                "dictValue": "左太阳穴",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "51",
+                "dictPy": "zuoshoubei",
+                "dictValue": "左手背",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "19",
+                "dictPy": "bi",
+                "dictValue": "鼻",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "50",
+                "dictPy": "youzhang",
+                "dictValue": "右掌",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "34",
+                "dictPy": "fu",
+                "dictValue": "腹",
+                "parentKey": "30",
+                "select": false
+            },
+            {
+                "dictKey": "74",
+                "dictPy": "youxi",
+                "dictValue": "右膝",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "01",
+                "dictPy": "lianbu",
+                "dictValue": "脸部",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "44",
+                "dictPy": "youzhou",
+                "dictValue": "右肘",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "09",
+                "dictPy": "xiongfu",
+                "dictValue": "胸腹",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "32",
+                "dictPy": "youjian",
+                "dictValue": "右肩",
+                "parentKey": "30",
+                "select": false
+            },
+            {
+                "dictKey": "07",
+                "dictPy": "zuotui",
+                "dictValue": "左腿",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "59",
+                "dictPy": "zuohuanzhi",
+                "dictValue": "左环指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "16",
+                "dictPy": "youtaiyangxue",
+                "dictValue": "右太阳穴",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "18",
+                "dictPy": "youyan",
+                "dictValue": "右眼",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "49",
+                "dictPy": "zuozhang",
+                "dictValue": "左掌",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "55",
+                "dictPy": "zuoshizhi",
+                "dictValue": "左食指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "21",
+                "dictPy": "zuolian",
+                "dictValue": "左脸",
+                "parentKey": "10",
+                "select": false
+            },
+            {
+                "dictKey": "54",
+                "dictPy": "youmuzhi",
+                "dictValue": "右拇指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "46",
+                "dictPy": "youqianbi",
+                "dictValue": "右前臂",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "06",
+                "dictPy": "youbi",
+                "dictValue": "右臂",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "72",
+                "dictPy": "youdatui",
+                "dictValue": "右大腿",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "77",
+                "dictPy": "zuohuai",
+                "dictValue": "左踝",
+                "parentKey": "70",
+                "select": false
+            },
+            {
+                "dictKey": "36",
+                "dictPy": "yao",
+                "dictValue": "腰",
+                "parentKey": "30",
+                "select": false
+            },
+            {
+                "dictKey": "60",
+                "dictPy": "youhuanzhi",
+                "dictValue": "右环指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "31",
+                "dictPy": "zuojian",
+                "dictValue": "左肩",
+                "parentKey": "30",
+                "select": false
+            },
+            {
+                "dictKey": "56",
+                "dictPy": "youshizhi",
+                "dictValue": "右食指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "04",
+                "dictPy": "youshouzhi",
+                "dictValue": "右手指",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            },
+            {
+                "dictKey": "58",
+                "dictPy": "youzhongzhi",
+                "dictValue": "右中指",
+                "parentKey": "40",
+                "select": false
+            },
+            {
+                "dictKey": "40",
+                "dictPy": "shangzhi",
+                "dictValue": "上肢",
+                "parentKey": "PICS_RTBWMCDM",
+                "select": false
+            }
+        ]
+    };
+    var data = options.dictCodes;
+
+    /*data.forEach(ele => {
+        let parentId = ele.parentKey;
+        if (parentId === 'PICS_RTBWMCDM') {
+            //是根元素的hua ,不做任何操作,如果是正常的for-i循环,可以直接continue.
+        } else {
+            //如果ele是子元素的话 ,把ele扔到他的父亲的child数组中.
+            data.forEach(d => {
+                if (d.dictKey === parentId) {
+                    let childArray = d.children;
+                    if (!childArray) {
+                        childArray = []
+                    }
+                    childArray.push(ele);
+                    d.children = childArray;
+                }
+            })
+        }
+    });
+    //去除重复元素
+    data = data.filter(ele => ele.parentKey === 'PICS_RTBWMCDM');*/
+    function filterArr (data) {
+
+    }
+
+    console.log(filterArr(data));
+</script>
 </html>

@@ -24,7 +24,8 @@
 	let str = '';
 	let fn = function (str) {
 		str = "HELLO";
-		console.log(arguments[0]); // 注意这里在严格模式下和非严格模式下是有区别的，非严格模式(存在arguments映射)下是HELLO,严格模式(不存在arguments映射)下是哈哈。
+		// 注意这里在严格模式下和非严格模式下是有区别的，非严格模式(存在arguments映射)下是HELLO,严格模式(不存在arguments映射)下是哈哈。
+		console.log(arguments[0]); 
 		console.log(str);
 		// console.log(num); // 会报错
 		let num =13;

@@ -13,6 +13,7 @@
     <router-link to="/user/100">用户100</router-link>
     <router-link to="/user/200">用户200</router-link>
     <p>
+    <hr>
         <router-view></router-view>
     </p>
 </div>
@@ -27,6 +28,7 @@
             <p>我是用户{{$route.params.id}}</p>
             <router-link to="/user/100/profile">去跳转到介绍</router-link>
             <router-link to="/user/100/posts">去条船到邮政编码</router-link>
+            <hr>
             <router-view></router-view>
         </div>
         `,

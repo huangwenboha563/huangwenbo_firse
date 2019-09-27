@@ -12,21 +12,23 @@
 
 
     // 数组去重的实践
-
-    let ary = [1, 2, 3, NaN, NaN, 3, 4, 2, 1, 5];
-    let arr = [];
+    // 利用Object.is实现数组的去重(数组去重！！)
+    let ary = [1, 2, 3, NaN, NaN, 3, 4, 2, 1, 5,1];
+    let newAry = [];
     ary.forEach(function (item, index) {
         let flag = true;
-        for (var i = 0;i<arr.length;i++) {
-            if (Object.is(item, arr[i])) { // 如果用 ==  === 试试
+        for (var i = 0;i<newAry.length;i++) {
+            if (Object.is(item, newAry[i])) { // 如果用 ==  === 试试
                 flag = false;
+                // return false; // 加这一句效率可能更高
             }
         }
-        if (flag) {
-            arr.push(item);
+        console.log(1)
+        if (flag) { // 如果为true说明newAry没有当前item就可以往数组里面push了
+            newAry.push(item);
         }
     });
-    console.log(arr);
+    console.log(newAry);
 
 </script>
 </html>

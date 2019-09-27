@@ -2217,4 +2217,174 @@
 
 
 </script>
+<script>
+    var xx = {
+        "hw": {
+            "order": _this.getOrder('hw'),
+            "collectFlag": $("#hw-flag").xMethod('getValue')(),
+            "requiredFlag": scopedBingbang['hw-require']
+        },
+        "foot": {
+            "order": _this.getOrder('foot'),
+            "threshold": Number($(".foot-count").html()),
+            "collectFlag": $("#foot-flag").xMethod('getValue')(),
+            "requiredFlag": scopedBingbang['foot-require']
+        },
+        "iris": {
+            "order": _this.getOrder('iris'),
+            "threshold": Number($(".iris-count").html()),
+            "collectFlag": $("#iris-flag").xMethod('getValue')(),
+            "requiredFlag": scopedBingbang['iris-require']
+        },
+        "phone": {
+            "order": _this.getOrder('phone'),
+            "collectFlag": $("#phone-flag").xMethod('getValue')(),
+            "requiredFlag": scopedBingbang['phone-require']
+        },
+        "photo": {
+            "left": {
+                "autoCut": scopedBingbang['left-autoCut'],// 是否自动切割
+                "algorithm": $("#leftPhotoSf").xMethod('getItems')(), // 质量判断算法
+                "threshold": Number($(".photo .ver-count").html()),  // 阀值
+                "faceRecognition": scopedBingbang['left-faceRecognition'], // 是否判断人脸
+                "printBreastplate": scopedBingbang['left-printBreastplate'] // 是否打印胸牌
+            },
+            "front": {
+                "autoCut": scopedBingbang['ver-autoCut'],// 是否自动切割
+                "algorithm": $("#verPhotoSf").xMethod('getItems')(), // 质量判断算法
+                "threshold": Number($(".photo .left-count").html()),  // 阀值
+                "faceRecognition": scopedBingbang['ver-faceRecognition'], // 是否判断人脸
+                "printBreastplate": scopedBingbang['ver-printBreastplate'] // 是否打印胸牌
+            },
+            "order": _this.getOrder('photo'),
+            "right": {
+                "autoCut": scopedBingbang['right-autoCut'],// 是否自动切割
+                "algorithm": $("#rightPhotoSf").xMethod('getItems')(), // 质量判断算法
+                "threshold": Number($(".photo .right-count").html()),  // 阀值
+                "faceRecognition": scopedBingbang['right-faceRecognition'], // 是否判断人脸
+                "printBreastplate": scopedBingbang['right-printBreastplate'] // 是否打印胸牌
+            },
+            "collectFlag": $("#photo-flag").xMethod('getValue')(), // 是否采集
+            "requiredFlag": scopedBingbang['photo-require'], // 是否必采
+            "auditFlag": scopedBingbang['photo-audit'] // 是否审核
+        },
+        "voice": {
+            "order": _this.getOrder('voice'),
+            "auditFlag": scopedBingbang['voice-audit'],
+            "threshold": '',
+            "collectFlag": $("#voice-flag").xMethod('getValue')(),
+            "requiredFlag": scopedBingbang['voice-require']
+        },
+        "finger": {
+            "flat": {
+                "quality": {
+                    "info": $("#flatIf").xMethod('getItems')(),
+                    "algorithm": $("#flatSf").xMethod('getItems')(),
+                    "threshold": {
+                        "H": Number($(".flat .H-count").html()),
+                        "M": Number($(".flat .M-count").html()),
+                        "S": Number($(".flat .S-count").html()),
+                        "X": Number($(".flat .X-count").html()),
+                        "Z": Number($(".flat .Z-count").html())
+                    },
+                    "collectType": $("#flatFs").xMethod('getItems')()
+                },
+                "auditFlag": scopedBingbang['flat-audit'],
+                "collectFlag": $("#flat-flag").xMethod('getValue')(),
+                "requiredFlag": scopedBingbang['flat-require']
+            },
+            "palm": {
+                "quality": {
+                    "algorithm": $("#palmSf").xMethod('getItems')(),
+                    "threshold": {
+                        "C": Number($(".palm .C-count").html()),
+                        "Z": Number($(".palm .Z-count").html())
+                    }
+                },
+                "auditFlag": scopedBingbang['palm-audit'],
+                "collectFlag": $("#palm-flag").xMethod('getValue')(),
+                "requiredFlag": scopedBingbang['palm-require']
+            },
+            "roll": {
+                "quality": {
+                    "info": $("#rollIf").xMethod('getItems')(),
+                    "algorithm": $("#rollSf").xMethod('getItems')(),
+                    "threshold": {
+                        "H": Number($(".roll .H-count").html()),
+                        "M": Number($(".roll .M-count").html()),
+                        "S": Number($(".roll .S-count").html()),
+                        "X": Number($(".roll .X-count").html()),
+                        "Z": Number($(".roll .Z-count").html())
+                    }
+                },
+                "auditFlag": scopedBingbang['roll-audit'],
+                "collectFlag": $("#roll-flag").xMethod('getValue')(),
+                "requiredFlag": scopedBingbang['roll-require']
+            },
+            "order": _this.getOrder('finger')
+        },
+        "marker": {
+            "order": _this.getOrder('marker'),
+            "collectFlag": $("#marker-flag").xMethod('getValue')(),
+            "requiredFlag": {
+                "tbbj": scopedBingbang['tbbj-require'],
+                "tmtz": scopedBingbang['tmtz-require']
+            }
+        },
+        "cfgName": scopedBingbang['cfgName'],
+        "effects": {
+            "order": _this.getOrder('effects'),
+            "collectFlag": $("#effects-flag").xMethod('getValue')(),
+            "requiredFlag": scopedBingbang['effect-require']
+        },
+        "orgCode": scopedBingbang['orgCode'],
+        "bankCard": {
+            "order": _this.getOrder('bankCard'),
+            "collectFlag": $("#bankCard-flag").xMethod('getValue')(),
+            "requiredFlag": scopedBingbang['bank-require']
+        }
+    }
+</script>
+<script>
+    ['','', '', '', '', '', '', '', '', ''];
+</script>
+<script>
+     mrTimePicker.timePicker(document.querySelector('#test'), {
+            mode: 'date', //面板状态参数
+            format: 'YYYY-MM-DD hh:mm:ss', //格式化
+            autoComplete: false,//自动完成
+            disabledDate: { //禁用日期
+                disabledDate: ['2019-01-01', '2019-02-02'],
+                disabledHours: [18, 23],
+                disabledMinutes: [0, 31],
+                disabledSeconds: [55, 56]
+            },
+            allowClear: false,
+            showTime: true,
+            onChange: function () {
+                debugger
+            },
+            onOk: function () {
+                debugger
+            },
+            onPanelChange: function () {
+                debugger
+            },
+            onOpenChange: function () {
+                debugger
+            }
+        })
+
+    /* mrTimePicker.timePicker(document.querySelector('#test1'), {
+        mode: 'date', //面板状态参数
+        format: 'YYYY-MM-DD', //格式化
+        autoComplete: false,//自动完成
+        disabledDate: { //禁用日期
+            disabledDate: ['2019-01-01', '2019-02-02'],
+            disabledHours: [18, 23],
+            disabledMinutes: [0, 31],
+            disabledSeconds: [55, 56]
+        }
+    }) */
+</script>
 </html>

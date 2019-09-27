@@ -14,3 +14,10 @@ let newAry = arr.filter(function (item,index) {
     // 这个可以做一个面试点
 })
 console.log(newAry);
+
+
+let arr1 = [1,2,30,4,9,8];
+let x = arr1.forEach(function(item,index){
+    item = item +1;
+});
+console.log(x);

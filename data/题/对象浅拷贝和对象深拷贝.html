@@ -33,9 +33,9 @@
         function deepCopy(oldObj) {
             var newObj = {};
             for (var key in oldObj) {
-                if (typeof oldObj[key] == 'object') {
+                if (typeof oldObj[key] == 'object') { // 对value进行二次遍历
                     newObj[key] = deepCopy(oldObj[key]);
-                } else {
+                } else { // 直接把value赋值给key
                     newObj[key] = oldObj[key];
                 }
             }

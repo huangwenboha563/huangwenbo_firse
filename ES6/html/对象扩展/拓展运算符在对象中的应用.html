@@ -8,6 +8,7 @@
 
 </body>
 <script>
+    // 通过扩展运算符和Object.assign对对象进行合并的行为，是属于浅拷贝
     const alp = { fist: 'a', second: 'b'};
     // 当然如果有重复的属性名，右边覆盖左边
     const alphabets = { ...alp, third: 'c' };
@@ -19,7 +20,7 @@
         age: 19,
         address: 'peking'
     };
-    const { username, ...rest } = user;
+    const { username, ...rest } = user; // ...rest表示剩余的，剩余的
     console.log(rest);
 
 </script>

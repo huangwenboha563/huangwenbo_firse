@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>箭头函数</title>
 </head>
+
 <body>
 
 </body>
@@ -55,11 +57,12 @@
 	let fn = (...args) => {
 		// console.log(arguments); // undefined
 		console.log(args);
-		console.log(args instanceof(Array)); // true // 检测数组的原型是否存在于参数args的原型链上
+		console.log(args instanceof (Array)); // true // 检测数组的原型是否存在于参数args的原型链上
 		// instanceof运算符用来判断一个构造函数的prototype属性所指向的对象是否存在另外一个要检测对象的原型链上
 		// return eval(arg.join('+')); // 这样也可以
 	};
-	fn(1,2,3,4);
+	fn(1, 2, 3, 4);
 
 </script>
+
 </html>

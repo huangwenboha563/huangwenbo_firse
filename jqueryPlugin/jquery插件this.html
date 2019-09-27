@@ -8,6 +8,7 @@
         span {
             display: none;
         }
+
         .demo {
             width: 100px;
             height: 100px;
@@ -24,7 +25,7 @@
     /* $(document.body).on('click','.demo',function(){
         alert(1);
     }); */
-    $(".demo").on('click',function(){
+    $(".demo").on('click', function () {
         alert(1)
     });
     /* $.fn.add = function (){
@@ -34,6 +35,20 @@
     };
     $(".demo").add(); */
     /* 通过以上示例，更好的理解事件委派，原来一直忽律了一点 */
+    $.ajax({
+        url: "/htmisWeb/sysparam/updateParameter.do",
+        data: {
+            paramInfo: ParamerterInfo,
+            ID: Flag
+        },
+        dataType: "json",
+        type: "post",
+        success: function (data) {
+            parent.layer.msg('新增成功', {
+                icon: 1,
+                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+            });
+        }
 </script>
 
 </html>

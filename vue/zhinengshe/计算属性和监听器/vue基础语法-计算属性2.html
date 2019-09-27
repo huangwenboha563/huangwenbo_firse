@@ -59,5 +59,13 @@
      初始值是  a ->1  b-> a+3 ->4
      // document点击完成以后b的值变为200，在set里面a的值接受到了val所以a的值也发生变化    a-> 200 b->203
      */
+	var list = [1,2,3,4];
+	console.log(list); // 1234
+	let newList = list.filter(function(){
+		return true;
+    });
+	console.log(newList); // 1 2 3 4
+	newList = newList.reverse();
+	console.log(newList);
 </script>
 </html>
