@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>利用promise实现异步加载图片</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function loadImageAsync(url) {
+        return new Promise(function (resolve, reject) {
+            const image = new Image();
+            image.src = url;
+            image.onload = function () {
+                resolve(image);
+            };
+            image.onerror = function () {
+                reject(new Error('Could not load image at ' + url));
+            };
+
+            
+        });
+    }
+    var url = 'http://img-bo.oss-cn-beijing.aliyuncs.com/2017/12/13/f1918665-d3df-4991-a0a5-ff553d0a56d415034145465886975.jpeg?x-oss-process=image/resize,m_lfit,h_150,w_150'
+    loadImageAsync(url).then(function(data){
+        document.body.append(data)
+    })
+</script>
+
+</html>

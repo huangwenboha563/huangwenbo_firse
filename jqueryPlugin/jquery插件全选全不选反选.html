@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>全选，全不选，反选</title>
+    <style>
+        span {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><input type="checkbox" name="a" id="" disabled="true"></li>
+        <li><input type="checkbox" name="a" id="" disabled="true"></li>
+        <li><input type="checkbox" name="a" id=""></li>
+        <li><input type="checkbox" name="a" id=""></li>
+        <li><input type="checkbox" name="a" id=""></li>
+    </ul>
+    <input type="button" value="全选" id="qx">
+    <input type="button" value="全不选" id="qbx">
+    <input type="button" value="反选" id="fx">
+</body>
+<script src="../data/js/jquery.js"></script>
+<script>
+    $.fn.extend({
+        // 全选
+        checkAll: function () {
+            this.prop('checked', true);
+        },
+        // 全不选
+        unCheckAll: function () {
+            this.prop('checked', false);
+        },
+        // 反选
+        reverseCheck: function () {
+            this.each(function () {
+                this.checked = !this.checked;
+            });
+        }
+    });
+    $("#qx").click(function () {
+        $("input[name='a']").checkAll();
+    });
+    $("#qbx").click(function () {
+        $("input[name='a']").unCheckAll();
+    });
+    $("#fx").click(function () {
+        $("input[name='a']").reverseCheck();
+    });
+</script>
+
+</html>

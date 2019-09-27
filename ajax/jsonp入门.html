@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/index.js"></script>
+    <!--<script src="https://s.ssl.qhres.com/static/a33d0af350c29be9/result/result.js"></script>-->
+</head>
+<body>
+
+</body>
+<script>
+    function fn(data) {
+        console.log(data);
+        console.log(typeof data);
+    }
+</script>
+<!-- 
+    后端会根据截取到你请求地址比如：
+    http://matchweb.sports.qq.com/kbs/calendar?columnId=100000&callback=fn
+    的callback参数，后端会把想要返回的数据用这个callback参数给包装一下eg:后端截取到callback是fn
+    此时就会返回fn(xxx) xxx就是后端想要抛给前端的数据，然后前端人员发现这不就是让我的fn执行吗。因为页面里面已经提前定义好了fn
+    所以...fn就执行了
+
+ -->
+<script src="http://matchweb.sports.qq.com/kbs/calendar?columnId=100000&callback=fn"></script>
+<!-- 
+
+jsonp缺点：只能支持get
+// xss攻击
+
+ -->
+</html>

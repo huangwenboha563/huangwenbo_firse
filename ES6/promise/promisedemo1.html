@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let p = new Promise(function (resolve, reject) {
+        // resolve('我是中国人');
+        reject('建红是讯飞最牛逼的前端');
+    });
+    p.then(function (data) {
+        console.log(data)
+        // return data; || return 1;
+    }, function (err) {
+        console.log('err',err);
+        /* throw new Error('sssssssss')
+        return 1; */
+    }).then(function (data1) {
+        console.warn('data1',data1)
+    }, function (err1) {
+        console.warn('err1',err1);
+    })
+</script>
+
+</html>
