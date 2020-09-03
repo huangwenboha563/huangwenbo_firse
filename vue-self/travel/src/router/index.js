@@ -9,12 +9,12 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/', // 根路径去找Home组件
+      path: '', // 根路径去找Home组件
       name: 'Home', // 带名字的路由
       component: Home
     },
     {
-      path: '/city',
+      path: '/citys',
       name: 'City', // 路由的名字
       component: City
     }

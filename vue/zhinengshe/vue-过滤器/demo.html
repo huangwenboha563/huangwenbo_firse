@@ -20,7 +20,8 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            message: 'nihaomewohenao'
+            message: 'nihaomewohenao',
+            x:9
         },
         filters: {
             capitalize:function(value,param1,param2,param3){
@@ -39,6 +40,21 @@
                 *
                 */
             }
+        },
+        methods:{
+            a(){
+                if(!this.b()) return;
+            },
+            b(){
+                if(this.x>10){
+                    console.log(111111)
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+
         }
     });
     /*

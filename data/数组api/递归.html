@@ -5,7 +5,7 @@
 	<title>递归</title>
 </head>
 <body>
-	
+
 </body>
 <script>
 	// 当前函数自己调用自己就叫递归
@@ -24,8 +24,8 @@
 	}
 	console.log(sum)
 
-	*/ 
-	
+	*/
+
 
 	// 方法2---while循环
 	/*
@@ -61,6 +61,9 @@
 	   console.log(total)
 	*/
 	// 个人理解上面的逻辑有点绕可能是自己太笨了，让我理解我就这样写
+	var n = 200;
+	console.log(n);
+
 	function sum(n) {
 		//->传递进来的值如果是0,说明已经累加到头了,我们不需要再调用自己继续累加了,返回一个0
 		if (n === 0) {
@@ -91,23 +94,23 @@
 	console.log(sum)
 
 	*/
-	
+
 	// 方法2----递归
 	/*
-	
+
 	function sum (n) {
 		if (n === 0) {
 			return 0;
 		}
-		return n + sum(n-1);  // 100 + sum(99) 
+		return n + sum(n-1);  // 100 + sum(99)
 	}
 	var res = sum(100);
 	console.log(res)
 	如果问到的话一般都是回答的是第一种方法 装逼的写法是第二种
 
 
-	100 + sum(99) 
-	100 + 99 + sum(98) 
+	100 + sum(99)
+	100 + 99 + sum(98)
 	100 + 99 + 98 + sum(97)
 	100 + 99 + 98 + ... ... + sum(1)
 	100 + 99 + 98 + ... ... + 1 + sum(0) // 那么sum 0 就是递归的的终止条件    递归重要的是找到递归终止的条件
@@ -115,9 +118,9 @@
 
 	*/
 
-	// 递归实现一个 阶乘   
+	// 递归实现一个 阶乘
 	/*
-	
+
 	function factorial (n) {
 		if (n == 1) {
 			return 1;// 递归的终止条件
@@ -137,18 +140,18 @@
 			return n * factorial(--n);
 		}
 	}
-	*/ 
+	*/
 	// console.log()一共输出两次为什么结果不一样呢
-	function aa (num) {
+	/*function aa (num) {
 		if ( num > 1 ) {
 			aa(--num)
 		}
 		debugger;
 		console.log(num)
 	}
-	aa(4)
+	aa(4)*/
 
-	
-	
+
+
 </script>
 </html>

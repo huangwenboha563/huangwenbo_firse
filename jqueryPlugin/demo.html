@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <div class="gather2">单击我</div>
+</body>
+<script src="../data/js/jquery.js"></script>
+<script>
+    var intervalBox;//interval定时器存储器
+    //设置interval定时器
+    function startInterval() {
+        window.clearInterval(intervalBox);//初始化interval定时器，防止定时器重叠
+        intervalBox = window.setInterval(function(){//设置interval定时器
+            console.log('haha');//打印interval定时器，查看interval定时器效果
+        }, 3000);//定时器间隔时间1000ms
+    }
+    startInterval();
+    //结束interval定时器
+    function stopInterval() {
+        window.clearInterval(intervalBox);//清除interval定时器
+    }
+    $(".gather2").click(function(){
+        stopInterval();
+    });
+</script>
+</html>

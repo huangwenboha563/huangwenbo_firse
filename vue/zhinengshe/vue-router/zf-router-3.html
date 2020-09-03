@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -10,60 +10,52 @@
 
 <body>
 <div id="app">
-    <router-link to="/user/100">用户100</router-link>
-    <router-link to="/user/200">用户200</router-link>
-    <p>
-    <hr>
-        <router-view></router-view>
-    </p>
+    <router-view></router-view>
 </div>
 </body>
 <script>
     // 通过用户路由进入到不同的的用户
     // 不同的用户下面又会有不同的操作比如官方例子 profile(简介) posts(邮政编码)
     // 注意$route  和 $router的区别！！！！！！！！！！！！！！！！
-    let UserHome = {
-        template: `
-        <div>
-            <p>我是用户{{$route.params.id}}</p>
-            <router-link to="/user/100/profile">去跳转到介绍</router-link>
-            <router-link to="/user/100/posts">去条船到邮政编码</router-link>
-            <hr>
-            <router-view></router-view>
-        </div>
-        `,
-        mounted(){
-            alert(1)
-        }
-    }
     let Profile = {
-        template: `<div>自我介绍</div>`
-    }
-    let Posts = {
-        template: `<div>这是我的邮政编码</div>`
+        template: `<div>欢迎来到刘宽登录系统</div>`
     }
     let routes = [
         {
-            path: '/',
+            path: '/', // 当访问根路径的时候也就是默认路径的时候显示这个组件
             component: {
-                template: '<div>默认默认默认默认默认默认默认默认默认默认默认默认默认</div>'
-            }
-        },
-        {
-            path: '/user/:id',
-            component: UserHome,
-            children: [
+                template: `
+                <div style="display: flex;">
+                    <div class="left" style="width:100px;background: red;">
+                        <div><router-link to="/user">用户管理</router-link></div>
+                        <div><router-link to="/person">人员管理</router-link></div>
+                    </div>
+                    <div class="right" style="flex:1;background: blue;color:yellow;">
+                        <h4>右侧主题区域</h4>
+                        <router-view></router-view>
+                    </div>
+                </div>
+                `
+            },
+            // redirect:'/welcome',
+            children:[
                 {
-                    path: 'profile',
+                    path:'/welcome',
                     component: Profile
                 },
                 {
-                    path: 'posts',
-                    component: Posts
+                    path:'/user',
+                    component: {
+                        template: `<div>我是用户管理</div>`
+                    }
+                },
+                {
+                    path:'/person',
+                    component: {
+                        template: `<div>我是用户管理</div>`
+                    }
                 }
-
-            ],
-
+            ]
         }
     ];
     let router = new VueRouter({

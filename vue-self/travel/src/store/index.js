@@ -7,7 +7,8 @@ Vue.use(Vuex);
 // 导出来的是一个Vuex的实例
 export default new Vuex.Store({
   state: { // 存放公用数据
-    city: '稷山'
+    city: '稷山',
+    counter: 1000
   },
   /*actions: {
     changeCity (ctx, city) {
@@ -16,8 +17,15 @@ export default new Vuex.Store({
     }
   },*/
   mutations: {
+    // 方法
     changeCity (state, city) {
       state.city = city;
+    },
+    increment(state){ // 用的时候 this.$store.commit('increment')
+      state.counter++;
+    },
+    decrement(state){
+      state.counter--;
     }
   },
   getters:{}

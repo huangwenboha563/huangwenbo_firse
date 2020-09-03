@@ -24,7 +24,7 @@
         return function (name) {
             console.log(instance); //第一次是null，第二次是Singleton的实例
             if (!instance) {
-                console.log("确实没有")
+                console.log("确实没有");
                 instance = new Singleton(name);
             }
             return instance;

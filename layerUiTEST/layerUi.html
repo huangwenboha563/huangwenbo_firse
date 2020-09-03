@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>layui在线调试</title>
+    <link rel="stylesheet" href="./node_modules/layui-src/src/css/layui.css" media="all">
+    <style>
+
+        body {
+            margin: 10px;
+        }
+
+        .demo-carousel {
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<img src="http://172.16.1.131:19090/idfpcs/7dc37f69-b816-4e9d-ae2f-753677c933a4.jpg?response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=root%2F20200824%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200824T073401Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=ba6b394ec1d547da3fa4dcb70757e49ecdc3fc191d34d274cb16162b81c62cd0" alt="">
+<div onclick="test()">点击我测试</div>
+<div class="gather2">haha</div>
+<table class="layui-hide" id="demo" lay-filter="test"></table>
+<hr>日历看这里fdsdfsfd
+<div class="layui-tab-itemdd">
+    <div>sdfdsfsdff</div>
+    <input type="text" class="layui-input" id="test1">
+</div>
+<div><button id="wo">点击</button></div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script src="jquery.js"></script>
+<script src="./node_modules/layui-src/src/layui.js"></script>
+
+<script>
+     layui.use(['table','laydate'], function(){
+         var laydate = layui.laydate
+         var table = layui.table; //表格
+         laydate.render({
+             elem: '#test1',
+             range: true
+         });
+         table.render({
+             elem: '#demo',
+             height: 420,
+             url: 'demo.json', //数据接口
+             title: '用户表',
+             page: true , //开启分页
+             cols: [[ //表头
+                 {field: 'username', title: 'ID', width:80},
+                 {field: 'username', title: '用户名', width:80},
+                 {field: 'name', title: '积分', width: 90},
+                 {field: 'name', title: '性别', width:80},
+                 {field: 'name', title: '评分', width: 80},
+                 {field: 'name', title: '城市', width:150},
+                 {field: 'name', title: '签名', width: 200},
+                 {field: 'name', title: '职业', width: 100},
+                 {field: 'name', title: '财富', width: 135},
+             ]]
+         });
+$("#wo").click(function(){
+   alert($("#test1").val())
+});
+         var intervalBox;//interval定时器存储器
+         //设置interval定时器
+         function startInterval() {
+             window.clearInterval(intervalBox);//初始化interval定时器，防止定时器重叠
+             intervalBox = window.setInterval(function(){//设置interval定时器
+                 console.log('haha');//打印interval定时器，查看interval定时器效果
+             }, 3000);//定时器间隔时间1000ms
+         }
+         startInterval();
+         //结束interval定时器
+         function stopInterval() {
+             window.clearInterval(intervalBox);//清除interval定时器
+         }
+         $(".gather2").click(function(){
+             stopInterval();
+         });
+
+
+
+     });
+        // 调用晓雪的
+     function test () {
+         $.ajax({
+             url: 'http://192.168.41.62:9527/startQuery',
+             type: 'post',
+             // contentType: 'application/json; charset=UTF-8',
+             // dataType: 'json',
+             data: JSON.stringify({
+                 "currentpage":"1", // 当前第几页
+                 "rowcount": "10", // 每页多少条
+                 "IDCard": "", // 身份证号
+                 "username": "", // 姓名
+                 "scanperson":"" // 操作人
+             }),
+             // dataType: 'jsonp',
+             success: function (result) {
+
+             }
+         });
+     }
+
+</script>
+</body>
+</html>
+
