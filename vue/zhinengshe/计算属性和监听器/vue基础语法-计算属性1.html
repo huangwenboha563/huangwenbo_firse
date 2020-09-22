@@ -21,17 +21,17 @@
 <body>
 <div id="box">
     a -> {{a}} <br>
-    b -> {{b}}
+    <!--b -> {{b}}-->
 </div>
 </body>
 <script>
     var vm = new Vue({
         el: "#box",
         data: {
-            a: 1,
+            a: '看看看看看看看看看看看看看看看看看看看',
         },
         methods: {},
-        computed: { // 只要依赖的值有变化，就会触发
+        /*computed: { // 只要依赖的值有变化，就会触发
             b: function () {// 默认情况下是"get"
                 return this.a + 3;
             }
@@ -50,7 +50,34 @@
             test(newvalue,oldvalue){
                 console.log(newvalue, oldvalue);
             }
-        }
+        },*/
+        beforeCreate: function (){
+            console.log('111111111111111111',this.a);
+        },
+        created: function () {
+            console.log('222222222222222222',this.a);
+        },
+        beforeMount: function () {
+            console.log('333333333333333333',this.a);
+        },
+        mounted: function () {
+            console.log('444444444444444444444',this.a);
+        },
+        /*
+        ,
+        */
+        /*beforeUpdate: function () {
+            console.log('55555555555555555555555',vm.a);
+        },
+        updated: function () {
+            console.log('66666666666666666666',vm.a);
+        },
+        beforeDestory: function () {
+            console.log('77777777777777777777777',vm.a);
+        },
+        destoryed: function () {
+            console.log('888888888888888888',vm.a);
+        }*/
     })
     document.onclick = function () {
         vm.a  = vm.a + 100;

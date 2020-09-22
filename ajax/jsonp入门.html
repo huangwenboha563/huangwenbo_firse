@@ -9,13 +9,14 @@
 <body>
 
 </body>
+<script src="../data/js/jquery.js"></script>
 <script>
     function fn(data) {
         console.log(data);
         console.log(typeof data);
     }
 </script>
-<!-- 
+<!--
     后端会根据截取到你请求地址比如：
     http://matchweb.sports.qq.com/kbs/calendar?columnId=100000&callback=fn
     的callback参数，后端会把想要返回的数据用这个callback参数给包装一下eg:后端截取到callback是fn
@@ -24,10 +25,33 @@
 
  -->
 <script src="http://matchweb.sports.qq.com/kbs/calendar?columnId=100000&callback=fn"></script>
-<!-- 
+<!--
 
 jsonp缺点：只能支持get
 // xss攻击
-
  -->
+<script>
+    $.ajax({
+        type:'get',
+        url: 'http://matchweb.sports.qq.com/kbs/calendar',
+        data: {
+            columnId:100000,
+        },
+        jsonp: 'hello',
+        /*
+        *  如果后端程序员有jsonp开发经验，完全不用配置jsonp  jsonpCallback这两个参数
+        *  jsonp:'xxx'  默认值是callback，后端程序员会直接截取这个"callback"后面的参数
+        *  如果写上jsonp:'hello' newwork中url就会变为： http://matchweb.sports.qq.com/kbs/calendar?hello=jQuery1124009269428283047687_1600309044082&columnId=100000
+        *  jsonpCallback 默认也不需要写，jquery会自动升成一个随机函数名，后端程序员就把要返回的数据当做这个函数名的参数一起返回回来了jQuery1124021885462098130626_1600309241125(后端数据)
+        *  http://matchweb.sports.qq.com/kbs/calendar?callback=jQuery1124021885462098130626_1600309241125&columnId=100000
+        *  同理如果我们配了jsonpCallback:'word'，后端程序员就会返回word(后端数据)只不过$.ajax方法的success里面会捕获这个后端数据而已，如果是原生的写法，就需要前端人员自己在页面定义一个方法 word
+        */
+        // jsonp: 'xxxx',
+        // jsonpCallback: 'yyyy',
+        dataType: 'jsonp',
+        success: function (res) {
+            console.warn(res);
+        }
+    })
+</script>
 </html>
