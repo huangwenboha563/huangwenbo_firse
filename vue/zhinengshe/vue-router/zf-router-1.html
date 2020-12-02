@@ -10,13 +10,17 @@
         <!--使用router-link组件来导航-->
         <!-- 通过传入 `to` 属性指定链接. -->
         <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-        <router-link to="/bar">水果</router-link>
-        <router-link to="/foo">技术</router-link>
+        <router-link to="/fruits">水果</router-link>
+        <router-link to="/js">技术</router-link>
+        <router-link to="/fruitsA">水果A</router-link>
+        <router-link to="/fruitsB">水果B</router-link>
     </p>
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
     <hr>
-    <router-view></router-view>
+    <keep-alive>
+        <router-view></router-view>
+    </keep-alive>
 </div>
 <template id="sg">
     <div>
@@ -48,8 +52,18 @@
 
     // 1. 定义（路由）组件。
     // 可以从其他文件 import 进来
-    const Foo = {template: '#sg'}
-    const Bar = {template: '#js'}
+    const Fruits = {
+        template: '#js',
+        created: function () {
+            console.log('1')
+        }
+    }
+    const Js = {
+        template: '#sg',
+        created: function () {
+            console.log('2')
+        }
+    }
     const Detail = {
         template:
             '<div>我是详情页面{{this.$route.params.id}} </div>',
@@ -64,9 +78,9 @@
     // 或者，只是一个组件配置对象。
     // 我们晚点再讨论嵌套路由。
     const routes = [
-        {path: '/', component: Foo}, // 当访问根路由，也就是直接访问到项目的时候 也可以配置path:'' == path:'/'
-        {path: '/foo', component: Foo},
-        {path: '/bar', component: Bar},
+        {path: '/', component: Fruits}, // 当访问根路由，也就是直接访问到项目的时候 也可以配置path:'' == path:'/'
+        {path: '/fruits', component: Fruits},
+        {path: '/js', component: Js},
         {path: '/detail/:id', component: Detail},
     ];
 
@@ -83,6 +97,16 @@
         router,
         data: {
             msg: 'niahoma'
+        },
+        mounted: function () {
+            let newRoutes = [
+                {path: '/fruitsA', component: Fruits},
+                {path: '/fruitsB', component: Fruits},
+            ]
+            //this.$router.options.routes = newRoutes;
+            this.$router.addRoutes(newRoutes)
+
+            console.log(this.$router);
         }
     }).$mount('#app')
 

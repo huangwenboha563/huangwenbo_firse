@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 思路：将~要改变this指向的方法，挂到目标对象上执行并返回
+    Function.prototype.myCall = function (context) {
+        if (typeof this !== 'function') {
+            throw new TypeError('not function')
+        }
+        context = context || window
+        //***************************************************************************************************
+        // 这三步也可以这样理解：
+        // this指的就是调用myCall 方法的函数
+        // 给当前上下文(call方法的第一个参数)添加一个属性fn，属性值为this，当前上下文就可以调用这个方法了。
+        // 把call方法传入的其他的参数传入到属性fn指代的函数中，直接调用函数
+        // f.myCall(obj) 就是将f方法添加到obj的属性中，f中的this 指向 obj
+        // 一定要理解这里的this是谁，谁调用myCall this就是谁~~~~~~~~~~~~
+        context.fn = this;                   //this指向的是当前的函数（Function实例）
+        console.dir(context); // {name:'hwb',age:20,fn: function(){console.log(this.name)}}
+        // context.fn this.name肯定就是hwb了哈哈哈哈哈哈哈哈哈
+        console.log(context.fn); // 给obj上加了一个hh方法
+        let arg = [...arguments].slice(1);   //获取除了this指向对象以外的参数，空数组slice后返回仍是空数组
+        // console.log(arg);
+        // context.fn()
+        // console.log(...arg);  arg本来是一个数组，[1,2,3] ...arg 就是把这个数组一个一个传递过去。模仿真正的call
+        let result = context.fn(...arg);     //隐式绑定，当前函数的this指向context
+        // context.fn 执行的时候 就是也就是hh执行，hh执行的时候里面调用的this，这个this就是context
+        //***************************************************************************************************
+        delete context.fn; // 删除对象的某个属性
+        // console.log(context.fn);
+        return result
+    }
+
+    function hh() {
+        console.log(1)
+        console.log(this)
+        console.log(this.name);
+        console.log('看看hh的参数',arguments);
+    }
+
+    var obj = {name: 'hwb', age: 20}
+    hh.myCall(obj,1,2,3)
+
+
+</script>
+<script>
+   /* function box(a,...arg) {
+        console.log(a);
+        console.log(...arg);
+        console.log(arg);
+    }
+    box(5,4,3,2,1)*/
+</script>
+</html>

@@ -4,7 +4,7 @@
 >
 > 1. 先拆分组件，构建静态页面（静态组件）
 
-```
+```javascript
 // 添加组件
 class Add extends React.Component {
     constructor() {
@@ -93,4 +93,6 @@ class TodoList extends React.Component {
 
 ReactDOM.render(<TodoList/>, document.getElementById('root'))
 ```
+
+
 

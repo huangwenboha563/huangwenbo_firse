@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mvvm-class版本</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="school.name">
+    <div>{{school.name}}</div>
+    <div>{{school.age}}</div>
+    <ul>
+        <li>{{school.name}}</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</div>
+</body>
+<!--<script src="./node_modules/vue/dist/vue.js"></script>-->
+<script src="mvvmClassVersion.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            school: {
+                name: '珠峰',
+                age: 10
+            }
+        }
+    })
+</script>
+</html>

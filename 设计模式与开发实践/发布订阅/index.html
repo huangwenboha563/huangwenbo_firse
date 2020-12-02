@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布订阅</title>
+</head>
+<body>
+
+</body>
+<script>
+    var message = {};
+    // 订阅队列
+    function subscribe(type,fn){
+        message[type] = fn;
+    }
+    // 发布
+    function send(type) {
+        message[type]?message[type]():'';
+    }
+    // 订阅
+    subscribe('xj',function(){
+        console.log('我是新疆人，我要吃大盘鸡')
+    })
+    subscribe('hb',function(){
+        console.log('我河北人，我要吃板面')
+    })
+    // hyl dmf
+    subscribe('yl',function(){
+        console.log('我是湖北人，我爱吃米饭')
+    })
+    // 去发布
+    send('xj');
+    send('hb');
+    send('yl');
+</script>
+</html>

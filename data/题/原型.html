@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 构造函数
+    function Foo(name, age) {
+        this.name = name
+    }
+    Foo.prototype.alertName = function () {
+        alert(this.name)
+    }
+    // 创建示例
+    var f = new Foo('zhangsan')
+    f.printName = function () {
+        console.log(this.name)
+    }
+    // 测试
+    f.printName()
+    f.alertName()
+
+
+    // hasOwnProperty 判断 key 是不是某个对象的私有属性，本身有的，不是原型上有的
+    // obj.hasOwnProperty(key)
+</script>
+</html>

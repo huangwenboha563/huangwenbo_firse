@@ -29,7 +29,7 @@
 		computed: {
 			checkAll: {
 				get() {
-					// console.log(1);
+					console.log('走了get了');
 					return this.products.every(item => item.isSelected);
 					/*
 					*  所有的选项都为true get的值才为true
@@ -39,7 +39,7 @@
 					*/
 				},
 				set(val) {
-					console.log(val);
+					console.log(val,'走了set了');
 					this.products.forEach(item => item.isSelected = val);
 				}
 			}

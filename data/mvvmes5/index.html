@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mvvmES5版本</title>
+</head>
+<body>
+<!--MVVM 双向数据绑定 angula脏值检测  vue数据劫持+发布订阅-->
+<!--Object.defineproperty-->
+
+</body>
+<script>
+    /***********************************************/
+    // 1.configurable属性默认false
+    // 2.如果是false delete obj.name 删除是不起作用的，在控制台看obj，还是 {name:'海鑫科金'}
+    /*
+    var obj = {
+
+    }
+    Object.defineProperty(obj,'name',{
+        value: '海鑫科金',
+        configurable: true
+    })
+    delete obj.name
+    */
+    /***********************************************/
+    /*var obj = {
+
+    }
+    Object.defineProperty(obj,'name',{
+        value: '海鑫科金',
+        configurable: true,
+        enumerable: false // 如果是是false就 for循环遍历不起作用，如果是false，for循环遍历才起作用
+    })
+    for (var i in obj) {
+        console.log(obj[i])
+    }*/
+    /***********************************************/
+    /*
+    var obj = {
+
+    }
+    Object.defineProperty(obj,'name',{
+        value: '海鑫科金',
+        configurable: true,
+        enumerable: true, // 如果是是false就 for循环遍历不起作用，如果是false，for循环遍历才起作用
+        writable: false // 如果是false，就不能把海鑫科金编程北大高科，如果是trueo,obj.name="北大高科"，才起作用
+    })
+    for (var i in obj) {
+        // console.log(obj[i])
+    }
+    obj.name = '北大高科'
+    console.log(obj);
+    */
+    var obj = {
+
+    }
+    Object.defineProperty(obj,'name',{
+        // value: '海鑫科金',  如果有get() set() 就不能有value和writable属性
+        configurable: true,
+        enumerable: true, //
+        // writable: false, //
+        get() {
+        },
+        set() {
+        }
+    })
+</script>
+</html>

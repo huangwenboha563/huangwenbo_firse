@@ -1,46 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>v-model</title>
-	<script src="../js/vue.js"></script>
+    <meta charset="UTF-8">
+    <title>v-model</title>
+    <script src="../js/vue2.0.js"></script>
 </head>
 <body>
-	<div id="box">
-		{{msg}}
-		<input type="text" v-model="msg">
-		<input type="text" v-model="msg">
-		{{msg2}}<br>
-		{{msg3}}<br>
-		{{arr}}<br>
-		{{json}}<br>
-	</div>
+<div id="box">
+    <button @click="test">点击</button>
+    <button @click="test1">点击1</button>
+    <button @click="test2">点击2</button>
+    <ul>
+        <li v-for="(value,key,index) in info">{{key}} ~~ {{value}} ~~{{index}}</li>
+    </ul>
+</div>
 </body>
-<script>  
-	var vm = new Vue({
-		el:"#box",
-		data:{
-			msg:"欢迎",
-			msg2: 12,
-			msg3: true,
-			arr: ['apple','banana','orange'],
-			json: {a:'apple',b:'banana',c:"orange"}
-		}
-	})
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data: {
+            info:{
+                name: 'hisign',
+            }
+        },
+        methods: {
+            test(){
+                this.info.age = 18
+            },
+            test1() {
+                // Vue.set(this.info, 'age', 2)
+                this.$set(this.info,'age',5)
+            },
+            // 添加多个属性
+            test2(){
+                this.info = Object.assign({}, this.info, { age: 19, level: '高级' })
+            }
+        }
+    })
 </script>
 <script>
-	/*
-	
-	v-model 一般用在表单元素(input上)
-	假如页面上有个input，要想让它有值得花我们可以用最传统的value="值"，但是我们既然用了新框架就按照人家的语法来写个属性v-model="msg" msg是vue实例的data上的一个值。	
-	
-	号称双向数据绑定？什么是双向数据绑定？
+    /*
 
-	如何理解数据绑定呢？按照我的操作？当你在其中一个input里面输入值得时候，在谷歌控制台输入vm.msg回车就会发现vm也会跟着变，这就是所谓的数据绑定，双向数据绑定。  
+    v-model 一般用在表单元素(input上)
+    假如页面上有个input，要想让它有值得花我们可以用最传统的value="值"，但是我们既然用了新框架就按照人家的语法来写个属性v-model="msg" msg是vue实例的data上的一个值。
 
+    号称双向数据绑定？什么是双向数据绑定？
 
+    如何理解数据绑定呢？按照我的操作？当你在其中一个input里面输入值得时候，在谷歌控制台输入vm.msg回车就会发现vm也会跟着变，这就是所谓的数据绑定，双向数据绑定。
 
 
-	*/
+
+
+    */
 </script>
 </html>

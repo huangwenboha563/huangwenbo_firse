@@ -14,6 +14,7 @@
 	// 原型继承(私有+公有->公有) call继承(私有->私有) ->所以导致私有的就继承了两份
 	function Father() {
 		this.x = 100;
+		this.cars = ['风范']
 	}
 	Father.prototype = {
 		constructor: Father,
@@ -22,17 +23,20 @@
 		}
 	};
 	function Son() {
-		Father.call(this);
+		Father.call(this); // 继承私有属性
 	}
-	Son.prototype = new Father();
+	Son.prototype = new Father(); // 继承共有属性
 	var zjh = new Son();
+	var zjh2 = new Son();
+	zjh2.cars.push('管道')
+	console.log(zjh.cars);
 	// console.log(zjh.x)
 	// zjh.getX()
 
 	/* 设计模式电子书demo */
 	// 组合继承就是将第一种第二种两种模式进行组合
 	// 1.声明父类
-	function superClass(name) {
+	/*function superClass(name) {
 		this.name = name;
 		this.books = ['html', 'css']
 	}
@@ -57,7 +61,7 @@
 	var instance2 = new subClass('css book', 2013);
 	console.log(instance2.books)
 	instance2.getName();
-	instance2.getTime();
+	instance2.getTime();*/
 </script>
 
 </html>

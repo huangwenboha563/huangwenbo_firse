@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数柯里化</title>
+</head>
+<body>
+<button id="test">点击我</button>
+</body>
+<script>
+    // https://segmentfault.com/a/1190000016160081
+</script>
+<script>
+    var addEvent = (function () {
+        if (window.addEventListener) {
+            return function (el, type, fn, capture) {
+                el.addEventListener(type, function (e) {
+                    fn.call(el, e);
+                }, capture);
+            }
+        } else {
+            return function (ele, type, fn) {
+                el.attachEvent('on' + type, function (e) {
+                    fn.call(el, e);
+                })
+            }
+        }
+    })()
+    var btn = document.getElementById('test');
+
+    addEvent(btn, 'click', function () {
+        alert(0)
+    })
+    // console.log( typeof addEvent);
+</script>
+<script>
+    /*// bind的用法
+    var obj = {
+        name: '',
+        myFun: function (fm, t) {
+            // console.log(fm); // fm是新疆和山西
+            // 额外的参数就是666
+            console.log(this.name + '年龄' + this.age, "来自" + fm + "去往" + t +'额外的参数'+arguments[2])
+            return '我是999'
+        }
+    }
+    var db = {
+        name: "德玛",
+        age: 99
+    }
+    // obj.myFun.bind(db, '新疆', '山西')();
+    // bind和call一样，只不过返回的是个函数需要再次调用一下
+    // 手动实现bind方法
+    Function.prototype.myBind = function(){
+        console.log(arguments); // 类数组，第一个是要this的那个对象
+        // 1.this，谁调用myBind，this就是谁，很明显啊
+        var fn = this;
+        // 一定要理解这里的fn为什么要变为this，
+        var args = Array.prototype.slice.call(arguments);
+        // args 类数组转换为数组
+        var context = args.shift();
+        // context 就是第一个参数，就是要改变的那个
+        console.log(context);
+        console.log('fn->',fn) // fn就是obj.myFun
+        return function(){
+            console.log('args->',args) //  ["新疆", "山西"]
+            console.log('arguments->',Array.prototype.slice.call(arguments)); // [666]
+            console.log(args.concat(Array.prototype.slice.call(arguments))) // ["新疆", "山西", 666]
+            // return fn.apply(context, args.concat(Array.prototype.slice.call(arguments)));
+            // 为什么需要return 是因为 obj.myFun.myBind(db, '新疆', '山西')(666)
+            // 一定要理解这里为什么需要把args和Array.prototype链接起来
+            // 也就是 fn执行的时候可以有return
+            return fn.apply(context, args.concat(Array.prototype.slice.call(arguments)));
+        };
+    };
+    // obj.myFun.myBind(db, '新疆', '山西')得到的是一个函数
+    // 德玛年龄99 来自新疆去往山西额外的参数666
+    console.log(obj.myFun.myBind(db, '新疆', '山西')(666));// 我是999*/
+</script>
+<script>
+    console.log('------初级版本，只能且必须接受三个参数-------------------------------------------------------------------------------------------------------------------------------')
+    // 初级版，只能接受三个参数
+    /*function curry(fn) {
+        var args = Array.prototype.slice.call(arguments, 1); //
+        console.log('args->',args) // 是个空数组
+        return function() {
+            console.log('arguments->',Array.prototype.slice.call(arguments)); // [2,3,4]
+            var newArgs = args.concat(Array.prototype.slice.call(arguments)); // newArgs->[2,3,4] 长度为3,参数收集的过程...,
+            // 因为fn的形参只接收三个参数，并必须是三个
+            console.log(this) // window
+            return fn.apply(this, newArgs);
+        }
+    }
+    function multiFn(a, b, c) {
+        return a * b * c;
+    }
+    var multi = curry(multiFn);
+    console.log(multi(2, 3, 4));*/
+</script>
+<script>
+    /*console.log('-----------改进版本------------------------------------------------------------------------------------------------------')
+    function curry(fn, args) {
+        var length = fn.length;
+        console.log('length',length); // length指的是fn接受参数的个数,每个函数都有length属性
+        var args = args || [];
+        console.log('args',args);
+        return function(){
+            newArgs = args.concat(Array.prototype.slice.call(arguments));
+            console.log('newArgsLength->',newArgs.length);
+            if(newArgs.length < length){
+                // multiFn要求接收三个参数，但是第一次multi(2)只传递了一个...
+                // 递归调用+闭包原理完成参数收集....
+                return curry.call(this,fn,newArgs);
+            }else{ // 不管是下面哪种方式调用最后都会走这个，完成最终的参数收集
+                console.log(newArgs);
+                return fn.apply(this,newArgs);
+            }
+        }
+    }
+    function multiFn(a, b, c) {
+        return a * b * c;
+    }
+    var multi = curry(multiFn);
+    console.log(multi(2)(3)(4));*/
+    /*console.log(multi(2, 3, 4));
+    console.log(multi(2)(3, 4));
+    console.log(multi(2, 3)(4));*/
+</script>
+<script>
+    function multi() {
+        var args = [...arguments]
+        var fn = function() {
+            var newArgs = args.concat([...arguments]);
+            return multi.apply(this, newArgs);
+        }
+        fn.toString = function() {
+            return args.reduce(function(a, b) {
+                return a * b;
+                // return a+b
+            })
+        }
+        return fn;
+    }
+
+    console.log(multi(2, 3, 4));
+    console.log(multi(2, 3)(4));
+    console.log(multi(2)(3, 4));
+</script>
+</html>

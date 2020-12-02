@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function myNew() {
+        // console.log(arguments);
+        var obj = {};
+        var constructor = [].shift.call(arguments); // 拿出来arguments的第一个也就是构造函数
+        // var constructor = arguments[0]; // 拿出来arguments的第一个也就是构造函数
+        // console.log(constructor);
+        // console.log('16行',arguments);
+        // console.log(Object.prototype.toString.call(arguments));
+        console.log('-----------',arguments);
+        obj.__proto__ = constructor.prototype;
+        var result = constructor.apply(obj, arguments);
+        console.log('我是result',result);
+        return typeof result === 'object' ? result : obj;
+    }
+
+
+    function Student(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Student.prototype = {
+        say: function () {
+            console.log('我会npm run dev');
+        }
+    }
+    var stu = myNew(Student, 'lk', 30)
+    console.log('39',stu);
+    console.log(stu.name);
+    console.log(stu.age);
+    stu.say()
+
+    function Box (name,age) {
+        this.name = name;
+        this.age = age;
+    }
+    new Box('lk',30)
+
+
+</script>
+</html>

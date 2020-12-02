@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>school的值{{school.name}}</p>
+    <div>level的值{{level}}</div>
+</div>
+</body>
+<script src="mvvm.js"></script>
+<script>
+    // 构造函数
+    let zhufeng = new Zhufeng({
+        el: '#app',
+        data: {  // Object.defineProperty来定义
+            school: {
+                name: 'hha'
+            },
+            level: '高'
+        }
+    })
+    // console.log(zhufeng);
+</script>
+</html>
+<script>
+    this.element.on('dna',function(event,params){
+        // 渲染dna
+    })
+    this.element.on('confirm',function(event,params){
+        // 渲染采集确认单
+    })
+    this.element.on('zwk',function(event,params){
+        // 渲染指纹卡
+    })
+    this.element.on('drug',function(event,params){
+        // 渲染毒检报告
+    })
+
+    // 在各自的请求成功的回调调用提前定义好的事件...
+    this.element.trigger('dna',listData)
+
+
+
+</script>

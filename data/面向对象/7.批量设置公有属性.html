@@ -5,7 +5,7 @@
 	<title>批量设置供有属性</title>
 </head>
 <body>
-	
+
 </body>
 <script>
 	// 第一种方式(起个别名的方式)
@@ -38,7 +38,7 @@
 	}
 	Fn.prototype = {
 	    name: [1,2,3,4], // 一般不建议把属性写在原型上，因为此属性一旦是引用类型 比如  var box1 = new Fn(); box.name.push(5) 那么 var box2 = new Fn() box2.name也...
-		constructor:Fn, // 字面量创建的方式，重新开辟了一块堆内存，constructor指了Object所以必须指回来
+		// constructor:Fn, // 字面量创建的方式，重新开辟了一块堆内存，constructor指了Object所以必须指回来
 		a:function () {
 
 		},
@@ -49,7 +49,8 @@
 
 		}
 	};
-	// 只有浏览器天生给Fn.prototype开辟的堆内存中才有constructor这个属性,
+	var f = new Fn()
+	// 只有浏览器天生给Fn.prototype开辟的堆内存中才有constructor这个属性, Fn.prototype = {}如果不设置这个 f.constructor还是指向Fn的
 	// 而我们自己开辟的这个堆内存，没有这个属性。这样constructor指向就不再是Fn，而是Object
 	// 比如：var obj = {} obj.constructor就是Object
 	// 为了和原来的保持一致，我们需要手动的增加constructor指向

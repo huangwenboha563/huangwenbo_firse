@@ -5,7 +5,7 @@
 	<title>原型基础</title>
 </head>
 <body>
-	
+
 </body>
 <script>
 	function creadeJsPerson (name,age) {
@@ -45,8 +45,8 @@
 	// 这种查找的机制就是我们的原型链模式....
 
 	function Fn() {
-		this.x = 100;
-		this.sum = function () {
+		this.x = 100; // 私有的
+		this.sum = function () { // 私有的
 
 		}
 	}
@@ -63,7 +63,7 @@
 	// f1.__proto__.getX === f2.getX      ->true
 	// f1.getX === Fn.prototype.getX      ->true
 
-	// f1.sum == f2.__proto__.sum  ->false
+	// f1.sum == f2.__proto__.sum  ->false // f1.sum先找的是私有的，私有的没有再找的共有的
 	// f1.sum == Fn.prototype.sum  ->false
 
 
@@ -78,7 +78,7 @@
 	f1.__proto__.sum = function () {
 		// 修改公有的（ie不能这样写）
 	}
-	
+
 	Fn.prototype = function () {
 		// 修改公有的（这样写兼容所有的浏览器）
 	}

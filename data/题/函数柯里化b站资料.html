@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    /*
+    * 参数复用
+    * 提前返回
+    * 延迟执行
+    *
+    */
+    // 1. 一个普通的打招呼方法
+    function say(company, department, position) {
+        console.log(`${company}公司~~~${department}部门~~~${position}职位`)
+    }
+
+    say('海鑫科金', '综采', '网页制作');
+    say('海鑫科金', '综采', 'java开发');
+    say('海鑫科金', '综采', '.net开发');
+    console.log('--------------------------------')
+
+    // 2. 柯里化入门
+    function say2(company) {
+        return function (department) {
+            return function (position) {
+                console.log(`${company}公司~~~${department}部门~~~${position}职位`)
+            }
+        }
+    }
+
+    say2('海鑫科金')('综采')('网页制作'); // 调用say2
+    say2('海鑫科金')('综采')('java开发'); // 调用say2
+    say2('海鑫科金')('综采')('.net'); // 调用say2
+    console.log('....................')
+    var fn = say2('海鑫科金')('综采') // 调用say2 ---------（复用了海鑫科金和综采这两个参数）
+    fn('网页制作');
+    fn('java开发');
+    fn('综采');
+    console.log('===============')
+
+    // 3.封装一个通用的柯里化函数，把say传进去，得到新的方法，为什么要封装curry。因为参数的个数是不确定的
+    function curry(fn) {
+        let len = fn.length; // 3 fn就是say方法，也就是say将要被柯里化成一个方法
+        return function temp() {
+            let args = [...arguments]; // console.log(args); 第一次调用的时候是：["海鑫科金", "综采"]；
+            if (args.length >= len) { // 如果传递的是三个参数，直接调用say就行了
+                return fn(...args)
+            } else { // 满足条件才走递归....
+                return function () { // 这里的return的这个函数就是，当参数小于3时。要调用的那个fn2函数
+                    // console.log(...args, '****', ...arguments)
+                    return temp(...args, ...arguments); // 递归真是无处不在啊
+                }
+            }
+        }
+    }
+
+    var say3 = curry(say);
+    var fn2 = say3('海鑫科金', '综采'); // 调用say2 ---------（复用了海鑫科金和综采这两个参数）
+    fn2('c++');
+    // fn2('python');
+    // fn2('go');
+    say3('百度','ai','php');
+    say3('百度','ai')('php');
+    say3('百度')('ai','php');
+
+
+
+
+
+    // 上面的这个一定要立即，手敲出来....
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 1. Set 是什么
+    // 2. .flat方法是什么
+    // flat方法介绍
+    /*var arr = [1,2,[3,4]]
+    console.log(arr.flat());
+    var arr1 = [1, 2, [3, [4, 5]]]
+    console.log(arr1.flat(1)); // 默认传1
+    console.log(arr1.flat(2)); // 默认传2
+
+    [1, [2, [3]]].flat(Infinity)*/
+    // [1, 2, 3]
+    // 如果不管有多少层嵌套，都要转成一维数组，可以用`Infinity`关键字作为参数。
+
+        // [1, 2, , 4, 5].flat()
+    // [1, 2, 4, 5]   如果原数组有空位，`flat()`方法会跳过空位。
+</script>
+<script>
+    /*var arr=[ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+    Array.from(new Set(arr.flat(Infinity))).sort((a,b)=>{ return a-b})*/
+</script>
+<script>
+    // 数组去重的方法，真秒啊
+    /*const arr1 = [1, 2, 1, 2, 3, 5, 4, 5, 3, 4, 4, 4, 4];
+    const arr2 = arr1.filter( (element, index, self) => {
+        // console.log(self.indexOf(element),index);
+        return self.indexOf( element ) === index;
+    });*/
+</script>
+<script>
+    function add(a) {
+        function sum(b) { // 使用闭包
+            // console.log('b',b);
+            console.log('a',a);
+            a = a + b; // 累加
+            return sum;
+        }
+        sum.toString = function() { // 重写toString()方法
+            return a;
+        }
+        console.log('sum',typeof sum,sum);
+        return sum; // 返回一个函数
+    }
+    // add(1)
+    add(1)(2)(3)(4) // 10
+</script>
+</html>
