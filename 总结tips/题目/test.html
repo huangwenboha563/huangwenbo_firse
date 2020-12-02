@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // call    fn.call(obj,1,2,3,4)  fn执行，并让fn里面的this指定为obj
+    Function.prototype.myCall = function (context) {
+        context = context || window;
+        var arguments = Array.prototype.slice.call(arguments);
+        var args = arguments.slice(1);
+        context.fn = this;
+        var res = context.fn(...args); // context.fn，接受的参数要除了arguments的第一个
+        delete context.fn;
+        return res;
+    }
+    // new 手撕 new Person('hwb',18)
+    Function.prototype.myNew = function () {
+        var obj = {};
+        var Con = [].shift.call(arguments);
+        // Con.apply(obj,arguments); apply传递obj意思是给obj绑定私有属性
+        var res = Con.apply(obj, arguments);
+        obj.__proto__ = Con.prototype; // 给obj关联公司有属性
+        return typeof res == 'object' ? res : obj;
+    }
+    // 手写bind原理 fn.bind(obj,'新疆','山西')(666)
+    Function.prototype.myBind = function () {
+        var fn = this;
+        var args = Array.prototype.slice.call(arguments);
+        var context = args.shift();
+        return function () {
+            return fn.apply(context,args.concat(Array.prototype.slice.call(arguments)))
+        }
+    }
+    // 手动实现apply函数（总之apply一句话，一个context，一个arr。最关键的一句话和call一样 context.fn = this）
+
+    Function.prototype.myApply = function (context, arr) {
+        context = context ? Object(context) : window;
+        context.fn = this;
+        let result;
+        if (!arr) {//判断是否存在第二个参数
+            result = context.fn();
+        } else {
+            result = context.fn(...arr);
+        }
+        delete context.fn;
+        return result;
+    }
+    // 测试一下
+    let value = 1;
+    let obj = {
+        value: 2
+    };
+    function func(name, age) {
+        console.log(name);
+        console.log(age);
+        console.log(this.value);
+    }
+    func.myApply(null); //1
+    func.myApply(obj, ['kevin',18]);
+</script>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面</title>
+    <style>
+        .out{
+            width: 100px;
+            height: 100px;
+            background: black;
+            margin: 20px;
+        }
+        .second{
+            width: 400px;
+            padding: 10px;
+            border: 1px solid slateblue;
+            /*如果不加overflow:hidden;当s1的内容过少时，就会造成高度坍塌*/
+            overflow: hidden;
+        }
+        .float{
+            float: left;
+            width: 200px;
+            height: 50px;
+            background: salmon;
+        }
+        .s1{
+            overflow: hidden;
+            background: slategray;
+
+        }
+    </style>
+</head>
+<body>
+
+<div class='out'></div>
+<div class="out-out" style="overflow: hidden;">
+    <div class='out'></div>
+</div>
+
+<div class="second">
+    <div class="float">
+    </div>
+    <div class="s1">
+        IE6、IE7中， // function foo(){ // console.log(a); // } // function bar(){ // var a =3 ;
+        IE6、IE7中， // function foo(){ // console.log(a); // } // function bar(){ // var a =3 ;
+    </div>
+</div>
+</body>
+<script>
+    /*
+    *  bfc (block  formatting context ) // 块级格式化上下文
+    *  它是页面中的一块渲染区域，有一套渲染规则，决定了其子元素如何布局，一级和其他元素之间的关系和作用。
+    *  触发规则
+    *  1.float的值不为none
+    *  2.overflow不为visible
+    *  3.display的值为inline-block、table-cell、table-caption
+    *  4.position的值为absolute或者fixed
+    */
+    /*sessionStorage.setItem('name','黄');
+    localStorage.setItem('name','黄');
+    window.open('./1.html')*/
+</script>
+</html>

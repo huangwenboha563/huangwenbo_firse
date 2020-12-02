@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="test2">222</button>
+<button id="test">点击</button>
+</body>
+<script>
+    var element = document.getElementById('test')
+    var element2 = document.getElementById('test2')
+    function box(e){
+        console.log(e);
+    }
+    element2.onclick = box
+
+    element.onclick = function (e) {
+        alert(1)
+        debounce(fn, 1000).bind(element,'value1','value2')(e);
+    }
+    function fn () {
+        console.log(this)
+        console.log(arguments);
+    }
+    function debounce (fn, delay) {
+        let temp = null;
+        return function () {
+            //因为这个函数是事件处理函数所以这个函数中的this就是element
+            if(temp) clearTimeout(temp);
+            temp = setTimeout(() => {
+                fn.apply(this,arguments); //你也可以用apply
+            }, delay);
+        }
+    }
+</script>
+</html>

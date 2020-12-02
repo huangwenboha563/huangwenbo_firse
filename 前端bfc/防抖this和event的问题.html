@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="haha">点击我</button>
+</body>
+<script>
+    /*var element = document.getElementById('haha');
+    //假设我要传两个参数，既然fn里传不了那就在debounce里传
+    element.onclick = debounce (fn, 1000, 1, 2);
+
+    //简单的举个fn的例子
+    function fn (e, num1, num2) {
+        console.log(e, num1, num2);
+    }
+
+    function debounce (fn, delay, ...nums) {
+        let temp = null;
+        return function (e) {
+            if(temp) clearTimeout(temp);
+            temp = setTimeout(() => {
+                //e是事件处理函数都有的一个参数，nums是个数组，在用call的时候需要解构一下
+                fn.call(this, e, ...nums)
+                //当然这里也可以用apply但是要麻烦很多因为nums是数组，但还有个e
+            }, delay);
+        }
+    }*/
+</script>
+<script>
+    var element = document.getElementById('haha');
+    element.onclick = debounce(fn, 1000).bind(element,'ni','hao')();
+    function fn (e, num1, num2) {
+        console.log(e, num1, num2);
+    }
+    function debounce (fn, delay) {
+        let temp = null;
+        return function () {
+            console.log(arguments);
+            //因为这个函数是事件处理函数所以这个函数中的this就是element
+            if(temp) clearTimeout(temp);
+            temp = setTimeout(() => {
+                console.log(arguments);
+                fn.call(this,...arguments); //你也可以用apply
+            }, delay);
+        }
+    }
+</script>
+</html>
