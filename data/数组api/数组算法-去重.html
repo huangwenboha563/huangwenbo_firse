@@ -5,7 +5,7 @@
 	<title>数组去重</title>
 </head>
 <body>
-	
+
 </body>
 <script>
 	// 数组去重有多种方法，算法
@@ -20,7 +20,7 @@
 			console.log(1)
 			obj[cur] = cur;
 		}
-		
+
 	}
 	console.log(arr)
 	/*
@@ -42,15 +42,15 @@
 	for (var i = 0; i<arr.length; i++) {
 		var cur = arr[i];
 		if (obj[cur] === cur) {// 说明在这个对象里面已经有cur这个属性了
-			arr.splice(i,1);   
+			arr.splice(i,1);
 			// if里面的满足条件的话执行，遇到continue后面的代码不执行直接进行下一次循环和else效果一样看着比较装逼
 			i--;
 			continue;
 		}
 		console.log(1)
 		obj[cur] = cur;
-		
-		
+
+
 	}
 	console.log(arr)
 	*/
@@ -69,8 +69,6 @@
 		}
 		console.log(1)
 		obj[cur] = cur;
-		
-		
 	}
 	console.log(arr)
 </script>

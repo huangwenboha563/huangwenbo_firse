@@ -128,22 +128,30 @@
 </script>
 <script>
     function multi() {
+        // debugger
+        // 闭包保存args
         var args = [...arguments]
-        var fn = function() {
+        console.log('++',args);
+        function fn () {
+            console.log(this)
             var newArgs = args.concat([...arguments]);
-            return multi.apply(this, newArgs);
+            console.log('----',args);
+            // return multi.apply(this, newArgs);
+            return multi(...newArgs) // 再次调用的时候参数就收集了
         }
         fn.toString = function() {
+            console.log(args);
             return args.reduce(function(a, b) {
                 return a * b;
                 // return a+b
             })
         }
-        return fn;
+        // return fn;
+        return fn
     }
 
-    console.log(multi(2, 3, 4));
-    console.log(multi(2, 3)(4));
-    console.log(multi(2)(3, 4));
+    console.log(multi(2, 3, 4)(2).toString());
+    // console.log(typeof multi(2, 3)(4));
+    // console.log(typeof multi(2)(3, 4));
 </script>
 </html>

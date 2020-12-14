@@ -2,9 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>数组扁平化</title>
 </head>
 <body>
-$END$
+
 </body>
+<script>
+    // 数组扁平化的前置知识
+    var a1 = [1,2,3];
+    var a2 = [4,5,6];
+    var a3 = [7,[8,9]];
+    var a4 = [7,[8,9,[10,11]]]
+    console.log(a1.concat(a2));
+    console.log([].concat.apply([],a3));
+    console.log([].concat.apply([],a4));
+    console.log('-------------')
+    function flatAry (arr) {
+        // isDeep 如果是fasle代表数组的的元素，没有数组了
+        var isDeep = arr.some((item)=> {
+            return item instanceof Array
+        })
+        if (!isDeep) {
+            return arr;
+        }
+        var res = [].concat.apply([],arr);
+        return flatAry(res);
+    }
+
+    console.log('数组扁平化....',flatAry(a4));
+
+</script>
+<script>
+
+    var arr = [1, 2, 3, [4, 5, 6], [7, [8, 9]]];
+
+    function flat(arr) {
+
+    }
+
+    console.log(flat(arr));
+</script>
+<script>
+    // 去重
+    var box = [1, 2, 3, 1, 2, 3];
+    var set = new Set(box);
+    console.log(Array.from(set))
+    console.log(Array.from(set) instanceof Array)
+
+
+    function unique(arr) {
+        var set = new Set(arr);
+        return [...set];
+    }
+
+    function unique2(arr) {
+        var set = new Set(arr);
+        return Array.from(set);
+    }
+
+    function uniqueOld(arr) {
+        var newAry = [];
+        arr.forEach((item, index) => {
+            if (newAry.indexOf(item) < 0) {
+                newAry.push(item);
+            }
+        });
+        return newAry;
+    }
+
+    console.log(unique(box));
+    console.log(unique2(box));
+    console.log(uniqueOld(box));
+</script>
 </html>

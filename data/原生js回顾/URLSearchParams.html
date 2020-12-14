@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+
 </body>
+<script>
+    // 地址栏?a=1&b=2&c=3
+    var search = location.search;
+    // 新的api URLSearchParams但是ie全系不支持
+    var query = new URLSearchParams(search)
+    console.log(query.get('a'));
+</script>
 </html>

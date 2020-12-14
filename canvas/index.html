@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<canvas id="myCanvas" width="600px" height="600">
+    对不起您的浏览器不支持canvas
+</canvas>
 </body>
+<script>
+    // 用js来给canvas来绘制内容 canvas就是一个画布标签，要绘制内容就要用js来绘制
+    // 1.找到画布对象
+    var canvas1 = document.getElementById('myCanvas');
+    console.log(canvas1);
+    console.log([canvas1]);
+    // 2.上下文对象（画笔）
+    var ctx = canvas1.getContext('2d')
+    console.log(ctx);
+    // 绘制路径
+    ctx.rect(0,0,300,300);
+    ctx.fillStyle = 'pink';
+    ctx.fill();
+    // 描边(描边的颜色)
+    ctx.strokeStyle = 'yellow'
+    ctx.stroke();
+</script>
 </html>
