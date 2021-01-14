@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    fetch('http://192.168.40.58:58080/pics/api/conf/intfConf/getIntfConfList', {
+        headers: {
+            'token': 'b954f899e53eff781853b8c3098b77ab'
+        }
+    }).then(function (response) {
+        return response.json()
+    }).then(function (myJson) {
+        console.log(myJson);
+    })
+</script>
+<script>
+    var oldArr = [1, 2, 3, 4, 5,1,2,3,4,5];
+    var newArr = [];
+    for (var i = 0; i < oldArr.length; i++) {
+        var item = oldArr[i];
+        if (!(newArr.indexOf(item)>-1)) {
+            newArr.push(item)
+        }
+    }
+    console.log(newArr);
+</script>
+</html>
