@@ -1,10 +1,456 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <title>二代证-用户注册</title>
+    <!--引入静态资源-->
+    <link rel="stylesheet" th:href="@{/lib/zTree_v3/css/zTreeStyle/zTreeStyle.css}" type="text/css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .layui-form-item .layui-inline {
+            margin-right: 0px;
+        }
+
+        .layui-row .form-item {
+            float: left;
+        }
+
+        .layui-form-label {
+            width: 132px;
+        }
+
+        .red-star {
+            font-size: 28px;
+            color: red;
+            float: left;
+            margin-right: 1px;
+            width: 12px;
+            margin-top: 9px;
+        }
+
+        .layui-form-label {
+            padding-left: 3px;
+            padding-right: 2px;
+        }
+
+        .timo-compile .layui-input-inline {
+            width: 260px;
+        }
+
+        .select-tree-second {
+            cursor: pointer;
+        }
+    </style>
 </head>
+
+<!--用户注册页面-->
 <body>
-$END$
+<div class="layui-form timo-compile">
+    <!--th:action="@{/idfpcs/tSysUserReg/save}"-->
+    <div>
+        <form id="regForm" style="padding: 20px 0px;">
+            <!--公安机关机构名称和单位名称-->
+            <div class="layui-row">
+                <div class="form-item">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">采集单位</label>
+                            <span class="red-star">*</span>
+                            <div class="layui-input-inline" id="cjdw">
+                                <input class="layui-input select-tree-cjdw" style="width: 100%;"
+                                       th:attr="data-url=@{/system/dept/treeselectByType?type=1&orgCode=}, data-value=${dept?.id}"
+                                       th:value="${dept?.orgName}"
+                                       type="text" name="cjrDwdm" placeholder="请选择">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">服务处所</label>
+                            <span class="red-star">*</span>
+                            <div class="layui-input-inline" id="gajg">
+                                <input class="layui-input select-tree-fwucs" style="width: 100%;"
+                                       th:attr="data-url=@{/system/dept/treeselectByType?type=2&orgCode=}, data-value=${dept?.id}"
+                                       th:value="${dept?.orgName}"
+                                       type="text" name="sjgsdwdm" placeholder="请选择">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--公安机关机构名称和单位名称-->
+            <!--用户姓名和公民身份号码-->
+            <div class="layui-row">
+                <div class="form-item">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户姓名</label>
+                        <span class="red-star">*</span>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="text" name="cjrXm" placeholder="请输入用户姓名">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公民身份号码</label>
+                        <span class="red-star">*</span>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="text" name="cjrGmsfhm" placeholder="请输入公民身份号码">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--密码和确认密码-->
+            <div class="layui-row">
+                <div class="form-item">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <span class="red-star">*</span>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="password" name="password"
+                                   placeholder="6-18位字母和数字组合">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">确认密码</label>
+                        <span class="red-star">*</span>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="password" name="confirm" placeholder="6-18位字母和数字组合">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--移动电话和服务标识号-->
+            <div class="layui-row">
+                <div class="form-item">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">移动电话</label>
+                        <span class="red-star">*</span>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="text" name="cjrYddh" placeholder="请输入移动电话">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">数字证书服务标识号</label>
+                        <span class="red-star" style="color:#fff;">*</span>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="text" maxlength="9" name="cjrSzzsFwbzh"
+                                   placeholder="请输入数字证书_服务标识号">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="layui-row">
+            <div class="layui-form-item timo-finally">
+                <div class="layui-btn ajax-save-user layui-btn-normal"><i class="fa fa-check-circle"></i>保存</div>
+                <div class="layui-btn btn-secondary close-popup layui-btn-normal"><i class="fa fa-times-circle"></i>关闭</div>
+                <div class="layui-btn layui-btn-normal" style="float:right;" onclick="redIdCard()">读取二代证</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/js/plugins/jquery-1.12.4.min.js}"></script>
+<script th:replace="/common/template :: script"></script>
+<script type="text/javascript" th:src="@{/lib/zTree_v3/js/jquery.ztree.core.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/timoTree.js}"></script>
+<script>
+    /*
+    *
+    *
+    *
+    */
+    // 采集单位的树
+    // $(".select-tree-cjdw").on('click',function () {
+    //     window.localStorage.setItem('x','true')
+    // })
+
+    var cjdwTree = $.fn.selectTree({
+        // 选中后事件
+        tree: $(".select-tree-cjdw"),
+        onSelected: function (treeNode) {
+            var id = treeNode.id;
+            $("#gajg .select-tree-fwucs").attr('data-url', '/system/dept/treeselectByType?type=2&orgCode=' + id);
+            console.log('treeNode', treeNode);
+            console.log('选择了采集单位')
+
+        },
+        content: 'cjdw'
+    });
+
+    var fwcsTree = $.fn.selectTree({
+        // 选中后事件S
+        tree: $(".select-tree-fwucs"),
+        onSelectedSecond: function (treeNode) {
+            console.log('选择了服务处所')
+        },
+        content: 'fwcs'
+    });
+
+    // 服务处所的树
+    // var xxx = localStorage.getItem('x');
+    // $("#gajg .select-tree-fwucs").attr('data-url', '/system/dept/treeselectByType?type=2&orgCode=' + xxx);
+    /*var fwcsTree = $.fn.selectTree({
+        // 选中后事件S
+        tree: $(".select-tree-fwucs"),
+        onSelectedSecond: function (treeNode) {
+            console.log('选择了服务处所')
+        },
+        content: 'fwcs'
+    });*/
+
+
+    /*
+     * 增加需求，采集单位选择完以后，联动公安机关机构名称
+     */
+    function checkId(id) {
+        // 身份证校验
+        var num = id.toUpperCase();
+        //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
+        if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num))) {
+            //alert('输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。');
+            return false;
+        }
+        //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+        //下面分别分析出生日期和校验位
+        var len, re;
+        len = num.length;
+        if (len == 15) {
+            re = /^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/i;
+            var arrSplit = num.match(re);
+
+            //检查生日日期是否正确
+            var dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+            var bGoodDay;
+            bGoodDay = (dtmBirth.getYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+            if (!bGoodDay) {
+                //alert('输入的身份证号里出生日期不对！');
+                return false;
+            } else {
+                //将15位身份证转成18位
+                //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+                var arrInt = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+                var arrCh = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+                var nTemp = 0,
+                    i;
+                num = num.substr(0, 6) + '19' + num.substr(6, num.length - 6);
+                for (i = 0; i < 17; i++) {
+                    nTemp += num.substr(i, 1) * arrInt[i];
+                }
+                num += arrCh[nTemp % 11];
+                return true;
+            }
+        }
+        if (len == 18) {
+            re = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/i;
+            var arrSplit = num.match(re);
+
+            //检查生日日期是否正确
+            var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+            var bGoodDay;
+            bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+            if (!bGoodDay) {
+                return false;
+            } else {
+                //检验18位身份证的校验码是否正确。
+                //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+                var valnum;
+                var arrInt = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+                var arrCh = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+                var nTemp = 0,
+                    i;
+                for (i = 0; i < 17; i++) {
+                    nTemp += num.substr(i, 1) * arrInt[i];
+                }
+                valnum = arrCh[nTemp % 11];
+                if (valnum != num.substr(17, 1)) {
+                    return false;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    $(".ajax-save-user").on('click', function () {
+        // 1.姓名
+        var cjrXm = $("input[name='cjrXm']").val();
+        if (cjrXm) {
+            if (cjrXm.length > 15) {
+                layer.msg('请输入合法的用户名');
+                return false;
+            }
+        } else {
+            layer.msg('请填写用户姓名');
+            return false;
+        }
+
+        // 2.公民身份证号
+        var idReg = /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+        var cjrGmsfhm = $("input[name='cjrGmsfhm']").val();
+        if (cjrGmsfhm) {
+            if (!checkId(cjrGmsfhm)) {
+                layer.msg('请输入合法的公民身份证号');
+                return false;
+            }
+        } else {
+            layer.msg('请填写公民身份证号');
+            return false;
+        }
+        // 3.密码
+        var passWordReg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/;
+        var password = $("input[name='password']").val();
+        if (password) {
+            if (!passWordReg.test(password)) {
+                layer.msg('请输入合法的密码');
+                return false;
+            }
+        } else {
+            layer.msg('请填写密码');
+            return false;
+        }
+        var confirm = $("input[name='confirm']").val();
+        if (confirm) {
+            if (!passWordReg.test(confirm)) {
+                layer.msg('请再次输入合法的密码');
+                return false;
+            }
+        } else {
+            layer.msg('请再次填写密码');
+            return false;
+        }
+        if (password !== confirm) {
+            layer.msg('两次密码不一致，请检查');
+            return false;
+        }
+
+        // 4.移动电话
+        var phoneReg = /^1[3456789]\d{9}$/;
+        var cjrYddh = $("input[name='cjrYddh']").val();
+        if (cjrYddh) {
+            if (!phoneReg.test(cjrYddh)) {
+                layer.msg('请输入合法的手机号');
+                return false;
+            }
+        } else {
+            layer.msg('请填写手机号码');
+            return false;
+        }
+        // 2021.4.25新增数字证书的校验,李胜君要求：两位大写字母加七个数字
+        var szzs = $("input[name='cjrSzzsFwbzh']").val();
+        var szzsReg = /^[A-Z][A-Z][0-9]{7}$/;
+        if(szzs) {
+            if (!szzsReg.test(szzs)) {
+                layer.msg('请输入合法的数字证书_服务标识号，两位大写字母开头加七位数字');
+                return false;
+            }
+        }
+        var serializeArray = $("#regForm").serializeArray();
+        /*
+         cjrXm: hwb
+         cjrGmsfhm: 142727199005160516
+         password: 5995986
+         confirm: 5995986
+         cjrYddh: 13734289291
+         cjrSzzsFwbzh: 666
+         cjdwGajgjfdm: 430099000000
+         cjdwGajgjfdm: 430099000000
+         */
+        // 表单验证通过发送请求 <!--<input type="hidden" name="sjly" value="0">-->
+        serializeArray.push({
+            name: 'sjgsdwmc',
+            value: $("#gajg .select-tree-fwucs").val()
+        }, {
+            // name: 'cjrDwmc',
+            name: 'cjdwGajgmc',
+            value: $("#cjdw .select-tree-cjdw").val()
+        }, {
+            name: 'sjly',
+            value: '0'
+        });
+        $.post('/idfpcs/tSysUserReg/save', serializeArray, function (result) {
+            if (result.code === 200) {
+                layer.msg(result.msg, {offset: '15px', time: 3000, icon: 1}, function () {
+                    parent.layer.closeAll();
+                });
+            } else {
+                layer.msg(result.msg, {offset: '15px', time: 3000, icon: 2});
+            }
+            // layer.closeAll();
+        });
+
+    });
+    /*layui.use(['layer'],function(){
+        var layer = layui.layer;
+    });*/
+    // 2020.11.26新增需求，定时读取二代证反显用户姓名和公民身份号码
+    var loopReadIdCard = function () {
+        var timer = setInterval(function () {
+            $.ajax({
+                url: 'http://127.0.0.1:9527/startIDCard', // 检查是不是最新版
+                type: 'get',
+                jsonpCallback: 'idRender',
+                dataType: 'jsonp',
+                beforeSend: function () {
+                    layer.closeAll('loading');
+                },
+                success: function (result) {
+                    clearInterval(timer);
+                    var code = result.code;
+                    if (code == 200) {
+                        var data = result.data; // 姓名
+                        var msg = result.msg;  // 身份证号
+                        $("input[name='cjrXm']").val(data); // 姓名
+                        $("input[name='cjrGmsfhm']").val(msg); // 身份证号
+                    } else if (code == 300) { // 300
+                        layer.msg('读取信息失败' + '请手动输入', {offset: '15px', time: 3000, icon: 2});
+                    } else { // 400
+                        layer.msg('打开设备失败' + '请手动输入', {offset: '15px', time: 3000, icon: 2});
+                    }
+                },
+                timeout: 10000,
+                error: function (xhr, textStatus) {
+                    clearInterval(timer);
+                    layer.msg('未检测到身份证读卡器', {offset: '15px', time: 3000, icon: 2});
+                }
+            });
+        }, 2000)
+    }
+    loopReadIdCard();
+    function redIdCard() {
+        $.ajax({
+            url: 'http://127.0.0.1:9527/startIDCard', // 检查是不是最新版
+            type: 'get',
+            jsonpCallback: 'idRender',
+            dataType: 'jsonp',
+            success: function (result) {
+                var code = result.code;
+                if (code == 200) {
+                    var data = result.data; // 姓名
+                    var msg = result.msg;  // 身份证号
+                    $("input[name='cjrXm']").val(data); // 姓名
+                    $("input[name='cjrGmsfhm']").val(msg); // 身份证号
+                } else if (code == 300) { // 300
+                    layer.msg('读取信息失败' + '请手动输入', {offset: '15px', time: 3000, icon: 2});
+                } else { // 400
+                    layer.msg('打开设备失败' + '请手动输入', {offset: '15px', time: 3000, icon: 2});
+                }
+            },
+            timeout: 3000,
+            error: function (xhr, textStatus) {
+                layer.msg('未检测到身份证读卡器', {offset: '15px', time: 3000, icon: 2});
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 
 </body>
 <script>
-    ~function () {
+    /*~function () {
         // ->这就是浅拷贝
         var obj = {"name": "hwb", "age": 26, bir: ['sx', 'yc', 'js']}
         var newObj = {};
@@ -22,11 +22,11 @@
         obj.bir.push('zd');
         // console.log(obj.bir);
         // console.log(newObj.bir);
-    }()
+    }()*/
 
 </script>
 <script>
-    ~function () {
+   /* ~function () {
         //->这就是深拷贝(就像剥洋葱一样)
         var obj = {"name": "hwb", "age": 26, bir: {m: 'wo', n: 'ai'}}
 
@@ -44,15 +44,50 @@
 
         // console.log(deepCopy(obj))
         var result = deepCopy(obj);
-        result.bir.m="dfdsf";
+        result.bir.m = "dfdsf";
         console.log(obj.bir.m)
-    }()
+    }()*/
     /*
     // 数组也可以用for in 循环
     var arr = [1,2,3,4]
     for(var key in arr){
         console.log(key,arr[key])
     }*/
+</script>
+<script>
+    let obj = {
+        name: 'lk',
+        age: 18
+    }
+    function copyDeep(obj) {
+        // console.log(obj);
+        let temp = {}
+        if (typeof obj === 'object') {
+            if (Object.prototype.toString.call(obj) === "[object Object]") {
+                console.log(obj);
+                for (let key in obj) {
+                    if (obj[key] === obj) {
+                        temp[key] = temp;
+                    } else {
+                        temp[key] = copyDeep(obj[key])
+                    }
+                }
+            } else if (Object.prototype.toString.call(obj) === "[object Function]") {
+                return new Function(obj)
+            } else if (Object.prototype.toString.call(obj) === "[object Reg]") {
+                return new Reg(obj)
+            } else if (Object.prototype.toString.call(obj) === "[object Date]") {
+                return new Date(obj)
+            } else if (Object.prototype.toString.call(obj) === "[object Array]") {
+                return new Array(obj)
+            }
+        } else {
+            console.log(obj);
+            return obj
+        }
+        return temp
+    }
+    let newObj = copyDeep(obj);
 </script>
 
 </html>

@@ -11,7 +11,7 @@
     // https://segmentfault.com/a/1190000016160081
 </script>
 <script>
-    var addEvent = (function () {
+    /*var addEvent = (function () {
         if (window.addEventListener) {
             return function (el, type, fn, capture) {
                 el.addEventListener(type, function (e) {
@@ -30,11 +30,11 @@
 
     addEvent(btn, 'click', function () {
         alert(0)
-    })
+    })*/
     // console.log( typeof addEvent);
 </script>
 <script>
-    /*// bind的用法
+    // bind的用法
     var obj = {
         name: '',
         myFun: function (fm, t) {
@@ -45,7 +45,7 @@
         }
     }
     var db = {
-        name: "德玛",
+        name: "德玛111",
         age: 99
     }
     // obj.myFun.bind(db, '新疆', '山西')();
@@ -75,7 +75,7 @@
     };
     // obj.myFun.myBind(db, '新疆', '山西')得到的是一个函数
     // 德玛年龄99 来自新疆去往山西额外的参数666
-    console.log(obj.myFun.myBind(db, '新疆', '山西')(666));// 我是999*/
+    console.log(obj.myFun.myBind(db, '新疆', '山西')('我是额外的参数'));// 我是999
 </script>
 <script>
     console.log('------初级版本，只能且必须接受三个参数-------------------------------------------------------------------------------------------------------------------------------')
@@ -127,30 +127,30 @@
     console.log(multi(2, 3)(4));*/
 </script>
 <script>
-    function multi() {
-        // debugger
-        // 闭包保存args
-        var args = [...arguments]
-        console.log('++',args);
-        function fn () {
-            console.log(this)
-            var newArgs = args.concat([...arguments]);
-            console.log('----',args);
-            // return multi.apply(this, newArgs);
-            return multi(...newArgs) // 再次调用的时候参数就收集了
-        }
-        fn.toString = function() {
-            console.log(args);
-            return args.reduce(function(a, b) {
-                return a * b;
-                // return a+b
-            })
-        }
-        // return fn;
-        return fn
-    }
-
-    console.log(multi(2, 3, 4)(2).toString());
+    // function multi() {
+    //     // debugger
+    //     // 闭包保存args
+    //     var args = [...arguments]
+    //     console.log('++',args);
+    //     function fn () {
+    //         console.log(this)
+    //         var newArgs = args.concat([...arguments]);
+    //         console.log('----',args);
+    //         // return multi.apply(this, newArgs);
+    //         return multi(...newArgs) // 再次调用的时候参数就收集了
+    //     }
+    //     fn.toString = function() {
+    //         console.log(args);
+    //         return args.reduce(function(a, b) {
+    //             return a * b;
+    //             // return a+b
+    //         })
+    //     }
+    //     // return fn;
+    //     return fn
+    // }
+    //
+    // console.log(multi(2, 3, 4)(2).toString());
     // console.log(typeof multi(2, 3)(4));
     // console.log(typeof multi(2)(3, 4));
 </script>

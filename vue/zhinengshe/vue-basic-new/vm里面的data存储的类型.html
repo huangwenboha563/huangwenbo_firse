@@ -10,9 +10,11 @@
     <button @click="test">点击</button>
     <button @click="test1">点击1</button>
     <button @click="test2">点击2</button>
+    {{info[0]}}
     <ul>
-        <li v-for="(value,key,index) in info">{{key}} ~~ {{value}} ~~{{index}}</li>
+        <li v-for="(value,key,index) in info" :sx="value">{{key}} ~~ {{value}} ~~{{index}}</li>
     </ul>
+<!--    {{ary[0]}}-->
 </div>
 </body>
 <script>
@@ -21,7 +23,9 @@
         data: {
             info:{
                 name: 'hisign',
-            }
+                age: '20suile'
+            },
+            // ary:['a','b']
         },
         methods: {
             test(){

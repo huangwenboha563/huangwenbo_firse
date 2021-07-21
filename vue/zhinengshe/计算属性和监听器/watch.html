@@ -23,19 +23,39 @@
     {{c}}
     </br>
     {{d}}
+    <br>
+<!--    {{fullName}}-->
+    <ul>
+        <li v-for="item in demo" v-if="item.active">sss</li>
+    </ul>
 </div>
 </div>
 </body>
 <script>
     var vm = new Vue({
         el: "#box",
+        mounted() {
+            console.log(this.$el);
+        },
         data: {
             a: 1,
             c: {
                 "x": 1,
                 "y": 2
             },
-            d:[{x:1,y:2},2,3]
+            d:[{x:1,y:2},2,3],
+            firstName: 'Foo',
+            lastName: 'Bar',
+            // fullName: 'Foo Bar'
+            demo:[{
+                active: true
+            },{
+                active: true
+            },{
+                active: false
+            },{
+                active: true
+            }]
         },
         methods: {},
         computed: { // 只要依赖的值有变化，就会触发
@@ -61,6 +81,12 @@
                 },
                 //deep: true
                 // immediate: true // 页面刷新立即执行，不用等变化再执行
+            },
+            firstName: function (val) {
+                this.fullName = val + ' ' + this.lastName
+            },
+            lastName: function (val) {
+                this.fullName = this.firstName + ' ' + val
             }
         }
     })

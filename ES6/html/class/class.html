@@ -9,6 +9,7 @@
 
 </body>
 <script>
+
     // -> 传统方式的继承方法之一(call继承)  开胃菜
     function Person(name, age) {
         // 这三个都是私有的属性和方法
@@ -18,6 +19,7 @@
             console.log(this.name)
         }
     }
+    Person.xxx = 111111111111;
     Person.prototype = {
         // 共有的属性和方法
         constructor: Person,
@@ -26,6 +28,29 @@
             console.log(_this.name)
         }
     }
+
+    var personDemo = new Person();
+    console.log(personDemo.xxx);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function Manager(name, age) {
         Person.call(this, name, age);
     }

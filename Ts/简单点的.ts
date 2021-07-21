@@ -29,12 +29,30 @@ let dddd:any = true;
 dddd = false;
 let ddddd:any = undefined;
 ddddd = null;
-dd.getName();
-dd.cnim;
-
-// 数组 数字类型的数组
+/*dd.getName();
+dd.cnim;*/
+// ------------------------数组，将同一类型的数据放在一起
+// 数组 数字类型的数组，表示数组里面的每个元素都必须是数字
 let ary:number[] = [1,2,3,5];
 // ary.push('d') 就会报错  只能push 数字
+function test() {
+    // IArguments是一个内置类型
+    let arys:IArguments = arguments;
+    console.log(arys);
+}
+
+
+
+
+// 元祖（函数式编程）
+let user:[string,number] = ['刘宽',18]
+user.push('刘阔')
+user.push(5)
+console.log(user);
+// push不是string和number的时候就报错
+// user.push(true);
+console.log(777)
+
 
 
 

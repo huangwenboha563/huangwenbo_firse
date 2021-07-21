@@ -8,12 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-
+<div class="box">点击我</div>
 </body>
 <script src="./js/jquery.js"></script>
 <script>
     // demo1
-    $.ajax({
+    /*$.ajax({
         // 查询方式
         type: "get",
         // 请求url
@@ -24,7 +24,7 @@
         success: function (result) {
             console.log(result);
         }
-    });
+    });*/
     // demo2
     /*$.ajax({
         // 查询方式
@@ -38,6 +38,145 @@
             console.log(result);
         }
     });*/
+    /*var obj  = {
+        arr:[]
+    }
+    $(".box").on('click',async function(){
+        console.log(obj.arr); // 第一次点击的时候应该是[],没问题啊...
+        obj.arr.push(111)
 
+    });*/
+    var demo = {
+        "山东省": {
+            "voice": {"total": 10, "detail": [{"num": 8, "type": "IFLY"}, {"num": 2, "type": "VPA100"}]},
+            "bc": {"total": 6, "detail": [{"num": 6, "type": "BC100-PLUS"}]},
+            "iris": {
+                "total": 12,
+                "detail": [{"num": 5, "type": "SW100"}, {"num": 2, "type": "WLH"}, {"num": 5, "type": "SY100"}]
+            },
+            "fp": {
+                "total": 14,
+                "detail": [{"num": 2, "type": "HX8062"}, {"num": 8, "type": "GB517"}, {
+                    "num": 1,
+                    "type": "R1000"
+                }, {"num": 3, "type": "HXP200F"}]
+            },
+            "portrait": {
+                "total": 10,
+                "detail": [{"num": 1, "type": "HX-SX500"}, {"num": 4, "type": "1500D"}, {
+                    "num": 2,
+                    "type": "M200"
+                }, {"num": 2, "type": "EC1100H"}, {"num": 1, "type": "1300D"}]
+            },
+            "camera": {"total": 10, "detail": [{"num": 10, "type": "MON-DC02"}]},
+            "foot": {"total": 11, "detail": [{"num": 2, "type": "HX-ZJ100U"}, {"num": 9, "type": "HR-3"}]}
+        },"北京市":{
+            "voice":{
+                "total":4,
+                "detail":[
+                    {
+                        "num":2,
+                        "type":"VPA100"
+                    },
+                    {
+                        "num":1,
+                        "type":"IFLY"
+                    },
+                    {
+                        "num":1,
+                        "type":"SpeakIn_V23_20"
+                    }
+                ]
+            },
+            "bc":{
+                "total":6,
+                "detail":[
+                    {
+                        "num":6,
+                        "type":"BC100"
+                    }
+                ]
+            },
+            "iris":{
+                "total":6,
+                "detail":[
+                    {
+                        "num":2,
+                        "type":"SW100"
+                    },
+                    {
+                        "num":1,
+                        "type":"WLH"
+                    },
+                    {
+                        "num":1,
+                        "type":"IRISTAR"
+                    },
+                    {
+                        "num":2,
+                        "type":"SY100"
+                    }
+                ]
+            },
+            "fp":{
+                "total":5,
+                "detail":[
+                    {
+                        "num":1,
+                        "type":"HX4361"
+                    },
+                    {
+                        "num":1,
+                        "type":"HX8062"
+                    },
+                    {
+                        "num":3,
+                        "type":"GB517"
+                    }
+                ]
+            },
+            "portrait":{
+                "total":4,
+                "detail":[
+                    {
+                        "num":3,
+                        "type":"1500D"
+                    },
+                    {
+                        "num":1,
+                        "type":"M200"
+                    }
+                ]
+            },
+            "camera":{
+                "total":2,
+                "detail":[
+                    {
+                        "num":2,
+                        "type":"MON-DC02"
+                    }
+                ]
+            },
+            "foot":{
+                "total":1,
+                "detail":[
+                    {
+                        "num":1,
+                        "type":"HX-ZJ100U"
+                    }
+                ]
+            }
+        }
+
+    }
+    var number = 0;
+    for (let key in demo) {
+        let firstValue = demo[key];
+        for (let key2 in firstValue) {
+            var lentgh = firstValue[key2].detail.length;
+            number += lentgh;
+        }
+    }
+    console.log(number);
 </script>
 </html>

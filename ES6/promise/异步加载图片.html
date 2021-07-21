@@ -23,10 +23,10 @@
                 reject(new Error('Could not load image at ' + url));
             };
 
-            
+
         });
     }
-    var url = 'http://img-bo.oss-cn-beijing.aliyuncs.com/2017/12/13/f1918665-d3df-4991-a0a5-ff553d0a56d415034145465886975.jpeg?x-oss-process=image/resize,m_lfit,h_150,w_150'
+    var url = 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1603365312,3218205429&fm=26&gp=0.jpg'
     loadImageAsync(url).then(function(data){
         document.body.append(data)
     })

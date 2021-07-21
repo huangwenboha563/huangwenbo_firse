@@ -13,19 +13,17 @@
         <p>welcome vue.js</p>
         <p>welcome vue.js</p>
         <p>welcome vue.js</p>
-        <slot></slot>
         <!--没有名字的slot，slot代表的就是自定义标签里面的内容-->
     </div>
 </template>
 <body>
 <div id="box">
     <aaa>
-        <div>坑1</div>
-        <div>坑2</div>
+        <div ref="hhh">坑1</div>
+        <div ref="fff">坑2</div>
         <div>坑3</div>
     </aaa>
     <hr>
-    <aaa></aaa>
 </div>
 </body>
 <script>
@@ -35,8 +33,16 @@
         data: {},
         components: {
             'aaa':{
-                template:'#aaa'
+                template:'#aaa',
+                mounted(){
+                    console.log('子组件');
+                }
             }
+        },
+        mounted() {
+            console.log('父组件');
+            console.log(this.$refs.hhh);
+            console.log(this.$refs.fff);
         }
     })
 </script>

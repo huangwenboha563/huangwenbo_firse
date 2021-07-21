@@ -24,8 +24,30 @@
                 return prev + next;
             },0)
         }
-        return fn;
+        // return fn;
     }
-    add(1,2,3)
+    add(1,2,3);
+</script>
+<script>
+    function add2 (a) {
+        function sum(b) { // 使用闭包
+            a = a + b; // 累加
+            return sum;
+        }
+        sum.toString = function() { // 重写toSting() 方法
+            return a;
+        }
+        return sum; // 返回一个函数
+    }
+
+    console.log(add2(1)(3)) // 4
+    console.log(add2(1)(3)(5)) // 9
+</script>
+<script>
+    function haha () {
+        return 'aa'
+    }
+
+    console.log(haha);
 </script>
 </html>

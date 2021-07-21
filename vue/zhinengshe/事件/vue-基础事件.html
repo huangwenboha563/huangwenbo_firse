@@ -7,6 +7,8 @@
 </head>
 <body>
 <div id="box">
+    <div v-if="show">{{a}}</div>
+    <hr>
     <input type="button" value="按钮" @click="add($event,2)">
     <!--<input type="button" value="按钮" @click="add(2,$event)">-->
     <!--$event竟然没有顺序要求？形参竟然没有顺序要求-->
@@ -32,15 +34,29 @@
     let vm = new Vue({
         el: "#box",
         data: {
+            show: false,
             msg: "欢迎",
             arr: ['apple', 'banana', 'orange'],
             obj:{
                 name:{
                     x:"x"
                 }
-            }
+            },
+        },
+        mounted() {
+          setTimeout(()=>{
+              this.show = true;
+              setTimeout(()=>{
+                  this.a = 'dfdfdfdffffffffffffffddddddddfdfdffdfdffdf'
+              },1000)
+          },3000)
         },
         methods: {
+            // test() {
+            //     setTimeout(()=>{
+            //         this.a = '你好吗';
+            //     },10000)
+            // },
             add: function (event,param) { // 一定要是$event
                 console.log(event,param);
                 this.arr.push('tomato');

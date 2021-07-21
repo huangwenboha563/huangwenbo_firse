@@ -13,6 +13,7 @@
 <script>
     // call    fn.call(obj,1,2,3,4)  fn执行，并让fn里面的this指定为obj
     Function.prototype.myCall = function (context) {
+        console.log(this,context);
         context = context || window;
         var arguments = Array.prototype.slice.call(arguments);
         var args = arguments.slice(1);
@@ -21,24 +22,15 @@
         delete context.fn;
         return res;
     }
-    // new 手撕 new Person('hwb',18)
-    Function.prototype.myNew = function () {
-        var obj = {};
-        var Con = [].shift.call(arguments);
-        // Con.apply(obj,arguments); apply传递obj意思是给obj绑定私有属性
-        var res = Con.apply(obj, arguments);
-        obj.__proto__ = Con.prototype; // 给obj关联公司有属性
-        return typeof res == 'object' ? res : obj;
+    function test () {
+        return '三水很吊'
     }
-    // 手写bind原理 fn.bind(obj,'新疆','山西')(666)
-    Function.prototype.myBind = function () {
-        var fn = this;
-        var args = Array.prototype.slice.call(arguments);
-        var context = args.shift();
-        return function () {
-            return fn.apply(context,args.concat(Array.prototype.slice.call(arguments)))
-        }
+    var obj12 = {
+        name: 'ddd',
+        age: 90
     }
+    console.log(test.myCall(obj12,1,2,3,4))
+    // ----------------------------------------------------------------------------------
     // 手动实现apply函数（总之apply一句话，一个context，一个arr。最关键的一句话和call一样 context.fn = this）
 
     Function.prototype.myApply = function (context, arr) {
@@ -65,6 +57,43 @@
     }
     func.myApply(null); //1
     func.myApply(obj, ['kevin',18]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // new 手撕 new Person('hwb',18)
+    Function.prototype.myNew = function () {
+        var obj = {};
+        var Con = [].shift.call(arguments);
+        // Con.apply(obj,arguments); apply传递obj意思是给obj绑定私有属性
+        var res = Con.apply(obj, arguments);
+        obj.__proto__ = Con.prototype; // 给obj关联公司有属性
+        return typeof res == 'object' ? res : obj;
+    }
+    // 手写bind原理 fn.bind(obj,'新疆','山西')(666)
+    Function.prototype.myBind = function () {
+        var fn = this;
+        var args = Array.prototype.slice.call(arguments);
+        var context = args.shift();
+        return function () {
+            return fn.apply(context,args.concat(Array.prototype.slice.call(arguments)))
+        }
+    }
+
 </script>
 
 </html>
