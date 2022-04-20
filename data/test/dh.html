@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>纯CSS3实现闪闪发光的动画</title>
+    <style>
+        body{
+            background-color:#000000;
+        }
+        /*0%开始，100%结束*/
+        @keyframes scale{
+            0%{transform:scale(1)}
+            50%,75%{transform:scale(3)}
+            78%,100%{opacity:0}
+        }
+        .item1 {
+
+            width: 14px;
+            height: 14px;
+            background-color: #FFFF00;
+            border-radius: 50%;
+            margin: 100px  100px 50px 200px;
+        }
+        .item1:before {
+            content: '';
+            display:block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+
+            background-color: #FFFF00;
+            animation: scale 2s infinite cubic-bezier(0,0,.49,1.02);
+            animation-delay: 200ms;
+        }
+        .item2 {
+
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #5BFF4A;
+            margin: 100px  100px 50px 300px;
+        }
+
+        .item2:before {
+            content: '';
+            display:block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #5BFF4A;
+
+            animation: scale 2s infinite cubic-bezier(0,0,.49,1.02);
+            animation-delay: 100ms;
+        }
+        .item3 {
+
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #FF66CC;
+            margin: 500px  100px 50px 200px;
+        }
+
+        .item3:before {
+            content: '';
+            display:block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #FF66CC;
+
+            animation: scale 2s infinite cubic-bezier(0,0,.49,1.02);
+            animation-delay: 400ms;
+        }
+        .item4 {
+
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #FF0033;
+            margin: 180px  100px 50px 300px;
+        }
+
+        .item4:before {
+            content: '';
+            display:block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #FF0033;
+
+            animation: scale 2s infinite cubic-bezier(0,0,.49,1.02);
+            animation-delay: 300ms;
+        }
+    </style>
+</head>
+<body>
+<span class="item1"></span>
+<span class="item2"></span>
+<span class="item3"></span>
+<span class="item4"></span>
+</body>
+</html>

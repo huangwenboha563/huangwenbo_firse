@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+        @keyframes scale{
+            0%{transform:scale(1)}
+            50%,75%{transform:scale(3)}
+            78%,100%{opacity:0}
+        }
+        .on-line-sta {
+            width: 16px;
+            height: 16px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .on-line-sta:before {
+            content: '';
+            display:block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: red;
+            animation: scale 2s infinite cubic-bezier(0,0,.49,1.02);
+            animation-delay: 200ms;
+        }
+
+    </style>
+    <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=x7E9OP2SXzuBYr3MUHmhK9yPYoYH7yoF"></script>
+    <title>文本标注</title>
+</head>
+<body>
+<div id="allmap"></div>
+</body>
+</html>
+<script src="jq.js"></script>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(116.403963,39.915119);
+    map.centerAndZoom(point, 15);
+    var opts = {
+        position : point,    // 指定文本标注所在的地理位置
+    }
+    var test = '<div class="on-line-sta"></div>'
+    var label = new BMap.Label(test, opts);  // 创建文本标注对象
+    label.setStyle({
+        height : "0",
+        lineHeight : "20px",
+        fontFamily:"微软雅黑",
+        border:'0px solid #fff',
+    });
+    map.addOverlay(label);
+</script>

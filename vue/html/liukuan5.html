@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>计算</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        <input type="text" v-model="obj.basic.items[0].code"> {{aa}}
+        <hr>
+        <input type="text" v-model="test" @input="fn"> {{obj}}
+        <button @click="go">点击这里</button>
+    </div>
+</div>
+</body>
+<script src="vue2.0.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            aa: '',
+            test: '',
+            obj: {
+                "basic": {
+                    "collect": true,
+                    "items": [
+                        {
+                            "code": "ZHDW",
+                            "must": false
+                        }
+                    ]
+                },
+            }
+        },
+        methods: {
+            go(item, index) {
+                this.test = this.obj.basic.items[0].code;
+
+            },
+            fn() {
+                this.obj.basic.items[0].code = this.test;
+            }
+        },
+
+    });
+
+
+    let rylb = "03"
+    let info = ""
+
+
+</script>
+<script>
+    function demo(item) {
+        return new Promise(resolve => {
+            setTimeout(()=>{
+                resolve(item)
+            },1000)
+        })
+    }
+    function test(arr) {
+        arr.forEach(async (item)=>{
+            console.log(await demo(item));
+        })
+    }
+    var arr = ['腾','酷','annce','sonsiiqi'];
+    test(arr)
+</script>
+</html>
