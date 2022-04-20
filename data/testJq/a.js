@@ -2,6 +2,7 @@ var a = 1;
 (function () {
     a = 2;
 })();
+
 console.log(a);
 let demo = [{
     a: 1,
