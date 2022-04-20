@@ -16,10 +16,11 @@
 
 </script>
 <script>
-    /* function fn(data) {
-        console.log(data);
-        console.log(typeof data);
-    } */
+    /* 
+    * 不起作用
+    ! 也不求作用
+    ? 重启了也不行
+    */
     /* 利用promise对jsonp进行封装 */
     function jsonp({ url, params, callback }) {
         return new Promise(function (resolve, reject) {
@@ -42,7 +43,7 @@
     jsonp({
         url: 'http://matchweb.sports.qq.com/kbs/calendar',
         params: { columnId: 100000 },
-        callback: 'hwbjQuery' + Math.floor(Math.random()*10) // jquery的jsonp随机回电函数原理一样只不过jq用的是回调不是promise而已
+        callback: 'hwbjQuery' + Math.floor(Math.random()*10) // ! jquery的jsonp随机回电函数原理一样只不过jq用的是回调不是promise而已
     }).then(function (res) {
         console.log(res)
     })

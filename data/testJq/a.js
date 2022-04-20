@@ -4,6 +4,7 @@ var a = 1;
 })();
 
 console.log(a);
+
 let demo = [{
     a: 1,
     b: 2,

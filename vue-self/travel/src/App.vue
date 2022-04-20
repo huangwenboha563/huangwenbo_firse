@@ -1,13 +1,22 @@
 <template>
   <div id="main">
-    <!--显示的是当前路由地址所对应的内容-->
+
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      // ! 这是一个加的
+      /*
+      * ! 你好吗健康路家里靠科技
+      */
+      a:1
+    }
+  },
 }
 
 </script>
