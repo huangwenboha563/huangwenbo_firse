@@ -7,10 +7,7 @@
 <body>
 <div id="app">
     <div>
-        <input type="text" v-model="getVal"> {{obj}}
-        <hr>
-        <input type="text" v-model="test" @input="fn"> {{obj}}
-        <button @click="go">点击这里</button>
+        <input type="text" v-model="getVal[0].values[0]"> {{getVal}}
     </div>
 </div>
 </body>
@@ -18,41 +15,18 @@
 <script>
     let vm = new Vue({
         el: '#app',
-        data: {
-            aa: '',
-            test: '',
-            obj: {
-                "basic": {
-                    "collect": true,
-                    "items": [
-                        {
-                            "code": "ZHDW",
-                            "must": false
-                        }
-                    ]
-                },
-            }
-        },
+        data: {},
         computed: {
             getVal: {
-                get:function () {
-                    return this.obj.basic.items[0].code;
+                get: function () {
+                    let arr = [{values: ['lk']}];
+                    return arr;
                 },
-                set: function (newval) {
-                    this.obj.basic.items[0].code = newval;
+                set: function (newVal) {
+                    console.log(newVal);
                 }
             }
         },
-        methods: {
-            go(item, index) {
-                this.test = this.obj.basic.items[0].code;
-
-            },
-            fn() {
-                this.obj.basic.items[0].code = this.test;
-            }
-        },
-
     });
 
 
@@ -60,75 +34,5 @@
     let info = ""
 
 
-</script>
-<script>
-    function demo(item) {
-        return new Promise(resolve => {
-            setTimeout(()=>{
-                resolve(item)
-            },1000)
-        })
-    }
-    function test(arr) {
-        arr.forEach(async (item)=>{
-            console.log(await demo(item));
-        })
-    }
-    var arr = ['腾','酷','annce','sonsiiqi'];
-    test(arr);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</script>
-<script>
-    console.log(aaa)
-    try {
-
-    } catch (err) {
-
-    }
-    console.log(1111111111);
 </script>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>原生js实现选项卡</title>
@@ -36,111 +37,113 @@
         }
     </style>
 </head>
-<body>
-<div id="tab">
-    <div class="button active fl">vue</div>
-    <div class="button fl">react</div>
-    <div class="button fl">angula</div>
-</div>
-<div class="mvvm-con">
-    <div class="item-con">
-        我是vue
-    </div>
-    <div class="item-con display-none">
-        我是react
-    </div>
-    <div class="item-con display-none">
-        我是angula
-    </div>
-</div>
-<script>
-    // 和页面里面一共有五个按钮  点击每个按钮弹出每个index
-    var tab = document.getElementById('tab');
-    var buttons = tab.getElementsByTagName('div');
-    var items = document.getElementsByClassName('item-con');
 
-    /*
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].onclick = function () {
+<body>
+    <div id="tab">
+        <div class="button active fl">vue</div>
+        <div class="button fl">react</div>
+        <div class="button fl">angula</div>
+    </div>
+    <div class="mvvm-con">
+        <div class="item-con">
+            我是vue
+        </div>
+        <div class="item-con display-none">
+            我是react
+        </div>
+        <div class="item-con display-none">
+            我是angula
+        </div>
+    </div>
+    <script>
+        // 和页面里面一共有五个按钮  点击每个按钮弹出每个index
+        var tab = document.getElementById('tab');
+        var buttons = tab.getElementsByTagName('div');
+        var items = document.getElementsByClassName('item-con');
+
+        /*
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = function () {
+                for (var j = 0; j < buttons.length; j++) {
+                    buttons[j].className = 'button fl';
+                    items[j].className = 'item-con display-none';
+                }
+                this.className = 'button active fl';
+                items[i].className = 'item-con';
+            }
+        }
+        */
+
+        function change(i) {
             for (var j = 0; j < buttons.length; j++) {
                 buttons[j].className = 'button fl';
                 items[j].className = 'item-con display-none';
             }
-            this.className = 'button active fl';
+            buttons[i].className = 'button active fl';
             items[i].className = 'item-con';
         }
-    }
-    */
 
-    function change(i) {
-        for (var j = 0; j < buttons.length; j++) {
-            buttons[j].className = 'button fl';
-            items[j].className = 'item-con display-none';
+        // 第一种优化用let
+        /*for (let i = 0; i < buttons.length; i++) {
+         buttons[i].onclick = function () {
+         change(i);
+         }
+         }*/
+        // 第二种利用自定义属性
+        /*for (var i = 0; i < buttons.length; i++) {
+         buttons[i].index = i; // 利用自定义属性把索引存住
+         buttons[i].onclick = function () {
+         change(this.index);
+         }
+         }*/
+        // 第三种利用闭包
+        // 不是说非得有return 才能形成不销毁的作用域
+        // 只要外面的"占用里面的"就会形成不销毁的作用域
+        /*
+        for (var i = 0; i < buttons.length; i++) {
+         ~function () {
+         buttons[i].onclick = function () {
+         change(i);
+         }
+         }(i);
+            // 这样理解：自执行函数形成的私有的作用域，里面的一个匿名函数 funciton 被全局的 buttons[i] 给占用了。这才是作用域不销毁的原因
+         }*/
+        // 闭包的变形 // 闭包的作用形成一个不销毁的私有作用域
+        // 坏处就是如果有100个div  就会形成100个不销毁的私有作用域 占用内存，对性能不好
+        for (var i = 0; i < buttons.length; i++) {
+
+            buttons[i].onclick = function (i) {
+                return function () { // return 回去的是个匿名函数所以不销毁 // 自治性函数执行形成的私有作用域不销毁是因为 return了一个funciton被外面占用着
+                    change(i);
+                }
+            }(i); //利用匿名函数自执行的结果是个闭包解决
         }
-        buttons[i].className = 'button active fl';
-        items[i].className = 'item-con';
-    }
-
-    // 第一种优化用let
-    /*for (let i = 0; i < buttons.length; i++) {
-     buttons[i].onclick = function () {
-     change(i);
-     }
-     }*/
-    // 第二种利用自定义属性
-    /*for (var i = 0; i < buttons.length; i++) {
-     buttons[i].index = i; // 利用自定义属性把索引存住
-     buttons[i].onclick = function () {
-     change(this.index);
-     }
-     }*/
-    // 第三种利用闭包
-    // 不是说非得有return 才能形成不销毁的作用域
-    // 只要外面的"占用里面的"就会形成不销毁的作用域
-    /*
-    for (var i = 0; i < buttons.length; i++) {
-     ~function () {
-     buttons[i].onclick = function () {
-     change(i);
-     }
-     }(i);
-        // 这样理解：自执行函数形成的私有的作用域，里面的一个匿名函数 funciton 被全局的 buttons[i] 给占用了。这才是作用域不销毁的原因
-     }*/
-    // 闭包的变形 // 闭包的作用形成一个不销毁的私有作用域
-    // 坏处就是如果有100个div  就会形成100个不销毁的私有作用域 占用内存，对性能不好
-    for (var i = 0; i < buttons.length; i++) {
-
-        buttons[i].onclick = function (i) {
-            return function () { // return 回去的是个匿名函数所以不销毁 // 自治性函数执行形成的私有作用域不销毁是因为 return了一个funciton被外面占用着
-                change(i);
-            }
-        }(i); //利用匿名函数自执行的结果是个闭包解决
-    }
-    // 另外一道面试题还是闭包
-    var funcs = [];
-    for (var i = 0; i < 10; i++) {
-        funcs.push(
-            (function (value) {
+        // 另外一道面试题还是闭包
+        var funcs = [];
+        for (var i = 0; i < 10; i++) {
+            funcs.push(
+                (function (value) {
+                    return function () {
+                        console.log(value);
+                    }
+                })(i)
+            );
+            // 等价于
+            /*funcs[i] = (function (value) {
                 return function () {
                     console.log(value);
                 }
-            })(i)
-        );
-        // 等价于
-        /*funcs[i] = (function (value) {
-            return function () {
-                console.log(value);
-            }
-        })(i)*/
-        /*funcs[i] = function (value) { // 去掉()也可以如果是 赋值给某个变量并执行的时候
-         return function () {
-         console.log(value);
-         }
-         }(i)*/
-    }
-    funcs.forEach(function (func) {
-        func()
-    });
-</script>
+            })(i)*/
+            /*funcs[i] = function (value) { // 去掉()也可以如果是 赋值给某个变量并执行的时候
+             return function () {
+             console.log(value);
+             }
+             }(i)*/
+        }
+        funcs.forEach(function (func) {
+            func()
+        });
+    </script>
 </body>
+
 </html>

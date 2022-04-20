@@ -7,11 +7,13 @@
 <body>
 <div id="app">
     <ul>
-        <li v-for="(item,index) in items" @click="test(item,index)">{{item.a}}</li>
+        <textarea name="" id="" cols="30" rows="10" v-model="ha"></textarea>
+        <li v-for="(item,index) in items" @click="test(item,index)">
+            {{item.name}}
+        </li>
     </ul>
 	<div>
-		{{haha}}
-		<textarea name="" id="" cols="30" rows="10" v-model="items[haha].a"></textarea>
+
 	</div>
 </div>
 </body>
@@ -20,13 +22,12 @@
     let vm = new Vue({
         el: '#app',
         data: {
-        	haha:0,
-            items: [{a: 1}, {a: 2}
-            ]
+        	ha:'',
+            items: [{name: '刘宽'}, {name: '远利'}]
         },
 		methods: {
         	test(item,index) {
-				this.haha = index;
+				this.ha = item.name
 			}
 		}
     });

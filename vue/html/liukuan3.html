@@ -6,15 +6,12 @@
 </head>
 <body>
 <div id="app">
-    <ul>
-        <textarea name="" id="" cols="30" rows="10" v-model="ha"></textarea>
-        <li v-for="(item,index) in items" @click="test(item,index)">
-            {{item.name}}
-        </li>
-    </ul>
-	<div>
-
-	</div>
+    <div>
+        <input type="text" v-model="aa"> {{aa}}
+        <hr>
+        <input type="text" v-model="test" @input="fn"> {{obj}}
+        <button @click="go">点击这里</button>
+    </div>
 </div>
 </body>
 <script src="vue2.0.js"></script>
@@ -22,14 +19,52 @@
     let vm = new Vue({
         el: '#app',
         data: {
-        	ha:'',
-            items: [{name: '刘宽'}, {name: '远利'}]
+            aa: '',
+            test: '',
+            obj: {
+                "basic": {
+                    "collect": true,
+                    "items": [
+                        {
+                            "code": "ZHDW",
+                            "must": false
+                        }
+                    ]
+                },
+            }
         },
-		methods: {
-        	test(item,index) {
-				this.ha = item.name
-			}
-		}
+        methods: {
+            go(item, index) {
+                this.test = this.obj.basic.items[0].code;
+
+            },
+            fn() {
+                this.obj.basic.items[0].code = this.test;
+            }
+        },
+
     });
+
+
+    let rylb = "03"
+    let info = ""
+
+
+</script>
+<script>
+    function demo(item) {
+        return new Promise(resolve => {
+            setTimeout(()=>{
+                resolve(item)
+            },1000)
+        })
+    }
+    function test(arr) {
+        arr.forEach(async (item)=>{
+            console.log(await demo(item));
+        })
+    }
+    var arr = ['腾','酷','annce','sonsiiqi'];
+    test(arr)
 </script>
 </html>

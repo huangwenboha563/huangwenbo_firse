@@ -10,6 +10,9 @@
 </head>
 <body>
 <div id="app">
+	<textarea name="" id="" cols="30" rows="10" v-model="ca.x.y"></textarea>
+
+
 	<section>
 		<span :class="{active:item.active}" v-for="(item,index) in arr" @click="test(item,index)">金</span>
 	</section>
@@ -24,6 +27,12 @@
 	let vm = new Vue({
 		el: '#app',
 		data:{
+			ca:{
+				x: {
+					y: ''
+				},
+
+			},
 			arr:[{name:'金',active: true},{name:'木',active: false},{name:'水',active: false},{name:'火',active: false},{name:'土',active: false}],
 			itemPrice: 10 // 每个十元
 		},

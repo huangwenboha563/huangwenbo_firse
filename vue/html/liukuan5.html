@@ -7,7 +7,7 @@
 <body>
 <div id="app">
     <div>
-        <input type="text" v-model="obj.basic.items[0].code"> {{aa}}
+        <input type="text" v-model="getVal"> {{obj}}
         <hr>
         <input type="text" v-model="test" @input="fn"> {{obj}}
         <button @click="go">点击这里</button>
@@ -31,6 +31,16 @@
                         }
                     ]
                 },
+            }
+        },
+        computed: {
+            getVal: {
+                get:function () {
+                    return this.obj.basic.items[0].code;
+                },
+                set: function (newval) {
+                    this.obj.basic.items[0].code = newval;
+                }
             }
         },
         methods: {
@@ -65,6 +75,60 @@
         })
     }
     var arr = ['腾','酷','annce','sonsiiqi'];
-    test(arr)
+    test(arr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<script>
+    console.log(aaa)
+    try {
+
+    } catch (err) {
+
+    }
+    console.log(1111111111);
 </script>
 </html>

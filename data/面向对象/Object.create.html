@@ -5,7 +5,7 @@
 	<title>Object.create</title>
 </head>
 <body>
-	
+
 </body>
 <script>
 	// Object.create(proObj)  //->ie6-8不兼容，因为是es5新增加的
@@ -16,6 +16,8 @@
 		}
 	}
 	var obj2 = Object.create(obj);
+	console.log(obj2.__proto__.__proto__ === Object.prototype);
+	console.log(obj2.__proto__ == obj);
 	//->obj2
 	//__proto__:
 	// getX:funciton....
@@ -23,14 +25,14 @@
 	obj2.getX();
 
 	obj.getY = function () {
-		console.log(2)
+		console.log(22222)
 	}
 	obj2.getY();// ->2
 
 
 
 	/*
-	// 手动模拟Object.create()  
+	// 手动模拟Object.create()
 	var obj3 = {
 		name:"haha"
 	}

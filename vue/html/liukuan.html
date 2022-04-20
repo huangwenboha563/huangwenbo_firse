@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>计算</title>
-	<style>
-		span {display: inline-block;border:1px solid #333;}
-		span.active {border:1px solid red;}
-	</style>
+    <meta charset="utf-8">
+    <title>计算</title>
 </head>
 <body>
 <div id="app">
-	<textarea name="" id="" cols="30" rows="10" v-model="ca.x.y"></textarea>
+    <ul>
+        <li v-for="(item,index) in items" @click="test(item,index)">{{item.a}}</li>
+    </ul>
+	<div>
+		{{haha}}
+		<textarea name="" id="" cols="30" rows="10" v-model="items[haha].a"></textarea>
+	</div>
+
+    {{items2}}
 
 
-	<section>
-		<span :class="{active:item.active}" v-for="(item,index) in arr" @click="test(item,index)">金</span>
-	</section>
-	<hr>
-	<section>
-		<div>一共有 <b class="num">{{length}}</b> 项，一共 <b class="price">{{price}}</b> 元钱</div>
-	</section>
+
+    <div v-for="item in demo" v-if="item === '2'">{{item}}</div>
+
+
+
+
+
+
+
+
+
 </div>
 </body>
 <script src="vue2.0.js"></script>
 <script>
-	let vm = new Vue({
-		el: '#app',
-		data:{
-			ca:{
-				x: {
-					y: ''
-				},
-
-			},
-			arr:[{name:'金',active: true},{name:'木',active: false},{name:'水',active: false},{name:'火',active: false},{name:'土',active: false}],
-			itemPrice: 10 // 每个十元
-		},
-		methods:{
-			test(item,index) {
-				this.$set(this.arr, index, {name:item.name,active:!item.active})
-			}
-		},
-		computed: {
-			length:function() {
-				this.newArr = this.arr.filter((item)=>{
-					return item.active === true;
-				})
-				return this.newArr.length;
-			},
-			price:function(){
-				return this.itemPrice*this.length;
+    let vm = new Vue({
+        el: '#app',
+        data: {
+        	haha:0,
+            items: [{a: 1}, {a: 2}],
+            items2: ['1','2'],
+            demo: ['1','2'],
+        },
+		methods: {
+        	test(item,index) {
+				this.haha = index;
 			}
 		}
-	});
+    });
 </script>
 </html>

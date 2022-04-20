@@ -7,11 +7,11 @@ import Base from '../views/queryBase.vue'
 // node读取本地环境
 // console.log(process.env)
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
+  // {
+  //   path: '/',
+  //   // name: 'Home',
+  //   // component: Home
+  // },
   {
     path: '/person/:id', // 查询人员信息
     name: 'Person',

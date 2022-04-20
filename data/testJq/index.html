@@ -9,4 +9,66 @@
 <script src="../js/jquery.js"></script>
 <script src="./a.js"></script>
 <script src="./b.js"></script>
+<script>
+    $.ajax({
+        type: "get",
+        url: "/api/queryPerson",
+        data: null,
+        dataType: "text",
+        success: function (msg) {
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+        }
+    });
+    let demo = {
+        "msg": "操作成功",
+        "code": 200,
+        "data": [{
+            "finger": {
+                "fingerWcNum": 5531,
+                "fingerRkNum": 3318,
+                "fingerCjNum": 11062,
+                "fingerWrkNum": 13275,
+                "fingerRkNumPer": "20.00%",
+                "fingerCjNumPer": "66.67%"
+            },
+            "voice": {},
+            "iris": {},
+            "dna": {
+                "dnaCjNum": 4426,
+                "dnaWcNum": 12167,
+                "dnaCjNumPer": "26.67%",
+                "dnaRkNum": 0,
+                "dnaWrkNum": 16593,
+                "dnaRkNumPer": "0.00%"
+            },
+            "photo": {
+                "photoRkNumPer": "20.00%",
+                "photoWrkNum": 13275,
+                "photoCjNum": 9959,
+                "photoRkNum": 3318,
+                "photoCjNumPer": "60.02%",
+                "photoWcNum": 6634
+            },
+            "cjs": {
+                "totalNum": 16593,
+                "cjNumPer": "20.01%",
+                "badwmc": "江西省公安厅",
+                "badwdm": "360043",
+                "ycNum": 3320,
+                "ycwcNum": 13273
+            },
+            "foot": {
+                "footCjNumPer": "33.36%",
+                "footWrkNum": 16593,
+                "footWcNum": 11058,
+                "footRkNumPer": "0.00%",
+                "footRkNum": 0,
+                "footCjNum": 5535
+            }
+        }]
+    }
+</script>
 </html>

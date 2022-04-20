@@ -26,22 +26,6 @@
 		data:{
 			arr:[{name:'金',active: true},{name:'木',active: false},{name:'水',active: false},{name:'火',active: false},{name:'土',active: false}],
 			itemPrice: 10 // 每个十元
-		},
-		methods:{
-			test(item,index) {
-				this.$set(this.arr, index, {name:item.name,active:!item.active})
-			}
-		},
-		computed: {
-			length:function() {
-				this.newArr = this.arr.filter((item)=>{
-					return item.active === true;
-				})
-				return this.newArr.length;
-			},
-			price:function(){
-				return this.itemPrice*this.length;
-			}
 		}
 	});
 </script>

@@ -1,0 +1,60 @@
+<!--
+ * @Author       : hwb
+ * @Date         : 2022-01-05 10:32:17
+ * @LastEditors  : hwb
+ * @LastEditTime : 2022-01-05 10:46:18
+ * @Description  : 综采-
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function getSomething() {
+        var r = 0;
+        return new Promise(function (resolve) {
+            setTimeout(function () {
+                r = 2;
+                resolve(r);
+            }, 5000);
+        });
+    }
+    function useDemo() {
+        let aa = {
+            cao: '你好'
+        };
+        async function compute(hh) {
+            var x = await getSomething();
+            aa.cao = hh;
+        }
+        return {
+            compute,
+            aa,
+        };
+    }
+    const { compute, aa } = useDemo();
+    compute('我好');
+    console.log(aa)
+</script>
+
+
+
+
+
+<script>
+    /*  var xxx = useApi({
+         api:
+             parrm
+     }) */
+</script>
+
+</html>

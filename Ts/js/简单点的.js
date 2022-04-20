@@ -42,3 +42,4 @@ console.log(user);
 // push不是string和number的时候就报错
 // user.push(true);
 console.log(777);
+var demo = [];

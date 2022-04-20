@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>vue事件</title>
@@ -9,6 +10,7 @@
 	<script src="../js/bootstrap.js"></script>
 	<script src="../js/vue.js"></script>
 </head>
+
 <body>
 	<div id="box">
 		<!-- <img src="{{url}}" alt=""> -->
@@ -18,17 +20,17 @@
 </body>
 <script>
 	var vm = new Vue({
-		el:"#box",
-		data:{
-			url:"https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
-			w:"200px",
-			t:"这是一张美丽的图片",
+		el: "#box",
+		data: {
+			url: "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png",
+			w: "200px",
+			t: "这是一张美丽的图片",
 			demo: {
-				a:1,
-				b:2
+				a: 1,
+				b: 2
 			}
 		},
-		methods:{
+		methods: {
 			test() {
 				this.demo.a = 1111;
 				this.demo.c = 3
@@ -48,11 +50,12 @@
 		v-bind:简写是  :src
 	*/
 	var a = 1;
-	if(a === 1) {
+	if (a === 1) {
 		console.log(111)
 	} else {
 		console.log(222)
 	}
 
 </script>
+
 </html>
